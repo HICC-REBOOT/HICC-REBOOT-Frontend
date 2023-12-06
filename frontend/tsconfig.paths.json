@@ -9,6 +9,7 @@
 			"@functions/*": ["functions/*"],
 			"@hooks/*": ["hooks/*"],
 			"@libs/*": ["libs/*"],
+			"@mocks/*": ["mocks/*"],
 			"@pages/*": ["pages/*"],
 			"@query/*": ["query/*"],
 			"@styles/*": ["styles/*"],

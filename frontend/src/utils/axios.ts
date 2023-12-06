@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
 import axios from 'axios';
+import BASE_URL from '@/config';
 
 const axiosInstance = axios.create({
-  baseURL: process.env.REACT_APP_SERVER,
+  baseURL: BASE_URL,
 });
 
 axiosInstance.interceptors.request.use(async (config) => {
