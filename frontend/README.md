@@ -7,7 +7,7 @@
 + singleQuote: 문자열을 큰 따옴표로 표시
 + trailingComma: 객체나 배열의 마지막 요소에 항상 쉼표
 + semi: 문장 끝에 세미콜론 사용하지 않음
-+ arrowParens: 화살표 함수에서 인자가 하나인 경우 괄호 생략
++ arrowParens: 화살표 함수에서 모든 인자는 괄호가 포함된다.
 
 ## src 폴더구조 설명
 + assets: 프로젝트에서 필요한 파일들을 모아두는 곳
@@ -19,9 +19,9 @@
 + mocks: 가짜 서버 관련해서 모아두는 곳
 + pages: 우리 서비스에서 필요한 페이지
 + query: react-query에서 사용할 query들을 모아두는 곳 (get, post, patch, delete 폴더들이 들어갈 예정, 각 메서드별로 모아두면 된다.)
-+ styles: font, globaltheme, theme를 정의해둔 곳, 추가로 라이브러리를 사용하면서 직접 css파일을 건들 일이 생긴다면 이 곳에 추가해주세요
++ styles: font, globaltheme, theme를 정의해둔 곳
 + utils: 유용하게 사용할 수 있는 기능을 모아두는 곳
-+ App.tsx: 우리 서비스의 앱
++ App.tsx: 우리 서비스의 앱, 라우트가 여기에 위치
 + index.tsx: 글로벌 스타일, 테마, 쿼리, 리코일 루트를 index.js에 선언해둠으로써 App안에서 이들을 사용할 수 있게 설정
 
 ## 기타 파일 설명
@@ -42,6 +42,7 @@
 
 ## mocks server worker
   - mocks 관련해서는 나중에 추가할 예정, 추가한다면 아래처럼 적용할테니 참고만..
+
 + 가짜 서버를 만들어 백엔드가 없어도 백엔드 연결 테스트를 해볼 수 있다.
 + client에서 axios 요청을 보내면 msw가 이를 가로채 미리 작성해둔 응답을 보내준다
 
@@ -70,6 +71,7 @@ rest.get(`${BASE_URL}/hello`, async (req, res, ctx) => {
 
 + 추가로 작성한 handler를 handler.js에서 스프레드 연산자로 추가해주면 된다.
 + 이렇게 작성해놓으면 특정 endpoint로 request를 보낼 때 등록한 응답이 돌아오게 된다.
+
 
 ## request (axios)
 + utils/axios.ts를 참고
@@ -104,11 +106,12 @@ const fetchData = async () => {
     }
   });
 
-  if (typeof response === IError) {
-    console.log(response.message);
-  }
+  if (response === undefined) {
+      console.log('error');
+      return;
+    }
 
-  return response.id;
+  return response.data.id;
 }
 
 // post
@@ -125,11 +128,12 @@ const fetchData = async () => {
     }
   });
 
-  if (typeof response === IError) {
-    console.log(response.message);
-  }
+  if (response === undefined) {
+      console.log('error');
+      return;
+    }
 
-  return response.id;
+  return response.data.id;
 }
 ```
 
@@ -137,7 +141,7 @@ const fetchData = async () => {
 
 
 ## import 할 때
-상대경로로 import 하는 경우 ../../../../components/~~ 보기 좋지 않은 코드가 된다.
+상대경로로 import 하는 경우 ../../../../components/~~ 보기 좋지 않은 코드가 됩니다.
 이를 방지하고자 절대경로를 사용하며, @가 앞에 붙는 것으로 설정을 해뒀습니다.
 
 tsconfig.paths.json을 참고하면 되며 import할 때 상대경로 대신에 @가 붙는 절대경로를 이용해주세요.
@@ -209,6 +213,7 @@ const Container = styled.div``;
 
 
 아래와 같이 사용해주세요.
+
 ./style/Main.style
 ```tsx
 import styled from 'styled-components';
@@ -226,6 +231,98 @@ function Main() {
 };
 
 export default Main
+```
+
+
+## map 함수 안에 JSX.Element를 넣고 싶다면 Each~~ 파일을 생성해주세요
+이렇게 하는 이유는 map 안의 컴포넌트 별로 상태를 가지고 있을 때 (ex: member name을 클릭 시 해당 member 색 변화)
+
+위의 방식은 members의 전체를 알고 있어야하지만  
+아래와 같이 구현하게되면 Each 안에 각각 state를 가질 수 있어 개발할 때 훨씬 편리할 것입니다.
+
+아래 코드 예시를 보시면 차이점을 더 명확하게 아실 수 있을거라 생각합니다.
+
+이렇게 작성하지 않습니다.
+```tsx
+interface Member {
+  id: number
+  name: string
+  age: number
+}
+
+function Main() {
+  const members: Member[] = [
+    {
+      id: 1,
+      name: 'jinhokim',
+      age: 26,
+    },
+    {
+      id: 2,
+      name: 'sseho',
+      age: 26,
+    },
+  ];
+
+  const [membersState, setMembersState] = useState<Member[]>([]);
+
+  return (
+    <M.Container>
+      {members.map((member) => (
+        <M.Member key={member.id}>{member.name}</M.Member>
+      ))}
+    </M.Container>
+  )
+}
+```
+
+
+아래와 같이 작성해주시기 바랍니다...
+```tsx
+interface Member {
+  id: number
+  name: string
+  age: number
+}
+
+function Main() {
+  const members: Member[] = [
+    {
+      id: 1,
+      name: 'jinhokim',
+      age: 26,
+    },
+    {
+      id: 2,
+      name: 'sseho',
+      age: 26,
+    },
+  ];
+
+  return (
+    <M.Container>
+      {members.map((member) => (
+        <EachMember key={member.id} member={member} />
+      ))}
+    </M.Container>
+  )
+}
+```
+
+```tsx
+interface EachMemberProps {
+  member: Member
+}
+
+function EachMember({member}: EachMemberProps) {
+  const [memberState, setMemberState] = useState<Member>();
+
+  return (
+    <EM.Container>
+      {member.id}
+    </Em.Container>
+  )
+}
 ```
 
 
