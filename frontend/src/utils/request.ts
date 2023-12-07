@@ -55,20 +55,12 @@ async function request<T, R, P>({ uri, method, data, params }: IRequest<T, P>) {
     if (axios.isAxiosError(error)) {
       const serverError = error as AxiosError<IError>;
       if (serverError && serverError.response) {
-        return serverError.response.data;
+        // eslint-disable-next-line no-alert
+        alert(serverError.response.data.message);
       }
     }
 
-    // axios 에러가 아닌 경우.. 있을까?
-    const unexpectedError: IError = {
-      timestamp: '2023-12-07',
-      isSuccess: false,
-      code: '500',
-      message: '요청에서의 예상하지 못한 에러입니다.',
-      httpStatus: 500,
-    };
-
-    return unexpectedError;
+    return undefined;
   }
 }
 
