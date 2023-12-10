@@ -222,7 +222,7 @@ const queryClient = new QueryClient({
 staleTime은 캐싱한 데이터가 유효한 시간을 말하는데, 캐싱한 데이터가 staleTime이 지나지 않았다면, fresh한 상태인 캐싱데이터이므로 굳이 서버로부터 데이터를 다시 가져오지 않아도 된다는 의미입니다.
 
 
-+ react-query 사용법
+### react-query 사용법
 
 **@query/get/useGetUser.ts**를 참고하면 더 빠름
 
