@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { usePagination } from 'react-use-pagination';
-import { useQuery, keepPreviousData } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import request from '@/utils/request';
 import PaginationComponent from '@/libs/pagination/PaginationComponent';
@@ -27,7 +27,6 @@ interface Pageable {
 }
 
 interface ReturnuseServerSidePagination<T> {
-  loading: boolean;
   curPageItem: T[];
   renderPaginationBtn: () => React.JSX.Element;
 }
@@ -38,7 +37,6 @@ function useServerSidePagination<T>({
   sort,
   search,
 }: UseServerSidePaginationProps): ReturnuseServerSidePagination<T> {
-  const [data, setData] = useState<T[]>([]); // 페이지의 데이터
   const [dataLength, setDataLength] = useState<number>(0); // 데이터의 전체 길이
 
   const { currentPage, setPage } = usePagination({
@@ -62,24 +60,14 @@ function useServerSidePagination<T>({
       },
     });
 
-    setData(response.data.data);
     setDataLength(response.data.totalElements);
-
-    return response.data;
+    return response.data.data;
   };
 
-  const { data: cachingData, isLoading } = useQuery({
-    queryKey: ['getPagiable', { uri, size, sort, search, currentPage }],
+  const { data } = useSuspenseQuery({
+    queryKey: ['get-pagiable', { uri, size, sort, search, currentPage }],
     queryFn: fetchPagiableData,
-    placeholderData: keepPreviousData,
   });
-
-  useEffect(() => {
-    if (cachingData !== undefined) {
-      setData(cachingData.data);
-      setDataLength(cachingData.totalElements);
-    }
-  }, [cachingData]);
 
   const onSetPage = (page: number) => {
     setPage(page - 1);
@@ -98,7 +86,6 @@ function useServerSidePagination<T>({
   };
 
   return {
-    loading: isLoading,
     curPageItem: data,
     renderPaginationBtn,
   };
