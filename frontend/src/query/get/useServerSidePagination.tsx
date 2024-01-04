@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import request from '@/utils/request';
-import PaginationComponent from '@/libs/pagination/PaginationComponent';
+import request from '@utils/request';
+import PaginationComponent from '@libs/pagination/PaginationComponent';
 
 interface UseServerSidePaginationProps {
   uri: string;

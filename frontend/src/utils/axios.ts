@@ -14,6 +14,7 @@ export interface IError {
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
+  withCredentials: true,
 });
 
 axiosInstance.interceptors.request.use(async (config) => {
