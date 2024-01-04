@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import axios, { AxiosError } from 'axios';
-import BASE_URL from '@/config';
-import { ACCESS_KEY, NON_TOKEN_API } from '@/constants/token';
+import { ACCESS_KEY, NON_TOKEN_API } from '@constants/token';
+import BASE_URL from '../config';
 
 // error 형태, 이는 백엔드의 상황을 보고 변경
 export interface IError {
