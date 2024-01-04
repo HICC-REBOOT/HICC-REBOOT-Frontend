@@ -3,7 +3,7 @@ import axiosInstance from './axios';
 
 interface IRequest<T, P> {
   uri: string;
-  method: string;
+  method: 'get' | 'post' | 'patch' | 'delete' | 'put';
   data?: T;
   params?: P;
 }
