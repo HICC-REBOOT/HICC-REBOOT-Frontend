@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useInView } from 'react-intersection-observer';
 
 import request from '@utils/request';
 import PaginationComponent from '@libs/pagination/PaginationComponent';
+import useInnerWidth from '@hooks/useInnerWidth';
 
 interface UseServerSidePaginationProps {
   uri: string;
@@ -11,10 +13,33 @@ interface UseServerSidePaginationProps {
   search?: string;
 }
 
-// 예상되는 페이지네이션 형태의 반환형식, 백엔드의 요구에 따라 언제든지 변할 수 있음
 interface ResponseServerSidePagination<T> {
+  content: T[];
+  pageable: {
+    sort: {
+      empty: boolean;
+      sorted: boolean;
+      unsorted: boolean;
+    };
+    offset: number;
+    pageSize: number;
+    pageNumber: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  last: boolean;
+  totalPages: number;
   totalElements: number;
-  data: T[];
+  size: number;
+  number: number;
+  sort: {
+    empty: boolean;
+    sorted: boolean;
+    unsorted: boolean;
+  };
+  first: boolean;
+  numberOfElements: number;
+  empty: boolean;
 }
 
 // pagination에 필요한 파라미터들 (현재 페이지 번호, 페이지 크기, 정렬, 검색)
@@ -28,6 +53,7 @@ interface Pageable {
 interface ReturnuseServerSidePagination<T> {
   curPageItem: T[];
   renderPaginationBtn: () => React.JSX.Element;
+  renderNextAreaForInfinityScroll: () => React.JSX.Element;
 }
 
 function useServerSidePagination<T>({
@@ -36,8 +62,17 @@ function useServerSidePagination<T>({
   sort,
   search,
 }: UseServerSidePaginationProps): ReturnuseServerSidePagination<T> {
+  const [data, setData] = useState<T[]>([]);
   const [dataLength, setDataLength] = useState<number>(0); // 데이터의 전체 길이
   const [page, setPage] = useState<number>(0); // 현재 페이지
+
+  const [ref, inView] = useInView(); // 무한 스크롤 감지를 위해서
+  const { innerWidth } = useInnerWidth();
+  const [isLast, setIsLast] = useState<boolean>(false); // 무한스크롤일 때 마지막 정보인지를 서버로부터 받아옴d
+
+  const [isInfinityScroll, setIsInfinityScroll] = useState<boolean>(
+    innerWidth < 768,
+  );
 
   const fetchPagiableData = async () => {
     const response = await request<
@@ -59,13 +94,43 @@ function useServerSidePagination<T>({
   };
 
   const { data: cachingData } = useSuspenseQuery({
-    queryKey: ['get-pagiable', { uri, size, sort, search, page }],
+    queryKey: [
+      'get-pagiable',
+      { uri, size, sort, search, page, isInfinityScroll },
+    ],
     queryFn: fetchPagiableData,
   });
 
+  // 태블릿 이하로는 무한스크롤로 변동
   useEffect(() => {
+    setIsInfinityScroll(innerWidth < 768);
+  }, [innerWidth]);
+
+  // 모드가 전환될 때마다 배열을 비워주고 페이지를 0으로 초기화시킨다.
+  useEffect(() => {
+    setPage(0);
+    setData([]);
+  }, [isInfinityScroll]);
+
+  // 더 불러오기 공간이 관측되면 페이지를 1증가
+  useEffect(() => {
+    if (isInfinityScroll && inView && !isLast) {
+      setPage((prev) => prev + 1);
+    }
+  }, [inView, isInfinityScroll, isLast]);
+
+  useEffect(() => {
+    if (!isInfinityScroll) {
+      setData(cachingData.content);
+    }
+
+    if (isInfinityScroll) {
+      setData((prev) => [...prev, ...cachingData.content]);
+      setIsLast(cachingData.last);
+    }
+
     setDataLength(cachingData.totalElements);
-  }, [cachingData]);
+  }, [cachingData, isInfinityScroll]);
 
   const onSetPage = (pageNum: number) => {
     setPage(pageNum - 1);
@@ -83,9 +148,24 @@ function useServerSidePagination<T>({
     );
   };
 
+  const renderNextAreaForInfinityScroll = (): React.JSX.Element => {
+    return (
+      <div
+        ref={ref}
+        style={{
+          marginTop: '4rem',
+          width: '1rem',
+          height: '1rem',
+          display: isInfinityScroll ? 'block' : 'none',
+        }}
+      />
+    );
+  };
+
   return {
-    curPageItem: cachingData.data,
+    curPageItem: data,
     renderPaginationBtn,
+    renderNextAreaForInfinityScroll,
   };
 }
 
