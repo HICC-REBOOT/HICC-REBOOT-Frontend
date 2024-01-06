@@ -7,7 +7,7 @@ interface DesktopProps {
 
 function Desktop({ children }: DesktopProps) {
   const isDesktop = useMediaQuery({
-    query: '(min-width:1024px)',
+    query: '(min-width:1440px)',
   });
 
   return <>{isDesktop && children}</>;
