@@ -52,8 +52,7 @@ interface Pageable {
 
 interface ReturnuseServerSidePagination<T> {
   curPageItem: T[];
-  renderPaginationBtn: () => React.JSX.Element;
-  renderNextAreaForInfinityScroll: () => React.JSX.Element;
+  renderPaginationBtnOrInfinityScroll: () => React.JSX.Element;
 }
 
 function useServerSidePagination<T>({
@@ -164,8 +163,9 @@ function useServerSidePagination<T>({
 
   return {
     curPageItem: data,
-    renderPaginationBtn,
-    renderNextAreaForInfinityScroll,
+    renderPaginationBtnOrInfinityScroll: isInfinityScroll
+      ? renderNextAreaForInfinityScroll
+      : renderPaginationBtn,
   };
 }
 
