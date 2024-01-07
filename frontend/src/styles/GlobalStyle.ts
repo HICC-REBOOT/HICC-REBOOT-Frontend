@@ -12,25 +12,25 @@ const GlobalStyle = createGlobalStyle`
   
   @font-face {
     font-family: 'Source Sans Pro';
-    src: url(${SourceSansProExtraLight}) format('woff2');
+    src: url(${SourceSansProExtraLight}) format('font-woff2');
     font-weight: 200;
   }
 
   @font-face {
     font-family: 'Source Sans Pro';
-    src: url(${SourceSansProLight}) format('woff2');
+    src: url(${SourceSansProLight}) format('font-woff2');
     font-weight: 300;
   }
 
   @font-face {
     font-family: 'Source Sans Pro';
-    src: url(${SourceSansProRegular}) format('woff2');
+    src: url(${SourceSansProRegular}) format('font-woff2');
     font-weight: 400;
   }
 
   @font-face {
     font-family: 'Source Sans Pro';
-    src: url(${SourceSansProBold}) format('woff2');
+    src: url(${SourceSansProBold}) format('font-woff2');
     font-weight: 700;
   }
 
