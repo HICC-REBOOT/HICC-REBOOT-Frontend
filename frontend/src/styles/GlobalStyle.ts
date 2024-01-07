@@ -1,8 +1,38 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
+import SourceSansProExtraLight from '@assets/font/source-sans-pro/SourceSansPro-ExtraLight.woff2';
+import SourceSansProLight from '@assets/font/source-sans-pro/SourceSansPro-Light.woff2';
+import SourceSansProRegular from '@assets/font/source-sans-pro/SourceSansPro-Regular.woff2';
+import SourceSansProBold from '@assets/font/source-sans-pro/SourceSansPro-Bold.woff2';
+
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProExtraLight}) format('woff2');
+    font-weight: 200;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProLight}) format('woff2');
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProRegular}) format('woff2');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProBold}) format('woff2');
+    font-weight: 700;
+  }
+
   a{
     text-decoration: none;
     color: inherit;
@@ -33,15 +63,17 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 16px; /* Default font size */
+    /* Desktop font size */
+    font-size: 16px;
 
-    /* Media query for mobile */
-    /* 나중에 정하기 나름입니다... 추후에 협의해봅시다. */
-    @media (min-width: 450px) and (max-width: 600px) {
-        font-size: 13px;
+    /* Tablet font size */
+    @media (min-width: 768px) and (max-width: 1439px) {
+      font-size: 13px;
     }
-    @media (max-width: 450px) {
-        font-size: 10px;
+
+    /* Mobile font size */
+    @media (max-width: 767px) {
+      font-size: 10px;
     }
   }
 `;
