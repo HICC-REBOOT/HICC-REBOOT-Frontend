@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
+import BREAKPOINT from '@constants/breakpoint';
 
 import SourceSansProExtraLight from '@assets/font/source-sans-pro/SourceSansPro-ExtraLight.woff2';
 import SourceSansProLight from '@assets/font/source-sans-pro/SourceSansPro-Light.woff2';
@@ -63,18 +64,23 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    /* Desktop font size */
-    font-size: 16px;
+    /* default font size */
+    font-size: 10px;
+
+    /* Mobile font size */
+    @media (max-width: ${BREAKPOINT.TABLET}px) {
+      font-size: 10px;
+    }
 
     /* Tablet font size */
-    @media (min-width: 768px) and (max-width: 1439px) {
+    @media (min-width: ${BREAKPOINT.TABLET}px) and (max-width: ${BREAKPOINT.DESKTOP}px) {
       font-size: 13px;
     }
 
-    /* Mobile font size */
-    @media (max-width: 767px) {
-      font-size: 10px;
-    }
+    /* Desktop font size */
+    @media (min-width: ${BREAKPOINT.DESKTOP}px){
+      font-size: 16px;
+    }  
   }
 `;
 
