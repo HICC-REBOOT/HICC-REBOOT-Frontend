@@ -8,7 +8,7 @@ interface MobileProps {
 
 function Mobile({ children }: MobileProps) {
   const isMobile = useMediaQuery({
-    query: `(max-width:${BREAKPOINT.TABLET - 1}px)`,
+    query: `(max-width:${BREAKPOINT.TABLET - 0.1}px)`,
   });
 
   return <>{isMobile && children}</>;
