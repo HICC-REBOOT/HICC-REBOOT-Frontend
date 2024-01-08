@@ -1,11 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
-import BREAKPOINT from '@constants/breakpoint';
 
 import SourceSansProExtraLight from '@assets/font/source-sans-pro/SourceSansPro-ExtraLight.woff2';
 import SourceSansProLight from '@assets/font/source-sans-pro/SourceSansPro-Light.woff2';
 import SourceSansProRegular from '@assets/font/source-sans-pro/SourceSansPro-Regular.woff2';
 import SourceSansProBold from '@assets/font/source-sans-pro/SourceSansPro-Bold.woff2';
+
+import AreaBold from '@assets/font/area/Area-Bold.woff2';
+import AreaExtraBold from '@assets/font/area/Area-Extrabold.woff2';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -32,6 +34,18 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Source Sans Pro';
     src: url(${SourceSansProBold}) format('font-woff2');
     font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Area';
+    src: url(${AreaBold}) format('font-woff2');
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Area';
+    src: url(${AreaExtraBold}) format('font-woff2');
+    font-weight: 800;
   }
 
   a{
@@ -66,21 +80,6 @@ const GlobalStyle = createGlobalStyle`
   html {
     /* default font size */
     font-size: 10px;
-
-    /* Mobile font size */
-    @media (max-width: ${BREAKPOINT.TABLET}px) {
-      font-size: 10px;
-    }
-
-    /* Tablet font size */
-    @media (min-width: ${BREAKPOINT.TABLET}px) and (max-width: ${BREAKPOINT.DESKTOP}px) {
-      font-size: 13px;
-    }
-
-    /* Desktop font size */
-    @media (min-width: ${BREAKPOINT.DESKTOP}px){
-      font-size: 16px;
-    }  
   }
 `;
 
