@@ -1,8 +1,53 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
+import SourceSansProExtraLight from '@assets/font/source-sans-pro/SourceSansPro-ExtraLight.woff2';
+import SourceSansProLight from '@assets/font/source-sans-pro/SourceSansPro-Light.woff2';
+import SourceSansProRegular from '@assets/font/source-sans-pro/SourceSansPro-Regular.woff2';
+import SourceSansProBold from '@assets/font/source-sans-pro/SourceSansPro-Bold.woff2';
+
+import AreaBold from '@assets/font/area/Area-Bold.woff2';
+import AreaExtraBold from '@assets/font/area/Area-Extrabold.woff2';
+
 const GlobalStyle = createGlobalStyle`
   ${reset}
+  
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProExtraLight}) format('font-woff2');
+    font-weight: 200;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProLight}) format('font-woff2');
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProRegular}) format('font-woff2');
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProBold}) format('font-woff2');
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Area';
+    src: url(${AreaBold}) format('font-woff2');
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Area';
+    src: url(${AreaExtraBold}) format('font-woff2');
+    font-weight: 800;
+  }
+
   a{
     text-decoration: none;
     color: inherit;
@@ -20,7 +65,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body{
     line-height: 1;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: sans-serif;
     background-color: #FFFFFF;
   }
   ol, ul{
@@ -33,16 +78,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 16px; /* Default font size */
-
-    /* Media query for mobile */
-    /* 나중에 정하기 나름입니다... 추후에 협의해봅시다. */
-    @media (min-width: 450px) and (max-width: 600px) {
-        font-size: 13px;
-    }
-    @media (max-width: 450px) {
-        font-size: 10px;
-    }
+    /* default font size */
+    font-size: 10px;
   }
 `;
 

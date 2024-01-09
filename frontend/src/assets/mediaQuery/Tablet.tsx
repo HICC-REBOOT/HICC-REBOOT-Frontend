@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import BREAKPOINT from '@constants/breakpoint';
 
 interface TabletProps {
   children: React.JSX.Element;
@@ -7,7 +8,9 @@ interface TabletProps {
 
 function Tablet({ children }: TabletProps) {
   const isTablet = useMediaQuery({
-    query: '(min-width:768px) and (max-width:1023px)',
+    query: `(min-width:${BREAKPOINT.TABLET}px) and (max-width:${
+      BREAKPOINT.DESKTOP - 0.1
+    }px)`,
   });
 
   return <>{isTablet && children}</>;
