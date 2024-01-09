@@ -2,7 +2,13 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    colors: {};
+    colors: {
+      black: string;
+      grey001: string;
+      point1: string;
+      point2: string;
+      white: string;
+    };
     fontStyle: {
       head1: string;
       head2: string;

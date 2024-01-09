@@ -1,6 +1,12 @@
 import { DefaultTheme } from 'styled-components';
 
-const colors = {};
+const colors = {
+  black: '#0A0A0A',
+  grey001: '#141415',
+  point1: '#6963FF',
+  point2: '#FFBF18',
+  white: '#FFFFFF',
+};
 
 // rem 10px: mobile font size
 const fontStyle = {
