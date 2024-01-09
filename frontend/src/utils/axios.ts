@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 import axios, { AxiosError } from 'axios';
-import { ACCESS_KEY, NON_TOKEN_API } from '@constants/token';
+import { NON_TOKEN_API } from '@constants/token';
+import { TOKEN_KEYS } from '@constants/keys';
 import BASE_URL from '../config';
 
 // error 형태, 이는 백엔드의 상황을 보고 변경
@@ -22,7 +23,7 @@ axiosInstance.interceptors.request.use(async (config) => {
     return config;
   }
 
-  const token = localStorage.getItem(ACCESS_KEY);
+  const token = localStorage.getItem(TOKEN_KEYS.ACCESS_KEY);
 
   if (token !== null && !NON_TOKEN_API.includes(config.url as string)) {
     config.headers.Authorization = `Bearer ${token}`;
