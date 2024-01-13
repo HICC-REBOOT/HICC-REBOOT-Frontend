@@ -76,9 +76,7 @@ export const multiSelectStyle = {
     fontFamily: 'Pretendard',
     fontSize: '16px',
     fontWeight: '500',
-    border: state.isFocused
-      ? ' 1px solid #ff7710'
-      : '1px solid var(--grey-400, #DCDFE3)',
+    border: state.isFocused ? ' 1px solid #ff7710' : '1px solid var(--grey-400, #DCDFE3)',
     width: '10rem',
     borderRadius: '6px',
     boxShadow: '0 0 0 0px transparent',

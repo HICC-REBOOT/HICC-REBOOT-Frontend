@@ -1,4 +1,5 @@
 import { DefaultTheme } from 'styled-components';
+import media from './media';
 
 const colors = {
   black: '#0A0A0A',
@@ -171,6 +172,7 @@ const typography = {
 const theme: DefaultTheme = {
   colors,
   typography,
+  media,
 };
 
 export default theme;

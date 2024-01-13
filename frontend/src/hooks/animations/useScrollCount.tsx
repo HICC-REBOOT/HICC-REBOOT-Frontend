@@ -8,12 +8,7 @@ import { useCallback, useEffect, useRef, RefObject } from 'react';
  * @param duration 실행할 시간
  * @param direction 숫자가 올라갈지(up) 내려갈지(down) 설정
  */
-const useScrollCount = (
-  end: number,
-  start = 0,
-  duration = 3000,
-  direction = 'up',
-) => {
+const useScrollCount = (end: number, start = 0, duration = 3000, direction = 'up') => {
   const dom = useRef<HTMLElement>();
   // const observer = useRef(null);
   const stepTime = Math.abs(Math.floor(duration / (end - start)));

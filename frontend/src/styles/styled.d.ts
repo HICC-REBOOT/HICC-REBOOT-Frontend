@@ -1,4 +1,5 @@
-import 'styled-components';
+import { CSSProp } from 'styled-components';
+import { BackQuoteArgs, MediaQueryProps } from './media';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -41,5 +42,6 @@ declare module 'styled-components' {
         caption2: string;
       };
     };
+    media: Record<keyof MediaQueryProps, (l: TemplateStringsArray, ...p: BackQuoteArgs) => CSSProp>;
   }
 }

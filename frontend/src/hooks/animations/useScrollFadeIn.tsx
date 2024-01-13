@@ -1,10 +1,4 @@
-import {
-  useRef,
-  useEffect,
-  useCallback,
-  RefObject,
-  CSSProperties,
-} from 'react';
+import { useRef, useEffect, useCallback, RefObject, CSSProperties } from 'react';
 
 interface ScrollFadeInProps {
   ref: RefObject<HTMLDivElement>;
@@ -22,12 +16,7 @@ interface ScrollFadeInProps {
  * @returns
  */
 
-const useScrollFadeIn = (
-  direction = 'up',
-  duration = 1,
-  delay = 0,
-  infinite = true,
-): ScrollFadeInProps => {
+const useScrollFadeIn = (direction = 'up', duration = 1, delay = 0, infinite = true): ScrollFadeInProps => {
   const dom = useRef<HTMLDivElement>(null);
 
   const handleDirection = (name: string) => {

@@ -72,11 +72,7 @@ function useServerSidePagination<T>({
   const { isInfinityScroll } = useInfinityScrollProvider();
 
   const fetchPagiableData = async () => {
-    const response = await request<
-      null,
-      ResponseServerSidePagination<T>,
-      Pageable
-    >({
+    const response = await request<null, ResponseServerSidePagination<T>, Pageable>({
       uri,
       method: 'get',
       params: {
@@ -126,15 +122,7 @@ function useServerSidePagination<T>({
   };
 
   const renderPaginationBtn = (): React.JSX.Element => {
-    return (
-      <PaginationComponent
-        page={page + 1}
-        size={size}
-        count={dataLength}
-        pageRange={5}
-        setPage={onSetPage}
-      />
-    );
+    return <PaginationComponent page={page + 1} size={size} count={dataLength} pageRange={5} setPage={onSetPage} />;
   };
 
   const renderNextAreaForInfinityScroll = (): React.JSX.Element => {
@@ -153,9 +141,7 @@ function useServerSidePagination<T>({
 
   return {
     curPageItem: data,
-    renderPaginationBtnOrInfinityScroll: isInfinityScroll
-      ? renderNextAreaForInfinityScroll
-      : renderPaginationBtn,
+    renderPaginationBtnOrInfinityScroll: isInfinityScroll ? renderNextAreaForInfinityScroll : renderPaginationBtn,
   };
 }
 

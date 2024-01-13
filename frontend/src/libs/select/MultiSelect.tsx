@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import Select, { ActionMeta, components } from 'react-select';
 import { ReactComponent as Arrow } from '@assets/image/arrow.svg';
-import categoryOptions, {
-  CategoryOptionType,
-  ValueOptionType,
-} from '@constants/CollegeData';
+import categoryOptions, { CategoryOptionType, ValueOptionType } from '@constants/CollegeData';
 import * as MS from './MultiSelect.style';
 
 type MultiSelectProps = {
-  onChange: (
-    selectedOption: ValueOptionType | null,
-    actionMeta: ActionMeta<ValueOptionType>,
-  ) => void;
+  onChange: (selectedOption: ValueOptionType | null, actionMeta: ActionMeta<ValueOptionType>) => void;
 };
 
 function MultiSelect({ onChange }: MultiSelectProps) {
@@ -22,9 +16,7 @@ function MultiSelect({ onChange }: MultiSelectProps) {
       <components.DropdownIndicator {...props}>
         <Arrow
           style={{
-            transform: props.selectProps.menuIsOpen
-              ? 'rotate(0deg)'
-              : 'rotate(180deg)',
+            transform: props.selectProps.menuIsOpen ? 'rotate(0deg)' : 'rotate(180deg)',
           }}
         ></Arrow>
       </components.DropdownIndicator>
@@ -40,10 +32,7 @@ function MultiSelect({ onChange }: MultiSelectProps) {
               onClick={() => setCurCollege(college)}
               key={college.id}
               style={{
-                backgroundColor:
-                  college.id === curCollege?.id
-                    ? 'var(--grey-300, #EAECEE)'
-                    : '',
+                backgroundColor: college.id === curCollege?.id ? 'var(--grey-300, #EAECEE)' : '',
               }}
             >
               {college.label}
