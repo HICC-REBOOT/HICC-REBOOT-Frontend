@@ -72,7 +72,7 @@ const GlobalStyle = createGlobalStyle`
 
   html {
     /* default font size */
-    font-size: 10px;
+    font-size: 62.5%;
   }
 `;
 
