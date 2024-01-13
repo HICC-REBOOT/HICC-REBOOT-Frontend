@@ -141,9 +141,30 @@ const typography = {
     `,
   },
   common: {
-    button1: ``,
-    caption1: ``,
-    caption2: ``,
+    button1: `
+      font-family: Source Sans Pro;
+      font-size: 1.5rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      letter-spacing: 0.05rem;
+    `,
+    caption1: `
+      font-family: Source Sans Pro;
+      font-size: 1.3rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: 0.05rem;
+    `,
+    caption2: `
+      font-family: Source Sans Pro;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 160%;
+      letter-spacing: 0.05rem;
+    `,
   },
 };
 
