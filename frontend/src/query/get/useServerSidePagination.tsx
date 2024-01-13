@@ -4,9 +4,8 @@ import { useInView } from 'react-intersection-observer';
 
 import request from '@utils/request';
 import PaginationComponent from '@libs/pagination/PaginationComponent';
-import useInnerWidth from '@hooks/useInnerWidth';
-import BREAKPOINT from '@constants/breakpoint';
 import { QUERY_KEYS } from '@constants/keys';
+import useInfinityScrollProvider from '@hooks/useInfinityScrollProvider';
 
 interface UseServerSidePaginationProps {
   uri: string;
@@ -68,12 +67,9 @@ function useServerSidePagination<T>({
   const [page, setPage] = useState<number>(0); // 현재 페이지
 
   const [ref, inView] = useInView(); // 무한 스크롤 감지를 위해서
-  const { innerWidth } = useInnerWidth();
   const [isLast, setIsLast] = useState<boolean>(false); // 무한스크롤일 때 마지막 정보인지를 서버로부터 받아옴d
 
-  const [isInfinityScroll, setIsInfinityScroll] = useState<boolean>(
-    innerWidth < BREAKPOINT.TABLET,
-  );
+  const { isInfinityScroll } = useInfinityScrollProvider();
 
   const fetchPagiableData = async () => {
     const response = await request<
@@ -98,11 +94,6 @@ function useServerSidePagination<T>({
     queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page }],
     queryFn: fetchPagiableData,
   });
-
-  // 태블릿 이하로는 무한스크롤로 변동
-  useEffect(() => {
-    setIsInfinityScroll(innerWidth < BREAKPOINT.TABLET);
-  }, [innerWidth]);
 
   // 모드가 전환될 때마다 배열을 비워주고 페이지를 0으로 초기화시킨다.
   useEffect(() => {
