@@ -6,11 +6,9 @@ import BASE_URL from '../config';
 
 // error 형태, 이는 백엔드의 상황을 보고 변경
 export interface IError {
-  timestamp: string;
-  isSuccess: boolean;
+  status: number;
   code: string;
-  message: string;
-  httpStatus: number;
+  reason: string;
 }
 
 const axiosInstance = axios.create({
@@ -43,7 +41,7 @@ axiosInstance.interceptors.response.use(
   (res) => res,
   async (error) => {
     const axiosError = getAxiosError(error as AxiosError);
-    alert(axiosError?.message);
+    alert(axiosError?.reason);
     return Promise.reject(error);
   },
 );

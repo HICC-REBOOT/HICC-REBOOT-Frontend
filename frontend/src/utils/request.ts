@@ -12,8 +12,7 @@ interface IRequest<T, P> {
 interface IResponse<R> {
   timestamp: string;
   isSuccess: boolean;
-  code: string;
-  message: string;
+  statusCode: string;
   data: R;
 }
 
