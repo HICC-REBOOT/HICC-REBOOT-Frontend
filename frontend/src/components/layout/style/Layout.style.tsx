@@ -6,6 +6,8 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+
+  min-width: 360px;
 `;
 
 export const D = styled.div;

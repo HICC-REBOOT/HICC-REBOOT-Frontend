@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
   width: 100%;
   height: 31.8rem;
 
@@ -12,6 +14,16 @@ export const Container = styled.div`
   padding-top: 3.5rem;
 
   background-color: ${(props) => props.theme.colors.black};
+`;
+
+export const LeftSide = styled.section``;
+
+export const RightSide = styled.section``;
+
+export const Instagram = styled.img`
+  width: 4.8rem;
+  height: 4.8rem;
+  cursor: pointer;
 `;
 
 export const HICC = styled.p`
