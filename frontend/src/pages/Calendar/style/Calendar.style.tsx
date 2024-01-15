@@ -11,12 +11,6 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.colors.black};
 `;
 
-export const CalendarBox = styled.div`
-  background-color: white;
-  border-radius: 1.6rem;
-  padding: 1.1rem;
-`;
-
 export const DetailBox = styled.div`
   background-color: white;
   border-radius: 1.6rem;
