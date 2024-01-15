@@ -20,6 +20,23 @@ export const LeftSide = styled.section``;
 
 export const RightSide = styled.section``;
 
+export const InstagramMent = styled.div`
+  display: none;
+
+  ${(props) => props.theme.media.desktop`
+    display: block;
+    margin-bottom: 2.7rem;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    display: block;
+    margin-bottom: 2.7rem;
+  `}
+
+  color: ${(props) => props.theme.colors.white};
+  ${(props) => props.theme.typography.common.button1};
+`;
+
 export const Instagram = styled.img`
   width: 4.8rem;
   height: 4.8rem;
