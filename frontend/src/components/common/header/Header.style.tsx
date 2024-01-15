@@ -41,7 +41,7 @@ export const Tab = styled(Link)`
   cursor: pointer;
 `;
 
-export const Auth = styled(Link)`
+export const Auth = styled.button`
   padding: 1rem 2rem;
   border: 0.1rem solid ${(props) => props.theme.colors.white};
   border-radius: 1.2rem;

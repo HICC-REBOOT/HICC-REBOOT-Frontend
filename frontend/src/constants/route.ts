@@ -3,6 +3,7 @@ const ROUTE = {
   CALENDAR: '/calendar',
   COMMUNITY: '/community',
   LOGIN: '/login',
+  SIGNUP: '/signup',
   ADMIN: '/admin',
 };
 
