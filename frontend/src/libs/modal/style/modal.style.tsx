@@ -2,7 +2,7 @@ import ReactModal from 'react-modal';
 
 const modalStyles: ReactModal.Styles = {
   overlay: {
-    backgroundColor: ' rgba(0, 0, 0, 0.4)',
+    backgroundColor: ' rgba(0, 0, 0, 0.6)',
     width: '100%',
     height: '100vh',
     zIndex: '10',

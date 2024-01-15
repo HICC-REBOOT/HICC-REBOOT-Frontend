@@ -10,13 +10,7 @@ interface PaginationProps {
   setPage: (page: number) => void;
 }
 
-function PaginationComponent({
-  page,
-  size,
-  count,
-  pageRange,
-  setPage,
-}: PaginationProps) {
+function PaginationComponent({ page, size, count, pageRange, setPage }: PaginationProps) {
   return (
     <Pagination
       activePage={page}
