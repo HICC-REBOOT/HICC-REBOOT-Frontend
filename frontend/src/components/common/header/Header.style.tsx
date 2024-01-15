@@ -11,7 +11,6 @@ export const Container = styled.nav`
   left: 50%;
   transform: translate3d(-50%, 0, 0);
 
-  width: 38rem;
   height: 5.6rem;
   padding: 0.5rem;
   padding-left: 1.2rem;
