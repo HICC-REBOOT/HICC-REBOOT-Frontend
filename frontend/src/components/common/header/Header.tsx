@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
+
+import ROUTE from '@constants/route';
 import * as H from './Header.style';
 
 function Header() {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-  const [isAdmin, setIsAdmin] = useState<boolean>(true);
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const navigate = useNavigate();
 
