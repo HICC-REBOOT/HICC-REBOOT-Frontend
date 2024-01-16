@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import DemoLogo from '@assets/image/demologo.png';
+import STYLE from '@constants/style';
 
 // background color색 정해지면 수정 필요
 export const Container = styled.nav`
@@ -10,6 +11,7 @@ export const Container = styled.nav`
   top: 3.2rem;
   left: 50%;
   transform: translate3d(-50%, 0, 0);
+  z-index: ${STYLE.Z_INDEX.TOP_PRIORITY};
 
   height: 5.6rem;
   padding: 0.5rem;
