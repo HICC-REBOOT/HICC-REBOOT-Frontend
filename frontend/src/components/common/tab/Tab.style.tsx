@@ -37,7 +37,7 @@ export const tabConfigStyle: ThemeConfig = {
       itemSelectedColor: theme.colors.white,
       inkBarColor: theme.colors.point1,
       horizontalItemGutter: 0,
-      horizontalMargin: '0 0 64px 0',
+      horizontalMargin: '0 auto 64px auto',
     },
   },
 };
@@ -47,8 +47,6 @@ export const tabBarStyle: CSSProperties = {
   width: '36rem',
   height: '5.5rem',
   alignContent: 'center',
-  margin: '20rem auto',
-
   backgroundColor: theme.colors.black,
   flexShrink: 0,
 };
