@@ -5,9 +5,7 @@ import Calendar from '@pages/Calendar/Calendar';
 import Home from '@pages/Home';
 import ROUTE from '@constants/route';
 import Temp from '@pages/temp/Temp';
-import Temp1 from '@components/Temp/temp1';
-import Temp2 from '@components/Temp/temp2';
-import Temp3 from '@components/Temp/temp3';
+import { Temp1, Temp2, Temp3 } from '@components/Temp';
 
 function App() {
   return (
