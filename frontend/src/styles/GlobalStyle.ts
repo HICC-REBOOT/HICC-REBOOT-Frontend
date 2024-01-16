@@ -1,33 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import SourceSansProRegular from '@assets/font/source-sans-pro/SourceSansPro-Regular.woff2';
-import SourceSansProSemibold from '@assets/font/source-sans-pro/SourceSansPro-Semibold.woff2';
-import SourceSansProBold from '@assets/font/source-sans-pro/SourceSansPro-Bold.woff2';
-
 import AreaBold from '@assets/font/area/Area-Bold.woff2';
 import AreaExtraBold from '@assets/font/area/Area-Extrabold.woff2';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
-
-  @font-face {
-    font-family: 'Source Sans Pro';
-    src: url(${SourceSansProRegular}) format('font-woff2');
-    font-weight: 400;
-  }
-
-  @font-face {
-    font-family: 'Source Sans Pro';
-    src: url(${SourceSansProSemibold}) format('font-woff2');
-    font-weight: 600;
-  }
-
-  @font-face {
-    font-family: 'Source Sans Pro';
-    src: url(${SourceSansProBold}) format('font-woff2');
-    font-weight: 700;
-  }
 
   @font-face {
     font-family: 'Area';
