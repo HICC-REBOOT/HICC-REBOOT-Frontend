@@ -37,7 +37,7 @@ export const tabConfigStyle: ThemeConfig = {
       itemSelectedColor: theme.colors.white,
       inkBarColor: theme.colors.point1,
       horizontalItemGutter: 0,
-      horizontalMargin: '0 auto 64px auto',
+      horizontalMargin: '0 auto 6.4rem auto',
     },
   },
 };
