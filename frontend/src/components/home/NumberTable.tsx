@@ -1,16 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  Title,
-  Content,
-  TableBox,
-  TableContent,
-  TableTitle,
-  NumberContainer,
-  Unit,
-  Number,
-  TableContainer,
-} from './style/NumberTable.style';
+import * as N from './style/NumberTable.style';
 
 const FIGURE_ITEMS = [
   {
@@ -32,23 +21,23 @@ const FIGURE_ITEMS = [
 
 function NumberTable() {
   return (
-    <Container>
-      <Title>숫자로 보는 HICC</Title>
-      <Content>더 많은 정보를 얻고싶다면 HICC에 가입해보세요</Content>
-      <TableContainer>
+    <N.Container>
+      <N.Title>숫자로 보는 HICC</N.Title>
+      <N.Content>더 많은 정보를 얻고싶다면 HICC에 가입해보세요</N.Content>
+      <N.TableContainer>
         {FIGURE_ITEMS.map((item, index) => (
-          <TableBox key={item.title}>
-            <TableContent>
-              <TableTitle>{item.title}</TableTitle>
-              <NumberContainer>
-                <Number>{item.number}</Number>
-                <Unit>{item.unit}</Unit>
-              </NumberContainer>
-            </TableContent>
-          </TableBox>
+          <N.TableBox key={item.title}>
+            <N.TableContent>
+              <N.TableTitle>{item.title}</N.TableTitle>
+              <N.NumberContainer>
+                <N.Number>{item.number}</N.Number>
+                <N.Unit>{item.unit}</N.Unit>
+              </N.NumberContainer>
+            </N.TableContent>
+          </N.TableBox>
         ))}
-      </TableContainer>
-    </Container>
+      </N.TableContainer>
+    </N.Container>
   );
 }
 
