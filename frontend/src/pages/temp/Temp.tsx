@@ -20,7 +20,7 @@ function Temp() {
   ];
 
   const location = useLocation();
-  const path = location.pathname.split('/')[2];
+  const path = location.pathname.split('/')[2] || items[0].key;
 
   return (
     <>
