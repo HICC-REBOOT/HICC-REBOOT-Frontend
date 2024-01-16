@@ -44,7 +44,7 @@ export const tabConfigStyle: ThemeConfig = {
 
 export const tabBarStyle: CSSProperties = {
   display: 'flex',
-  width: '36rem',
+  width: '100%',
   height: '5.5rem',
   alignContent: 'center',
   backgroundColor: theme.colors.black,

@@ -3,6 +3,13 @@ import { ConfigProvider } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import * as T from './Tab.style';
 
+/**
+ * TabUnit
+ *
+ * key: 세부 url
+ *
+ * label: 탭에 보여질 이름
+ */
 export interface TabUnit {
   key: string;
   label: string;
