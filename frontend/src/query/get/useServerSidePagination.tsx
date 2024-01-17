@@ -3,7 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 import request from '@utils/request';
-import PaginationComponent from '@libs/pagination/PaginationComponent';
+import PaginationComponent from '@components/common/pagination/PaginationComponent';
 import { QUERY_KEYS } from '@constants/keys';
 import useInfinityScrollProvider from '@hooks/useInfinityScrollProvider';
 
