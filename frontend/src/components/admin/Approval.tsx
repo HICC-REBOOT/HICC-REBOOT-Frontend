@@ -1,5 +1,6 @@
 import React from 'react';
 import * as A from './style/Approval.style';
+import MemberDetail from './MemberDetail';
 
 export default function Approval() {
   return (
@@ -16,6 +17,7 @@ export default function Approval() {
           <A.StateText>대기</A.StateText>
         </A.State>
       </A.MemberBox>
+      <MemberDetail />
     </A.MembersBox>
   );
 }
