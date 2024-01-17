@@ -13,18 +13,18 @@ export const Container = styled.div`
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
-    height: 87.3rem;
+    height: 105.7rem;
   `}
   ${(props) => props.theme.media.tablet`
-    height: 71.7rem;
+    height: 90.1rem;
   `}
 
   ${(props) => props.theme.media.desktop`
-    height: 81.3rem;
+    height: 99.7rem;
   `}
 
   ${(props) => props.theme.media.wide`
-    height: 81.3rem;
+    height: 99.7rem;
   `}
 `;
 
