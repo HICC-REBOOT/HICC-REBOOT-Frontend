@@ -6,6 +6,7 @@ import type { TabsProps } from 'antd';
 import theme from '@styles/theme';
 import Approval from '@components/admin/Approval';
 import MemberInfo from '@components/admin/MemberInfo';
+import ChangeGrade from '@components/admin/ChangeGrade';
 
 const onChange = (key: string) => {
   console.log(key);
@@ -25,7 +26,7 @@ const items: TabsProps['items'] = [
   {
     key: '3',
     label: '등급 수정',
-    children: 'Content of Tab Pane 3',
+    children: <ChangeGrade />,
   },
 ];
 
