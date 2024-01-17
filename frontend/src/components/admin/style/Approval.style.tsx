@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 export const MembersBox = styled.div`
   display: flex;
+  width: 32.8rem;
   flex-direction: column;
   align-items: center;
   border-radius: 2rem;
+  border: none;
   background: ${(props) => props.theme.colors.grey001};
 `;
 export const CategoryBox = styled.div`
