@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from '@components/layout/Layout';
 import Calendar from '@pages/Calendar/Calendar';
 import Home from '@pages/Home';
@@ -8,6 +8,12 @@ import Temp from '@pages/temp/Temp';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 
 function App() {
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [location.pathname]);
+
   return (
     <Routes>
       <Route element={<Layout />}>
