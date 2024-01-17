@@ -121,3 +121,16 @@
   color: #141415;
   border: none;
 }
+
+.ant-btn-dangerous {
+  background-color: #FF4545;
+}
+
+.ant-btn-dangerous span {
+  color: #141415;
+}
+
+.ant-btn-dangerous:not(:disabled):not(.ant-btn-disabled):hover {
+  color: #141415;
+  border: none;
+}

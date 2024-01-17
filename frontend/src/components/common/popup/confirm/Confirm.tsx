@@ -5,14 +5,16 @@ interface ConfirmParameter {
   content: string;
   okText: string;
   cancelText: string;
+  isDangerous: boolean;
   onOk: () => void;
   onCancel?: () => void;
 }
 
-function confirm({ content, okText, cancelText, onOk, onCancel }: ConfirmParameter) {
+function confirm({ content, okText, cancelText, isDangerous, onOk, onCancel }: ConfirmParameter) {
   Modal.confirm({
     content,
     okText,
+    okButtonProps: { danger: isDangerous },
     cancelText,
     onOk() {
       onOk();
