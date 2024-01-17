@@ -48,13 +48,13 @@ export default function ChangeGrade() {
           },
           components: {
             Collapse: {
-              contentPadding: '100px 0px',
+              contentPadding: 0,
               headerPadding: 0,
             },
           },
         }}
       >
-        <Collapse bordered={false} ghost={true} items={items} defaultActiveKey={['1']} onChange={onChange} />
+        <Collapse bordered={false} ghost={true} items={items} onChange={onChange} />
       </ConfigProvider>
     </A.MembersBox>
   );
