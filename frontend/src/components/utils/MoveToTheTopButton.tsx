@@ -1,6 +1,6 @@
 import React from 'react';
 import { FloatButton } from 'antd';
-import ArrowUp from '@assets/image/arrowUp.svg';
+import ArrowUp from '@assets/image/icon/arrowUp.svg';
 
 function MoveToTheTopButton() {
   const moveToTheTop = () => {
