@@ -8,6 +8,7 @@ export const Container = styled.div`
   height: 100%;
 
   min-width: 360px;
+  overflow: hidden;
 `;
 
 export const D = styled.div;
