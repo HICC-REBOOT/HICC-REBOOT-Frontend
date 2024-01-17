@@ -1,13 +1,27 @@
 import { Modal } from 'antd';
 import './CommonConfirm.css';
 
-function confirm() {
+interface ConfirmParameter {
+  content: string;
+  okText: string;
+  cancelText: string;
+  onOk: () => void;
+  onCancel?: () => void;
+}
+
+function confirm({ content, okText, cancelText, onOk, onCancel }: ConfirmParameter) {
   Modal.confirm({
-    content: '안녕하세요',
-    okText: '오케이',
-    cancelText: '취소',
-    onOk() {},
-    onCancel() {},
+    content,
+    okText,
+    cancelText,
+    onOk() {
+      onOk();
+    },
+    onCancel() {
+      if (onCancel !== undefined) {
+        onCancel();
+      }
+    },
   });
 }
 
