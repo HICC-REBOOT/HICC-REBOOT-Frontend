@@ -5,6 +5,7 @@ import { Tabs, ConfigProvider } from 'antd';
 import type { TabsProps } from 'antd';
 import theme from '@styles/theme';
 import Approval from '@components/admin/Approval';
+import MemberInfo from '@components/admin/MemberInfo';
 
 const onChange = (key: string) => {
   console.log(key);
@@ -19,7 +20,7 @@ const items: TabsProps['items'] = [
   {
     key: '2',
     label: '회원 정보',
-    children: 'Content of Tab Pane 2',
+    children: <MemberInfo />,
   },
   {
     key: '3',

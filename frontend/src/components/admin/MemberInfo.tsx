@@ -3,31 +3,32 @@ import type { CollapseProps } from 'antd';
 import { Collapse, ConfigProvider } from 'antd';
 import theme from '@styles/theme';
 import * as A from './style/Approval.style';
+import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
-import ApprovalMemberItem from './ApprovalMemberItem';
+import MemberItem from './MemberItem';
 
 const items: CollapseProps['items'] = [
   {
     key: '1',
-    label: <ApprovalMemberItem />,
+    label: <MemberItem />,
     children: <MemberDetail />,
     showArrow: false,
   },
   {
     key: '2',
-    label: <ApprovalMemberItem />,
+    label: <MemberItem />,
     children: <MemberDetail />,
     showArrow: false,
   },
   {
     key: '3',
-    label: <ApprovalMemberItem />,
+    label: <MemberItem />,
     children: <MemberDetail />,
     showArrow: false,
   },
 ];
 
-export default function Approval() {
+export default function MemberInfo() {
   const onChange = (key: string | string[]) => {
     console.log(key);
   };
@@ -35,9 +36,9 @@ export default function Approval() {
   return (
     <A.MembersBox>
       <A.CategoryBox>
-        <A.MajorDivision>Major</A.MajorDivision>
-        <A.NameDivision>Name</A.NameDivision>
-        <A.StateDivision>State</A.StateDivision>
+        <I.MemberInfoMajorDivision>Major</I.MemberInfoMajorDivision>
+        <I.MemberInfoNameDivision>Name</I.MemberInfoNameDivision>
+        <I.BlankDivision />
       </A.CategoryBox>
 
       <ConfigProvider

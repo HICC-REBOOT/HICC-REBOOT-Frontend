@@ -1,14 +1,13 @@
 import React from 'react';
 import * as A from './style/Approval.style';
+import * as I from './style/MemberInfo.style';
 
 export default function MemberItem() {
   return (
     <A.MemberBox>
-      <A.Major>캠퍼스자율전공(서울)</A.Major>
-      <A.Name>최세호</A.Name>
-      <A.State>
-        <A.StateText>대기</A.StateText>
-      </A.State>
+      <I.MemberInfoMajor>캠퍼스자율전공(서울)</I.MemberInfoMajor>
+      <I.MemberInfoName>최세호</I.MemberInfoName>
+      <I.Blank />
     </A.MemberBox>
   );
 }

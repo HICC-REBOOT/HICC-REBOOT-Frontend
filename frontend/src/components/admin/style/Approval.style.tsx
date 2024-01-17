@@ -1,17 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 3.6rem 1.6rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.8rem;
-  background-color: ${(props) => props.theme.colors.black};
-`;
-
 export const MembersBox = styled.div`
   display: flex;
   flex-direction: column;
