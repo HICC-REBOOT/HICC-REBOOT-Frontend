@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const DetailBox = styled.div`
   display: flex;
-  width: 34rem;
+  width: 32.8rem;
   padding: 1.6rem 2rem 2rem 2rem;
   align-items: flex-start;
   align-content: flex-start;
