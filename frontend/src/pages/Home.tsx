@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Activity from '@components/home/Activity';
 import ProjectList from '@components/home/ProjectList';
 import RecentNews from '@components/home/RecentNews';
+import HongMap from '@components/home/HongMap';
 
 const Container = styled.div``;
 
@@ -16,6 +17,7 @@ function Home() {
       <Activity />
       <ProjectList />
       <RecentNews />
+      <HongMap />
     </Container>
   );
 }
