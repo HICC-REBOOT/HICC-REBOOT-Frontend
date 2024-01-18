@@ -13,8 +13,6 @@ function Temp1() {
 
   const { currentOption, onChange } = useDropdown({});
 
-  console.log(currentOption);
-
   return (
     <div style={{ height: '30rem' }}>
       <Dropdown placeholder="hello" options={options} onChange={onChange} />

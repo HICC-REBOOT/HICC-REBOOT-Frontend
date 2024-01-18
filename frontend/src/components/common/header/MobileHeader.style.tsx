@@ -27,3 +27,9 @@ export const Hamburger = styled.img`
   height: 2.4rem;
   cursor: pointer;
 `;
+
+export const PreviousButton = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+`;
