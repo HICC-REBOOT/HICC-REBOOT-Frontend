@@ -30,11 +30,11 @@ export const Logo = styled(Link)`
   margin-right: 2rem;
 `;
 
-export const Tab = styled(Link)`
+export const Tab = styled(Link)<{ active: boolean }>`
   margin-right: 0.8rem;
   padding: 1rem 0.5rem;
 
-  color: ${(props) => props.theme.colors.white};
+  color: ${(props) => (props.active ? props.theme.colors.point2 : props.theme.colors.white)};
   ${(props) => props.theme.typography.common.button1};
 
   text-transform: capitalize;
