@@ -4,13 +4,10 @@ import { DeviceProvider } from '@assets/mediaQuery';
 export const Container = styled.div`
   display: flex;
   width: 100%;
-  background: var(--black, #0a0a0a);
+  background: ${(props) => props.theme.colors.black};
   flex-direction: column;
   text-align: center;
   align-items: center;
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
 
   ${(props) => props.theme.typography[DeviceProvider()].title};
 
@@ -33,11 +30,8 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   position: relative;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${(props) => props.theme.colors.white};
   text-align: center;
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
 
   ${(props) => props.theme.typography[DeviceProvider()].title};
 
@@ -64,12 +58,10 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   position: relative;
-  color: rgba(255, 255, 255, 0.7);
+  color: ${(props) => props.theme.colors.white};
+  opacity: 0.7;
 
   text-align: center;
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
   ${(props) => props.theme.typography[DeviceProvider()].body};
 
   ${(props) => props.theme.media.mobile`
@@ -94,7 +86,7 @@ export const Content = styled.div`
 `;
 
 export const TableBox = styled.div`
-  background: var(--grey001, #141415);
+  background: ${(props) => props.theme.colors.grey001};
   ${(props) => props.theme.typography[DeviceProvider()].body};
 
   ${(props) => props.theme.media.mobile`
@@ -205,6 +197,7 @@ export const TableContent = styled.div`
 
 export const TableTitle = styled.div`
   ${(props) => props.theme.typography[DeviceProvider()].body};
+  color: ${(props) => props.theme.colors.white};
 
   ${(props) => props.theme.media.mobile`
       display: flex;
@@ -213,27 +206,18 @@ export const TableTitle = styled.div`
       flex-direction: column;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--white, var(--Greyscale-light-white, #FFF));
-      font-feature-settings: 'clig' off, 'liga' off;
   `}
 
   ${(props) => props.theme.media.tablet`
-      color: var(--white, var(--Greyscale-light-white, #FFF));
       text-align: center;
-      font-feature-settings: 'clig' off, 'liga' off;
   `}
 
   ${(props) => props.theme.media.desktop`
-      color: var(--white, var(--Greyscale-light-white, #FFF));
       text-align: center;
-      font-feature-settings: 'clig' off, 'liga' off;
-
   `}
 
   ${(props) => props.theme.media.wide`
-      color: var(--white, var(--Greyscale-light-white, #FFF));
       text-align: center;
-      font-feature-settings: 'clig' off, 'liga' off;
   `}
 `;
 
@@ -246,7 +230,7 @@ export const NumberContainer = styled.div`
     height: 3.8rem;
     justify-content: flex-end;
     align-items: center;
-    gap: var(--Column, 4px);
+    gap: var(--Column, 0.4rem);
 
     flex-shrink: 0;
   `}
@@ -277,10 +261,7 @@ export const NumberContainer = styled.div`
 
 export const Number = styled.div`
   ${(props) => props.theme.typography[DeviceProvider()].title};
-  color: var(--white, var(--Greyscale-light-white, #fff));
-  font-feature-settings:
-    'clig' off,
-    'liga' off;
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.media.mobile`
   `}
 
@@ -295,33 +276,26 @@ export const Number = styled.div`
 `;
 
 export const Unit = styled.div`
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography[DeviceProvider()].title};
 
   ${(props) => props.theme.media.mobile`
       width: 2.3rem;
       height: 3rem;
-      color: var(--white, var(--Greyscale-light-white, #FFF));
-      font-feature-settings: 'clig' off, 'liga' off;
   `}
 
   ${(props) => props.theme.media.tablet`
       width: 3rem;
       height: 4rem;
-      color: var(--white, var(--Greyscale-light-white, #FFF));
-      font-feature-settings: 'clig' off, 'liga' off;
   `}
 
   ${(props) => props.theme.media.desktop`
       width: 4.5rem;
       height: 6rem;
-      color: var(--white, var(--Greyscale-light-white, #FFF));
-      font-feature-settings: 'clig' off, 'liga' off;
   `}
 
   ${(props) => props.theme.media.wide`
       width: 4.5rem;
       height: 6rem;
-      color: var(--white, var(--Greyscale-light-white, #FFF));
-      font-feature-settings: 'clig' off, 'liga' off;
   `}
 `;
