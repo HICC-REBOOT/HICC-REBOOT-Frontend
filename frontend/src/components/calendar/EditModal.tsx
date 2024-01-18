@@ -2,6 +2,7 @@ import Sheet from 'react-modal-sheet';
 import React from 'react';
 import STYLE from '@constants/style';
 import theme from '@styles/theme';
+import { ConfigProvider } from 'antd';
 import { useRecoilState } from 'recoil';
 import { modalState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
@@ -41,6 +42,28 @@ export default function EditModal() {
               <E.ContentWrapper>
                 <E.Icon />
                 <TypeButton />
+              </E.ContentWrapper>
+              <E.ContentWrapper style={{ alignItems: 'flex-start' }}>
+                <E.Icon />
+                <ConfigProvider
+                  theme={{
+                    token: {
+                      borderRadius: 8,
+                      colorBgContainer: theme.colors.black,
+                      colorBorder: theme.colors.black,
+                      colorPrimary: theme.colors.black,
+                      colorText: 'rgba(255, 255, 255, 0.70)',
+                    },
+                    components: {
+                      Input: {
+                        activeBorderColor: theme.colors.black,
+                        activeBg: theme.colors.black,
+                      },
+                    },
+                  }}
+                >
+                  <E.CustomTextArea rows={10} />
+                </ConfigProvider>
               </E.ContentWrapper>
             </E.Content>
           </E.Container>

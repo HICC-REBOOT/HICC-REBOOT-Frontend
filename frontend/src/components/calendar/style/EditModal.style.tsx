@@ -70,3 +70,5 @@ export const Icon = styled.div`
   background-color: ${(props) => props.theme.colors.red};
 `;
 
+const { TextArea } = Input;
+export const CustomTextArea = styled(TextArea)``;
