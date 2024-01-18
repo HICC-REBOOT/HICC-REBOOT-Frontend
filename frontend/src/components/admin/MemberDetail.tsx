@@ -7,14 +7,27 @@ const mGrade = 'B123456';
 const mPhone = '010-1234-5678';
 const mAcceptDate = '2024-01-08 16:49';
 
-export default function MemberDetail() {
+interface UserData {
+  grade: string;
+  name: string;
+  id: string;
+  major: string;
+  phone_number: string;
+  acceptDate: string;
+}
+
+interface MemberDetailProps {
+  userData: UserData;
+}
+
+export default function MemberDetail({ userData }: MemberDetailProps) {
   return (
     <M.DetailBox>
-      <M.Class>등급: {mClass}</M.Class>
-      <M.Major>학과: {mMajor}</M.Major>
-      <M.Grade>학번: {mGrade}</M.Grade>
-      <M.Phone>연락처: {mPhone}</M.Phone>
-      <M.AcceptDate>회원 승인일: {mAcceptDate}</M.AcceptDate>
+      <M.Class>등급: {userData.grade}</M.Class>
+      <M.Major>학과: {userData.major}</M.Major>
+      <M.Grade>학번: {userData.id}</M.Grade>
+      <M.Phone>연락처: {userData.phone_number}</M.Phone>
+      <M.AcceptDate>회원 승인일: {userData.acceptDate}</M.AcceptDate>
     </M.DetailBox>
   );
 }

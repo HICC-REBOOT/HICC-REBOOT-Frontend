@@ -5,40 +5,12 @@ import theme from '@styles/theme';
 import * as A from './style/Approval.style';
 import MemberDetail from './MemberDetail';
 import ApprovalMemberItem from './ApprovalMemberItem';
-
-const UserData = {
-  content: [
-    {
-      grade: 'PRESIDENT',
-      name: '윤찬호',
-      id: 'C011001',
-      major: '컴퓨터공학과',
-      phone_number: '010-1111-1111',
-      acceptDate: '2024-01-08 16:49',
-    },
-    {
-      grade: 'GRADUATE',
-      name: '김진호',
-      id: 'B731000',
-      major: '컴퓨터공학과',
-      phone_number: '010-1111-1111',
-      acceptDate: '2024-01-08 16:49',
-    },
-    {
-      grade: 'GRADUATE',
-      name: '최세호',
-      id: 'B811197',
-      major: '컴퓨터공학과',
-      phone_number: '010-1111-1111',
-      acceptDate: '2024-01-08 16:49',
-    },
-  ],
-};
+import UserData from './dummy/dummy';
 
 const items: CollapseProps['items'] = UserData.content.map((user, index) => ({
   key: String(index + 1),
   label: <ApprovalMemberItem userData={user} />,
-  children: <MemberDetail />,
+  children: <MemberDetail userData={user} />,
   showArrow: false,
 }));
 
