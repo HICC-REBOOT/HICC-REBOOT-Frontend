@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import DemoLogo from '@assets/image/demologo.png';
 import STYLE from '@constants/style';
+import hexToRGBA from '@utils/hexToRgba';
 
-// background color색 정해지면 수정 필요
 export const Container = styled.nav`
   display: flex;
   align-items: center;
@@ -19,7 +19,7 @@ export const Container = styled.nav`
 
   border: none;
   border-radius: 1.6rem;
-  background-color: #545454;
+  background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
 `;
 
 export const Logo = styled(Link)`
@@ -40,12 +40,25 @@ export const Tab = styled(Link)`
   text-transform: capitalize;
   text-align: center;
   cursor: pointer;
+
+  &:hover {
+    padding: 1.3rem 0.5rem;
+    border-radius: 1.2rem;
+    background-color: ${(props) => props.theme.colors.black};
+  }
 `;
 
+// border gradient 나중에 구현
 export const Auth = styled.button`
-  padding: 1rem 2rem;
-  border: 0.1rem solid ${(props) => props.theme.colors.white};
+  position: relative;
+  width: 8.2rem;
+  height: 4.6rem;
+
+  padding: 0;
+  border: 0.1rem solid transparent;
   border-radius: 1.2rem;
+
+  background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
 
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.button1};
@@ -53,4 +66,23 @@ export const Auth = styled.button`
   text-align: center;
   white-space: nowrap;
   cursor: pointer;
+
+  &:hover {
+    background-color: ${(props) => props.theme.colors.black};
+  }
+
+  /* &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.2rem;
+    padding: 0rem;
+    background: linear-gradient(180deg, #fff, #ffffff33);
+
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  } */
 `;
