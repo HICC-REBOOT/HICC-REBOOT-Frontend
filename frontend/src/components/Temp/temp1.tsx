@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import Dropdown from '@components/common/dropdown/Dropdown';
+import React from 'react';
 import OptionType from '@components/common/dropdown/OptionType';
+import Dropdown from '@components/common/dropdown/Dropdown';
+import useDropdown from '@hooks/useDropdown';
 
 function Temp1() {
-  const [option, setOption] = useState<OptionType | null>(null);
-
   const options: OptionType[] = [
     { value: '1', label: '등급 순' },
     { value: '2', label: 'ho' },
@@ -12,13 +11,9 @@ function Temp1() {
     { value: '4', label: 'so' },
   ];
 
-  const onChange = (selectedOption: OptionType | null) => {
-    setOption(selectedOption);
-  };
+  const { currentOption, onChange } = useDropdown({});
 
-  useEffect(() => {
-    console.log(option);
-  }, [option]);
+  console.log(currentOption);
 
   return (
     <div style={{ height: '30rem' }}>
