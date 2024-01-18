@@ -33,8 +33,8 @@ export default function ApprovalMemberItem({ userData }: MemberItemProps) {
     <A.MemberBox>
       <A.Major>{userData.major}</A.Major>
       <A.Name>{userData.name}</A.Name>
-      <A.State>
-        <A.StateText onClick={ClickAccept}>대기</A.StateText>
+      <A.State onClick={ClickAccept}>
+        <A.StateText>대기</A.StateText>
       </A.State>
     </A.MemberBox>
   );
