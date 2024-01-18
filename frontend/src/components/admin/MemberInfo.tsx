@@ -10,25 +10,33 @@ import MemberDetail from './MemberDetail';
 import MemberItem from './MemberItem';
 import UserData from './dummy/dummy';
 
-const items: CollapseProps['items'] = UserData.content.map((user, index) => ({
-  key: String(index + 1),
-  label: <MemberItem userData={user} />,
-  children: <MemberDetail userData={user} />,
-  showArrow: false,
-}));
-
 export default function MemberInfo() {
-  const [userInput, setUserInput] = useState();
+  const [userInput, setUserInput] = useState('');
+  const [searched, setSearched] = useState(UserData.content);
+
+  const items: CollapseProps['items'] = searched.map((user, index) => ({
+    key: String(index + 1),
+    label: <MemberItem userData={user} />,
+    children: <MemberDetail userData={user} />,
+    showArrow: false,
+  }));
   const onChange = (key: string | string[]) => {
     console.log(key);
   };
+  const getValue = (e: any) => {
+    setUserInput(e.target.value.toLowerCase());
+  };
 
+  const searching = () => {
+    const filteredData = UserData.content.filter((item) => item.name.toLowerCase().includes(userInput));
+    setSearched(filteredData);
+  };
   return (
     <>
       <I.SearchBar>
         <I.SearchBox>
-          <Input placeholder="회원명 검색" maxLength={10} formAction="none" />
-          <SearchButton>
+          <Input placeholder="회원명 검색" maxLength={10} onChange={getValue} />
+          <SearchButton onClick={searching}>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
               <rect width="18" height="18" fill="#FFA7A7" />
             </svg>
