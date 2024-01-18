@@ -36,7 +36,7 @@ export default function TypeButton() {
           },
         }}
       >
-        <T.Type onClick={() => setSelectedIdx(1)}>• 학술</T.Type>
+        <T.Type onClick={() => setSelectedIdx(1)}>• 친목</T.Type>
       </ConfigProvider>
       <ConfigProvider
         theme={{
