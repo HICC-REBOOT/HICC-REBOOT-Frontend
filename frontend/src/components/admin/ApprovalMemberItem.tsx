@@ -1,6 +1,7 @@
+/* eslint-disable no-use-before-define */
 import React from 'react';
 import { log } from 'console';
-import Confirm from '@components/common/popup/confirm/Confirm';
+import confirm from '@components/common/popup/confirm/Confirm';
 import * as A from './style/Approval.style';
 
 interface UserData {
@@ -12,12 +13,19 @@ interface MemberItemProps {
   userData: UserData;
 }
 const ClickAccept = () => {
-  console.log('클릭함');
+  confirm({
+    content: 'Hicc 회원으로 승인하시겠습니다?',
+    okText: '승인',
+    cancelText: '거절',
+    isDangerous: false, // Set to true if it's a dangerous action
+    onOk: handleOk,
+    onCancel: handleCancel,
+  });
 };
-const Ok = () => {
+const handleOk = () => {
   console.log('승인');
 };
-const Cancel = () => {
+const handleCancel = () => {
   console.log('거절');
 };
 export default function ApprovalMemberItem({ userData }: MemberItemProps) {
@@ -26,16 +34,7 @@ export default function ApprovalMemberItem({ userData }: MemberItemProps) {
       <A.Major>{userData.major}</A.Major>
       <A.Name>{userData.name}</A.Name>
       <A.State>
-        <A.StateText onClick={ClickAccept}>
-          {/* <Confirm
-            content={'대기'}
-            okText={'승인'}
-            cancelText={'거절'}
-            isDangerous={false}
-            onOk={Ok}
-            onCancel={Cancel}
-          /> */}
-        </A.StateText>
+        <A.StateText onClick={ClickAccept}>대기</A.StateText>
       </A.State>
     </A.MemberBox>
   );
