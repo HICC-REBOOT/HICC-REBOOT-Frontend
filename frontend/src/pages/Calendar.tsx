@@ -1,6 +1,7 @@
 import React from 'react';
 import CalendarGrid from '@components/calendar/CalendarGrid';
 import DetailBox from '@components/calendar/DetailBox';
+import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -19,6 +20,7 @@ export default function Calendar() {
     <Container>
       <CalendarGrid />
       <DetailBox />
+      <EditModal />
     </Container>
   );
 }
