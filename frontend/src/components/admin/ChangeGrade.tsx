@@ -10,19 +10,19 @@ import MemberItem from './MemberItem';
 const items: CollapseProps['items'] = [
   {
     key: '1',
-    label: <MemberItem />,
+    label: <MemberItem major="컴퓨터공학과" name="최세호" />,
     children: <MemberDetail />,
     showArrow: false,
   },
   {
     key: '2',
-    label: <MemberItem />,
+    label: <MemberItem major="컴퓨터공학과" name="최세호" />,
     children: <MemberDetail />,
     showArrow: false,
   },
   {
     key: '3',
-    label: <MemberItem />,
+    label: <MemberItem major="컴퓨터공학과" name="최세호" />,
     children: <MemberDetail />,
     showArrow: false,
   },

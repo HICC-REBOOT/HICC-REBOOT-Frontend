@@ -44,3 +44,35 @@ export const Blank = styled.div`
   height: 1.8rem;
   flex-shrink: 0;
 `;
+
+export const SearchBar = styled.div`
+  display: flex;
+  width: 32.8rem;
+  padding: 2rem 1.2rem;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 1.5rem;
+  border-radius: 2rem;
+  margin-bottom: 2rem;
+  background: ${(props) => props.theme.colors.grey001};
+`;
+export const SearchBox = styled.div`
+  display: flex;
+  width: 19rem;
+  padding: 1rem 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 0.8rem;
+  background: ${(props) => props.theme.colors.black};
+`;
+export const DropDownBox = styled.div`
+  display: flex;
+  width: 10rem;
+  padding: 1rem 1.2rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 0.8rem;
+  background: ${(props) => props.theme.colors.black};
+`;
