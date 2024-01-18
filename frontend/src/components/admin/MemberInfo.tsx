@@ -27,29 +27,23 @@ const UserData = {
       phone_number: '010-1111-1111',
       acceptDate: '2024-01-08 16:49',
     },
+    {
+      grade: 'GRADUATE',
+      name: '최세호',
+      id: 'B811197',
+      major: '컴퓨터공학과',
+      phone_number: '010-1111-1111',
+      acceptDate: '2024-01-08 16:49',
+    },
   ],
 };
 
-const items: CollapseProps['items'] = [
-  {
-    key: '1',
-    label: <MemberItem major="컴퓨터공학과" name="최세호" />,
-    children: <MemberDetail />,
-    showArrow: false,
-  },
-  {
-    key: '2',
-    label: <MemberItem major="컴퓨터공학과" name="최세호" />,
-    children: <MemberDetail />,
-    showArrow: false,
-  },
-  {
-    key: '3',
-    label: <MemberItem major="컴퓨터공학과" name="최세호" />,
-    children: <MemberDetail />,
-    showArrow: false,
-  },
-];
+const items: CollapseProps['items'] = UserData.content.map((user, index) => ({
+  key: String(index + 1),
+  label: <MemberItem userData={user} />,
+  children: <MemberDetail />,
+  showArrow: false,
+}));
 
 export default function MemberInfo() {
   const [userInput, setUserInput] = useState();

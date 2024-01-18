@@ -1,11 +1,20 @@
 import React from 'react';
 import * as A from './style/Approval.style';
 
-export default function ApprovalMemberItem() {
+interface UserData {
+  major: string;
+  name: string;
+}
+
+interface MemberItemProps {
+  userData: UserData;
+}
+
+export default function ApprovalMemberItem({ userData }: MemberItemProps) {
   return (
     <A.MemberBox>
-      <A.Major>캠퍼스자율전공(서울)</A.Major>
-      <A.Name>최세호</A.Name>
+      <A.Major>{userData.major}</A.Major>
+      <A.Name>{userData.name}</A.Name>
       <A.State>
         <A.StateText>대기</A.StateText>
       </A.State>

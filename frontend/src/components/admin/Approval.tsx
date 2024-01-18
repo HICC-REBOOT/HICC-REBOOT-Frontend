@@ -6,26 +6,41 @@ import * as A from './style/Approval.style';
 import MemberDetail from './MemberDetail';
 import ApprovalMemberItem from './ApprovalMemberItem';
 
-const items: CollapseProps['items'] = [
-  {
-    key: '1',
-    label: <ApprovalMemberItem />,
-    children: <MemberDetail />,
-    showArrow: false,
-  },
-  {
-    key: '2',
-    label: <ApprovalMemberItem />,
-    children: <MemberDetail />,
-    showArrow: false,
-  },
-  {
-    key: '3',
-    label: <ApprovalMemberItem />,
-    children: <MemberDetail />,
-    showArrow: false,
-  },
-];
+const UserData = {
+  content: [
+    {
+      grade: 'PRESIDENT',
+      name: '윤찬호',
+      id: 'C011001',
+      major: '컴퓨터공학과',
+      phone_number: '010-1111-1111',
+      acceptDate: '2024-01-08 16:49',
+    },
+    {
+      grade: 'GRADUATE',
+      name: '김진호',
+      id: 'B731000',
+      major: '컴퓨터공학과',
+      phone_number: '010-1111-1111',
+      acceptDate: '2024-01-08 16:49',
+    },
+    {
+      grade: 'GRADUATE',
+      name: '최세호',
+      id: 'B811197',
+      major: '컴퓨터공학과',
+      phone_number: '010-1111-1111',
+      acceptDate: '2024-01-08 16:49',
+    },
+  ],
+};
+
+const items: CollapseProps['items'] = UserData.content.map((user, index) => ({
+  key: String(index + 1),
+  label: <ApprovalMemberItem userData={user} />,
+  children: <MemberDetail />,
+  showArrow: false,
+}));
 
 export default function Approval() {
   const onChange = (key: string | string[]) => {

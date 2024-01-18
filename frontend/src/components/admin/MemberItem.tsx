@@ -2,16 +2,20 @@ import React from 'react';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 
-interface MemberItemProps {
+interface UserData {
   major: string;
   name: string;
 }
 
-export default function MemberItem({ major, name }: MemberItemProps) {
+interface MemberItemProps {
+  userData: UserData;
+}
+
+export default function MemberItem({ userData }: MemberItemProps) {
   return (
     <A.MemberBox>
-      <I.MemberInfoMajor>{major}</I.MemberInfoMajor>
-      <I.MemberInfoName>{name}</I.MemberInfoName>
+      <I.MemberInfoMajor>{userData.major}</I.MemberInfoMajor>
+      <I.MemberInfoName>{userData.name}</I.MemberInfoName>
       <I.Blank />
     </A.MemberBox>
   );
