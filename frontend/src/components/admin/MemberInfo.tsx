@@ -9,6 +9,27 @@ import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
 import MemberItem from './MemberItem';
 
+const UserData = {
+  content: [
+    {
+      grade: 'PRESIDENT',
+      name: '윤찬호',
+      id: 'C011001',
+      major: '컴퓨터공학과',
+      phone_number: '010-1111-1111',
+      acceptDate: '2024-01-08 16:49',
+    },
+    {
+      grade: 'GRADUATE',
+      name: '김진호',
+      id: 'B731000',
+      major: '컴퓨터공학과',
+      phone_number: '010-1111-1111',
+      acceptDate: '2024-01-08 16:49',
+    },
+  ],
+};
+
 const items: CollapseProps['items'] = [
   {
     key: '1',
@@ -40,7 +61,7 @@ export default function MemberInfo() {
     <>
       <I.SearchBar>
         <I.SearchBox>
-          <Input placeholder="회원명 검색" />
+          <Input placeholder="회원명 검색" maxLength={10} formAction="none" />
           <SearchButton>
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
               <rect width="18" height="18" fill="#FFA7A7" />
@@ -78,7 +99,9 @@ export default function MemberInfo() {
 
 const Input = styled.input`
   background: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.white};
   border: none;
+  outline: none;
 `;
 const SearchButton = styled.div`
   width: 1.8rem;
