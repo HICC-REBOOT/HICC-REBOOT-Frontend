@@ -120,6 +120,7 @@
 .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
+  background-color: #6963FF;
 }
 
 .ant-btn-dangerous {
@@ -133,4 +134,5 @@
 .ant-btn-dangerous:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
+  background-color: #FF4545;
 }
