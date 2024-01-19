@@ -7,7 +7,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
 `;
 
 export const GroupContainer = styled.div`
@@ -39,7 +39,7 @@ export const GroupContainer = styled.div`
 `;
 
 export const Title = styled.div`
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].title};
 
@@ -72,7 +72,7 @@ export const Box = styled.div`
   justify-content: center;
 
   border-radius: 2.4rem;
-  background: ${(props) => theme.colors.grey001};
+  background: ${(props) => props.theme.colors.grey001};
 
   ${(props) => props.theme.media.mobile`
     top: 2.4rem;
@@ -103,7 +103,7 @@ export const Picture = styled.div`
   flex-shrink: 0;
   position: absolute;
   border-radius: 1.6rem;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
   ${(props) => props.theme.media.mobile`
     top: 1.2rem;
     left: 1.2rem;

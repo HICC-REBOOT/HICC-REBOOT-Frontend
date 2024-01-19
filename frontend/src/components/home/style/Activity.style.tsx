@@ -59,6 +59,7 @@ export const GrouopContainer = styled.div`
 
 export const Title = styled.div`
   position: relative;
+  white-space: nowrap;
   color: ${(props) => theme.colors.white};
 
   text-align: center;
@@ -249,6 +250,7 @@ export const BoxContent = styled.div`
 
 export const BoxContainer = styled.div`
   overflow-x: scroll;
+  overflow-y: hidden;
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
@@ -256,7 +258,7 @@ export const BoxContainer = styled.div`
     left: 0rem;
     top: 4.8rem;
     width: 100%;
-    height: 24rem;
+    height: 27rem;
     display: inline-flex;
     align-items: flex-start;
     gap: 2.4rem;
@@ -267,7 +269,7 @@ export const BoxContainer = styled.div`
     top: 6.1rem;
     left: 0rem;
     width: 72rem;
-    height: 28.8rem;
+    height: 29.8rem;
     display: inline-flex;
     align-items: flex-start;
     gap: 1.6rem;

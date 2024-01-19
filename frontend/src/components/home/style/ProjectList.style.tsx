@@ -105,22 +105,22 @@ export const ListContainer = styled.div`
 
   ${(props) => props.theme.media.mobile`
     top: 6.4rem;
-    height: 39.9rem;
+    height: 41.9rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     top: 6.1rem;
-    height: 39.4rem;
+    height: 41.4rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     top: 6.4rem;
-    height: 42.5rem;
+    height: 44.5rem;
   `}
 
   ${(props) => props.theme.media.wide`
     top: 6.4rem;
-    height: 42.5rem;
+    height: 44.5rem;
   `}
 `;
 
