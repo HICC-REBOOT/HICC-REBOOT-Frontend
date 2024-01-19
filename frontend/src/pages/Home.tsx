@@ -6,6 +6,7 @@ import Activity from '@components/home/Activity';
 import ProjectList from '@components/home/ProjectList';
 import RecentNews from '@components/home/RecentNews';
 import HongMap from '@components/home/HongMap';
+import JoinUs from '@components/home/JoinUs';
 
 const Container = styled.div``;
 
@@ -18,6 +19,7 @@ function Home() {
       <ProjectList />
       <RecentNews />
       <HongMap />
+      <JoinUs />
     </Container>
   );
 }
