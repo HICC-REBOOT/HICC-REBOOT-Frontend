@@ -5,6 +5,6 @@ export const modalState = atom<boolean>({
   default: false,
 });
 export const modalState2 = atom<boolean>({
-  key: 'modalState',
+  key: 'modalState2',
   default: false,
 });
