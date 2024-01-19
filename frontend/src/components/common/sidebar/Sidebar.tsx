@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NotDesktop } from '@assets/mediaQuery';
 import { Variants } from 'framer-motion';
+import Close from '@assets/image/icon/close.svg';
+import ROUTE from '@constants/route';
+import { useLocation } from 'react-router-dom';
 import * as S from './Sidebar.style';
 
 const asideVarients: Variants = {
-  initial: { width: 0, right: 0 },
-  open: { width: '80%' },
-  exit: { width: 0, transition: { duration: 0.3 } },
+  initial: { height: 0, left: 0, top: '-27.6rem' },
+  open: { height: '27.6rem', top: 0 },
+  exit: { height: 0, top: '-27.6rem', transition: { duration: 0.3 } },
 };
 
 const sideVarients: Variants = {
@@ -29,14 +32,32 @@ interface SidebarProps {
 }
 
 function Sidebar({ close }: SidebarProps) {
+  const location = useLocation();
+
+  useEffect(() => {
+    close();
+  }, [close, location.pathname]);
+
   return (
     <NotDesktop>
       <>
         <S.Container initial="initial" animate="open" exit="exit" variants={asideVarients}>
           <S.Inner initial="closed" animate="open" exit="closed" variants={sideVarients}>
-            {Array.from({ length: 10 }).map((_, index) => (
-              <div key={index}>hello</div>
-            ))}
+            <S.Tab>
+              <S.CloseButton src={Close} alt="close" onClick={close} />
+            </S.Tab>
+            <S.Tab>
+              <S.LinkButton to={ROUTE.CALENDAR}>calendar</S.LinkButton>
+            </S.Tab>
+            <S.Tab>
+              <S.LinkButton to={ROUTE.COMMUNITY}>community</S.LinkButton>
+            </S.Tab>
+            <S.Tab>
+              <S.Auth>Log in</S.Auth>
+            </S.Tab>
+            <S.Tab>
+              <S.Auth>Join HICC</S.Auth>
+            </S.Tab>
           </S.Inner>
         </S.Container>
         <S.Backdrop onClick={close} />
