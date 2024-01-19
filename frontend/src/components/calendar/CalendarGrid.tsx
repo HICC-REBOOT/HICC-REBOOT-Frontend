@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import dayjs from 'dayjs';
 import * as C from './style/CalendarGrid.style';
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function CalendarGrid() {
   const days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
@@ -10,32 +15,17 @@ export default function CalendarGrid() {
   const onClickDate = (i: number) => {
     setSelectedIdx(i);
   };
+
+  const [value, onChange] = useState<Value>(new Date());
   return (
-    <C.Container>
-      <C.Top>
-        <C.MonthBtn>{'<'}</C.MonthBtn>
-        <C.Month>2023.01</C.Month>
-        <C.MonthBtn>{'>'}</C.MonthBtn>
-      </C.Top>
-      <C.CalendarWrapper>
-        <C.Days>
-          {days.map((day, i) => (
-            <C.Day key={i}>{day}</C.Day>
-          ))}
-        </C.Days>
-        <C.DateContainer>
-          {dates.map((date, i) => (
-            <C.DateWrapper key={i} onClick={() => onClickDate(i)} selected={i === selectedIdx}>
-              <C.Date selected={i === selectedIdx}>{date}</C.Date>
-              <C.MarkContainer>
-                {/* <C.Mark type={1} />
-                <C.Mark type={2} />
-                <C.Mark type={3} /> */}
-              </C.MarkContainer>
-            </C.DateWrapper>
-          ))}
-        </C.DateContainer>
-      </C.CalendarWrapper>
-    </C.Container>
+    <C.CustomCalendar
+      onChange={onChange}
+      value={value}
+      locale="ko-KR"
+      formatDay={(locale, date) => dayjs(date).format('D')}
+      formatMonthYear={(locale, date) => dayjs(date).format('YYYY.MM')}
+      minDetail="month"
+      formatShortWeekday={(locale, date) => dayjs(date).format('ddd').toUpperCase()}
+    />
   );
 }
