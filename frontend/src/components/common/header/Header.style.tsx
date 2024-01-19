@@ -54,10 +54,7 @@ export const Auth = styled.button`
   width: 8.2rem;
   height: 4.6rem;
 
-  padding: 0;
-  border: 0.1rem solid transparent;
   border-radius: 1.2rem;
-
   background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
 
   color: ${(props) => props.theme.colors.white};
@@ -74,15 +71,31 @@ export const Auth = styled.button`
   /* &::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 1.2rem;
-    padding: 0rem;
     background: linear-gradient(180deg, #fff, #ffffff33);
-
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
   } */
+`;
+
+export const JoinHICC = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 3.7rem;
+  right: 2%;
+  z-index: ${STYLE.Z_INDEX.TOP_PRIORITY};
+
+  width: 10.6rem;
+  height: 4.6rem;
+
+  border: none;
+  border-radius: 1.2rem;
+  background-color: ${(props) => hexToRGBA(props.theme.colors.black, 0.5)};
+
+  color: ${(props) => props.theme.colors.white};
+  ${(props) => props.theme.typography.common.button1};
 `;

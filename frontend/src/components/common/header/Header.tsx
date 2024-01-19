@@ -26,21 +26,24 @@ function Header() {
 
   return (
     <Desktop>
-      <H.Container>
-        <H.Logo to={ROUTE.HOME} />
-        <H.Tab to={ROUTE.CALENDAR} active={matchCalendarTab !== null}>
-          calendar
-        </H.Tab>
-        <H.Tab to={ROUTE.COMMUNITY} active={matchCommunityTab !== null}>
-          community
-        </H.Tab>
-        {isAdmin && (
-          <H.Tab to={ROUTE.ADMIN} active={matchAdminTab !== null}>
-            회원관리
+      <>
+        <H.Container>
+          <H.Logo to={ROUTE.HOME} />
+          <H.Tab to={ROUTE.CALENDAR} active={matchCalendarTab !== null}>
+            calendar
           </H.Tab>
-        )}
-        {isLogin ? <H.Auth onClick={logout}>Log out</H.Auth> : <H.Auth onClick={goLogin}>Log in</H.Auth>}
-      </H.Container>
+          <H.Tab to={ROUTE.COMMUNITY} active={matchCommunityTab !== null}>
+            community
+          </H.Tab>
+          {isAdmin && (
+            <H.Tab to={ROUTE.ADMIN} active={matchAdminTab !== null}>
+              회원관리
+            </H.Tab>
+          )}
+          {isLogin ? <H.Auth onClick={logout}>Log out</H.Auth> : <H.Auth onClick={goLogin}>Log in</H.Auth>}
+        </H.Container>
+        <H.JoinHICC>Join HICC</H.JoinHICC>
+      </>
     </Desktop>
   );
 }
