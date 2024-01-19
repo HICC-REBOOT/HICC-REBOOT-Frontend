@@ -100,8 +100,15 @@ export const CustomCalendar = styled(Calendar)`
   background: ${(props) => props.theme.colors.black};
   width: 100%;
   border: none;
+
+  .react-calendar__navigation {
+    height: auto;
+    justify-content: center;
+    align-items: center;
+  }
   .react-calendar__navigation button:disabled {
     background-color: ${(props) => props.theme.colors.black};
+    padding: 0 10%;
   }
 
   // YYYY.MM 표시
@@ -129,6 +136,16 @@ export const CustomCalendar = styled(Calendar)`
     color: ${(props) => props.theme.colors.black};
   }
 
+  .react-calendar__tile:enabled:hover,
+  .react-calendar__tile:enabled:focus {
+    background-color: ${(props) => props.theme.colors.black};
+  }
+  .react-calendar__tile:enabled > abbr:hover,
+  .react-calendar__tile:enabled > abbr:hover {
+    color: ${(props) => props.theme.colors.black};
+    background-color: ${(props) => props.theme.colors.white};
+  }
+
   .react-calendar__tile > abbr {
     border-radius: 0.8rem;
     height: 6rem;
@@ -154,9 +171,16 @@ export const CustomCalendar = styled(Calendar)`
     margin-bottom: 1rem;
   }
 
+  .react-calendar__month-view__weekdays__weekday {
+    padding: 0.4rem 0;
+  }
   .react-calendar__month-view__weekdays__weekday > abbr {
     ${(props) => props.theme.typography.common.caption1};
     text-decoration: none;
+  }
+
+  .react-calendar__navigation {
+    margin-bottom: 4.4rem;
   }
 
   .react-calendar__navigation__arrow {
@@ -168,7 +192,14 @@ export const CustomCalendar = styled(Calendar)`
     visibility: hidden;
   }
 
-  .react-calendar__navigation button:enabled:hover {
+  .react-calendar__navigation button:enabled:hover,
+  .react-calendar__navigation button:enabled:focus {
+    background-color: ${(props) => props.theme.colors.black};
+  }
+
+  .react-calendar__navigation__arrow {
+    width: 1.8rem;
+    height: 1.8rem;
     background-color: ${(props) => props.theme.colors.black};
   }
 `;
