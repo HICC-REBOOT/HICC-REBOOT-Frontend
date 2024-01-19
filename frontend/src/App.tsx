@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from '@components/layout/Layout';
-import Calendar from '@pages/Calendar/Calendar';
+import Calendar from '@pages/Calendar';
 import Home from '@pages/Home';
 import ROUTE from '@constants/route';
 import Temp from '@pages/temp/Temp';
