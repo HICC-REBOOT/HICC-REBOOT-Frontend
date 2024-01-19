@@ -9,11 +9,11 @@ export const Text = styled.div`
   `}
 
   ${(props) => props.theme.media.tablet`
-      color: grey;
+    color: grey;
   `}
 
   ${(props) => props.theme.media.desktop`
-      color: yellow;
+    color: yellow;
   `}
 
   ${(props) => props.theme.media.wide`

@@ -46,9 +46,9 @@ export const Title = styled.div`
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
-    top: 4.1rem;
-    width: 10.3rem;
-    height: 2rem;
+    top: 2.6rem;
+    width: 18.8rem;
+    height: 5.8rem;
   `}
 
   ${(props) => props.theme.media.tablet`
@@ -105,8 +105,8 @@ export const BigStar = styled.div`
   flex-shrink: 0;
 
   ${(props) => props.theme.media.mobile`
-    top: 4.6rem;
-    left: 18.7rem;
+    top: 3.3rem;
+    left: 22rem;
   `}
 
   ${(props) => props.theme.media.tablet`
@@ -132,8 +132,8 @@ export const SmallStar = styled.div`
   flex-shrink: 0;
 
   ${(props) => props.theme.media.mobile`
-    top: 8.8rem;
-    left: 3.1rem;
+    top: 9.3rem;
+    left: 0rem;
   `}
 
   ${(props) => props.theme.media.tablet`
