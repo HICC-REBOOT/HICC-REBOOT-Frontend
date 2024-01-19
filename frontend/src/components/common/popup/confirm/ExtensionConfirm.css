@@ -4,9 +4,28 @@
 
 .ant-modal-confirm {
   width: 32.7rem !important;
-  height: 20.7rem;
+  height: 37.7rem;
   padding: 0;
   border-radius: 2rem !important;
+}
+
+.ant-modal-confirm-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32.7rem;
+  height: 12.1rem;
+  margin-top: 3.2rem;
+
+  color: #ffffff !important;
+  text-align: center;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Source Sans Pro;
+  font-size: 1.7rem !important;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160% !important;
+  letter-spacing: 0.1rem;
 }
 
 .ant-modal-content {
@@ -33,7 +52,7 @@
 }
 
 .ant-modal-confirm-body {
-  flex: 73;
+  flex: 85.1;
   width: 100%;
 }
 
@@ -42,17 +61,12 @@
   height: 100%;
 }
 
-.ant-modal-confirm-title {
-  display: none;
-}
-
 .ant-modal-confirm-content {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 32.7rem;
   height: 100%;
-  padding: 3.7rem 4.2rem;
 
   color: #ffffff !important;
   text-align: center;
@@ -68,7 +82,7 @@
 }
 
 .ant-modal-confirm-btns {
-  flex: 27;
+  flex: 14.9;
   display: flex;
   width: 100%;
   margin-top: 0 !important;

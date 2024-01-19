@@ -59,7 +59,11 @@ export const Leader = styled.p`
 `;
 
 export const Location = styled.p`
-  margin-bottom: 0.3rem;
+  margin-bottom: 2.9rem;
+
+  ${(props) => props.theme.media.mobile`
+    margin-bottom: 0.3rem;
+  `};
 
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.caption1};
