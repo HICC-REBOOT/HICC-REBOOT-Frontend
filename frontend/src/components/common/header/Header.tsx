@@ -32,7 +32,7 @@ function Header() {
           <H.Tab to={ROUTE.CALENDAR} active={matchCalendarTab !== null}>
             calendar
           </H.Tab>
-          <H.Tab to={ROUTE.COMMUNITY} active={matchCommunityTab !== null}>
+          <H.Tab to={ROUTE.COMMUNITY.BASE} active={matchCommunityTab !== null}>
             community
           </H.Tab>
           {isAdmin && (

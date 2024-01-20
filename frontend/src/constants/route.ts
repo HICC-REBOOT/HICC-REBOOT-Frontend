@@ -1,12 +1,14 @@
-const ROUTE = {
+const ROUTE = Object.freeze({
   HOME: '/',
   CALENDAR: '/calendar',
-  COMMUNITY: '/community',
+  COMMUNITY: {
+    BASE: '/community',
+    WRITE: 'write',
+    DETAIL: ':id',
+  },
   LOGIN: '/login',
   SIGNUP: '/signup',
   ADMIN: '/admin',
-};
-
-Object.freeze(ROUTE);
+});
 
 export default ROUTE;

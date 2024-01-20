@@ -6,6 +6,7 @@ import Home from '@pages/Home';
 import ROUTE from '@constants/route';
 import Temp from '@pages/temp/Temp';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
+import Community from '@pages/community/Community';
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,7 @@ function App() {
       <Route element={<Layout />}>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
+        <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}></Route>
         <Route path="/temp" element={<Temp />}>
           <Route path="apple" element={<Temp1 />} />
           <Route path="banana" element={<Temp2 />} />

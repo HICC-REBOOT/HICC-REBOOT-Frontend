@@ -50,7 +50,7 @@ function Sidebar({ close }: SidebarProps) {
               <S.LinkButton to={ROUTE.CALENDAR}>calendar</S.LinkButton>
             </S.Tab>
             <S.Tab>
-              <S.LinkButton to={ROUTE.COMMUNITY}>community</S.LinkButton>
+              <S.LinkButton to={ROUTE.COMMUNITY.BASE}>community</S.LinkButton>
             </S.Tab>
             <S.Tab>
               <S.Auth>Log in</S.Auth>
