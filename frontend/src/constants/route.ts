@@ -3,6 +3,7 @@ const ROUTE = Object.freeze({
   CALENDAR: '/calendar',
   COMMUNITY: {
     BASE: '/community',
+    LIST: '',
     WRITE: 'write',
     DETAIL: ':id',
   },
