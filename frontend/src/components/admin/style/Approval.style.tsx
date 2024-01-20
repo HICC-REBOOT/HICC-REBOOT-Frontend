@@ -75,7 +75,7 @@ export const State = styled.div`
   gap: 1rem;
   flex-shrink: 0;
   border-radius: 1.5rem;
-  background: ${(props) => props.theme.colors.black};
+  background: ${(props) => props.theme.colors.point1};
 `;
 export const StateText = styled.div`
   color: ${(props) => props.theme.colors.white};
