@@ -7,6 +7,11 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-start;
+    gap: 0.8rem;
+  }
 `;
 
 export const DateWrapper = styled.div`

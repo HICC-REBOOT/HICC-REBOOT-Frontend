@@ -44,7 +44,7 @@ export default function EditModal() {
                 <E.Icon />
                 <TypeButton />
               </E.ContentWrapper>
-              <E.ContentWrapper style={{ alignItems: 'flex-start' }}>
+              <E.TextAreaContainer>
                 <E.Icon />
                 <ConfigProvider
                   theme={{
@@ -65,7 +65,7 @@ export default function EditModal() {
                 >
                   <E.CustomTextArea rows={10} />
                 </ConfigProvider>
-              </E.ContentWrapper>
+              </E.TextAreaContainer>
             </E.Content>
             <E.CompleteBtn src={CompleteBtn} />
           </E.Container>

@@ -54,7 +54,6 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
-  /* padding-right: 1.2rem; */
   width: 100%;
 `;
 
@@ -63,6 +62,13 @@ export const ContentWrapper = styled.div`
   gap: 0.8rem;
   align-items: center;
   width: 100%;
+`;
+
+export const TextAreaContainer = styled(ContentWrapper)`
+  @media screen and (min-width: 768px) {
+    padding-right: 8.4rem;
+  }
+  align-items: flex-start;
 `;
 export const Icon = styled.div`
   width: 2.4rem;
@@ -80,5 +86,5 @@ export const CompleteBtn = styled.img`
   position: absolute;
   right: 1.6rem;
   bottom: 6rem;
-  background-color: K ${(props) => props.theme.colors.red};
+  background-color: ${(props) => props.theme.colors.red};
 `;
