@@ -6,6 +6,7 @@ import Calendar from '@pages/Calendar/Calendar';
 import Home from '@pages/Home';
 import ROUTE from '@constants/route';
 import Temp from '@pages/temp/Temp';
+import SignUp from '@pages/SignUp/SignUP';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import Approval from '@components/admin/Approval';
 import MemberInfo from '@components/admin/MemberInfo';
@@ -28,6 +29,7 @@ function App() {
         </Route>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/temp" element={<Temp />}>
           <Route path="apple" element={<Temp1 />} />
           <Route path="banana" element={<Temp2 />} />
