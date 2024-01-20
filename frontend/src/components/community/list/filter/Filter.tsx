@@ -2,6 +2,7 @@ import React from 'react';
 import DropDown from '@components/common/dropdown/Dropdown';
 import OptionType from '@components/common/dropdown/OptionType';
 import { ReactComponent as Search } from '@assets/image/icon/search.svg';
+import Switch from '@components/common/switch/Switch';
 import * as F from './Filter.style';
 
 function Filter() {
@@ -18,6 +19,7 @@ function Filter() {
         <DropDown placeholder="" defaultValue={options[0]} options={options} onChange={onChange} />
         <F.Manager>
           <F.OnlyManagerLabel>운영진 글만 보기</F.OnlyManagerLabel>
+          <Switch />
         </F.Manager>
       </F.SelectPart>
       <F.SearchPart>
