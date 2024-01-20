@@ -2,6 +2,8 @@ import React from 'react';
 import { ReactComponent as Picture } from '@assets/image/icon/picture.svg';
 import { GRADE_ENUM } from '@components/type/CommonType';
 import isMoreThanExecutive from '@utils/isMoreThanExecutive';
+import { useNavigate } from 'react-router-dom';
+import ROUTE from '@constants/route';
 import * as A from './EachArticle.style';
 import { Article } from '../CommunityType';
 
@@ -13,10 +15,16 @@ function EachArticle({ article }: EachArticleProps) {
   // 백엔드에서 받아와야하는 값
   const existPicture = true;
 
+  const navigate = useNavigate();
+
+  const goDetail = () => {
+    navigate(`${ROUTE.COMMUNITY.BASE}/${article.article_id}`);
+  };
+
   return (
     <A.Container>
       <A.SubjectPart>
-        <A.Subject>{article.subject}</A.Subject>
+        <A.Subject onClick={goDetail}>{article.subject}</A.Subject>
         <Picture style={{ cursor: 'pointer', display: existPicture ? 'block' : 'none' }} />
       </A.SubjectPart>
       <A.RestPart>

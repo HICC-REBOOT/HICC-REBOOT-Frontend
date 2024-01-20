@@ -46,6 +46,8 @@ export const Subject = styled.div`
   white-space: nowrap;
 
   ${(props) => props.theme.typography[DeviceProvider()].body};
+
+  cursor: pointer;
 `;
 
 export const RestPart = styled.div`
