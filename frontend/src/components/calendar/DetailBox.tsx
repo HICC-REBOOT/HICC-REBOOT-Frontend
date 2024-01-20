@@ -10,6 +10,10 @@ export default function DetailBox() {
       {temp.map((_, i) => (
         <ScheduleCard key={i} />
       ))}
+      <D.AddContainer>
+        <D.AddImg />
+        <D.AddText>새 일정 추가하기</D.AddText>
+      </D.AddContainer>
     </D.Container>
   );
 }
