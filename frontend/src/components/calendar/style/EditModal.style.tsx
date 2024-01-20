@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
+  position: relative;
 `;
 
 export const Top = styled.div`
@@ -72,3 +73,12 @@ export const Icon = styled.div`
 
 const { TextArea } = Input;
 export const CustomTextArea = styled(TextArea)``;
+
+export const CompleteBtn = styled.img`
+  width: 4.6rem;
+  height: 4.6rem;
+  position: absolute;
+  right: 1.6rem;
+  bottom: 6rem;
+  background-color: K ${(props) => props.theme.colors.red};
+`;

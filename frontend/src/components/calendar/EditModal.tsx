@@ -4,6 +4,7 @@ import STYLE from '@constants/style';
 import theme from '@styles/theme';
 import { ConfigProvider } from 'antd';
 import { useRecoilState } from 'recoil';
+import CompleteBtn from '@assets/image/Icon_large.svg';
 import { modalState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import TypeButton from './TypeButton';
@@ -66,6 +67,7 @@ export default function EditModal() {
                 </ConfigProvider>
               </E.ContentWrapper>
             </E.Content>
+            <E.CompleteBtn src={CompleteBtn} />
           </E.Container>
         </Sheet.Content>
       </Sheet.Container>
