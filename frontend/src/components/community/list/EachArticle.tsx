@@ -10,11 +10,14 @@ interface EachArticleProps {
 }
 
 function EachArticle({ article }: EachArticleProps) {
+  // 백엔드에서 받아와야하는 값
+  const existPicture = true;
+
   return (
     <A.Container>
       <A.SubjectPart>
         <A.Subject>{article.subject}</A.Subject>
-        <Picture style={{ cursor: 'pointer' }} />
+        <Picture style={{ cursor: 'pointer', display: existPicture ? 'block' : 'none' }} />
       </A.SubjectPart>
       <A.RestPart>
         <A.WriterPart>
