@@ -1,14 +1,14 @@
-import React from 'react';
-import { useOutletContext } from 'react-router-dom';
-import CurrentBoardContext from '../CurrentBoardContext';
+import React, { Suspense } from 'react';
 import Filter from './filter/Filter';
+import CommunityListInner from './CommunityListInner';
 
 function CommunityList() {
-  const { currentBoard } = useOutletContext<CurrentBoardContext>();
-
   return (
     <>
       <Filter />
+      <Suspense fallback={<div>loading</div>}>
+        <CommunityListInner />
+      </Suspense>
     </>
   );
 }
