@@ -7,7 +7,7 @@ import ROUTE from '@constants/route';
 import Temp from '@pages/temp/Temp';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import Community from '@pages/community/Community';
-import { CommunityList } from '@components/community';
+import { CommunityList, CommunityWrite } from '@components/community';
 
 function App() {
   const location = useLocation();
@@ -23,6 +23,7 @@ function App() {
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
         <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
+          <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
         </Route>
         <Route path="/temp" element={<Temp />}>
           <Route path="apple" element={<Temp1 />} />
