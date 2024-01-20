@@ -13,7 +13,7 @@ function CommunityListInner() {
   const dummyArticle: Article[] = [
     {
       article_id: 1,
-      grade: 'EXECUTIVE',
+      grade: 'APPLICANT',
       name: '장윤영3',
       date: '2024-01-09 16:49',
       board: 'FREE',
