@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import { motion, Variants } from 'framer-motion';
+import theme from '@styles/theme';
 
 const variants: Variants = {
   active: { cx: 28, transition: { duration: 0.2 } },
@@ -11,10 +12,10 @@ function Switch() {
 
   const colorByState = () => {
     if (active) {
-      return '#1DC9A0';
+      return theme.colors.point1;
     }
 
-    return '#D1D1D6';
+    return theme.colors.grey004;
   };
 
   return (
