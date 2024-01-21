@@ -1,6 +1,8 @@
 import React from 'react';
 import Instagram from '@assets/image/Icon_large.svg';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
+import { useMatch } from 'react-router-dom';
+import ROUTE from '@constants/route';
 import * as F from './Footer.style';
 
 const footerText = {
@@ -20,11 +22,13 @@ const footerText = {
 };
 
 function Footer() {
+  const matchCommunityArticleDetail = useMatch(`${ROUTE.COMMUNITY.BASE}/${ROUTE.COMMUNITY.DETAIL}`);
+
   const openInstagram = () => {
     window.open('https://www.instagram.com/hongik_hicc/');
   };
   return (
-    <F.Container>
+    <F.Container hide={matchCommunityArticleDetail !== null}>
       <F.LeftSide>
         <F.HICC>{footerText.hicc}</F.HICC>
         <F.Leader>
