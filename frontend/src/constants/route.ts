@@ -9,7 +9,18 @@ const ROUTE = Object.freeze({
   },
   LOGIN: '/login',
   SIGNUP: '/signup',
-  ADMIN: '/admin',
+  ADMIN: {
+    BASE: '/admin',
+    APPROVAL: 'approval',
+    INFO: 'info',
+    CHANGE: 'change',
+  },
+  TEMP: {
+    BASE: '/temp',
+    APPLE: 'apple',
+    BANANA: 'banana',
+    MANGO: 'mango',
+  },
 });
 
 export default ROUTE;
