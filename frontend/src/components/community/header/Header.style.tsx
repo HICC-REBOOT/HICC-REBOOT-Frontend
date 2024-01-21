@@ -9,8 +9,8 @@ export const Container = styled.div`
   width: 100%;
 `;
 
-export const WriteButton = styled(Link)`
-  display: flex;
+export const WriteButton = styled(Link)<{ hide: boolean }>`
+  display: ${(props) => (props.hide ? 'none' : 'flex')};
   height: 4.6rem;
   padding: 1rem 2rem;
   justify-content: center;

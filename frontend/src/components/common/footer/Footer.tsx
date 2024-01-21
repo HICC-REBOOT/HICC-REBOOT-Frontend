@@ -24,11 +24,16 @@ const footerText = {
 function Footer() {
   const matchCommunityArticleDetail = useMatch(`${ROUTE.COMMUNITY.BASE}/${ROUTE.COMMUNITY.DETAIL}`);
 
+  const dontShowArticleDetail = () => {
+    const articleId = Number(matchCommunityArticleDetail?.params.id);
+    return !Number.isNaN(articleId);
+  };
+
   const openInstagram = () => {
     window.open('https://www.instagram.com/hongik_hicc/');
   };
   return (
-    <F.Container hide={matchCommunityArticleDetail !== null}>
+    <F.Container hide={dontShowArticleDetail()}>
       <F.LeftSide>
         <F.HICC>{footerText.hicc}</F.HICC>
         <F.Leader>
