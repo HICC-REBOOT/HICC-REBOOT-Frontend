@@ -13,7 +13,7 @@ export const Container = styled.nav`
   padding: 0.9rem 1.2rem;
 
   border: none;
-  background-color: ${(props) => props.theme.colors.grey001};
+  background-color: ${(props) => props.theme.colors.black};
 `;
 
 export const Logo = styled(Link)`

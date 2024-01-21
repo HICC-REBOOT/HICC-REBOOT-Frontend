@@ -1,6 +1,6 @@
 import React from 'react';
 import { FloatButton } from 'antd';
-import ArrowUp from '@assets/image/icon/arrowUp.svg';
+import { ReactComponent as ScrollToTop } from '@assets/image/icon/scrollToTop.svg';
 import { Mobile } from '@assets/mediaQuery';
 
 function MoveToTheTopButton() {
@@ -10,7 +10,7 @@ function MoveToTheTopButton() {
 
   return (
     <Mobile>
-      <FloatButton icon={<img src={ArrowUp} alt="up" />} onClick={moveToTheTop} />
+      <FloatButton icon={<ScrollToTop />} onClick={moveToTheTop} />
     </Mobile>
   );
 }
