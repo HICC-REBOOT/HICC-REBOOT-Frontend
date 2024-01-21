@@ -4,6 +4,10 @@ import theme from '@styles/theme';
 import { Tabs, ThemeConfig } from 'antd';
 
 export const StyledTabs = styled(Tabs)`
+  .ant-tabs-centered {
+    width: 100%;
+  }
+
   .ant-tabs-nav-wrap {
     width: 100%;
   }

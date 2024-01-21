@@ -1,9 +1,8 @@
-/* eslint-disable no-use-before-define */
 import React from 'react';
-import styled from 'styled-components';
 import Tab, { TabUnit } from '@components/common/tab/Tab';
 import { Outlet } from 'react-router-dom';
 import ROUTE from '@constants/route';
+import * as A from './Admin.style';
 
 const items: TabUnit[] = [
   {
@@ -22,22 +21,15 @@ const items: TabUnit[] = [
 
 function Admin() {
   return (
-    <Container>
-      <Tab items={items} initKey={items[0].key} />
-      <Outlet />
-    </Container>
+    <A.Container>
+      <A.TabContainer>
+        <Tab items={items} initKey={items[0].key} />
+      </A.TabContainer>
+      <A.Inner>
+        <Outlet />
+      </A.Inner>
+    </A.Container>
   );
 }
 
 export default Admin;
-
-const Container = styled.div`
-  width: 100%;
-  min-height: 100vh;
-  padding: 3.6rem 1.6rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.8rem;
-  background-color: ${(props) => props.theme.colors.black};
-`;
