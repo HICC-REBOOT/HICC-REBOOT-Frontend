@@ -36,7 +36,7 @@ function Header() {
             community
           </H.Tab>
           {isAdmin && (
-            <H.Tab to={ROUTE.ADMIN} active={matchAdminTab !== null}>
+            <H.Tab to={ROUTE.ADMIN.BASE} active={matchAdminTab !== null}>
               회원관리
             </H.Tab>
           )}

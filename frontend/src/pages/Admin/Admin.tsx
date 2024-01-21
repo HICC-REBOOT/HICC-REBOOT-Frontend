@@ -2,29 +2,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import Tab, { TabUnit } from '@components/common/tab/Tab';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import ROUTE from '@constants/route';
 
 const items: TabUnit[] = [
   {
-    key: 'approval',
+    key: ROUTE.ADMIN.APPROVAL,
     label: '회원 승인',
   },
   {
-    key: 'info',
+    key: ROUTE.ADMIN.INFO,
     label: '회원 정보',
   },
   {
-    key: 'change',
+    key: ROUTE.ADMIN.CHANGE,
     label: '등급 수정',
   },
 ];
 
 function Admin() {
-  const location = useLocation();
-  const path = location.pathname.split('/')[2] || items[0].key;
   return (
     <Container>
-      <Tab items={items} initkey={path} />
+      <Tab items={items} initKey={items[0].key} />
       <Outlet />
     </Container>
   );
