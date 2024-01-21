@@ -40,3 +40,13 @@ export interface ParentComment {
   date: string;
   content: string;
 }
+
+export interface NestedCommentType {
+  article_id: number;
+  comment_id: number;
+  parent_comment_id: number;
+  grade: Grade;
+  name: string;
+  date: string;
+  content: string;
+}
