@@ -19,3 +19,24 @@ export interface Article {
   board: Board;
   subject: string;
 }
+
+export type Image = [string, string][];
+
+export interface ArticleDetailType {
+  grade: Grade;
+  name: string;
+  date: string;
+  appendices: Image;
+  board: Board;
+  subject: string;
+  content: string;
+}
+
+export interface ParentComment {
+  article_id: number;
+  comment_id: number;
+  grade: Grade;
+  name: string;
+  date: string;
+  content: string;
+}

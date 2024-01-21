@@ -1,11 +1,10 @@
 import React from 'react';
 import { ReactComponent as Picture } from '@assets/image/icon/picture.svg';
-import { GRADE_ENUM } from '@components/type/CommonType';
-import isMoreThanExecutive from '@utils/isMoreThanExecutive';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import * as A from './EachArticle.style';
 import { Article } from '../CommunityType';
+import WriteInfo from '../common/WriteInfo';
 
 interface EachArticleProps {
   article: Article;
@@ -27,13 +26,7 @@ function EachArticle({ article }: EachArticleProps) {
         <A.Subject onClick={goDetail}>{article.subject}</A.Subject>
         <Picture style={{ cursor: 'pointer', display: existPicture ? 'block' : 'none' }} />
       </A.SubjectPart>
-      <A.RestPart>
-        <A.WriterPart>
-          <A.GradeTag show={isMoreThanExecutive(article.grade)}>{GRADE_ENUM[article.grade]}</A.GradeTag>
-          <A.Writer>{article.name}</A.Writer>
-        </A.WriterPart>
-        <A.WriteTime>{article.date}</A.WriteTime>
-      </A.RestPart>
+      <WriteInfo grade={article.grade} name={article.name} date={article.date} />
     </A.Container>
   );
 }
