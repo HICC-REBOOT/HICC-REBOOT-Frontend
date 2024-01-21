@@ -1,5 +1,5 @@
 import React from 'react';
-import Instagram from '@assets/image/Icon_large.svg';
+import { ReactComponent as Instagram } from '@assets/image/icon/instagram.svg';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
 import { useMatch } from 'react-router-dom';
 import ROUTE from '@constants/route';
@@ -53,7 +53,9 @@ function Footer() {
       </F.LeftSide>
       <F.RightSide>
         <F.InstagramMent>{footerText.instagramMent}</F.InstagramMent>
-        <F.Instagram src={Instagram} onClick={openInstagram} />
+        <F.InstagramButton onClick={openInstagram}>
+          <Instagram />
+        </F.InstagramButton>
       </F.RightSide>
     </F.Container>
   );
