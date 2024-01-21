@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/mypage/Dropdown';
 import useDropdown from '@hooks/useDropdown';
@@ -48,8 +48,12 @@ function MyInfo() {
   ];
 
   const { currentOption, onChange } = useDropdown({});
-  const { 0: phoneNumber, 1: phoneNChange } = useInput({});
-  const { 0: schoolNumber, 1: scholNChange } = useInput({});
+  const { 0: phoneNumber, 1: phoneNChange } = useInput('');
+  const { 0: email, 1: scholNChange } = useInput('');
+  const [buttonState, setButton] = useState(true);
+  const [numberState, setNumberState] = useState(true);
+  const [emailState, setEmailState] = useState(true);
+  const [majorState, setMajorState] = useState(true);
 
   const handleWithdrawal = () => {
     const withdrawalConfirmParams: WithdrawalParameter = {
@@ -62,31 +66,50 @@ function MyInfo() {
         // Perform the withdrawal action here
         console.log('Withdrawal confirmed');
       },
-      onCancel: () => {
-        // Handle cancellation
-        console.log('Withdrawal canceled');
-      },
+      // onCancel: () => {
+      //   // Handle cancellation
+      //   console.log('Withdrawal canceled');
+      // },
     };
 
     withdrawal(withdrawalConfirmParams);
   };
 
+  useEffect(() => {
+    const phoneRE = /^\d{11}$/;
+    const emailRE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (phoneRE.test(phoneNumber)) {
+      setNumberState(false);
+    } else {
+      setNumberState(true);
+    }
+    if (currentOption !== null) {
+      setMajorState(false);
+    } else {
+      setMajorState(true);
+    }
+    if (emailRE.test(email)) {
+      setEmailState(false);
+    } else {
+      setEmailState(true);
+    }
+  }, [phoneNumber, email, currentOption]);
+
+  useEffect(() => {
+    if (numberState === false && majorState === false && emailState === false) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  }, [numberState, majorState, emailState]);
+
   const handleSubmit = () => {
     const submitParam = {
       phoneNumber: { phoneNumber },
-      schoolNumber: { schoolNumber },
-      okText: '탈퇴',
-      cancelText: '취소',
-      isDangerous: true,
-      onOk: () => {
-        // Perform the withdrawal action here
-        console.log('Withdrawal confirmed');
-      },
-      onCancel: () => {
-        // Handle cancellation
-        console.log('Withdrawal canceled');
-      },
+      schoolNumber: { schoolNumber: email },
+      major: { currentOption },
     };
+    console.log(submitParam);
   };
 
   return (
@@ -99,16 +122,21 @@ function MyInfo() {
         <M.BoxArea style={{ left: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>전화번호</M.BoxTitle>
           <M.Input onChange={phoneNChange}></M.Input>
+          {numberState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BoxArea style={{ right: '0rem', top: '7.7rem' }}>
-          <M.BoxTitle>학번</M.BoxTitle>
+          <M.BoxTitle>이메일</M.BoxTitle>
           <M.Input onChange={scholNChange}></M.Input>
+          {emailState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BigBoxArea>
           <M.BoxTitle>학과</M.BoxTitle>
           <Dropdown placeholder="전공" options={options} onChange={onChange} />
+          {majorState === true && <M.BoxAlert>전공을 선택해주세요</M.BoxAlert>}
         </M.BigBoxArea>
-        <M.Button>프로필 수정</M.Button>
+        <M.Button onClick={handleSubmit} disabled={buttonState}>
+          프로필 수정
+        </M.Button>
       </M.GroupContainer>
       <M.ExitArea>
         <M.ExitContent onClick={handleWithdrawal}>회원 탈퇴</M.ExitContent>

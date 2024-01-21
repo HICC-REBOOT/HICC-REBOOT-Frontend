@@ -110,7 +110,10 @@ export const Button = styled.button`
   flex-shrink: 0;
 
   border-radius: 12px;
-  background: ${(props) => props.theme.colors.point1};
+  background: ${(props) => {
+    if (props.disabled === true) return props.theme.colors.grey001;
+    return props.theme.colors.point1;
+  }};
   ${(props) => props.theme.typography.common.button1};
 `;
 
@@ -121,6 +124,17 @@ export const BoxTitle = styled.div`
   top: -2rem;
   white-space: nowrap;
   color: ${(props) => props.theme.colors.point1};
+  ${(props) => props.theme.typography.common.caption2};
+`;
+
+export const BoxAlert = styled.div`
+  position: absolute;
+  left: 1.2rem;
+  top: 6.5rem;
+  width: 100%;
+  height: 1.6rem;
+  color: ${(props) => props.theme.colors.red};
+  white-space: nowrap;
   ${(props) => props.theme.typography.common.caption2};
 `;
 
@@ -178,7 +192,7 @@ export const Input = styled.input`
 
 export const BigBoxArea = styled.div`
   position: absolute;
-  top: 16.2rem;
+  top: 19.1rem;
   flex-shrink: 0;
   display: inline;
   ${(props) => props.theme.media.mobile`
