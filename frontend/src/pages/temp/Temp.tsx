@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 import Tab, { TabUnit } from '@components/common/tab/Tab';
 
@@ -19,12 +19,9 @@ function Temp() {
     },
   ];
 
-  const location = useLocation();
-  const path = location.pathname.split('/')[2] || items[0].key;
-
   return (
     <>
-      <Tab items={items} initkey={path} />
+      <Tab items={items} initKey={items[0].key} />
       <Outlet />
     </>
   );

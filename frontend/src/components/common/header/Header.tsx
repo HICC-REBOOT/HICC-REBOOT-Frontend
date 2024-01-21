@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
 
 import ROUTE from '@constants/route';
 import { Desktop } from '@assets/mediaQuery';
@@ -8,6 +8,10 @@ import * as H from './Header.style';
 function Header() {
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
+
+  const matchCalendarTab = useMatch(ROUTE.CALENDAR);
+  const matchCommunityTab = useMatch(`${ROUTE.COMMUNITY}/*`);
+  const matchAdminTab = useMatch(`${ROUTE.ADMIN}/*`);
 
   const navigate = useNavigate();
 
@@ -22,13 +26,24 @@ function Header() {
 
   return (
     <Desktop>
-      <H.Container>
-        <H.Logo to={ROUTE.HOME} />
-        <H.Tab to={ROUTE.CALENDAR}>calendar</H.Tab>
-        <H.Tab to={ROUTE.COMMUNITY}>community</H.Tab>
-        {isAdmin && <H.Tab to={ROUTE.ADMIN}>회원관리</H.Tab>}
-        {isLogin ? <H.Auth onClick={logout}>Log out</H.Auth> : <H.Auth onClick={goLogin}>Log in</H.Auth>}
-      </H.Container>
+      <>
+        <H.Container>
+          <H.Logo to={ROUTE.HOME} />
+          <H.Tab to={ROUTE.CALENDAR} active={matchCalendarTab !== null}>
+            calendar
+          </H.Tab>
+          <H.Tab to={ROUTE.COMMUNITY} active={matchCommunityTab !== null}>
+            community
+          </H.Tab>
+          {isAdmin && (
+            <H.Tab to={ROUTE.ADMIN} active={matchAdminTab !== null}>
+              회원관리
+            </H.Tab>
+          )}
+          {isLogin ? <H.Auth onClick={logout}>Log out</H.Auth> : <H.Auth onClick={goLogin}>Log in</H.Auth>}
+        </H.Container>
+        <H.JoinHICC>Join HICC</H.JoinHICC>
+      </>
     </Desktop>
   );
 }

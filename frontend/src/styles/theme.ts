@@ -8,7 +8,7 @@ const colors = {
   grey003: '#A3A4A9',
   grey004: '#C6C7CA',
   point1: '#6963FF',
-  point2: '#FFBF18',
+  point2: '#53FFCB',
   red: '#FF5D5D',
   white: '#FFFFFF',
 };
