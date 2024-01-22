@@ -105,7 +105,7 @@ export const Auth = styled.button`
   }
 `;
 
-export const JoinHICC = styled.button`
+export const JoinHICC = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;

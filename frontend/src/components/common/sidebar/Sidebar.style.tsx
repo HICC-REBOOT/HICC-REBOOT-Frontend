@@ -102,11 +102,14 @@ export const Auth = styled(Link)`
   }
 `;
 
-export const JoinHICC = styled.button`
+export const JoinHICC = styled(Link)`
   --border-width: 0.1rem;
   --border-radius: 1.2rem;
   --gradient: linear-gradient(225deg, #53ffcb, #5b4ef5);
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   width: 100%;
   height: 4.6rem;

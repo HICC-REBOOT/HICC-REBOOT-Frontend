@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMatch, useNavigate } from 'react-router-dom';
+import { Route, useMatch, useNavigate } from 'react-router-dom';
 
 import ROUTE from '@constants/route';
 import { Desktop } from '@assets/mediaQuery';
@@ -44,7 +44,7 @@ function Header() {
           )}
           {isLogin ? <H.Auth onClick={logout}>Log out</H.Auth> : <H.Auth onClick={goLogin}>Log in</H.Auth>}
         </H.Container>
-        <H.JoinHICC>Join HICC</H.JoinHICC>
+        <H.JoinHICC to={ROUTE.SIGNUP}>Join HICC</H.JoinHICC>
       </>
     </Desktop>
   );
