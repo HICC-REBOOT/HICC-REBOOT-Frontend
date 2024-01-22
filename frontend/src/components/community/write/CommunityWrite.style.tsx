@@ -6,7 +6,7 @@ export const Container = styled.form`
     margin-bottom: 2rem;
 
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: 18.7rem;
     }
   }
 `;
@@ -108,4 +108,8 @@ export const UploadButton = styled.button`
 
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.button1};
+
+  &:disabled {
+    background-color: ${(props) => props.theme.colors.black};
+  }
 `;

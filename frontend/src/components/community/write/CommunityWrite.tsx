@@ -19,7 +19,7 @@ interface WriteForm {
 }
 
 function CommunityWrite() {
-  const { handleSubmit, register, setValue, watch } = useForm<WriteForm>();
+  const { handleSubmit, register, setValue, watch, formState } = useForm<WriteForm>();
   const fileRef = useRef<HTMLInputElement | null>(null);
 
   // 현재 등록되어있는 이미지
@@ -70,10 +70,11 @@ function CommunityWrite() {
 
   return (
     <W.Container onSubmit={handleSubmit(onSubmit)}>
-      <W.InputTitle type="text" placeholder="제목을 입력하세요" {...register('title')} />
+      <W.InputTitle type="text" placeholder="제목을 입력하세요" {...register('title', { required: true })} />
       <W.Textarea
         placeholder="내용을 입력하세요"
         {...register('content', {
+          required: true,
           onChange: textareaAutosize,
         })}
       />
@@ -94,7 +95,9 @@ function CommunityWrite() {
           </W.ImageUploadButton>
         </W.ImageUploads>
       </W.ImageContainer>
-      <W.UploadButton type="submit">업로드 하기</W.UploadButton>
+      <W.UploadButton type="submit" disabled={!formState.isValid}>
+        업로드 하기
+      </W.UploadButton>
     </W.Container>
   );
 }
