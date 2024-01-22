@@ -6,7 +6,7 @@ import useSidebar from '@hooks/useSidebar';
 import { Header, MobileHeader } from '@components/common/header';
 import Footer from '@components/common/footer/Footer';
 import Sidebar from '@components/common/sidebar/Sidebar';
-import MoveToTheTopButton from '@components/utils/MoveToTheTopButton';
+import MoveToTheTopButton from '@components/utils/moveToTheTopButton/MoveToTheTopButton';
 
 import * as L from './style/Layout.style';
 
