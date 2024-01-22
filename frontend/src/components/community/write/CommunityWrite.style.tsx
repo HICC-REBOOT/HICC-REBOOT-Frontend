@@ -80,6 +80,21 @@ export const ImageView = styled.img`
 
   border-radius: 1rem;
   object-fit: cover;
+
+  ${(props) => props.theme.media.tablet`
+    width: 8rem;
+    height: 8rem;
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    width: 10rem;
+    height: 10rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    width: 10rem;
+    height: 10rem;
+  `};
 `;
 
 export const ImageUploadButton = styled.div<{ hide: boolean }>`
@@ -92,6 +107,21 @@ export const ImageUploadButton = styled.div<{ hide: boolean }>`
 
   border-radius: 1rem;
   background: ${(props) => props.theme.colors.grey001};
+
+  ${(props) => props.theme.media.tablet`
+    width: 8rem;
+    height: 8rem;
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    width: 10rem;
+    height: 10rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    width: 10rem;
+    height: 10rem;
+  `};
 `;
 
 export const UploadButton = styled.button`
