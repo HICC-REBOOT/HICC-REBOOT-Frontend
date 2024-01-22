@@ -17,11 +17,12 @@ function DropDown({ placeholder, options, onChange, defaultValue }: DropDownProp
       options={options}
       classNamePrefix={'Dropdown'}
       defaultValue={defaultValue}
-      isSearchable={false}
+      isSearchable={true}
       placeholder={placeholder}
       components={{ DropdownIndicator }}
       onChange={onChange}
       blurInputOnSelect={true}
+      noOptionsMessage={() => '해당 옵션은 존재하지 않습니다.'}
     />
   );
 }

@@ -4,6 +4,10 @@ import { DeviceProvider } from '@assets/mediaQuery';
 
 const DropdownStyle = styled(Select)`
   & .Dropdown {
+    &__input-container {
+      color: white;
+      ${(props) => props.theme.typography[DeviceProvider()].body};
+    }
     &__indicator-separator {
       background-color: transparent;
     }
@@ -13,7 +17,7 @@ const DropdownStyle = styled(Select)`
     }
 
     &__control {
-      ${(props) => props.theme.typography[DeviceProvider()].body};
+      ${(props) => props.theme.typography.common.caption1};
       width: 100%;
       height: 5.4rem;
       background-color: ${(props) => props.theme.colors.grey001} !important;
@@ -47,24 +51,36 @@ const DropdownStyle = styled(Select)`
 
     &__menu {
       width: 100%;
-      margin-top: 1.5rem;
-      border-top: 0;
-
+      height: 3.2rem;
+      margin-top: 0rem;
+      top: 4.4rem;
+      border-bottom-left-radius: 1.6rem;
+      border-bottom-right-radius: 1.6rem;
+      border-top: 1rem black;
+      background-color: ${(props) => props.theme.colors.grey001};
+      &__menu-list {
+        background-color: black;
+      }
       &-list {
+        height: 16.2rem;
         padding: 0;
         justify-content: center;
         align-items: center;
+        border-bottom-left-radius: 1.6rem;
+        border-bottom-right-radius: 1.6rem;
+        border-top: solid 0.1rem black;
+        border-color: black;
       }
     }
 
     &__option {
-      height: 3rem;
+      height: 5.4rem;
       display: flex;
       align-items: center;
       padding: 0.9rem 0 0.9rem 1.5rem;
-      border-top: 0.1rem solid ${(props) => props.theme.colors.grey001};
-      color: ${(props) => props.theme.colors.black};
-      background-color: ${(props) => props.theme.colors.white};
+      ${(props) => props.theme.typography.common.caption1};
+      color: ${(props) => props.theme.colors.white};
+      background-color: ${(props) => props.theme.colors.grey001};
 
       &--is-selected {
       }
