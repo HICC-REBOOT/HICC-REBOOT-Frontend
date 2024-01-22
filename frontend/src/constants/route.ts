@@ -6,6 +6,7 @@ const ROUTE = {
   SIGNUP: '/signup',
   ADMIN: '/admin',
   PROFILE: '/profile',
+  MYINFO: '/myinfo',
 };
 
 Object.freeze(ROUTE);
