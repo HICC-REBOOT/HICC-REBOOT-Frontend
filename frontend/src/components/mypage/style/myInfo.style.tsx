@@ -170,6 +170,7 @@ export const Input = styled.input`
   border-radius: 1.6rem;
   background: ${(props) => props.theme.colors.grey001};
   padding-left: 1.2rem;
+  padding-right: 3.5rem;
   ${(props) => props.theme.media.mobile`
     width: 15.6rem;
     height: 5.4rem;
@@ -252,4 +253,11 @@ export const BottomDiv = styled.div`
   ${(props) => props.theme.media.wide`
     height: 58.1rem;
   `}
+`;
+
+export const CheckDiv = styled.div`
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+  z-index: 1;
 `;

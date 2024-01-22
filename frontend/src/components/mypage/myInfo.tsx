@@ -4,6 +4,7 @@ import Dropdown from '@components/mypage/Dropdown';
 import useDropdown from '@hooks/useDropdown';
 import useInput from '@hooks/useInput';
 import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
+import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import * as M from './style/myInfo.style';
 
 function MyInfo() {
@@ -135,11 +136,21 @@ function MyInfo() {
         </M.Title>
         <M.BoxArea style={{ left: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>전화번호</M.BoxTitle>
+          {numberState === false && (
+            <M.CheckDiv>
+              <Check />
+            </M.CheckDiv>
+          )}
           <M.Input onChange={handlePhoneInputChange} value={phoneNumber}></M.Input>
           {numberState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BoxArea style={{ right: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>이메일</M.BoxTitle>
+          {emailState === false && (
+            <M.CheckDiv>
+              <Check />
+            </M.CheckDiv>
+          )}
           <M.Input onChange={scholNChange}></M.Input>
           {emailState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
