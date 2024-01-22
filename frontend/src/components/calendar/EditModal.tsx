@@ -5,20 +5,24 @@ import theme from '@styles/theme';
 import { ConfigProvider } from 'antd';
 import { useRecoilState } from 'recoil';
 import CompleteBtn from '@assets/image/Icon_large.svg';
+import useModal from '@hooks/useCalendarModal';
 import { modalState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import TypeButton from './TypeButton';
 import * as E from './style/EditModal.style';
 
 export default function EditModal() {
-  const [isOpen, setIsOpen] = useRecoilState(modalState);
+  const { isModalOpen, changeModalState, isNewSchedule, changeIsNewState } = useModal();
 
-  const dateFormat = 'DD.MM E';
+  const closeModal = () => {
+    changeModalState(false);
+    changeIsNewState(false);
+  };
 
   return (
     <Sheet
-      isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
+      isOpen={isModalOpen}
+      onClose={closeModal}
       snapPoints={[0.85]}
       style={{ zIndex: STYLE.Z_INDEX.CALENDAR_MODAL }}
     >
@@ -31,7 +35,10 @@ export default function EditModal() {
             <E.Top>
               <E.TitleContainer>
                 <E.Line />
-                <E.Title value={'주간 세미나'} />
+                <E.Title
+                  value={isNewSchedule ? '' : '주간 세미나'}
+                  placeholder={isNewSchedule ? '일정 제목을 입력해주세요' : ''}
+                />
               </E.TitleContainer>
               <E.deleteBtn />
             </E.Top>
@@ -54,6 +61,7 @@ export default function EditModal() {
                       colorBorder: theme.colors.black,
                       colorPrimary: theme.colors.black,
                       colorText: 'rgba(255, 255, 255, 0.70)',
+                      colorTextPlaceholder: 'rgba(255, 255, 255, 0.50)',
                     },
                     components: {
                       Input: {
@@ -63,7 +71,11 @@ export default function EditModal() {
                     },
                   }}
                 >
-                  <E.CustomTextArea rows={10} />
+                  <E.CustomTextArea
+                    rows={10}
+                    value={isNewSchedule ? '' : '일정 설명입니당'}
+                    placeholder={isNewSchedule ? '일정에 대한 설명을 입력해주세요' : ''}
+                  />
                 </ConfigProvider>
               </E.TextAreaContainer>
             </E.Content>
@@ -71,7 +83,7 @@ export default function EditModal() {
           </E.Container>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onTap={() => setIsOpen(false)} style={{ backgroundColor: 'rgba(20, 20, 21, 0.85)' }} />
+      <Sheet.Backdrop onTap={closeModal} style={{ backgroundColor: 'rgba(20, 20, 21, 0.85)' }} />
     </Sheet>
   );
 }

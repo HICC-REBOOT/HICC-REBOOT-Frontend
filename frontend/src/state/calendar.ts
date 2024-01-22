@@ -4,7 +4,7 @@ export const modalState = atom<boolean>({
   key: 'modalState',
   default: false,
 });
-export const modalState2 = atom<boolean>({
-  key: 'modalState2',
+export const isNewScheduleState = atom<boolean>({
+  key: 'isNewScheduleState',
   default: false,
 });
