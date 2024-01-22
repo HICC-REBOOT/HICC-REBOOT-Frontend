@@ -169,6 +169,7 @@ export const Input = styled.input`
   border: none;
   border-radius: 1.6rem;
   background: ${(props) => props.theme.colors.grey001};
+  padding-left: 1.2rem;
   ${(props) => props.theme.media.mobile`
     width: 15.6rem;
     height: 5.4rem;

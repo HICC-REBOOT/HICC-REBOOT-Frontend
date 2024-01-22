@@ -76,7 +76,7 @@ function MyInfo() {
   };
 
   useEffect(() => {
-    const phoneRE = /^\d{11}$/;
+    const phoneRE = /^010-\d{4}-\d{4}$/;
     const emailRE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (phoneRE.test(phoneNumber)) {
       setNumberState(false);
@@ -112,6 +112,20 @@ function MyInfo() {
     console.log(submitParam);
   };
 
+  const formatPhoneNumber = (input: string) => {
+    // 숫자 이외에 전부 삭제
+    const numericInput = input.replace(/\D/g, '');
+    // 형식 만족시 전화번호 형식으로 변경
+    const formattedNumber = numericInput.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+
+    return formattedNumber;
+  };
+
+  const handlePhoneInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedNumber = formatPhoneNumber(event.target.value);
+    phoneNChange(formattedNumber);
+  };
+
   return (
     <M.Container>
       <M.GroupContainer>
@@ -121,7 +135,7 @@ function MyInfo() {
         </M.Title>
         <M.BoxArea style={{ left: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>전화번호</M.BoxTitle>
-          <M.Input onChange={phoneNChange}></M.Input>
+          <M.Input onChange={handlePhoneInputChange} value={phoneNumber}></M.Input>
           {numberState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BoxArea style={{ right: '0rem', top: '7.7rem' }}>
