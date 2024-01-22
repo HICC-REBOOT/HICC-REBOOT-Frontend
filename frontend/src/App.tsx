@@ -11,6 +11,7 @@ import Temp from '@pages/temp/Temp';
 import { ArticleDetail, CommunityList, CommunityWrite } from '@components/community';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
+import RoutingError from '@components/common/error/RoutingError';
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,7 @@ function App() {
           <Route path={ROUTE.TEMP.BANANA} element={<Temp2 />} />
           <Route path={ROUTE.TEMP.MANGO} element={<Temp3 />} />
         </Route>
+        <Route path="*" element={<RoutingError />} />
       </Route>
     </Routes>
   );
