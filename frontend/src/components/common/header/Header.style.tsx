@@ -20,6 +20,7 @@ export const Container = styled.nav`
   border: none;
   border-radius: 1.6rem;
   background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
+  backdrop-filter: blur(0.6rem);
 `;
 
 export const LogoContainer = styled(Link)`
@@ -63,36 +64,45 @@ export const Tab = styled(Link)<{ active: boolean }>`
   }
 `;
 
-// border gradient 나중에 구현
 export const Auth = styled.button`
-  position: relative;
-  width: 8.2rem;
-  height: 4.6rem;
+  --border-width: 0.1rem;
+  --border-radius: 1.2rem;
+  --gradient: linear-gradient(180deg, #ffffff77, #ffffff11);
 
-  border-radius: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 4.6rem;
+  padding: 1rem 2rem;
+
+  background: var(--gradient);
+
+  border-radius: var(--border-radius);
   background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
 
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.button1};
 
-  text-align: center;
   white-space: nowrap;
   cursor: pointer;
+  z-index: ${STYLE.Z_INDEX.COMMON};
 
-  &:hover {
-    background-color: ${(props) => props.theme.colors.black};
-  }
-
-  /* &::before {
+  &::before {
     content: '';
+    display: block;
+    width: calc(100% - calc(var(--border-width) * 2));
+    height: calc(100% - calc(var(--border-width) * 2));
+
+    background-color: #4c4c4e;
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 1.2rem;
-    background: linear-gradient(180deg, #fff, #ffffff33);
-  } */
+
+    top: var(--border-width);
+    left: var(--border-width);
+
+    border-radius: calc(var(--border-radius) - var(--border-width));
+    z-index: ${STYLE.Z_INDEX.HIDE};
+  }
 `;
 
 export const JoinHICC = styled.button`
@@ -113,4 +123,40 @@ export const JoinHICC = styled.button`
 
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.button1};
+
+  --border-width: 0.1rem;
+  --border-radius: 1.2rem;
+  --gradient: linear-gradient(225deg, #53ffcb, #5b4ef5);
+
+  height: 4.6rem;
+  margin: 0.4rem 1.6rem;
+
+  background: var(--gradient);
+
+  border-radius: var(--border-radius);
+  background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
+
+  color: ${(props) => props.theme.colors.white};
+  ${(props) => props.theme.typography.common.button1};
+
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: ${STYLE.Z_INDEX.COMMON};
+
+  &::before {
+    content: '';
+    display: block;
+    width: calc(100% - calc(var(--border-width) * 2.5));
+    height: calc(100% - calc(var(--border-width) * 1.5));
+
+    background-color: ${(props) => props.theme.colors.black};
+    position: absolute;
+
+    top: var(--border-width);
+    left: var(--border-width);
+
+    border-radius: calc(var(--border-radius) - var(--border-width));
+    z-index: ${STYLE.Z_INDEX.HIDE};
+  }
 `;

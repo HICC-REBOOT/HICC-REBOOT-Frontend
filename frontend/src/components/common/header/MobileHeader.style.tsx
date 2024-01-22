@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '@assets/image/logo.svg';
 
-// background color색 정해지면 수정 필요
 export const Container = styled.nav`
   display: flex;
   justify-content: space-between;
