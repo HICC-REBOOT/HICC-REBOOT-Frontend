@@ -53,10 +53,10 @@ function Sidebar({ close }: SidebarProps) {
               <S.LinkButton to={ROUTE.COMMUNITY.BASE}>community</S.LinkButton>
             </S.Tab>
             <S.Tab>
-              <S.Auth>Log in</S.Auth>
+              <S.JoinHICC>Join HICC</S.JoinHICC>
             </S.Tab>
             <S.Tab>
-              <S.Auth>Join HICC</S.Auth>
+              <S.Auth to={ROUTE.LOGIN}>Log in</S.Auth>
             </S.Tab>
           </S.Inner>
         </S.Container>

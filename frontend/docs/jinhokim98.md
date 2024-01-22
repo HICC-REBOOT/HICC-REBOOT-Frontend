@@ -9,7 +9,7 @@
   - [x] 어드민 헤더 만들어서 다르게 보이게 만들기
   - [x] 헤더 z-index 적용
   - [x] 로그인 버튼 스타일 조정
-  - [ ] border gradient 설정하기...
+  - [x] border gradient 설정하기...
   - [x] 현재 탭일 때 색 강조
   - [ ] join hicc 버튼 제작 및 스타일 조정
   - [x] 로고 넣기
