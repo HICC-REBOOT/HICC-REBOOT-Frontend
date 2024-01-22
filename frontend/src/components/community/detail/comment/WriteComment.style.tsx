@@ -20,17 +20,20 @@ export const InputContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  width: 100%;
   height: 5.2rem;
   margin: 2.6rem 1.6rem;
   padding: 2rem 1.2rem;
-  flex-shrink: 0;
+
+  border: none;
+  border-radius: 2rem;
+  background-color: ${(props) => props.theme.colors.black};
 `;
 
 export const Input = styled.input`
   width: 90%;
   height: 100%;
 
+  outline: none;
   border: none;
   background-color: transparent;
   color: ${(props) => props.theme.colors.white};
@@ -38,4 +41,8 @@ export const Input = styled.input`
   font-feature-settings:
     'clig' off,
     'liga' off;
+
+  &::placeholder {
+    color: ${(props) => props.theme.colors.grey002};
+  }
 `;
