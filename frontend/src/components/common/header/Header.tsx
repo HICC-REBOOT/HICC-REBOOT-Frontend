@@ -28,7 +28,9 @@ function Header() {
     <Desktop>
       <>
         <H.Container>
-          <H.Logo to={ROUTE.HOME} />
+          <H.LogoContainer to={ROUTE.HOME}>
+            <H.Logo to={ROUTE.HOME} />
+          </H.LogoContainer>
           <H.Tab to={ROUTE.CALENDAR} active={matchCalendarTab !== null}>
             calendar
           </H.Tab>

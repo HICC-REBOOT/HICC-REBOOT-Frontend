@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import DemoLogo from '@assets/image/demologo.png';
+import logo from '@assets/image/logo.svg';
 import STYLE from '@constants/style';
 import hexToRGBA from '@utils/hexToRgba';
 
@@ -22,12 +22,27 @@ export const Container = styled.nav`
   background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
 `;
 
-export const Logo = styled(Link)`
-  background-image: url(${DemoLogo});
-  width: 7.8rem;
-  height: 3rem;
+export const LogoContainer = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  margin-right: 2rem;
+  width: 4.8rem;
+  height: 4rem;
+  margin-right: 0.8rem;
+
+  border-radius: 1.2rem;
+  background: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
+`;
+
+export const Logo = styled(Link)`
+  display: inline-block;
+  width: 3.04rem;
+  height: 2.6rem;
+  background-image: url(${logo});
+
+  background-repeat: no-repeat;
+  background-size: contain;
 `;
 
 export const Tab = styled(Link)<{ active: boolean }>`
