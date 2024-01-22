@@ -58,13 +58,3 @@ export const AcceptDate = styled.div`
     'clig' off,
     'liga' off;
 `;
-export const ClassKey = styled.div``;
-export const ClassValue = styled.div``;
-export const MajorKey = styled.div``;
-export const MajorValue = styled.div``;
-export const GradeKey = styled.div``;
-export const GradeValue = styled.div``;
-export const PhoneKey = styled.div``;
-export const PhoneValue = styled.div``;
-export const AcceptDateKey = styled.div``;
-export const AcceptDateValue = styled.div``;

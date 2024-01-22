@@ -1,6 +1,5 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
-import { log } from 'console';
 import confirm from '@components/common/popup/confirm/Confirm';
 import * as A from './style/Approval.style';
 
