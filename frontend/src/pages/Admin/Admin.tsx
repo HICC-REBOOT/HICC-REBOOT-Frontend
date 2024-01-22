@@ -24,7 +24,7 @@ function Admin() {
   const path = location.pathname.split('/')[2] || items[0].key;
   return (
     <Container>
-      <Tab items={items} initkey={path} />
+      <Tab items={items} initKey={path} />
       <Outlet />
     </Container>
   );
