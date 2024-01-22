@@ -1,7 +1,7 @@
 import { DeviceProvider } from '@assets/mediaQuery';
 import styled from 'styled-components';
 
-export const Container = styled.main`
+export const Container = styled.form`
   & > * {
     margin-bottom: 2rem;
 
@@ -60,4 +60,39 @@ export const ImageUploadButton = styled.div`
 
   border-radius: 1rem;
   background: ${(props) => props.theme.colors.grey001};
+`;
+
+export const UploadButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4.6rem;
+  padding: 1rem 2rem;
+
+  border: none;
+  border-radius: 0.8rem;
+  background: ${(props) => props.theme.colors.point1};
+
+  color: ${(props) => props.theme.colors.white};
+  ${(props) => props.theme.typography.common.button1};
+`;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  min-height: 32.5rem;
+  padding: 1rem 2rem;
+  border-radius: 0.8rem;
+  border: none;
+
+  color: ${(props) => props.theme.colors.white};
+
+  background: ${(props) => props.theme.colors.grey001};
+  ${(props) => props.theme.typography[DeviceProvider()].body};
+  overflow-y: hidden;
+  outline: none;
+  resize: none;
+
+  &::placeholder {
+    color: ${(props) => props.theme.colors.grey002};
+  }
 `;
