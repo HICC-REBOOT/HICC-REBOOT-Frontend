@@ -4,6 +4,7 @@ export const QUERY_KEYS = Object.freeze({
 
 export const STORE_KEYS = Object.freeze({
   SIDEBAR: 'sidebar',
+  NESTED_COMMENT: 'nestedComment',
 });
 
 export const TOKEN_KEYS = Object.freeze({

@@ -2,6 +2,7 @@ import React from 'react';
 import { NestedCommentType, ParentComment } from '@components/community/CommunityType';
 import WriteInfo from '@components/community/common/WriteInfo';
 import Buttons from '@components/community/common/Buttons';
+import useNestedComment from '@hooks/useNestedComment';
 import * as EA from './EachComment.style';
 import NestedComment from '../nestedComment/NestedComment';
 
@@ -11,7 +12,12 @@ interface EachCommentProps {
 }
 
 function EachComment({ comment, nestedComments }: EachCommentProps) {
-  const enrollNestedComment = (commentId: number) => {};
+  const { selectedNested } = useNestedComment();
+
+  const enrollNestedComment = (commentId: number) => {
+    selectedNested(commentId);
+  };
+
   const deleteComment = (commentId: number) => {};
 
   const getNestedCommentByParent = () => {
