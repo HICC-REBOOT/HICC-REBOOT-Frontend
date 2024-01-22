@@ -20,3 +20,12 @@ export const Content = styled.article`
   color: ${(props) => props.theme.colors.grey004};
   ${(props) => props.theme.typography.common.caption1};
 `;
+
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  margin: 2rem 0;
+`;

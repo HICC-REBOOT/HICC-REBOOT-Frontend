@@ -17,6 +17,7 @@ function Content({ id, data }: ContentProps) {
     <>
       <C.Subject>{data.subject}</C.Subject>
       <WriteInfo grade={data.grade} name={data.name} date={data.date} />
+      {/* <C.Image /> */}
       <C.Content>{data.content}</C.Content>
       <Buttons
         normal={{ label: '수정', onClick: () => updateArticle(id) }}
