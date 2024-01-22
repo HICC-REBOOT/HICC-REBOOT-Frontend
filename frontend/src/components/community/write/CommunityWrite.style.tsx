@@ -2,6 +2,8 @@ import { DeviceProvider } from '@assets/mediaQuery';
 import styled from 'styled-components';
 
 export const Container = styled.form`
+  padding: 2rem 1.6rem;
+
   & > * {
     margin-bottom: 2rem;
 

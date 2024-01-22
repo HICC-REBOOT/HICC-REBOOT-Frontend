@@ -7,6 +7,7 @@ export const Container = styled.div`
   align-items: center;
 
   width: 100%;
+  padding: 2rem 1.6rem;
 `;
 
 export const WriteButton = styled(Link)<{ hide: boolean }>`

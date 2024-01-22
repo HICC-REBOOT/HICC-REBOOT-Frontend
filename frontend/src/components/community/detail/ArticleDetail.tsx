@@ -4,6 +4,7 @@ import * as A from './ArticleDetail.style';
 import { ArticleDetailType } from '../CommunityType';
 import Content from './content/Content';
 import Comment from './comment/Comment';
+import WriteComment from './comment/WriteComment';
 
 const data: ArticleDetailType = {
   grade: 'PRESIDENT',
@@ -20,10 +21,13 @@ function ArticleDetail() {
 
   return (
     <>
-      <A.Container>
-        <Content id={Number(id)} data={data} />
-      </A.Container>
-      <Comment id={Number(id)} />
+      <A.Wrapper>
+        <A.Container>
+          <Content id={Number(id)} data={data} />
+        </A.Container>
+        <Comment id={Number(id)} />
+      </A.Wrapper>
+      <WriteComment />
     </>
   );
 }
