@@ -2,7 +2,6 @@ import React from 'react';
 import { CaretRightOutlined } from '@ant-design/icons';
 import type { CollapseProps } from 'antd';
 import { Collapse, ConfigProvider } from 'antd';
-import theme from '@styles/theme';
 import * as A from './style/Approval.style';
 import MemberDetail from './MemberDetail';
 import ApprovalMemberItem from './ApprovalMemberItem';
