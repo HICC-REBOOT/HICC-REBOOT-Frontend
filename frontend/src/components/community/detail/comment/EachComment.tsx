@@ -39,8 +39,8 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
       <WriteInfo grade={comment.grade} name={comment.name} date={comment.date} />
       <EA.Content>{comment.content}</EA.Content>
       <Buttons
-        normal={{ label: '답글 달기', onClick: () => enrollNestedComment(comment.commentId) }}
-        dangerous={{ label: '삭제', onClick: () => deleteComment(comment.commentId) }}
+        normal={{ label: '답글 달기', onClick: () => enrollNestedComment(comment.commentId), show: true }}
+        dangerous={{ label: '삭제', onClick: () => deleteComment(comment.commentId), show: comment.isMine }}
       />
       {getNestedCommentByParent()}
     </EA.Container>

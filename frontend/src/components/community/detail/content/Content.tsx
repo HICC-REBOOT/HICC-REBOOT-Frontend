@@ -20,8 +20,8 @@ function Content({ id, data }: ContentProps) {
       {/* <C.Image /> */}
       <C.Content>{data.content}</C.Content>
       <Buttons
-        normal={{ label: '수정', onClick: () => updateArticle(id) }}
-        dangerous={{ label: '삭제', onClick: () => deleteArticle(id) }}
+        normal={{ label: '수정', onClick: () => updateArticle(id), show: data.isMine }}
+        dangerous={{ label: '삭제', onClick: () => deleteArticle(id), show: data.isMine }}
       />
     </>
   );

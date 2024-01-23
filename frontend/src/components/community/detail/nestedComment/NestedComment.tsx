@@ -17,7 +17,7 @@ function NestedComment({ nestedComment }: NestedCommentProps) {
       <N.Content>
         <WriteInfo name={nestedComment.name} grade={nestedComment.grade} date={nestedComment.date} />
         <N.P>{nestedComment.content}</N.P>
-        <N.DeleteButton isMine={true} onClick={() => deleteNestedComment(nestedComment.commentId)}>
+        <N.DeleteButton isMine={nestedComment.isMine} onClick={() => deleteNestedComment(nestedComment.commentId)}>
           삭제
         </N.DeleteButton>
       </N.Content>
