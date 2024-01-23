@@ -7,10 +7,12 @@ import Comment from './comment/Comment';
 import WriteComment from './comment/WriteComment';
 
 const data: ArticleDetailType = {
+  articleId: 1,
   grade: 'PRESIDENT',
   name: '장윤영3',
   date: '2024-01-09 16:49',
-  appendices: [['www.ac.com', 'png']],
+  urls: [['www.ac.com', 'png']],
+  isMine: true,
   board: 'FREE',
   subject: '저희 엠티 안 가나요?',
   content: '안녕 새내기들~~',

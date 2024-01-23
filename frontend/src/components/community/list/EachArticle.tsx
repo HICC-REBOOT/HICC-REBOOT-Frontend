@@ -17,7 +17,7 @@ function EachArticle({ article }: EachArticleProps) {
   const navigate = useNavigate();
 
   const goDetail = () => {
-    navigate(`${ROUTE.COMMUNITY.BASE}/${article.article_id}`);
+    navigate(`${ROUTE.COMMUNITY.BASE}/${article.articleId}`);
   };
 
   return (
