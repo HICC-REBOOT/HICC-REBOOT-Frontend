@@ -36,6 +36,7 @@ export const StyledTabs = styled(Tabs)`
 export const tabConfigStyle: ThemeConfig = {
   components: {
     Tabs: {
+      lineWidth: 0,
       itemActiveColor: theme.colors.white,
       itemHoverColor: theme.colors.white,
       itemSelectedColor: theme.colors.white,
