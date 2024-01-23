@@ -11,6 +11,7 @@ import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import Approval from '@components/admin/Approval';
 import MemberInfo from '@components/admin/MemberInfo';
 import ChangeGrade from '@components/admin/ChangeGrade';
+import EnterInfo from '@components/signup/EnterInfo';
 
 function App() {
   const location = useLocation();
@@ -30,6 +31,7 @@ function App() {
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/enterinfo" element={<EnterInfo />} />
         <Route path="/temp" element={<Temp />}>
           <Route path="apple" element={<Temp1 />} />
           <Route path="banana" element={<Temp2 />} />
