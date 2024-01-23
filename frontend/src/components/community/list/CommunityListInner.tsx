@@ -2,7 +2,6 @@ import React from 'react';
 import useServerSidePagination from '@query/get/useServerSidePagination';
 import COMMON from '@constants/common';
 import { useOutletContext } from 'react-router-dom';
-import * as C from './CommunityListInner.style';
 import { Article } from '../CommunityType';
 import CurrentBoardContext from '../CurrentBoardContext';
 import EachArticle from './EachArticle';
@@ -51,11 +50,11 @@ function CommunityListInner() {
   //   board: currentBoard.value as Board,
   // });
   return (
-    <C.Container>
+    <>
       {dummyArticle.map((article) => (
         <EachArticle key={article.articleId} article={article} />
       ))}
-    </C.Container>
+    </>
   );
 }
 
