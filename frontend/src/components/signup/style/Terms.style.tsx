@@ -16,7 +16,10 @@ export const TermBox = styled.div`
   height: 10.9rem;
   flex-shrink: 0;
   border-radius: 1.6rem;
+  justify-content: center;
+  align-items: center;
   background: ${(props) => props.theme.colors.grey001};
+  overflow: scroll;
 `;
 export const TextArea = styled.div`
   width: 28.6rem;
@@ -27,6 +30,7 @@ export const TextArea = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption2}
+  margin-right: 1.7rem;
 `;
 export const ScrollBal = styled.div`
   width: 0.5rem;
@@ -51,6 +55,12 @@ export const Essential = styled.div`
   flex-shrink: 0;
   border-radius: var(--Column, 0.4rem);
   background: var(--point-110, rgba(91, 78, 245, 0.1));
+  color: ${(props) => props.theme.colors.point1};
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  ${(props) => props.theme.typography.common.caption2}
+  white-space:nowrap
 `;
 export const EssentialText = styled.div`
   color: ${(props) => props.theme.colors.point1};
@@ -83,4 +93,15 @@ export const CountinueButton = styled.div`
   flex-shrink: 0;
   border-radius: 1.2rem;
   background: ${(props) => props.theme.colors.grey002};
+  color: var(--white, var(--Greyscale-light-white, #fff));
+  text-align: center;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  ${(props) => props.theme.typography.common.button1}
+`;
+export const CheckBoxBlank = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
 `;
