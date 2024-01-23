@@ -7,9 +7,9 @@ import { useLocation } from 'react-router-dom';
 import * as S from './Sidebar.style';
 
 const asideVarients: Variants = {
-  initial: { height: 0, left: 0, top: '-27.6rem' },
-  open: { height: '27.6rem', top: 0 },
-  exit: { height: 0, top: '-27.6rem', transition: { duration: 0.3 } },
+  initial: { height: 0, left: 0, top: '-34rem' },
+  open: { height: '34rem', top: 0 },
+  exit: { height: 0, top: '-34rem', transition: { duration: 0.3 } },
 };
 
 const sideVarients: Variants = {
@@ -45,6 +45,9 @@ function Sidebar({ close }: SidebarProps) {
           <S.Inner initial="closed" animate="open" exit="closed" variants={sideVarients}>
             <S.Tab>
               <S.CloseButton src={Close} alt="close" onClick={close} />
+            </S.Tab>
+            <S.Tab>
+              <S.LinkButton to={ROUTE.HOME}>home</S.LinkButton>
             </S.Tab>
             <S.Tab>
               <S.LinkButton to={ROUTE.CALENDAR}>calendar</S.LinkButton>
