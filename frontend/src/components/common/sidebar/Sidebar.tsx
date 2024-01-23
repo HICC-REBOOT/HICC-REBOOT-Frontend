@@ -7,9 +7,9 @@ import { useLocation } from 'react-router-dom';
 import * as S from './Sidebar.style';
 
 const asideVarients: Variants = {
-  initial: { height: 0, left: 0, top: '-27.6rem' },
-  open: { height: '27.6rem', top: 0 },
-  exit: { height: 0, top: '-27.6rem', transition: { duration: 0.3 } },
+  initial: { height: 0, left: 0, top: '-34rem' },
+  open: { height: '34rem', top: 0 },
+  exit: { height: 0, top: '-34rem', transition: { duration: 0.3 } },
 };
 
 const sideVarients: Variants = {
@@ -47,16 +47,19 @@ function Sidebar({ close }: SidebarProps) {
               <S.CloseButton src={Close} alt="close" onClick={close} />
             </S.Tab>
             <S.Tab>
+              <S.LinkButton to={ROUTE.HOME}>home</S.LinkButton>
+            </S.Tab>
+            <S.Tab>
               <S.LinkButton to={ROUTE.CALENDAR}>calendar</S.LinkButton>
             </S.Tab>
             <S.Tab>
               <S.LinkButton to={ROUTE.COMMUNITY.BASE}>community</S.LinkButton>
             </S.Tab>
             <S.Tab>
-              <S.Auth>Log in</S.Auth>
+              <S.JoinHICC to={ROUTE.SIGNUP}>Join HICC</S.JoinHICC>
             </S.Tab>
             <S.Tab>
-              <S.Auth>Join HICC</S.Auth>
+              <S.Auth to={ROUTE.LOGIN}>Log in</S.Auth>
             </S.Tab>
           </S.Inner>
         </S.Container>

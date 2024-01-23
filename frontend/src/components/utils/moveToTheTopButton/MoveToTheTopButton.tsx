@@ -1,9 +1,9 @@
 import React from 'react';
-import { FloatButton } from 'antd';
 import { ReactComponent as ScrollToTop } from '@assets/image/icon/scrollToTop.svg';
 import { Mobile } from '@assets/mediaQuery';
 import { useMatch } from 'react-router-dom';
 import ROUTE from '@constants/route';
+import ButtonStyle from './MoveToTheTopButton.style';
 
 function MoveToTheTopButton() {
   const moveToTheTop = () => {
@@ -15,11 +15,9 @@ function MoveToTheTopButton() {
 
   return (
     <Mobile>
-      <FloatButton
-        icon={<ScrollToTop />}
-        onClick={moveToTheTop}
-        style={{ display: matchCommunityList !== null ? 'block' : 'none' }}
-      />
+      <ButtonStyle onClick={moveToTheTop} hide={matchCommunityList === null}>
+        <ScrollToTop />
+      </ButtonStyle>
     </Mobile>
   );
 }

@@ -19,13 +19,15 @@ const data: ArticleDetailType = {
 function ArticleDetail() {
   const { id } = useParams();
 
+  const articleId = Number(id);
+
   return (
     <>
       <A.Wrapper>
         <A.Container>
-          <Content id={Number(id)} data={data} />
+          <Content id={articleId} data={data} />
         </A.Container>
-        <Comment id={Number(id)} />
+        <Comment id={articleId} />
       </A.Wrapper>
       <WriteComment />
     </>
