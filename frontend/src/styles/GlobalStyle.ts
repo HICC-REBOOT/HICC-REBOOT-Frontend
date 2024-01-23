@@ -1,21 +1,48 @@
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 
-import AreaBold from '@assets/font/area/Area-Bold.woff2';
-import AreaExtraBold from '@assets/font/area/Area-Extrabold.woff2';
+import SourceSansProRegular from '@assets/font/source-sans-pro/SourceSansPro-Regular.otf';
+import SourceSansProSemibold from '@assets/font/source-sans-pro/SourceSansPro-Semibold.otf';
+import SourceSansProBold from '@assets/font/source-sans-pro/SourceSansPro-Bold.otf';
+
+import AreaBold from '@assets/font/area/Area-Bold.otf';
+import AreaExtraBold from '@assets/font/area/Area-Extrabold.otf';
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
 
   @font-face {
-    font-family: 'Area';
-    src: url(${AreaBold}) format('font-woff2');
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProRegular}) format('opentype');
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProSemibold}) format('opentype');
+    font-style: normal;
+    font-weight: 600;
+  }
+  
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: url(${SourceSansProBold}) format('opentype');
+    font-style: normal;
     font-weight: 700;
   }
 
   @font-face {
     font-family: 'Area';
-    src: url(${AreaExtraBold}) format('font-woff2');
+    src: url(${AreaBold}) format('opentype');
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  @font-face {
+    font-family: 'Area';
+    src: url(${AreaExtraBold}) format('opentype');
+    font-style: normal;
     font-weight: 800;
   }
 

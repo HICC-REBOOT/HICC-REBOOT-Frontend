@@ -1,12 +1,27 @@
-const ROUTE = {
+const ROUTE = Object.freeze({
   HOME: '/',
   CALENDAR: '/calendar',
-  COMMUNITY: '/community',
+  COMMUNITY: {
+    BASE: '/community',
+    LIST: '',
+    WRITE: 'write',
+    DETAIL: ':id',
+    NOT_FOUND: '404-not-found',
+  },
   LOGIN: '/login',
   SIGNUP: '/signup',
-  ADMIN: '/admin',
-};
-
-Object.freeze(ROUTE);
+  ADMIN: {
+    BASE: '/admin',
+    APPROVAL: 'approval',
+    INFO: 'info',
+    CHANGE: 'change',
+  },
+  TEMP: {
+    BASE: '/temp',
+    APPLE: 'apple',
+    BANANA: 'banana',
+    MANGO: 'mango',
+  },
+});
 
 export default ROUTE;

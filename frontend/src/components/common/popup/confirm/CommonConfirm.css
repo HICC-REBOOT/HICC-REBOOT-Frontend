@@ -1,27 +1,27 @@
-.ant-modal-wrap {
+.Confirm-wrap {
   background: rgba(0, 0, 0, 0.60);
 }
 
-.ant-modal-confirm {
+.Confirm-confirm {
   width: 32.7rem !important;
   height: 20.7rem;
   padding: 0;
   border-radius: 2rem !important;
 }
 
-.ant-modal-content {
+.Confirm-content {
   width: 100%;
   height: 100%;
   padding: 0 !important;
   background-color: #141415 !important;
 }
 
-.ant-modal-body {
+.Confirm-body {
   width: 100%;
   height: 100%;
 }
 
-.ant-modal-confirm-body-wrapper {
+.Confirm-confirm-body-wrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -32,21 +32,21 @@
   display: none;
 }
 
-.ant-modal-confirm-body {
+.Confirm-confirm-body {
   flex: 73;
   width: 100%;
 }
 
-.ant-modal-confirm-paragraph {
+.Confirm-confirm-paragraph {
   width: 32.7rem;
   height: 100%;
 }
 
-.ant-modal-confirm-title {
+.Confirm-confirm-title {
   display: none;
 }
 
-.ant-modal-confirm-content {
+.Confirm-confirm-content {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,14 +67,14 @@
   white-space: pre-line;
 }
 
-.ant-modal-confirm-btns {
+.Confirm-confirm-btns {
   flex: 27;
   display: flex;
   width: 100%;
   margin-top: 0 !important;
 }
 
-.ant-btn-default {
+.Confirm-confirm-btns .ant-btn-default {
   width: 12.4rem;
   height: 100%;
   border: none;
@@ -83,12 +83,12 @@
   color: #141415;
 }
 
-.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+.Confirm-confirm-btns .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
 }
 
-.ant-btn-default span {
+.Confirm-confirm-btns .ant-btn-default span {
   text-align: center;
   font-family: Source Sans Pro;
   font-size: 1.7rem;
@@ -97,7 +97,7 @@
   line-height: 150%;
 }
 
-.ant-btn-primary {
+.Confirm-confirm-btns .ant-btn-primary {
   width: 20.3rem;
   height: 100%;
   margin: 0 !important;
@@ -108,7 +108,7 @@
   color: #141415;
 }
 
-.ant-btn-primary span {
+.Confirm-confirm-btns .ant-btn-primary span {
   text-align: center;
   font-family: Source Sans Pro;
   font-size: 1.7rem;
@@ -117,20 +117,22 @@
   line-height: 150%;
 }
 
-.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+.Confirm-confirm-btns .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
+  background-color: #6963FF;
 }
 
-.ant-btn-dangerous {
+.Confirm-confirm-btns .ant-btn-dangerous {
   background-color: #FF4545;
 }
 
-.ant-btn-dangerous span {
+.Confirm-confirm-btns .ant-btn-dangerous span {
   color: #141415;
 }
 
-.ant-btn-dangerous:not(:disabled):not(.ant-btn-disabled):hover {
+.Confirm-confirm-btns .ant-btn-dangerous:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
+  background-color: #FF4545;
 }

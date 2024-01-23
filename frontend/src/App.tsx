@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from '@components/layout/Layout';
-import Admin from '@pages/Admin/Admin';
-import Calendar from '@pages/Calendar/Calendar';
-import Home from '@pages/Home';
 import ROUTE from '@constants/route';
+import Admin from '@pages/Admin/Admin';
+import Home from '@pages/Home';
+import Calendar from '@pages/Calendar';
+import Community from '@pages/community/Community';
 import Temp from '@pages/temp/Temp';
 import SignUp from '@pages/SignUp/SignUP';
-import { Temp1, Temp2, Temp3 } from '@components/Temp';
-import Approval from '@components/admin/Approval';
-import MemberInfo from '@components/admin/MemberInfo';
-import ChangeGrade from '@components/admin/ChangeGrade';
 import EnterInfo from '@components/signup/EnterInfo';
+import { ArticleDetail, CommunityList, CommunityWrite } from '@components/community';
+import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
+import { Temp1, Temp2, Temp3 } from '@components/Temp';
+import NotFound from '@components/common/error/NotFound';
 
 function App() {
   const location = useLocation();
@@ -23,20 +24,27 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/admin" element={<Admin />}>
-          <Route path="approval" element={<Approval />} />
-          <Route path="info" element={<MemberInfo />} />
-          <Route path="change" element={<ChangeGrade />} />
+        <Route path={ROUTE.ADMIN.BASE} element={<Admin />}>
+          <Route path={ROUTE.ADMIN.APPROVAL} element={<Approval />} />
+          <Route path={ROUTE.ADMIN.INFO} element={<MemberInfo />} />
+          <Route path={ROUTE.ADMIN.CHANGE} element={<ChangeGrade />} />
         </Route>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/enterinfo" element={<EnterInfo />} />
-        <Route path="/temp" element={<Temp />}>
-          <Route path="apple" element={<Temp1 />} />
-          <Route path="banana" element={<Temp2 />} />
-          <Route path="mango" element={<Temp3 />} />
+        <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
+          <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
+          <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
+          <Route path={ROUTE.COMMUNITY.DETAIL} element={<ArticleDetail />} />
+          <Route path={ROUTE.COMMUNITY.NOT_FOUND} element={<NotFound />} />
         </Route>
+        <Route path={ROUTE.TEMP.BASE} element={<Temp />}>
+          <Route path={ROUTE.TEMP.APPLE} element={<Temp1 />} />
+          <Route path={ROUTE.TEMP.BANANA} element={<Temp2 />} />
+          <Route path={ROUTE.TEMP.MANGO} element={<Temp3 />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );

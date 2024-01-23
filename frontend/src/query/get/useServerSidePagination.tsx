@@ -6,12 +6,14 @@ import request from '@utils/request';
 import PaginationComponent from '@components/common/pagination/PaginationComponent';
 import { QUERY_KEYS } from '@constants/keys';
 import useInfinityScrollProvider from '@hooks/useInfinityScrollProvider';
+import { Board } from '@components/community/CommunityType';
 
 interface UseServerSidePaginationProps {
   uri: string;
   size: number;
   sort?: string;
   search?: string;
+  board?: Board;
 }
 
 interface ResponseServerSidePagination<T> {
@@ -43,12 +45,13 @@ interface ResponseServerSidePagination<T> {
   empty: boolean;
 }
 
-// pagination에 필요한 파라미터들 (현재 페이지 번호, 페이지 크기, 정렬, 검색)
+// pagination에 필요한 파라미터들 (현재 페이지 번호, 페이지 크기, 정렬, 검색, 보드타입)
 interface Pageable {
   page: number;
   size: number;
   sort?: string;
   search?: string;
+  board?: Board;
 }
 
 interface ReturnuseServerSidePagination<T> {
@@ -61,6 +64,7 @@ function useServerSidePagination<T>({
   size,
   sort,
   search,
+  board,
 }: UseServerSidePaginationProps): ReturnuseServerSidePagination<T> {
   const [data, setData] = useState<T[]>([]);
   const [dataLength, setDataLength] = useState<number>(0); // 데이터의 전체 길이
@@ -80,6 +84,7 @@ function useServerSidePagination<T>({
         size,
         sort,
         search,
+        board,
       },
     });
 
