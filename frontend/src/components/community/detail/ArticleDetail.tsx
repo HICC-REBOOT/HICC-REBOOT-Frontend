@@ -10,7 +10,7 @@ const data: ArticleDetailType = {
   articleId: 1,
   grade: 'PRESIDENT',
   name: '장윤영3',
-  date: '2024-01-09 16:49',
+  date: '2023-12-14T07:51:01.243',
   urls: [
     ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
     ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
