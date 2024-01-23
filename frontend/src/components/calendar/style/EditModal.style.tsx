@@ -9,6 +9,14 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 4rem;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    padding: 4.4rem 2.4rem 7rem 2.4rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 4.4rem 9.6rem 7rem 9.6rem;
+  }
 `;
 
 export const Top = styled.div`
@@ -16,6 +24,11 @@ export const Top = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 6rem;
+
+  @media screen and (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 export const TitleContainer = styled.div`
@@ -28,6 +41,7 @@ export const deleteBtn = styled.div`
   height: 2.4rem;
   background-color: ${(props) => props.theme.colors.red};
   flex-shrink: 0;
+  justify-self: flex-end;
 `;
 
 export const Line = styled.div`
@@ -55,6 +69,28 @@ export const Content = styled.div`
   flex-direction: column;
   gap: 3.2rem;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+    gap: 2.3rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+`;
+
+export const Left = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+
+  @media screen and (min-width: 768px) {
+    gap: 2.3rem;
+  }
+  @media screen and (min-width: 1440px) {
+    gap: 2.1rem;
+  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -65,10 +101,10 @@ export const ContentWrapper = styled.div`
 `;
 
 export const TextAreaContainer = styled(ContentWrapper)`
+  align-items: flex-start;
   @media screen and (min-width: 768px) {
     padding-right: 8.4rem;
   }
-  align-items: flex-start;
 `;
 export const Icon = styled.div`
   width: 2.4rem;
@@ -86,5 +122,14 @@ export const CompleteBtn = styled.img`
   position: absolute;
   right: 1.6rem;
   bottom: 6rem;
-  background-color: ${(props) => props.theme.colors.red};
+
+  @media screen and (min-width: 768px) {
+    right: 2.4rem;
+    bottom: -4.6rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    right: 9.6rem;
+    bottom: -4.6rem;
+  }
 `;

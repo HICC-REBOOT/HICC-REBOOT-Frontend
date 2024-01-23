@@ -5,6 +5,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+  width: 100%;
+
+  @media screen and (min-width: 1440px) {
+    padding-top: 7.9rem;
+    width: auto;
+  }
 `;
 
 export const Date = styled.div`

@@ -59,6 +59,14 @@ export const CustomCalendar = styled(Calendar)`
     ${(props) => props.theme.typography[DeviceProvider()].subtitle};
   }
 
+  .react-calendar__viewContainer {
+    @media screen and (min-width: 1440px) {
+      background-color: ${(props) => props.theme.colors.grey001};
+      border-radius: 1.6rem;
+      padding: 2rem 6.4rem;
+    }
+  }
+
   // 요일 전체
   .react-calendar__month-view__weekdays {
     margin-bottom: 1rem;
@@ -73,6 +81,12 @@ export const CustomCalendar = styled(Calendar)`
     text-decoration: none;
   }
 
+  //day 전체
+  .react-calendar__month-view__days {
+    @media screen and (min-width: 1440px) {
+      row-gap: 4rem;
+    }
+  }
   // day 하나
   .react-calendar__tile {
     border-radius: 0.8rem;
@@ -86,11 +100,19 @@ export const CustomCalendar = styled(Calendar)`
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
     background-color: ${(props) => props.theme.colors.black};
+
+    @media screen and (min-width: 1440px) {
+      background-color: ${(props) => props.theme.colors.grey001};
+    }
   }
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus,
   .react-calendar__tile--active {
     background-color: ${(props) => props.theme.colors.black};
+
+    @media screen and (min-width: 1440px) {
+      background-color: ${(props) => props.theme.colors.grey001};
+    }
   }
 
   // day 안에 있는 숫자
@@ -113,6 +135,10 @@ export const CustomCalendar = styled(Calendar)`
   // 오늘 날짜
   .react-calendar__tile--now {
     background: ${(props) => props.theme.colors.black};
+
+    @media screen and (min-width: 1440px) {
+      background-color: ${(props) => props.theme.colors.grey001};
+    }
   }
   // 오늘 날짜 안에 있는 숫자
   .react-calendar__tile--now > abbr {

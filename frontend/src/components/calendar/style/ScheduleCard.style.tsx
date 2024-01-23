@@ -42,6 +42,11 @@ export const InfoContainer = styled.div``;
 export const Title = styled.div`
   ${(props) => props.theme.typography[DeviceProvider()].body}
   color: ${(props) => props.theme.colors.white};
+  white-space: nowrap;
+
+  @media screen and (min-width: 1440px) {
+    padding-right: 3.6rem;
+  }
 `;
 
 export const Detail = styled.div`
@@ -49,6 +54,13 @@ export const Detail = styled.div`
   color: ${(props) => props.theme.colors.white};
   opacity: 0.7;
   text-align: justify;
+
+  @media screen and (min-width: 768px) {
+    max-width: 19rem;
+  }
+  @media screen and (min-width: 1440px) {
+    max-width: 50rem;
+  }
 `;
 
 export const EditBtn = styled.button`

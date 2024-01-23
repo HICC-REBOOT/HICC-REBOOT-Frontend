@@ -43,14 +43,16 @@ export default function EditModal() {
               <E.deleteBtn />
             </E.Top>
             <E.Content>
-              <E.ContentWrapper>
-                <E.Icon />
-                <DatePickerBox />
-              </E.ContentWrapper>
-              <E.ContentWrapper>
-                <E.Icon />
-                <TypeButton />
-              </E.ContentWrapper>
+              <E.Left>
+                <E.ContentWrapper>
+                  <E.Icon />
+                  <DatePickerBox />
+                </E.ContentWrapper>
+                <E.ContentWrapper>
+                  <E.Icon />
+                  <TypeButton />
+                </E.ContentWrapper>
+              </E.Left>
               <E.TextAreaContainer>
                 <E.Icon />
                 <ConfigProvider
