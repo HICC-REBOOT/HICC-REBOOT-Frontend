@@ -47,12 +47,11 @@ const DropdownStyle = styled(Select)`
     }
 
     &__menu {
-      max-width: 12.6rem;
+      max-width: 14.6rem;
       width: 100%;
       margin-top: 0.4rem;
       border-top: 0;
 
-      border-radius: 0.8rem;
       border: 1px solid ${(props) => hexToRGBA(props.theme.colors.black, 0.1)};
       background: var(--grey001, #141415);
 
@@ -73,8 +72,15 @@ const DropdownStyle = styled(Select)`
       background-color: ${(props) => props.theme.colors.grey001};
       ${(props) => props.theme.typography.common.button1};
 
+      &:first-child {
+        border-top-left-radius: 0.8rem;
+        border-top-right-radius: 0.8rem;
+      }
+
       &:last-child {
         margin-bottom: 0;
+        border-bottom-left-radius: 0.8rem;
+        border-bottom-right-radius: 0.8rem;
       }
 
       &--is-selected {
