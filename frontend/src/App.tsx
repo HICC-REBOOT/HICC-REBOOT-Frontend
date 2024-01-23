@@ -12,6 +12,7 @@ import { ArticleDetail, CommunityList, CommunityWrite } from '@components/commun
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
+import confirm from '@components/common/popup/confirm/Confirm';
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,14 @@ function App() {
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [location.pathname]);
+
+  confirm({
+    content: 'd',
+    okText: 'd',
+    cancelText: 't',
+    isDangerous: false,
+    onOk: () => console.log('d'),
+  });
 
   return (
     <Routes>

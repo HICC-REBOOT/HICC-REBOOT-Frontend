@@ -12,6 +12,7 @@ interface ConfirmParameter {
 
 function confirm({ content, okText, cancelText, isDangerous, onOk, onCancel }: ConfirmParameter) {
   Modal.confirm({
+    prefixCls: 'Confirm',
     content,
     okText,
     okButtonProps: { danger: isDangerous },
