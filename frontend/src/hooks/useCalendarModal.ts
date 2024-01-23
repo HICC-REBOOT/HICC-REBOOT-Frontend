@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { isNewScheduleState, modalState } from '../state/calendar';
+import { isNewScheduleState, modalState, selectedDateState } from '../state/calendar';
 
 export default function useModal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
@@ -19,10 +19,14 @@ export default function useModal() {
     [isNewSchedule],
   );
 
+  const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
+
   return {
     isModalOpen,
     changeModalState,
     isNewSchedule,
     changeIsNewState,
+    selectedDate,
+    setSelectedDate,
   };
 }

@@ -1,12 +1,14 @@
 import React from 'react';
 import useModal from '@hooks/useCalendarModal';
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
 import * as D from './style/DetailBox.style';
 import ScheduleCard from './ScheduleCard';
 
 export default function DetailBox() {
   const temp = [1, 1];
 
-  const { changeModalState, changeIsNewState } = useModal();
+  const { changeModalState, changeIsNewState, selectedDate } = useModal();
 
   const addNewSchedule = () => {
     changeIsNewState(true);
@@ -15,7 +17,11 @@ export default function DetailBox() {
 
   return (
     <D.Container>
-      <D.Date>2024.01.01 수</D.Date>
+      <D.Date>
+        {dayjs(selectedDate as Date)
+          .locale('ko')
+          .format('YYYY.MM.DD ddd')}
+      </D.Date>
       {temp.map((_, i) => (
         <ScheduleCard key={i} />
       ))}
