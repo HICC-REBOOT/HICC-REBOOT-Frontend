@@ -6,6 +6,7 @@ const ROUTE = Object.freeze({
     LIST: '',
     WRITE: 'write',
     DETAIL: ':id',
+    NOT_FOUND: '404-not-found',
   },
   LOGIN: '/login',
   SIGNUP: '/signup',

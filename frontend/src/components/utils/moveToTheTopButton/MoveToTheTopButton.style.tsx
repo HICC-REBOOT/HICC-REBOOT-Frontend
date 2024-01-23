@@ -10,7 +10,17 @@ const ButtonStyle = styled.div<{ hide: boolean }>`
 
   --border-width: 0.1rem;
   --border-radius: 1.2rem;
-  --gradient: linear-gradient(180deg, #ffffff77, #ffffff11);
+  --gradient: linear-gradient(
+    180deg,
+    ${(props) => hexToRGBA(props.theme.colors.white, 0.4)} 0%,
+    ${(props) => hexToRGBA(props.theme.colors.white, 0.1)} 70%
+  );
+
+  --hover-gradient: linear-gradient(
+    180deg,
+    ${(props) => hexToRGBA(props.theme.colors.white, 0.4)} 0%,
+    ${(props) => hexToRGBA(props.theme.colors.grey001, 0.7)} 60%
+  );
 
   display: ${(props) => (props.hide ? 'none' : 'flex')};
   justify-content: center;
@@ -30,6 +40,13 @@ const ButtonStyle = styled.div<{ hide: boolean }>`
   white-space: nowrap;
   cursor: pointer;
   z-index: ${STYLE.Z_INDEX.COMMON};
+
+  &:hover {
+    background: var(--hover-gradient);
+    &::before {
+      background-color: ${(props) => props.theme.colors.black};
+    }
+  }
 
   &::before {
     content: '';

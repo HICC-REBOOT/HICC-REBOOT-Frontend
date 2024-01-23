@@ -11,7 +11,7 @@ import Temp from '@pages/temp/Temp';
 import { ArticleDetail, CommunityList, CommunityWrite } from '@components/community';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
-import RoutingError from '@components/common/error/RoutingError';
+import NotFound from '@components/common/error/NotFound';
 
 function App() {
   const location = useLocation();
@@ -34,13 +34,14 @@ function App() {
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
           <Route path={ROUTE.COMMUNITY.DETAIL} element={<ArticleDetail />} />
+          <Route path={ROUTE.COMMUNITY.NOT_FOUND} element={<NotFound />} />
         </Route>
         <Route path={ROUTE.TEMP.BASE} element={<Temp />}>
           <Route path={ROUTE.TEMP.APPLE} element={<Temp1 />} />
           <Route path={ROUTE.TEMP.BANANA} element={<Temp2 />} />
           <Route path={ROUTE.TEMP.MANGO} element={<Temp3 />} />
         </Route>
-        <Route path="*" element={<RoutingError />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
