@@ -1,6 +1,8 @@
 import React from 'react';
-import Instagram from '@assets/image/Icon_large.svg';
+import { ReactComponent as Instagram } from '@assets/image/icon/instagram.svg';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
+import { useMatch } from 'react-router-dom';
+import ROUTE from '@constants/route';
 import * as F from './Footer.style';
 
 const footerText = {
@@ -20,11 +22,18 @@ const footerText = {
 };
 
 function Footer() {
+  const matchCommunityArticleDetail = useMatch(`${ROUTE.COMMUNITY.BASE}/${ROUTE.COMMUNITY.DETAIL}`);
+
+  const dontShowArticleDetail = () => {
+    const articleId = Number(matchCommunityArticleDetail?.params.id);
+    return !Number.isNaN(articleId);
+  };
+
   const openInstagram = () => {
     window.open('https://www.instagram.com/hongik_hicc/');
   };
   return (
-    <F.Container>
+    <F.Container hide={dontShowArticleDetail()}>
       <F.LeftSide>
         <F.HICC>{footerText.hicc}</F.HICC>
         <F.Leader>
@@ -44,7 +53,9 @@ function Footer() {
       </F.LeftSide>
       <F.RightSide>
         <F.InstagramMent>{footerText.instagramMent}</F.InstagramMent>
-        <F.Instagram src={Instagram} onClick={openInstagram} />
+        <F.InstagramButton onClick={openInstagram}>
+          <Instagram />
+        </F.InstagramButton>
       </F.RightSide>
     </F.Container>
   );

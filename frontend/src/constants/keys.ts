@@ -1,9 +1,11 @@
 export const QUERY_KEYS = Object.freeze({
   PAGEABLE: 'get-pageable',
+  GET_PRESIDENT_INFO: 'get-president-info',
 });
 
 export const STORE_KEYS = Object.freeze({
   SIDEBAR: 'sidebar',
+  NESTED_COMMENT: 'nestedComment',
 });
 
 export const TOKEN_KEYS = Object.freeze({
