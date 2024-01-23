@@ -20,7 +20,7 @@ export interface Article {
   subject: string;
 }
 
-export type Image = [string, string][];
+export type ImageUrls = [string, string][];
 
 export interface ArticleDetailType {
   articleId: number;
@@ -28,7 +28,7 @@ export interface ArticleDetailType {
   name: string;
   isMine: boolean;
   date: string;
-  urls: Image;
+  urls: ImageUrls;
   board: Board;
   subject: string;
   content: string;

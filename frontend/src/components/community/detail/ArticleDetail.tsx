@@ -11,7 +11,10 @@ const data: ArticleDetailType = {
   grade: 'PRESIDENT',
   name: '장윤영3',
   date: '2024-01-09 16:49',
-  urls: [['www.ac.com', 'png']],
+  urls: [
+    ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
+    ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
+  ],
   isMine: true,
   board: 'FREE',
   subject: '저희 엠티 안 가나요?',

@@ -27,13 +27,6 @@ export const Container = styled.div`
   }
 `;
 
-export const SubjectPart = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
 export const Subject = styled.div`
   width: 100%;
   margin-right: 1.2rem;
