@@ -38,8 +38,8 @@ function App() {
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
           <Route path={ROUTE.COMMUNITY.DETAIL} element={<ArticleDetail />} />
           <Route path={ROUTE.COMMUNITY.NOT_FOUND} element={<NotFound />} />
-          <Route path={ROUTE.PROFILE.MYINFO} element={<MyInfomation />} />
         </Route>
+        <Route path={ROUTE.PROFILE.MYINFO} element={<MyInfomation />} />
         <Route path={ROUTE.PROFILE.BASE} element={<MyPage />}>
           <Route path={ROUTE.PROFILE.MYWRITINGS} element={<MyWritings />} />
           <Route path={ROUTE.PROFILE.MYCOMMENTS} element={<MyComments />} />
