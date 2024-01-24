@@ -1,4 +1,5 @@
 import React from 'react';
+import useScrollCount from '@hooks/animations/useScrollCount';
 import * as N from './style/NumberTable.style';
 
 const FIGURE_ITEMS = [
@@ -19,7 +20,16 @@ const FIGURE_ITEMS = [
   },
 ];
 
+type CountItem = {
+  [key: number]: { ref: React.RefObject<HTMLDivElement> };
+};
+
 function NumberTable() {
+  const countItem: CountItem = {
+    0: useScrollCount(FIGURE_ITEMS[0].number, 2000, 1000, 'donw'),
+    1: useScrollCount(FIGURE_ITEMS[1].number, 0, 1000),
+    2: useScrollCount(FIGURE_ITEMS[2].number, 0, 1700),
+  };
   return (
     <N.Container>
       <N.Title>숫자로 보는 HICC</N.Title>
@@ -30,7 +40,7 @@ function NumberTable() {
             <N.TableContent>
               <N.TableTitle>{item.title}</N.TableTitle>
               <N.NumberContainer>
-                <N.Number>{item.number}</N.Number>
+                <N.Number {...countItem[index]}>{item.number}</N.Number>
                 <N.Unit>{item.unit}</N.Unit>
               </N.NumberContainer>
             </N.TableContent>
