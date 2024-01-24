@@ -2,8 +2,9 @@
 import React, { useState } from 'react';
 import type { CollapseProps } from 'antd';
 import styled from 'styled-components';
-
+import { DeviceProvider } from '@assets/mediaQuery';
 import { Collapse, ConfigProvider } from 'antd';
+import Search from '@assets/image/icon/search.svg';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
@@ -35,11 +36,7 @@ export default function ChangeGrade() {
       <I.SearchBar>
         <I.SearchBox>
           <Input placeholder="회원명 검색" maxLength={10} onChange={getValue} />
-          <SearchButton onClick={searching}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <rect width="18" height="18" fill="#FFA7A7" />
-            </svg>
-          </SearchButton>
+          <SearchButton src={Search} alt="search" onClick={searching} />
         </I.SearchBox>
         <I.DropDownBox>DropDown</I.DropDownBox>
       </I.SearchBar>
@@ -71,12 +68,14 @@ export default function ChangeGrade() {
 }
 
 const Input = styled.input`
+  width: 14.8rem;
   background: ${(props) => props.theme.colors.black};
   color: ${(props) => props.theme.colors.white};
   border: none;
   outline: none;
+  ${(props) => props.theme.typography[DeviceProvider()].body}
 `;
-const SearchButton = styled.div`
+const SearchButton = styled.img`
   width: 1.8rem;
   height: 1.8rem;
   flex-shrink: 0;

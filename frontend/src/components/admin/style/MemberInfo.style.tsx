@@ -7,6 +7,7 @@ export const MemberInfoMajorDivision = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const MemberInfoNameDivision = styled.div`
   width: 5.3rem;
@@ -14,6 +15,7 @@ export const MemberInfoNameDivision = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const BlankDivision = styled.div`
   width: 1.8rem;
@@ -30,6 +32,7 @@ export const MemberInfoMajor = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const MemberInfoName = styled.div`
   width: 5.3rem;
@@ -38,6 +41,7 @@ export const MemberInfoName = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const Blank = styled.div`
   width: 1.8rem;

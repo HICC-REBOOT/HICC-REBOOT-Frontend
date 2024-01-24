@@ -21,6 +21,7 @@ export const Class = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const Major = styled.div`
   display: flex;
@@ -30,6 +31,7 @@ export const Major = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const Grade = styled.div`
   display: flex;
@@ -39,6 +41,7 @@ export const Grade = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const Phone = styled.div`
   display: flex;
@@ -48,6 +51,7 @@ export const Phone = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const AcceptDate = styled.div`
   display: flex;
@@ -57,4 +61,5 @@ export const AcceptDate = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
