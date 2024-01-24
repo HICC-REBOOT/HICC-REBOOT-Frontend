@@ -1,5 +1,6 @@
 import React from 'react';
 import * as H from '@components/home/style/HongMap.style';
+import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
 import { Desktop } from '@assets/mediaQuery';
 
 function HongMap() {
@@ -12,8 +13,8 @@ function HongMap() {
           <H.BoxTitle>HONG MAP</H.BoxTitle>
           <H.BoxContents>HICC에서 개발한 우리학교 길찾기 서비스로 동아리방 위치를 볼 수 있어요</H.BoxContents>
           <H.GotoButton>
-            <H.Icon />
             <H.GotoButtonText>홍맵 바로가기</H.GotoButtonText>
+            <Arrow />
           </H.GotoButton>
           <Desktop>
             <H.Group>

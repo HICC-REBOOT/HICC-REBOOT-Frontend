@@ -42,7 +42,12 @@ export const Title = styled.div`
   color: var(--Point1, #5b4ef5);
   text-align: center;
   white-space: nowrap;
-  color: ${(props) => props.theme.colors.point1};
+
+  background: var(--Gradient002, linear-gradient(96deg, #5b4ef5 0%, #53ffcb 100%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* color: ${(props) => props.theme.colors.point1}; */
 
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
@@ -158,14 +163,15 @@ export const Button = styled.div`
   width: 15.3rem;
   height: 4.6rem;
   display: inline-flex;
-  padding: 1rem 1.2rem 1rem 2rem;
+  padding: 1rem 0.7rem 1rem 1.5rem;
   justify-content: center;
   align-items: center;
   gap: 0.8rem;
   flex-shrink: 0;
 
   border-radius: 1.2rem;
-  background: #ffe818;
+  background: linear-gradient(95deg, rgba(91, 78, 245, 0.3) 0%, rgba(91, 78, 245, 0) 100%),
+    linear-gradient(275deg, rgba(83, 255, 203, 0.3) 0%, rgba(83, 255, 203, 0) 100%);
   ${(props) => props.theme.typography.common.button1};
 
   ${(props) => props.theme.media.mobile`
@@ -189,6 +195,7 @@ export const ButtonTitle = styled.div`
   width: 8.9rem;
   height: 1.9rem;
   white-space: nowrap;
+  color: #d9d9d9;
   ${(props) => props.theme.typography.common.button1};
 `;
 
