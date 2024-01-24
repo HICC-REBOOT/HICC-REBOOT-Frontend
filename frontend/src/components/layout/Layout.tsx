@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import useSidebar from '@hooks/useSidebar';
 
 import { Header, MobileHeader } from '@components/common/header';
-import Footer from '@components/common/footer/Footer';
 import Sidebar from '@components/common/sidebar/Sidebar';
-import MoveToTheTopButton from '@components/utils/MoveToTheTopButton';
+import MoveToTheTopButton from '@components/utils/moveToTheTopButton/MoveToTheTopButton';
 
+import Loading from '@components/common/loading/Loading';
+import Footer from '@components/common/footer/Footer';
 import * as L from './style/Layout.style';
 
 function Layout() {
@@ -15,12 +16,14 @@ function Layout() {
 
   return (
     <L.Container>
-      <AnimatePresence>{isSidebarOpen && <Sidebar close={changeSidebarState} />}</AnimatePresence>
-      <Header />
-      <MobileHeader />
-      <Outlet />
-      <Footer />
-      <MoveToTheTopButton />
+      <Suspense fallback={<Loading />}>
+        <AnimatePresence>{isSidebarOpen && <Sidebar close={changeSidebarState} />}</AnimatePresence>
+        <Header />
+        <MobileHeader />
+        <Outlet />
+        <Footer />
+        <MoveToTheTopButton />
+      </Suspense>
     </L.Container>
   );
 }

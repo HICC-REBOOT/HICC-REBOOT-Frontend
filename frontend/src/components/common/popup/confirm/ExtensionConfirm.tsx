@@ -14,6 +14,7 @@ interface ConfirmParameter {
 
 function extensionConfirm({ title, content, okText, cancelText, isDangerous, onOk, onCancel }: ConfirmParameter) {
   Modal.confirm({
+    prefixCls: 'Extension-Confirm',
     title,
     content,
     okText,

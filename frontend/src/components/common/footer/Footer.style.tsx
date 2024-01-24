@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  display: flex;
+export const Container = styled.div<{ hide: boolean }>`
+  display: ${(props) => (props.hide ? 'none' : 'flex')};
   justify-content: space-between;
   width: 100%;
   height: 31.8rem;
@@ -37,9 +37,18 @@ export const InstagramMent = styled.div`
   ${(props) => props.theme.typography.common.button1};
 `;
 
-export const Instagram = styled.img`
-  width: 4.8rem;
-  height: 4.8rem;
+// 색 정의되지 않음..
+export const InstagramButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 4.6rem;
+  height: 4.6rem;
+  flex-shrink: 0;
+
+  border-radius: 1.2rem;
+  background: rgba(119, 119, 119, 0.47);
   cursor: pointer;
 `;
 
