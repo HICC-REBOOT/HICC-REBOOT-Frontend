@@ -12,6 +12,26 @@ export const Container = styled.div`
   background: ${(props) => props.theme.colors.black};
 `;
 
+export const TabContainer = styled.div`
+  height: 5.5rem;
+  margin: 0 auto;
+  ${(props) => props.theme.media.mobile`
+    width: 32.8rem;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    width: 53.4rem;
+  `}
+
+  ${(props) => props.theme.media.desktop`
+    width: 103.4rem;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    width: 103.4rem;
+  `}
+`;
+
 export const GroupContainer = styled.div`
   position: relative;
   display: inline-flex;

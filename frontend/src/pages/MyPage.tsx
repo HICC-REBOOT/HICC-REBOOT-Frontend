@@ -1,8 +1,7 @@
-import MyInfo from '@components/mypage/MyInfo';
-import MyWritings from '@components/mypage/MyWrittings';
 import React from 'react';
+import MyPageComponent from '@components/mypage/MyPageComponent';
 
 function MyPage() {
-  return <MyWritings></MyWritings>;
+  return <MyPageComponent></MyPageComponent>;
 }
 export default MyPage;

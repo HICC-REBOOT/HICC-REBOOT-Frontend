@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import * as M from './style/Mywrittings.style';
 
-function MyWritings() {
+import * as M from './style/MyComments.style';
+
+function MyComments() {
   const FIGURE_ITEMS = [
     {
       title: '일이삼사오육칠팔구십일이삼사오육칠팔구',
@@ -28,16 +29,6 @@ function MyWritings() {
   return (
     <M.Container>
       <M.GroupContainer>
-        <M.TitleArea>
-          <M.TitleTextArea onClick={() => setWrittingState(true)}>
-            내가 쓴 글
-            <M.TitleBar selected={writtingState} />
-          </M.TitleTextArea>
-          <M.TitleTextArea onClick={() => setWrittingState(false)}>
-            내 댓글
-            <M.TitleBar selected={!writtingState} />
-          </M.TitleTextArea>
-        </M.TitleArea>
         <M.ContentsContainer>
           {FIGURE_ITEMS.map((item, index) => (
             <M.ContentsArea key={item.title}>
@@ -53,4 +44,4 @@ function MyWritings() {
   );
 }
 
-export default MyWritings;
+export default MyComments;

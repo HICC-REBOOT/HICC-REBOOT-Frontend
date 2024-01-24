@@ -5,8 +5,12 @@ const ROUTE = {
   LOGIN: '/login',
   SIGNUP: '/signup',
   ADMIN: '/admin',
-  PROFILE: '/profile',
-  MYINFO: '/myinfo',
+  PROFILE: {
+    BASE: '/mypage',
+    MYINFO: 'myinfo',
+    MYWRITINGS: 'mywritings',
+    MYCOMMENTS: 'mycomments',
+  },
 };
 
 Object.freeze(ROUTE);
