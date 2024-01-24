@@ -101,7 +101,7 @@ export const Content = styled.div`
 export const NewsList = styled.div`
   position: relative;
   background: ${(props) => theme.colors.grey001};
-  border: 0.05rem solid ${(props) => theme.colors.grey001};
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 1.6rem;
   background: rgba(20, 20, 21, 0.8);
   backdrop-filter: blur(15px);
