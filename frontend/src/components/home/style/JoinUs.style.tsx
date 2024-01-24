@@ -41,6 +41,7 @@ export const Title = styled.div`
   position: relative;
   color: var(--Point1, #5b4ef5);
   text-align: center;
+  white-space: nowrap;
   color: ${(props) => props.theme.colors.point1};
 
   ${(props) => props.theme.typography[DeviceProvider()].head};
@@ -52,19 +53,19 @@ export const Title = styled.div`
   `}
 
   ${(props) => props.theme.media.tablet`
-    top: -0.5rem;
+    top: 1.6rem;
     width: 24.7rem;
     height: 7.7rem;
   `}
 
   ${(props) => props.theme.media.desktop`
-    top: -3.5rem;
+    top: -1.5rem;
     width: 54.7rem;
     height: 17.3rem;
   `}
 
   ${(props) => props.theme.media.wide`
-    top: -3.5rem;
+    top: -1.5rem;
     width: 54.7rem;
     height: 17.3rem;
   `}

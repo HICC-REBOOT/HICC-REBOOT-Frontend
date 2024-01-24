@@ -134,8 +134,9 @@ export const Picture = styled.div`
 `;
 
 export const BoxTitle = styled.div`
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   text-align: center;
+  white-space: nowrap;
   ${(props) => props.theme.typography[DeviceProvider()].title};
 
   ${(props) => props.theme.media.mobile`

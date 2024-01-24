@@ -326,8 +326,9 @@ export const SmallBox = styled.div`
 `;
 
 export const SmallBoxTitle = styled.div`
+  white-space: pre-wrap;
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: left;
   ${(props) => props.theme.typography[DeviceProvider()].subtitle};
@@ -342,14 +343,14 @@ export const SmallBoxTitle = styled.div`
   ${(props) => props.theme.media.tablet`
     top: 3.7rem;
     left: 2.8rem;
-    width: 14.1rem;
+    width: 18.1rem;
     height: 6rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     top: 3.5rem;
     left: 2.8rem;
-    width: 16.4rem;
+    width: 18rem;
     height: 7rem;
   `}
 
