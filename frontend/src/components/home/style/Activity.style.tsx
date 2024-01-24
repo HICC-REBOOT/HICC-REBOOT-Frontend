@@ -158,10 +158,7 @@ export const ActivityContainer = styled.div`
   `}
 `;
 
-export const BoxImg = styled.div<{ img: string }>`
-  position: absolute;
-  width: 100%;
-  height: 100%;
+export const Box = styled.div<{ img: string }>`
   border-radius: 1.6rem;
   background: ${(props) => {
     if (props.img === 'seminar') return `url(${seminar})`;
@@ -172,34 +169,9 @@ export const BoxImg = styled.div<{ img: string }>`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 1;
-  ${(props) => props.theme.media.mobile`
-    width: 32.8rem;
-    height: 24rem;
-    flex-shrink: 0;
-  `}
-
-  ${(props) => props.theme.media.tablet`
-    width: 35.2rem;
-    height: 28.8rem;
-    flex-shrink: 0;
-  `}
-  ${(props) => props.theme.media.desktop`
-    width: 61.2rem;
-    height: 31.6rem;
-    flex-shrink: 0;
-  `}
-
-  ${(props) => props.theme.media.wide`
-    width: 61.2rem;
-    height: 31.6rem;
-    flex-shrink: 0;
-  `}
-`;
-
-export const Box = styled.div`
-  border-radius: 1.6rem;
-  z-index: 1;
+  &:hover {
+    background-size: 200%;
+  }
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
@@ -338,8 +310,9 @@ export const BoxContainer = styled.div`
   `}
 `;
 
-export const SmallBoxImg = styled.div<{ img: string }>`
-  position: absolute;
+export const SmallBox = styled.div<{ img: string }>`
+  border-radius: 1.6rem;
+  border: 0.1rem, solid;
   border-radius: 1.6rem;
   border: 0.1rem, solid;
   background: ${(props) => props.theme.colors.grey001};
@@ -351,38 +324,9 @@ export const SmallBoxImg = styled.div<{ img: string }>`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 1;
-  ${(props) => props.theme.typography[DeviceProvider()].head};
-
-  ${(props) => props.theme.media.mobile`
-    position: relative;
-    width: 20.0rem;
-    height: 24rem;
-    flex-shrink: 0;
-  `}
-
-  ${(props) => props.theme.media.tablet`
-    width: 25.6rem;
-    height: 28.8rem;
-    flex-shrink: 0;
-  `}
-  ${(props) => props.theme.media.desktop`
-    width: 25.6rem;
-    height: 31.6rem;
-    flex-shrink: 0;
-  `}
-
-  ${(props) => props.theme.media.wide`
-    width: 25.6rem;
-    height: 31.6rem;
-    flex-shrink: 0;
-  `}
-`;
-
-export const SmallBox = styled.div`
-  border-radius: 1.6rem;
-  border: 0.1rem, solid;
-  background: rgba(20, 20, 21, 0.8);
+  &:hover {
+    background-size: 200%;
+  }
 
   backdrop-filter: blur(15px);
   ${(props) => props.theme.typography[DeviceProvider()].head};
