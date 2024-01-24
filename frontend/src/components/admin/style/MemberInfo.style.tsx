@@ -70,13 +70,3 @@ export const SearchBox = styled.div`
   border-radius: 0.8rem;
   background: ${(props) => props.theme.colors.black};
 `;
-export const DropDownBox = styled.div`
-  display: flex;
-  width: 10rem;
-  padding: 1rem 1.2rem;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 0.8rem;
-  background: ${(props) => props.theme.colors.black};
-`;

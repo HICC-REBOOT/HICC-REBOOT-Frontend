@@ -51,9 +51,7 @@ export default function ChangeGrade() {
           <Input placeholder="회원명 검색" maxLength={10} onChange={getValue} />
           <SearchButton src={Search} alt="search" onClick={searching} />
         </I.SearchBox>
-        <I.DropDownBox>
-          <Dropdown placeholder="등급 순" options={options} onChange={onChange} defaultValue={defaultValue} />
-        </I.DropDownBox>
+        <Dropdown placeholder="등급 순" options={options} onChange={onChange} defaultValue={defaultValue} />
       </I.SearchBar>
       <A.MembersBox>
         <A.CategoryBox>

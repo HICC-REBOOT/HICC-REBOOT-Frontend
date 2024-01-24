@@ -8,6 +8,7 @@ import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
+import { CaretRightOutlined } from '@ant-design/icons';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
@@ -31,7 +32,7 @@ export default function MemberInfo() {
     key: String(index + 1),
     label: <MemberItem userData={user} />,
     children: <MemberDetail userData={user} />,
-    showArrow: false,
+    // showArrow: false,
   }));
   // const onChange = (key: string | string[]) => {
   //   console.log(key);
@@ -51,9 +52,7 @@ export default function MemberInfo() {
           <Input placeholder="회원명 검색" maxLength={8} onChange={getValue} />
           <SearchButton src={Search} alt="search" onClick={searching} />
         </I.SearchBox>
-        <I.DropDownBox>
-          <Dropdown placeholder="등급 순" options={options} onChange={onChange} defaultValue={defaultValue} />
-        </I.DropDownBox>
+        <Dropdown placeholder="등급 순" options={options} onChange={onChange} defaultValue={defaultValue} />
       </I.SearchBar>
       <A.MembersBox>
         <A.CategoryBox>
@@ -75,7 +74,13 @@ export default function MemberInfo() {
             },
           }}
         >
-          <Collapse bordered={false} ghost={true} items={items} />
+          <Collapse
+            bordered={false}
+            ghost={true}
+            items={items}
+            expandIcon={({ isActive }) => <CaretRightOutlined color="#FFF" rotate={isActive ? 90 : 0} />}
+            expandIconPosition="end"
+          />
         </ConfigProvider>
       </A.MembersBox>
     </>
