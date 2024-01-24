@@ -103,6 +103,8 @@ export const NewsList = styled.div`
   background: ${(props) => theme.colors.grey001};
   border: 0.05rem solid ${(props) => theme.colors.grey001};
   border-radius: 1.6rem;
+  background: rgba(20, 20, 21, 0.8);
+  backdrop-filter: blur(15px);
 
   flex-shrink: 0;
 

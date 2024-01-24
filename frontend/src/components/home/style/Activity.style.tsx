@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import theme from '@styles/theme';
+import seminar from '@assets/image/seminar.png';
+import project from '@assets/image/project.png';
+import meeting from '@assets/image/meeting.png';
+import mission from '@assets/image/mission.png';
+import mt from '@assets/image/mt.png';
 
 export const Container = styled.div`
   width: 100%;
@@ -153,9 +158,48 @@ export const ActivityContainer = styled.div`
   `}
 `;
 
+export const BoxImg = styled.div<{ img: string }>`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.6rem;
+  background: ${(props) => {
+    if (props.img === 'seminar') return `url(${seminar})`;
+    if (props.img === 'project') return `url(${project})`;
+    if (props.img === 'mission') return `url(${mission})`;
+    return `url(${seminar})`;
+  }};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+  ${(props) => props.theme.media.mobile`
+    width: 32.8rem;
+    height: 24rem;
+    flex-shrink: 0;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    width: 35.2rem;
+    height: 28.8rem;
+    flex-shrink: 0;
+  `}
+  ${(props) => props.theme.media.desktop`
+    width: 61.2rem;
+    height: 31.6rem;
+    flex-shrink: 0;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    width: 61.2rem;
+    height: 31.6rem;
+    flex-shrink: 0;
+  `}
+`;
+
 export const Box = styled.div`
   border-radius: 1.6rem;
-  background: ${(props) => theme.colors.grey001};
+  z-index: 1;
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
@@ -294,10 +338,53 @@ export const BoxContainer = styled.div`
   `}
 `;
 
+export const SmallBoxImg = styled.div<{ img: string }>`
+  position: absolute;
+  border-radius: 1.6rem;
+  border: 0.1rem, solid;
+  background: ${(props) => props.theme.colors.grey001};
+  background: ${(props) => {
+    if (props.img === 'meeting') return `url(${meeting})`;
+    if (props.img === 'mt') return `url(${mt})`;
+    return {};
+  }};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 1;
+  ${(props) => props.theme.typography[DeviceProvider()].head};
+
+  ${(props) => props.theme.media.mobile`
+    position: relative;
+    width: 20.0rem;
+    height: 24rem;
+    flex-shrink: 0;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    width: 25.6rem;
+    height: 28.8rem;
+    flex-shrink: 0;
+  `}
+  ${(props) => props.theme.media.desktop`
+    width: 25.6rem;
+    height: 31.6rem;
+    flex-shrink: 0;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    width: 25.6rem;
+    height: 31.6rem;
+    flex-shrink: 0;
+  `}
+`;
+
 export const SmallBox = styled.div`
   border-radius: 1.6rem;
   border: 0.1rem, solid;
-  background: ${(props) => theme.colors.grey001};
+  background: rgba(20, 20, 21, 0.8);
+
+  backdrop-filter: blur(15px);
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
@@ -357,7 +444,7 @@ export const SmallBoxTitle = styled.div`
   ${(props) => props.theme.media.wide`
     top: 3.5rem;
     left: 2.8rem;
-    width: 16.4rem;
+    width: 18rem;
     height: 7rem;
   `}
 `;
@@ -399,6 +486,9 @@ export const Logo = styled.div`
   color: ${(props) => theme.colors.white};
   background: rgba(119, 119, 119, 0.47);
   border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${(props) => props.theme.media.mobile`
     top: 17.4rem;
     left: 13.4rem;
@@ -418,4 +508,11 @@ export const Logo = styled.div`
     top: 25rem;
     left: 19rem;
   `}
+`;
+
+export const TestBox = styled.div`
+  position: absolute;
+  width: 100rem;
+  height: 50rem;
+  background: white;
 `;
