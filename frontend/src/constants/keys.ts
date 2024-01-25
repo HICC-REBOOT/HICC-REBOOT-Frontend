@@ -1,6 +1,8 @@
 export const QUERY_KEYS = Object.freeze({
   PAGEABLE: 'get-pageable',
   GET_PRESIDENT_INFO: 'get-president-info',
+  GET_MEMBER_COUNT: 'get-member-count',
+  GET_LATEST_NEWS: 'get-latest-news',
 });
 
 export const STORE_KEYS = Object.freeze({
