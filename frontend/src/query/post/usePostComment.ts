@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from '@constants/keys';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
-import { useMutation, useQueryClient } from 'react-query';
 
 interface UsePostCommentProps {
   articleId: number;
@@ -32,7 +32,7 @@ function usePostComment({ articleId }: UsePostCommentProps) {
   const queryClient = useQueryClient();
 
   // 댓글을 작성했기 때문에 성공했을 때 댓글 다시 불러오기
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: [QUERY_KEYS.POST_PARENT_COMMENT, articleId],
     mutationFn: writeComment,
     onSuccess: () => {
@@ -44,7 +44,7 @@ function usePostComment({ articleId }: UsePostCommentProps) {
 
   return {
     writeComment: mutate,
-    isLoading,
+    isPending,
   };
 }
 

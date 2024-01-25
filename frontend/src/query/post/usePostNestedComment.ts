@@ -1,6 +1,6 @@
 import { QUERY_KEYS } from '@constants/keys';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
-import { useMutation, useQueryClient } from 'react-query';
 
 interface UsePostNestedCommentProps {
   articleId: number;
@@ -36,7 +36,7 @@ function usePostNestedComment({ articleId }: UsePostNestedCommentProps) {
 
   const queryClient = useQueryClient();
 
-  const { mutate, isLoading } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationKey: [QUERY_KEYS.POST_NESTED_COMMENT, articleId],
     mutationFn: writeNestedComment,
     onSuccess: () => {
@@ -48,7 +48,7 @@ function usePostNestedComment({ articleId }: UsePostNestedCommentProps) {
 
   return {
     writeNestedComment: mutate,
-    isLoading,
+    isPending,
   };
 }
 
