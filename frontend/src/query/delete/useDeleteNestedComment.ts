@@ -2,15 +2,15 @@ import { QUERY_KEYS } from '@constants/keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
 
-interface UseDeleteCommentProps {
+interface UseDeleteNestedCommentProps {
   articleId: number;
   commentId: number;
 }
 
-function useDeleteComment({ articleId, commentId }: UseDeleteCommentProps) {
-  const deleteComment = async () => {
+function useDeleteNestedComment({ articleId, commentId }: UseDeleteNestedCommentProps) {
+  const deleteNestedComment = async () => {
     await request<null, null, null>({
-      uri: `/api/comment/${commentId}`,
+      uri: '/api/comment',
       method: 'delete',
     });
 
@@ -21,7 +21,7 @@ function useDeleteComment({ articleId, commentId }: UseDeleteCommentProps) {
 
   const { mutate, isPending } = useMutation({
     mutationKey: [QUERY_KEYS.DELETE_PARENT_COMMENT, commentId],
-    mutationFn: deleteComment,
+    mutationFn: deleteNestedComment,
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_PARENT_COMMENT, articleId],
@@ -30,9 +30,9 @@ function useDeleteComment({ articleId, commentId }: UseDeleteCommentProps) {
   });
 
   return {
-    deleteComment: mutate,
+    deleteNestedComment: mutate,
     isPending,
   };
 }
 
-export default useDeleteComment;
+export default useDeleteNestedComment;
