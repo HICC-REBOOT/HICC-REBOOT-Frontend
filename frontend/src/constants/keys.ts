@@ -6,6 +6,7 @@ export const QUERY_KEYS = Object.freeze({
   POST_PARENT_COMMENT: 'post-parent-comment',
   DELETE_PARENT_COMMENT: 'delete-parent-comment',
   GET_NESTED_COMMENT: 'get-nested-comment',
+  POST_NESTED_COMMENT: 'post-nested-comment',
 });
 
 export const STORE_KEYS = Object.freeze({
