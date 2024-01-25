@@ -41,6 +41,11 @@ function usePostComment({ articleId }: UsePostCommentProps) {
       });
     },
   });
+
+  return {
+    writeComment: mutate,
+    isLoading,
+  };
 }
 
 export default usePostComment;
