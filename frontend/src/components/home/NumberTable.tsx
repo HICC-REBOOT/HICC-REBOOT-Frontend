@@ -2,6 +2,8 @@ import React from 'react';
 import useScrollCount from '@hooks/animations/useScrollCount';
 import * as N from './style/NumberTable.style';
 
+const year = Number(new Date().getFullYear());
+
 const FIGURE_ITEMS = [
   {
     title: '창립년도',
@@ -10,7 +12,7 @@ const FIGURE_ITEMS = [
   },
   {
     title: '운영 기수',
-    number: 53,
+    number: year - 1971,
     unit: '기',
   },
   {
