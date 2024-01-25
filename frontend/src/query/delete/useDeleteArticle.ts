@@ -26,7 +26,7 @@ function useDeleteArticle({ articleId }: UseDeleteArticleProps) {
     mutationFn: deleteArticle,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.GET_PARENT_COMMENT, articleId],
+        queryKey: [QUERY_KEYS.PAGEABLE, '/api/article'],
       });
 
       alert(`${articleId} 게시글이 삭제되었습니다.`);
