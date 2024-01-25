@@ -3,6 +3,7 @@ export const QUERY_KEYS = Object.freeze({
   GET_PRESIDENT_INFO: 'get-president-info',
   GET_ARTICLE_DETAIL: 'get-article-detail',
   GET_PARENT_COMMENT: 'get-parent-comment',
+  POST_PARENT_COMMENT: 'post-parent-comment',
 });
 
 export const STORE_KEYS = Object.freeze({
