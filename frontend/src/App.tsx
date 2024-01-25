@@ -31,8 +31,8 @@ function App() {
         </Route>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/enterinfo" element={<EnterInfo />} />
+        <Route path={ROUTE.SIGNUP} element={<SignUp />} />
+        <Route path={ROUTE.ENTERINFO} element={<EnterInfo />} />
         <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
