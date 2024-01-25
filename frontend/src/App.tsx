@@ -8,7 +8,7 @@ import Calendar from '@pages/Calendar';
 import Community from '@pages/community/Community';
 import Temp from '@pages/temp/Temp';
 
-import { ArticleDetail, CommunityList, CommunityWrite } from '@components/community';
+import { ArticleDetail, CommunityList, CommunityUpdate, CommunityWrite } from '@components/community';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
@@ -34,6 +34,7 @@ function App() {
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
           <Route path={ROUTE.COMMUNITY.DETAIL} element={<ArticleDetail />} />
+          <Route path={ROUTE.COMMUNITY.UPDATE} element={<CommunityUpdate />} />
           <Route path={ROUTE.COMMUNITY.NOT_FOUND} element={<NotFound />} />
         </Route>
         <Route path={ROUTE.TEMP.BASE} element={<Temp />}>

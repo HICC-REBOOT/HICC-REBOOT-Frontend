@@ -54,3 +54,15 @@ export interface NestedCommentType {
   date: string;
   content: string;
 }
+
+// 새로 등록은 file, 이미 있는 이미지면 src (수정을 위해)
+export interface ImageInfo {
+  file?: File;
+  src: string;
+}
+
+export interface CommunityWriteForm {
+  title: string;
+  content: string;
+  image: ImageInfo[];
+}
