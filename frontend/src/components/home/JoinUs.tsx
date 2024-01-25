@@ -8,6 +8,9 @@ import * as J from './style/JoinUs.style';
 function JoinUs() {
   return (
     <J.Container>
+      <J.Circle1 />
+      <J.Circle2 />
+      <J.BackGround></J.BackGround>
       <J.GroupContainer>
         <J.Content>동아리 회장에게 연락 후 가입해주세요</J.Content>
         <J.Title> Join us!</J.Title>

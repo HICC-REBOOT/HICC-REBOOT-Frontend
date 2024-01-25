@@ -32,9 +32,11 @@
     - [v] 최근 활동 background 이미지 추가
     - [v] 그라데이션 효과 적용
     - [v] hover 시 background img 확대
-  - [ ] 최종 레이아웃 대로 디자인 수정
+    - [v] joinus 배경 설정
+    - [ ] 홍맵 및 joinus 버튼 그라데이션 border 추가
   - [ ] 각종 버튼 링크 연결
     - [ ] 최근 소식
+    - [ ] 홍맵
     - [ ] join us
 
 - [ ] 프로필
