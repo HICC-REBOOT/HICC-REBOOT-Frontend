@@ -134,8 +134,9 @@ export const Picture = styled.div`
 `;
 
 export const BoxTitle = styled.div`
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   text-align: center;
+  white-space: nowrap;
   ${(props) => props.theme.typography[DeviceProvider()].title};
 
   ${(props) => props.theme.media.mobile`
@@ -220,6 +221,9 @@ export const GotoButton = styled.div`
 
   border-radius: 1.2rem;
   border: 0.1rem solid ${(props) => theme.colors.white};
+  background: linear-gradient(95deg, rgba(91, 78, 245, 0.3) 0%, rgba(91, 78, 245, 0) 100%),
+    linear-gradient(275deg, rgba(83, 255, 203, 0.3) 0%, rgba(83, 255, 203, 0) 100%);
+
   ${(props) => props.theme.media.mobile`
     top: 45.2rem;
   `}
