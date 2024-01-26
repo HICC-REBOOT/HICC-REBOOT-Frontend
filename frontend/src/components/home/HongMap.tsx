@@ -3,6 +3,7 @@ import * as H from '@components/home/style/HongMap.style';
 import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import { Desktop } from '@assets/mediaQuery';
+import theme from '@styles/theme';
 
 function HongMap() {
   return (
@@ -20,19 +21,19 @@ function HongMap() {
           <Desktop>
             <H.Group>
               <H.DescriptionGroup>
-                <Check fill="#5B4EF5" />
+                <Check fill={theme.colors.point1} />
                 <H.Description>최적의 경로와 예상 소요 시간 검색</H.Description>
               </H.DescriptionGroup>
               <H.DescriptionGroup>
-                <Check fill="#5B4EF5" />
+                <Check fill={theme.colors.point1} />
                 <H.Description>출발지, 도착지 입력 시 키워드 추천</H.Description>
               </H.DescriptionGroup>
               <H.DescriptionGroup>
-                <Check fill="#5B4EF5" />
+                <Check fill={theme.colors.point1} />
                 <H.Description>엘리베이터 사용 여부에 따른 경로와 시간 비교</H.Description>
               </H.DescriptionGroup>
               <H.DescriptionGroup>
-                <Check fill="#5B4EF5" />
+                <Check fill={theme.colors.point1} />
                 <H.Description>편의시설 아이콘을 클릭하여 위치 확인</H.Description>
               </H.DescriptionGroup>
             </H.Group>
