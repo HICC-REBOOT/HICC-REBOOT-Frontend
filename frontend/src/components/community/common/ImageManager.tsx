@@ -49,6 +49,12 @@ function ImageManager({ currentImages, setImage }: ImageManagerProps) {
     setImage('image', [...Array.from(currentImages), ...(await getImageMetas(files))]);
   };
 
+  const deleteImage = (imageIndex: number) => {
+    const prevState = [...currentImages];
+    const newState = [...prevState.slice(0, imageIndex), ...prevState.slice(imageIndex + 1, prevState.length)];
+    setImage('image', newState);
+  };
+
   return (
     <>
       <I.ImageContainer>
@@ -62,7 +68,9 @@ function ImageManager({ currentImages, setImage }: ImageManagerProps) {
         />
         <I.Label>사진 업로드</I.Label>
         <I.ImageUploads>
-          {currentImages?.map((image, index) => <EachImage key={index} image={image.src} />)}
+          {currentImages?.map((image, index) => (
+            <EachImage key={index} image={image.src} deleteImage={() => deleteImage(index)} />
+          ))}
           <I.ImageUploadButton hide={currentImages?.length >= COMMON.IMAGE.MAX_LENGTH} onClick={handleImgBtn}>
             <ImageUpload style={{ cursor: 'pointer' }} />
           </I.ImageUploadButton>
