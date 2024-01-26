@@ -21,6 +21,7 @@ export const STORE_KEYS = Object.freeze({
   SIDEBAR: 'sidebar',
   NESTED_COMMENT: 'nestedComment',
   RADIO: 'radio',
+  LOGIN: 'login',
 });
 
 export const COOKIE_KEYS = Object.freeze({
