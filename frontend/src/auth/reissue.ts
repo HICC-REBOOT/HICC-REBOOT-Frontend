@@ -11,7 +11,7 @@ async function reissue() {
 
   const response = await axiosInstance.get<AccessToken>('/api/refresh', {
     headers: {
-      AuthorizationRefresh: `Bearer ${refresh}`,
+      'Authorization-refresh': `Bearer ${refresh}`,
     },
   });
 
