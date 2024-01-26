@@ -44,9 +44,13 @@ export const Title = styled.div`
   color: ${(props) => props.theme.colors.white};
   white-space: nowrap;
 
-  @media screen and (min-width: 1440px) {
+  ${(props) => props.theme.media.desktop`
     padding-right: 3.6rem;
-  }
+  `};
+
+  ${(props) => props.theme.media.wide`
+    padding-right: 3.6rem;
+  `};
 `;
 
 export const Detail = styled.div`
@@ -55,12 +59,17 @@ export const Detail = styled.div`
   opacity: 0.7;
   text-align: justify;
 
-  @media screen and (min-width: 768px) {
+  ${(props) => props.theme.media.tablet`
     max-width: 19rem;
-  }
-  @media screen and (min-width: 1440px) {
+  `};
+
+  ${(props) => props.theme.media.desktop`
     max-width: 50rem;
-  }
+  `};
+
+  ${(props) => props.theme.media.wide`
+    max-width: 50rem;
+  `};
 `;
 
 export const EditBtn = styled.button`

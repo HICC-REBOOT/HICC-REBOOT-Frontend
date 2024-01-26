@@ -7,10 +7,15 @@ export const Container = styled.div`
   gap: 0.8rem;
   width: 100%;
 
-  @media screen and (min-width: 1440px) {
+  ${(props) => props.theme.media.desktop`
     padding-top: 7.9rem;
     width: auto;
-  }
+  `};
+
+  ${(props) => props.theme.media.wide`
+    padding-top: 7.9rem;
+    width: auto;
+  `};
 `;
 
 export const Date = styled.div`

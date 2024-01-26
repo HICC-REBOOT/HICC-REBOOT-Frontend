@@ -8,10 +8,20 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
 
-  @media screen and (min-width: 768px) {
+  ${(props) => props.theme.media.tablet`
     justify-content: flex-start;
     gap: 0.8rem;
-  }
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    justify-content: flex-start;
+    gap: 0.8rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    justify-content: flex-start;
+    gap: 0.8rem;
+  `};
 `;
 
 export const DateWrapper = styled.div`
