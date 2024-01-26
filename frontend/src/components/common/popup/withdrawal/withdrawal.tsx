@@ -13,6 +13,7 @@ export interface WithdrawalParameter {
 
 function withdrawal({ title, content, okText, cancelText, isDangerous, onOk, onCancel }: WithdrawalParameter) {
   Modal.confirm({
+    prefixCls: 'withdrawal',
     title,
     content,
     okText,
