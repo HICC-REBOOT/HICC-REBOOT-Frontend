@@ -1,5 +1,5 @@
 import RadioType from '@components/common/radio/RadioType';
-import radioStore from '@libs/store/radioStste';
+import radioStore from '@libs/store/radioState';
 import { useEffect } from 'react';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 

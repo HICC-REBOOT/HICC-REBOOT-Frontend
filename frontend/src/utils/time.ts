@@ -1,7 +1,7 @@
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 function time(stringTypeTime: string) {
-  const koreanTime = moment(stringTypeTime);
+  const koreanTime = dayjs(stringTypeTime);
   return koreanTime.format('YYYY-MM-DD HH:mm');
 }
 

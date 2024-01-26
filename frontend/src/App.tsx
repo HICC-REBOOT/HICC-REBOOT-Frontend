@@ -10,6 +10,8 @@ import MyPage from '@pages/MyPage';
 import { MyWritings, MyComments } from '@components/mypage';
 import MyInfomation from '@pages/MyInfo';
 import Temp from '@pages/temp/Temp';
+
+import { ArticleDetail, CommunityList, CommunityUpdate, CommunityWrite } from '@components/community';
 import SignUp from '@pages/SignUp/SignUP';
 import EnterInfo from '@components/signup/EnterInfo';
 import { ArticleDetail, CommunityList, CommunityWrite } from '@components/community';
@@ -42,6 +44,7 @@ function App() {
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
           <Route path={ROUTE.COMMUNITY.DETAIL} element={<ArticleDetail />} />
+          <Route path={ROUTE.COMMUNITY.UPDATE} element={<CommunityUpdate />} />
           <Route path={ROUTE.COMMUNITY.NOT_FOUND} element={<NotFound />} />
         </Route>
         <Route path={ROUTE.PROFILE.MYINFO} element={<MyInfomation />} />
