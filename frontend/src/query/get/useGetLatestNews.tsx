@@ -12,22 +12,6 @@ interface News {
       imageExistence: boolean;
       subject: string;
     },
-    {
-      articleId: number;
-      grade: string;
-      name: string;
-      date: string;
-      imageExistence: boolean;
-      subject: string;
-    },
-    {
-      articleId: number;
-      grade: string;
-      name: string;
-      date: string;
-      imageExistence: boolean;
-      subject: string;
-    },
   ];
 }
 
