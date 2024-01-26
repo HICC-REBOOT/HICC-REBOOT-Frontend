@@ -14,7 +14,6 @@ import Temp from '@pages/temp/Temp';
 import { ArticleDetail, CommunityList, CommunityUpdate, CommunityWrite } from '@components/community';
 import SignUp from '@pages/SignUp/SignUP';
 import EnterInfo from '@components/signup/EnterInfo';
-import { ArticleDetail, CommunityList, CommunityWrite } from '@components/community';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
