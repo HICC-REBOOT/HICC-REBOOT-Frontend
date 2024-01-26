@@ -8,14 +8,14 @@ export default function EnterInfo() {
     <Container>
       <E.Wrapper>
         <E.InputWrapper>
-          <E.Title>이름(실명)</E.Title>
+          <E.Label>이름(실명)</E.Label>
           <E.InputField>
             <E.InputFieldInput placeholder="홍길동" />
           </E.InputField>
           <E.ErrorMessage>에러메시지</E.ErrorMessage>
         </E.InputWrapper>
         <E.InputWrapper>
-          <E.Title>전화번호</E.Title>
+          <E.Label>전화번호</E.Label>
           <E.PhoneNumWrapper>
             <E.PhoneNumField>
               <E.PhoneNumFieldInput placeholder="010" />

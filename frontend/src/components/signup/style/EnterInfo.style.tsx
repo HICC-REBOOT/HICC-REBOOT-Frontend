@@ -9,13 +9,15 @@ export const Wrapper = styled.div`
   gap: 4rem;
 `;
 
-export const Title = styled.div`
+export const Label = styled.label`
   width: 23.8rem;
   color: ${(props) => props.theme.colors.point1};
   font-feature-settings:
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption2}
+  margin-bottom: 0.4rem;
+  margin-left: 1.2rem;
 `;
 export const InputWrapper = styled.div`
   width: 32.8rem;
@@ -27,6 +29,8 @@ export const InputField = styled.div`
   height: 5.4rem;
   flex-shrink: 0;
   border-radius: 1.6rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
   background: ${(props) => props.theme.colors.grey001};
   justify-content: center;
   align-items: center;
@@ -49,6 +53,7 @@ export const ErrorMessage = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption2}
+  margin-left: 1.2rem;
 `;
 export const PhoneNumWrapper = styled.div`
   display: flex;
