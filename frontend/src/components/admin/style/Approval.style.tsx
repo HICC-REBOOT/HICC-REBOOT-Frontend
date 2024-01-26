@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
+import { DeviceProvider } from '@assets/mediaQuery';
 
 export const MembersBox = styled.div`
   display: flex;
@@ -25,6 +26,7 @@ export const MajorDivision = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const NameDivision = styled.div`
   width: 5.3rem;
@@ -32,6 +34,7 @@ export const NameDivision = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const StateDivision = styled.div`
   width: 5.5rem;
@@ -40,6 +43,7 @@ export const StateDivision = styled.div`
     'clig' off,
     'liga' off;
   text-align: center;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const MemberBox = styled.div`
   display: flex;
@@ -57,6 +61,7 @@ export const Major = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const Name = styled.div`
   width: 5.3rem;
@@ -65,6 +70,7 @@ export const Name = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const State = styled.div`
   display: flex;
@@ -75,7 +81,7 @@ export const State = styled.div`
   gap: 1rem;
   flex-shrink: 0;
   border-radius: 1.5rem;
-  background: ${(props) => props.theme.colors.black};
+  background: ${(props) => props.theme.colors.point1};
 `;
 export const StateText = styled.div`
   color: ${(props) => props.theme.colors.white};
@@ -84,4 +90,5 @@ export const StateText = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;

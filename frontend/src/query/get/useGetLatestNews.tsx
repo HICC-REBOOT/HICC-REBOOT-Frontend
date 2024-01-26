@@ -3,21 +3,21 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import request from '@utils/request';
 
 interface News {
-  content: [
-    {
-      articleId: number;
-      grade: string;
-      name: string;
-      date: string;
-      imageExistence: boolean;
-      subject: string;
-    },
-  ];
+  articleId: number;
+  grade: string;
+  name: string;
+  date: string;
+  imageExistence: boolean;
+  subject: string;
+}
+
+interface NewsResponse {
+  content: News[];
 }
 
 function useGetLatestNews() {
   const fetchGetLatestNews = async () => {
-    const response = await request<null, News, null>({
+    const response = await request<null, NewsResponse, null>({
       uri: '/api/main/latest-news?page=0&size=3',
       method: 'get',
     });

@@ -1,5 +1,5 @@
 import { TOKEN_KEYS } from '@constants/keys';
-import axiosInstance from '@utils/axios';
+import axiosInstance from '@utils/axiosInstance';
 import { setCookie } from '@utils/cookie';
 import request from '@utils/request';
 

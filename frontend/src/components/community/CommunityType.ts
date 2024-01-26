@@ -20,7 +20,18 @@ export interface Article {
   subject: string;
 }
 
-export type ImageUrls = [string, string][];
+export interface ImageUrl {
+  fileName: string;
+  fileNameExtension: string;
+  key: string;
+  url: string;
+}
+
+export interface ImageUrlSend {
+  fileName: string;
+  fileNameExtension: string;
+  key: string;
+}
 
 export interface ArticleDetailType {
   articleId: number;
@@ -28,7 +39,7 @@ export interface ArticleDetailType {
   name: string;
   isMine: boolean;
   date: string;
-  urls: ImageUrls;
+  images: ImageUrl[];
   board: Board;
   subject: string;
   content: string;
@@ -53,4 +64,16 @@ export interface NestedCommentType {
   isMine: boolean;
   date: string;
   content: string;
+}
+
+// 새로 등록은 file, 이미 있는 이미지면 src (수정을 위해)
+export interface ImageInfo {
+  file?: File;
+  src: string;
+}
+
+export interface CommunityWriteForm {
+  title: string;
+  content: string;
+  image: ImageInfo[];
 }

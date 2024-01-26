@@ -1,25 +1,17 @@
 import { TOKEN_KEYS } from '@constants/keys';
-import axiosInstance from '@utils/axios';
+import axiosInstance from '@utils/axiosInstance';
 import { getCookie } from '@utils/cookie';
-import request from '@utils/request';
 
 interface AccessToken {
   accessToken: string;
 }
 
-// 백엔드와 조정 후에 확정
-interface ReissueParameter {
-  refresh: string;
-}
-
 async function reissue() {
   const refresh = getCookie(TOKEN_KEYS.REFRESH_KEY);
 
-  const response = await request<null, AccessToken, ReissueParameter>({
-    uri: '/api/refresh',
-    method: 'get',
-    params: {
-      refresh,
+  const response = await axiosInstance.get<AccessToken>('/api/refresh', {
+    headers: {
+      'Authorization-refresh': `Bearer ${refresh}`,
     },
   });
 
