@@ -2,30 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { ConfigProvider } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import theme from '@styles/theme';
+import useInput from '@hooks/useInput';
 import * as L from './Login.style';
 
 export default function Login() {
-  const [sid, setSid] = useState<string>('');
-  const [pw, setPw] = useState<string>('');
+  const [id, setid] = useInput<string>('');
+  const [pw, setPw] = useInput<string>('');
 
   const [errorMsg1, setErrorMsg1] = useState<string>('');
   const [errorMsg2, setErrorMsg2] = useState<string>('');
 
-  const handleSid = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSid(e.target.value);
-  };
-  const handlePw = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPw(e.target.value);
-  };
-
-  const login = () => {
-    if (sid.length === 0) setErrorMsg1('아이디를 입력해주세요.');
+  const onClickBtn = () => {
+    if (id.length === 0) setErrorMsg1('아이디를 입력해주세요.');
     if (pw.length === 0) setErrorMsg2('비밀번호를 입력해주세요.');
   };
 
   useEffect(() => {
-    if (sid.length > 0) setErrorMsg1('');
-  }, [sid]);
+    if (id.length > 0) setErrorMsg1('');
+  }, [id]);
   useEffect(() => {
     if (pw.length > 0) setErrorMsg2('');
   }, [pw]);
@@ -45,7 +39,7 @@ export default function Login() {
               },
             }}
           >
-            <L.CustomInput value={sid} onChange={handleSid} />
+            <L.CustomInput value={id} onChange={setid} />
           </ConfigProvider>
           <L.ErrorMsg>{errorMsg1}</L.ErrorMsg>
         </L.InputWrapper>
@@ -62,7 +56,7 @@ export default function Login() {
           >
             <L.CustomPasswordInput
               value={pw}
-              onChange={handlePw}
+              onChange={setPw}
               iconRender={(visible) =>
                 visible ? (
                   <EyeOutlined style={{ color: theme.colors.grey003 }} />
@@ -87,7 +81,7 @@ export default function Login() {
             },
           }}
         >
-          <L.CompleteBtn type="primary" onClick={login}>
+          <L.CompleteBtn type="primary" onClick={onClickBtn}>
             로그인
           </L.CompleteBtn>
         </ConfigProvider>
