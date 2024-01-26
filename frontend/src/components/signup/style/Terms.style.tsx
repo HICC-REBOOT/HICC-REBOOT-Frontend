@@ -103,10 +103,10 @@ export const CheckText = styled.div`
     'liga' off;
   ${(props) => props.theme.typography.common.caption1}
 `;
-export const CheckBox = styled.div`
+export const CheckBox = styled.img`
   width: 2.4rem;
   height: 2.4rem;
-  flex-shrink: 0;
+  cursor: pointer;
 `;
 export const CountinueButton = styled.div`
   display: flex;
@@ -115,6 +115,7 @@ export const CountinueButton = styled.div`
   padding: 1rem 2rem;
   justify-content: center;
   align-items: center;
+  margin-top: 6.1rem;
   gap: 1rem;
   flex-shrink: 0;
   border-radius: 1.2rem;
