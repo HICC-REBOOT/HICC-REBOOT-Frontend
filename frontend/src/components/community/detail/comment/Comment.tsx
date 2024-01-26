@@ -4,19 +4,44 @@ import * as C from './Comment.style';
 import EachComment from './EachComment';
 
 const data: ParentComment[] = [
-  { article_id: 1, comment_id: 1, name: '장윤영', grade: 'PRESIDENT', date: '2023-12-23', content: '안녕1' },
-  { article_id: 1, comment_id: 2, name: '장윤영', grade: 'EXECUTIVE', date: '2023-12-24', content: '안녕2' },
-  { article_id: 1, comment_id: 3, name: '장윤영', grade: 'NORMAL', date: '2023-12-24', content: '안녕3' },
+  {
+    articleId: 1,
+    commentId: 1,
+    name: '장윤영',
+    grade: 'PRESIDENT',
+    date: '2023-12-30T07:51:01.243',
+    isMine: false,
+    content: '안녕1',
+  },
+  {
+    articleId: 1,
+    commentId: 2,
+    name: '장윤영',
+    grade: 'EXECUTIVE',
+    date: '2023-12-30T07:51:01.243',
+    isMine: true,
+    content: '안녕2',
+  },
+  {
+    articleId: 1,
+    commentId: 3,
+    name: '장윤영',
+    grade: 'NORMAL',
+    date: '2023-12-30T07:51:01.243',
+    isMine: false,
+    content: '안녕3',
+  },
 ];
 
 const nested: NestedCommentType[] = [
   {
-    article_id: 1,
-    comment_id: 1,
-    parent_comment_id: 1,
+    articleId: 1,
+    commentId: 1,
+    parentCommentId: 1,
     name: '장윤영',
     grade: 'PRESIDENT',
-    date: '2023-12-23',
+    isMine: false,
+    date: '2023-12-30T07:51:01.243',
     content: '안녕1',
   },
 ];
@@ -30,7 +55,7 @@ function Comment({ id }: CommentProps) {
     <>
       <C.Count>댓글 {data.length}</C.Count>
       {data.map((comment) => (
-        <EachComment key={comment.comment_id} comment={comment} nestedComments={nested} />
+        <EachComment key={comment.commentId} comment={comment} nestedComments={nested} />
       ))}
     </>
   );
