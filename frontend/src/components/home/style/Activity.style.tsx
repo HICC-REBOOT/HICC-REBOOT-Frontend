@@ -170,7 +170,7 @@ export const Box = styled.div<{ img: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   &:hover {
-    background-size: 200%;
+    background-size: 120%;
   }
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
