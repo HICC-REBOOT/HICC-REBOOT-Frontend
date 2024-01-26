@@ -8,6 +8,14 @@ export const Container = styled.div`
   width: 100%;
   padding: 2rem;
   border: 0.05rem solid ${(props) => props.theme.colors.grey001};
+  border-bottom: 0;
+
+  &:last-child {
+    margin-bottom: 13.6rem;
+    border-bottom: 0.05rem solid ${(props) => props.theme.colors.grey001};
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
 `;
 
 export const Content = styled.div`

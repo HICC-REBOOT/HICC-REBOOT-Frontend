@@ -3,11 +3,28 @@ import { DeviceProvider } from '@assets/mediaQuery';
 import theme from '@styles/theme';
 
 export const Container = styled.div`
+  position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: ${(props) => props.theme.colors.black};
+  ${(props) => props.theme.media.mobile`
+    height: 39.5rem;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    height: 64rem;
+  `}
+
+  ${(props) => props.theme.media.desktop`
+    height: 88.4rem;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    height: 88.4rem;
+  `}
+  overflow: hidden;
 `;
 
 export const GroupContainer = styled.div`
@@ -17,21 +34,25 @@ export const GroupContainer = styled.div`
   align-items: center;
   flex-shrink: 0;
   ${(props) => props.theme.media.mobile`
+    top: 11.6rem;
     width: 24.3rem;
     height: 39.5rem;
   `}
 
   ${(props) => props.theme.media.tablet`
+    top: 16.4rem;
     width: 39.5rem;
     height: 64rem;
   `}
 
   ${(props) => props.theme.media.desktop`
+    top: 31.3rem;
     width: 66.4rem;
     height: 88.4rem;
   `}
 
   ${(props) => props.theme.media.wide`
+    top: 31.3rem;
     width: 66.4rem;
     height: 88.4rem;
   `}
@@ -41,7 +62,13 @@ export const Title = styled.div`
   position: relative;
   color: var(--Point1, #5b4ef5);
   text-align: center;
-  color: ${(props) => props.theme.colors.point1};
+  white-space: nowrap;
+
+  background: var(--Gradient002, linear-gradient(96deg, #5b4ef5 0%, #53ffcb 100%));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* color: ${(props) => props.theme.colors.point1}; */
 
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
@@ -52,19 +79,19 @@ export const Title = styled.div`
   `}
 
   ${(props) => props.theme.media.tablet`
-    top: -0.5rem;
+    top: 1.6rem;
     width: 24.7rem;
     height: 7.7rem;
   `}
 
   ${(props) => props.theme.media.desktop`
-    top: -3.5rem;
+    top: -1.5rem;
     width: 54.7rem;
     height: 17.3rem;
   `}
 
   ${(props) => props.theme.media.wide`
-    top: -3.5rem;
+    top: -1.5rem;
     width: 54.7rem;
     height: 17.3rem;
   `}
@@ -157,14 +184,15 @@ export const Button = styled.div`
   width: 15.3rem;
   height: 4.6rem;
   display: inline-flex;
-  padding: 1rem 1.2rem 1rem 2rem;
+  padding: 1rem 0.7rem 1rem 1.5rem;
   justify-content: center;
   align-items: center;
   gap: 0.8rem;
   flex-shrink: 0;
 
   border-radius: 1.2rem;
-  background: #ffe818;
+  background: linear-gradient(95deg, rgba(91, 78, 245, 0.3) 0%, rgba(91, 78, 245, 0) 100%),
+    linear-gradient(275deg, rgba(83, 255, 203, 0.3) 0%, rgba(83, 255, 203, 0) 100%);
   ${(props) => props.theme.typography.common.button1};
 
   ${(props) => props.theme.media.mobile`
@@ -188,6 +216,7 @@ export const ButtonTitle = styled.div`
   width: 8.9rem;
   height: 1.9rem;
   white-space: nowrap;
+  color: #d9d9d9;
   ${(props) => props.theme.typography.common.button1};
 `;
 
@@ -196,4 +225,87 @@ export const ButtonCircle = styled.div`
   height: 2.4rem;
   border-radius: 50%;
   background: ${(props) => props.theme.colors.black};
+`;
+
+export const BackGround = styled.div`
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.1) 100%);
+  backdrop-filter: blur(15rem);
+  flex-shrink: 0;
+  ${(props) => props.theme.media.mobile`
+    height: 39.5rem;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    height: 64rem;
+  `}
+
+  ${(props) => props.theme.media.desktop`
+    height: 88.4rem;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    height: 88.4rem;
+  `}
+`;
+
+export const Circle1 = styled.div`
+  position: absolute;
+  flex-shrink: 0;
+  border-radius: 84.3rem;
+  background: rgba(79, 72, 236, 0.1);
+  ${(props) => props.theme.media.mobile`
+    top: 34.4rem;
+    left: -4.6rem;
+    width: 39.5rem;
+    height: 17.9rem;
+    border-radius: 39.5rem;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    top: 34.4rem;
+    left: -4.6rem;
+    width: 84.3rem;
+    height: 38.2rem;
+    border-radius: 84.3rem;
+  `}
+
+  ${(props) => props.theme.media.desktop`
+    top: 64.4rem;
+    left: -9.7rem;
+    width: 175.2rem;
+    height: 71.8rem;
+    border-radius: 175.2rem;
+  `}
+`;
+
+export const Circle2 = styled.div`
+  position: absolute;
+  flex-shrink: 0;
+  background: rgba(83, 255, 203, 0.1);
+  ${(props) => props.theme.media.mobile`
+    top: 34.7rem;
+    left: 12rem;
+    width: 28.5rem;
+    height: 22.5rem;
+    border-radius: 28.5rem;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    top: 34.5rem;
+    left: 30.9rem;
+    width: 60.9rem;
+    height: 48.1rem;
+    border-radius: 60.98px;
+  `}
+
+  ${(props) => props.theme.media.desktop`
+    top: 64.4rem;
+    left: 59rem;
+    width: 126.7rem;
+    height: 90.5rem;
+    border-radius: 126.7rem;
+  `}
 `;

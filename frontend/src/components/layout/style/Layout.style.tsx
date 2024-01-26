@@ -9,6 +9,7 @@ export const Container = styled.div`
 
   min-width: 360px;
   overflow: hidden;
+  background-color: ${(props) => props.theme.colors.black};
 `;
 
 export const D = styled.div;

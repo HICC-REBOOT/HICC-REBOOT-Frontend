@@ -17,6 +17,12 @@ const ROUTE = Object.freeze({
     INFO: 'info',
     CHANGE: 'change',
   },
+  PROFILE: {
+    BASE: '/mypage',
+    MYINFO: 'myinfo',
+    MYWRITINGS: 'mywritings',
+    MYCOMMENTS: 'mycomments',
+  },
   TEMP: {
     BASE: '/temp',
     APPLE: 'apple',
