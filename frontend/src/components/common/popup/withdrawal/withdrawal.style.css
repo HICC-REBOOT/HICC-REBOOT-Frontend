@@ -1,27 +1,27 @@
-.ant-modal-wrap {
+.withdrawal-wrap {
   background: rgba(0, 0, 0, 0.6);
 }
 
-.ant-modal-confirm {
+.withdrawal-confirm {
   width: 32.7rem !important;
   height: 20.7rem;
   padding: 0;
   border-radius: 2rem !important;
 }
 
-.ant-modal-content {
+.withdrawal-content {
   width: 100%;
   height: 100%;
   padding: 0 !important;
   background-color: #141415 !important;
 }
 
-.ant-modal-body {
+.withdrawal-body {
   width: 100%;
   height: 100%;
 }
 
-.ant-modal-confirm-body-wrapper {
+.withdrawal-confirm-body-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,11 +29,11 @@
   height: 100%;
 }
 
-.anticon-exclamation-circle {
+.withdrawal-exclamation-circle {
   display: none;
 }
 
-.ant-modal-confirm-body {
+.withdrawal-confirm-body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +42,7 @@
   width: 100%;
 }
 
-.ant-modal-confirm-paragraph {
+.withdrawal-confirm-paragraph {
   width: 100%;
   height: 100%;
   margin: auto;
@@ -51,7 +51,7 @@
   align-items: center;
 }
 
-.ant-modal-confirm-title {
+.withdrawal-confirm-title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +75,7 @@
   white-space: pre-line;
 }
 
-.ant-modal-confirm-content {
+.withdrawal-confirm-content {
   display: flex;
   text-align: center;
   justify-content: center;
@@ -99,14 +99,14 @@
   white-space: pre-line;
 }
 
-.ant-modal-confirm-btns {
+.withdrawal-confirm-btns {
   flex: 27;
   display: flex;
   width: 100%;
   margin-top: 0 !important;
 }
 
-.ant-btn-default {
+.withdrawal-confirm .ant-btn-default {
   width: 12.4rem;
   height: 100%;
   border: none;
@@ -115,12 +115,12 @@
   color: #141415;
 }
 
-.ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+.withdrawal-confirm .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
 }
 
-.ant-btn-default span {
+.withdrawal-confirm .ant-btn-default span {
   text-align: center;
   font-family: Source Sans Pro;
   font-size: 1.7rem;
@@ -129,7 +129,7 @@
   line-height: 150%;
 }
 
-.ant-btn-primary {
+.withdrawal-confirm .ant-btn-primary {
   width: 20.3rem;
   height: 100%;
   margin: 0 !important;
@@ -140,7 +140,7 @@
   color: #141415;
 }
 
-.ant-btn-primary span {
+.withdrawal-confirm .ant-btn-primary span {
   text-align: center;
   font-family: Source Sans Pro;
   font-size: 1.7rem;
@@ -149,21 +149,21 @@
   line-height: 150%;
 }
 
-.ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+.withdrawal-confirm .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
   background-color: #6963ff;
 }
 
-.ant-btn-dangerous {
+.withdrawal-confirm .ant-btn-dangerous {
   background-color: #ff4545;
 }
 
-.ant-btn-dangerous span {
+.withdrawal-confirm .ant-btn-dangerous span {
   color: #141415;
 }
 
-.ant-btn-dangerous:not(:disabled):not(.ant-btn-disabled):hover {
+.withdrawal-confirm .ant-btn-dangerous:not(:disabled):not(.ant-btn-disabled):hover {
   color: #141415;
   border: none;
   background-color: #ff4545;
