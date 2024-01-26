@@ -1,9 +1,14 @@
 /* eslint-disable no-use-before-define */
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { DeviceProvider } from '@assets/mediaQuery';
 import type { CollapseProps } from 'antd';
 import { Collapse, ConfigProvider } from 'antd';
-import theme from '@styles/theme';
+import Search from '@assets/image/icon/search.svg';
+import OptionType from '@components/common/dropdown/OptionType';
+import Dropdown from '@components/common/dropdown/Dropdown';
+import useDropdown from '@hooks/useDropdown';
+import { SettingOutlined } from '@ant-design/icons';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
@@ -14,15 +19,22 @@ export default function MemberInfo() {
   const [userInput, setUserInput] = useState('');
   const [searched, setSearched] = useState(UserData.content);
 
+  const options: OptionType[] = [
+    { value: '1', label: '등급 순' },
+    { value: '2', label: '이름 순' },
+    { value: '3', label: '학과 순' },
+  ];
+  const { currentOption, onChange } = useDropdown({});
+
+  const defaultValue = { value: '1', label: '등급 순' };
+
   const items: CollapseProps['items'] = searched.map((user, index) => ({
     key: String(index + 1),
     label: <MemberItem userData={user} />,
     children: <MemberDetail userData={user} />,
     showArrow: false,
   }));
-  const onChange = (key: string | string[]) => {
-    console.log(key);
-  };
+
   const getValue = (e: any) => {
     setUserInput(e.target.value.toLowerCase());
   };
@@ -35,14 +47,10 @@ export default function MemberInfo() {
     <>
       <I.SearchBar>
         <I.SearchBox>
-          <Input placeholder="회원명 검색" maxLength={10} onChange={getValue} />
-          <SearchButton onClick={searching}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <rect width="18" height="18" fill="#FFA7A7" />
-            </svg>
-          </SearchButton>
+          <Input placeholder="회원명 검색" maxLength={8} onChange={getValue} />
+          <SearchButton src={Search} alt="search" onClick={searching} />
         </I.SearchBox>
-        <I.DropDownBox>DropDown</I.DropDownBox>
+        <Dropdown placeholder="등급 순" options={options} onChange={onChange} defaultValue={defaultValue} />
       </I.SearchBar>
       <A.MembersBox>
         <A.CategoryBox>
@@ -64,7 +72,7 @@ export default function MemberInfo() {
             },
           }}
         >
-          <Collapse bordered={false} ghost={true} items={items} onChange={onChange} />
+          <Collapse bordered={false} ghost={true} items={items} />
         </ConfigProvider>
       </A.MembersBox>
     </>
@@ -72,12 +80,14 @@ export default function MemberInfo() {
 }
 
 const Input = styled.input`
+  width: 14.8rem;
   background: ${(props) => props.theme.colors.black};
   color: ${(props) => props.theme.colors.white};
   border: none;
   outline: none;
+  ${(props) => props.theme.typography[DeviceProvider()].body}
 `;
-const SearchButton = styled.div`
+const SearchButton = styled.img`
   width: 1.8rem;
   height: 1.8rem;
   flex-shrink: 0;
