@@ -12,7 +12,7 @@ type Union<T> = T[keyof T];
 export type Board = Union<typeof BOARD>;
 
 export interface Article {
-  article_id: number;
+  articleId: number;
   grade: Grade;
   name: string;
   date: string;
@@ -20,33 +20,37 @@ export interface Article {
   subject: string;
 }
 
-export type Image = [string, string][];
+export type ImageUrls = [string, string][];
 
 export interface ArticleDetailType {
+  articleId: number;
   grade: Grade;
   name: string;
+  isMine: boolean;
   date: string;
-  appendices: Image;
+  urls: ImageUrls;
   board: Board;
   subject: string;
   content: string;
 }
 
 export interface ParentComment {
-  article_id: number;
-  comment_id: number;
+  articleId: number;
+  commentId: number;
   grade: Grade;
   name: string;
+  isMine: boolean;
   date: string;
   content: string;
 }
 
 export interface NestedCommentType {
-  article_id: number;
-  comment_id: number;
-  parent_comment_id: number;
+  articleId: number;
+  commentId: number;
+  parentCommentId: number;
   grade: Grade;
   name: string;
+  isMine: boolean;
   date: string;
   content: string;
 }

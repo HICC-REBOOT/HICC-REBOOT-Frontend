@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RadioType from './RadioType';
 import * as R from './RadioGroup.style';
 import EachOption from './EachOption';
 
 interface RadioGroupProps {
   options: RadioType[];
-  defalutOption?: RadioType;
 }
 
-function RadioGroup({ options, defalutOption }: RadioGroupProps) {
-  const [currentOption, setCurrentOption] = useState<RadioType | undefined>(defalutOption);
-
+function RadioGroup({ options }: RadioGroupProps) {
   return (
     <R.GroupContainer>
       {options.map((option, index) => (
-        <EachOption key={index} option={option} setCurrent={setCurrentOption} current={currentOption} />
+        <EachOption key={index} option={option} />
       ))}
     </R.GroupContainer>
   );

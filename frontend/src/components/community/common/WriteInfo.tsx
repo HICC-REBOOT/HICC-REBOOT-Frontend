@@ -1,6 +1,7 @@
 import React from 'react';
 import { GRADE_ENUM, Grade } from '@components/type/CommonType';
 import isMoreThanExecutive from '@utils/isMoreThanExecutive';
+import time from '@utils/time';
 import * as W from './WriteInfo.style';
 
 interface WriteInfoProps {
@@ -16,7 +17,7 @@ function WriteInfo({ grade, name, date }: WriteInfoProps) {
         <W.GradeTag show={isMoreThanExecutive(grade)}>{GRADE_ENUM[grade]}</W.GradeTag>
         <W.Writer>{name}</W.Writer>
       </W.WriterPart>
-      <W.WriteTime>{date}</W.WriteTime>
+      <W.WriteTime>{time(date)}</W.WriteTime>
     </W.Container>
   );
 }
