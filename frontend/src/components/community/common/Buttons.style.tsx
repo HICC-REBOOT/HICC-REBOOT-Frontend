@@ -11,7 +11,8 @@ export const Container = styled.div`
   }
 `;
 
-export const NormalButton = styled.button`
+export const NormalButton = styled.button<{ show: boolean }>`
+  display: ${(props) => (props.show ? 'block' : 'none')};
   padding: 0.8rem 1.2rem;
   border-radius: 0.8rem;
   background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
@@ -20,7 +21,8 @@ export const NormalButton = styled.button`
   ${(props) => props.theme.typography.common.caption1};
 `;
 
-export const DangerousButton = styled.button`
+export const DangerousButton = styled.button<{ show: boolean }>`
+  display: ${(props) => (props.show ? 'block' : 'none')};
   padding: 0.8rem 1.2rem;
   border-radius: 0.8rem;
   background-color: ${(props) => hexToRGBA(props.theme.colors.red, 0.1)};

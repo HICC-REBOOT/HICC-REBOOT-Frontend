@@ -8,7 +8,22 @@ export const Container = styled.div<{ hide: boolean }>`
 
   ${(props) => props.theme.media.mobile`
     height: 24.8rem;
-  `}
+  `};
+
+  ${(props) => props.theme.media.tablet`
+    max-width: 76.8rem;
+    margin: 0 auto;
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    max-width: 103.4rem;
+    margin: 0 auto;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    max-width: 103.4rem;
+    margin: 0 auto;
+  `};
 
   padding: 0 2.4rem;
   padding-top: 3.5rem;

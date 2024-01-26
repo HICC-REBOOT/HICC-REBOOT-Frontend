@@ -22,7 +22,7 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
 
   const getNestedCommentByParent = () => {
     const nestedCommentByParent = nestedComments.filter(
-      (nestedComment) => nestedComment.parent_comment_id === comment.comment_id,
+      (nestedComment) => nestedComment.parentCommentId === comment.commentId,
     );
 
     if (nestedCommentByParent.length === 0) {
@@ -30,7 +30,7 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
     }
 
     return nestedCommentByParent.map((nested) => (
-      <NestedComment key={`${nested.parent_comment_id}-${nested.comment_id}`} nestedComment={nested} />
+      <NestedComment key={`${nested.parentCommentId}-${nested.commentId}`} nestedComment={nested} />
     ));
   };
 
@@ -39,8 +39,8 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
       <WriteInfo grade={comment.grade} name={comment.name} date={comment.date} />
       <EA.Content>{comment.content}</EA.Content>
       <Buttons
-        normal={{ label: '답글 달기', onClick: () => enrollNestedComment(comment.comment_id) }}
-        dangerous={{ label: '삭제', onClick: () => deleteComment(comment.comment_id) }}
+        normal={{ label: '답글 달기', onClick: () => enrollNestedComment(comment.commentId), show: true }}
+        dangerous={{ label: '삭제', onClick: () => deleteComment(comment.commentId), show: comment.isMine }}
       />
       {getNestedCommentByParent()}
     </EA.Container>
