@@ -10,7 +10,13 @@ import TextareaInForm from '../common/TextareaInForm';
 import CurrentBoardContext from '../CurrentBoardContext';
 
 function CommunityWrite() {
-  const { handleSubmit, register, setValue, watch, formState } = useForm<CommunityWriteForm>();
+  const { handleSubmit, register, setValue, watch, formState } = useForm<CommunityWriteForm>({
+    defaultValues: {
+      title: '',
+      content: '',
+      image: [],
+    },
+  });
   const { currentBoard } = useOutletContext<CurrentBoardContext>();
 
   const { writeArticle, isPending } = usePostArticle();

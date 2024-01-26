@@ -6,6 +6,10 @@ import uploadImageToS3 from './uploadImageToS3';
 async function processNewImage(data: CommunityWriteForm) {
   const images: ImageUrlSend[] = [];
 
+  if (data.image.length === 0) {
+    return [];
+  }
+
   // eslint-disable-next-line no-restricted-syntax
   for (const image of data.image) {
     if (image.file !== undefined) {

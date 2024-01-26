@@ -1,5 +1,5 @@
 import { TOKEN_KEYS } from '@constants/keys';
-import axiosInstance from '@utils/axios';
+import axiosInstance from '@utils/axiosInstance';
 import { getCookie } from '@utils/cookie';
 
 interface AccessToken {
