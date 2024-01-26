@@ -10,13 +10,15 @@ export default function Terms() {
     <>
       <T.Title>약관동의</T.Title>
       <T.TermBox>
-        <T.TextArea>{AgreeTermsContent}</T.TextArea>
-        <T.ScrollBal>scroll</T.ScrollBal>
+        <T.ScrollContainer>
+          <T.TextArea>{AgreeTermsContent}</T.TextArea>
+        </T.ScrollContainer>
       </T.TermBox>
       <T.Title>안내사항</T.Title>
       <T.TermBox>
-        <T.TextArea>{AgreeTermsContent}</T.TextArea>
-        <T.ScrollBal>scroll</T.ScrollBal>
+        <T.ScrollContainer>
+          <T.TextArea>{AgreeTermsContent}</T.TextArea>
+        </T.ScrollContainer>
       </T.TermBox>
       <T.CheckerWrapper>
         <T.Essential>필수</T.Essential>

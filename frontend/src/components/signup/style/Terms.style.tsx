@@ -19,7 +19,36 @@ export const TermBox = styled.div`
   justify-content: center;
   align-items: center;
   background: ${(props) => props.theme.colors.grey001};
-  overflow: scroll;
+`;
+
+export const ScrollContainer = styled.div`
+  display: flex;
+  width: 30.8rem;
+  height: 9.3rem;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 0.3rem;
+    height: 5.5rem;
+
+    background-color: #fff;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 0.5rem;
+
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+  }
 `;
 export const TextArea = styled.div`
   width: 28.6rem;
@@ -32,17 +61,13 @@ export const TextArea = styled.div`
   ${(props) => props.theme.typography.common.caption2}
   margin-right: 1.7rem;
 `;
-export const ScrollBal = styled.div`
-  width: 0.5rem;
-  height: 9.3rem;
-  flex-shrink: 0;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.15);
-`;
+
 export const CheckerWrapper = styled.div`
   display: flex;
   width: 32.8rem;
   height: 5.4rem;
+  justify-content: center;
+  align-items: center;
 `;
 export const Essential = styled.div`
   display: flex;
@@ -72,6 +97,7 @@ export const EssentialText = styled.div`
 export const CheckText = styled.div`
   width: 22.4rem;
   color: ${(props) => props.theme.colors.white};
+  margin-left: 0.8rem;
   font-feature-settings:
     'clig' off,
     'liga' off;
