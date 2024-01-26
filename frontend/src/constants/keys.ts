@@ -23,7 +23,8 @@ export const STORE_KEYS = Object.freeze({
   RADIO: 'radio',
 });
 
-export const TOKEN_KEYS = Object.freeze({
+export const COOKIE_KEYS = Object.freeze({
   ACCESS_KEY: 'access',
   REFRESH_KEY: 'refresh',
+  IS_LOGIN: 'is-login',
 });

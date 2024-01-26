@@ -1,4 +1,4 @@
-import { TOKEN_KEYS } from '@constants/keys';
+import { COOKIE_KEYS } from '@constants/keys';
 import axiosInstance from '@utils/axiosInstance';
 import { getCookie } from '@utils/cookie';
 
@@ -7,7 +7,7 @@ interface AccessToken {
 }
 
 async function reissue() {
-  const refresh = getCookie(TOKEN_KEYS.REFRESH_KEY);
+  const refresh = getCookie(COOKIE_KEYS.REFRESH_KEY);
 
   const response = await axiosInstance.get<AccessToken>('/api/refresh', {
     headers: {

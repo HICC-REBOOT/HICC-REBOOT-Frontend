@@ -1,7 +1,7 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
 import { AxiosError, AxiosResponse } from 'axios';
-import { TOKEN_KEYS } from '@constants/keys';
+import { COOKIE_KEYS } from '@constants/keys';
 import reissue from '@auth/reissue';
 import { removeCookie } from './cookie';
 import axiosInstance from './axiosInstance';
@@ -42,7 +42,7 @@ const onAccessTokenFetched = (token: string) => {
 
 // 인증 에러시 로그아웃 시킴
 const removeRefreshAndSignOut = () => {
-  removeCookie(TOKEN_KEYS.REFRESH_KEY);
+  removeCookie(COOKIE_KEYS.REFRESH_KEY);
   window.location.href = '/login';
 };
 
