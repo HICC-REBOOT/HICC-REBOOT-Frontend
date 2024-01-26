@@ -15,6 +15,7 @@ import { ArticleDetail, CommunityList, CommunityWrite } from '@components/commun
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
+import Login from '@pages/Login/Login';
 
 function App() {
   const location = useLocation();
@@ -33,6 +34,7 @@ function App() {
         </Route>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
+        <Route path={ROUTE.LOGIN} element={<Login />} />
         <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
