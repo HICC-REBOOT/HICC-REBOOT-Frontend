@@ -9,5 +9,4 @@ export const Container = styled.div`
 
 export const Type = styled(Button)`
   ${(props) => props.theme.typography.common.caption1};
-  align-items: center;
 `;
