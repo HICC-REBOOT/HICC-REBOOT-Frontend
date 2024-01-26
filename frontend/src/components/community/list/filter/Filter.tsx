@@ -5,13 +5,23 @@ import { ReactComponent as Search } from '@assets/image/icon/search.svg';
 import Switch from '@components/common/switch/Switch';
 import * as F from './Filter.style';
 
-function Filter() {
-  const options: OptionType[] = [
-    { value: 'SUBJECT', label: '글 제목' },
-    { value: 'MEMBER', label: '등급 순' },
-  ];
+interface FilterProps {
+  keyword: string;
+  setKeyword: (state: string | React.ChangeEvent<HTMLInputElement>) => void;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
+  options: OptionType[];
+  onChange: (selectedOption: OptionType | null) => void;
+}
 
-  const onChange = () => {};
+function Filter({ keyword, setKeyword, setSearchQuery, options, onChange }: FilterProps) {
+  // 키워드가 검색버튼 클릭 시 반영되기 위해
+  const onSearchClick = () => {
+    if (keyword.trim() === '') {
+      setSearchQuery(undefined);
+    }
+
+    setSearchQuery(keyword);
+  };
 
   return (
     <F.Container>
@@ -23,8 +33,8 @@ function Filter() {
         </F.Manager>
       </F.SelectPart>
       <F.SearchPart>
-        <F.Input type="text" placeholder="제목 검색하기" />
-        <Search style={{ cursor: 'pointer' }} />
+        <F.Input type="text" value={keyword} onChange={setKeyword} placeholder="제목 검색하기" />
+        <Search style={{ cursor: 'pointer' }} onClick={onSearchClick} />
       </F.SearchPart>
     </F.Container>
   );
