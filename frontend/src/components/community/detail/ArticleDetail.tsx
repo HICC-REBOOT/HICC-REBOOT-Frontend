@@ -7,10 +7,15 @@ import Comment from './comment/Comment';
 import WriteComment from './comment/WriteComment';
 
 const data: ArticleDetailType = {
+  articleId: 1,
   grade: 'PRESIDENT',
   name: '장윤영3',
-  date: '2024-01-09 16:49',
-  appendices: [['www.ac.com', 'png']],
+  date: '2023-12-14T07:51:01.243',
+  urls: [
+    ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
+    ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
+  ],
+  isMine: true,
   board: 'FREE',
   subject: '저희 엠티 안 가나요?',
   content: '안녕 새내기들~~',
