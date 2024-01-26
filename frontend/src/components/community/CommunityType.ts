@@ -20,7 +20,18 @@ export interface Article {
   subject: string;
 }
 
-export type ImageUrls = [string, string][];
+export interface ImageUrl {
+  fileName: string;
+  fileNameExtension: string;
+  key: string;
+  url: string;
+}
+
+export interface ImageUrlSend {
+  fileName: string;
+  fileNameExtension: string;
+  key: string;
+}
 
 export interface ArticleDetailType {
   articleId: number;
@@ -28,7 +39,7 @@ export interface ArticleDetailType {
   name: string;
   isMine: boolean;
   date: string;
-  urls: ImageUrls;
+  urls: ImageUrl[];
   board: Board;
   subject: string;
   content: string;

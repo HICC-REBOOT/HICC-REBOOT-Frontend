@@ -13,8 +13,18 @@ const data: ArticleDetailType = {
   name: '장윤영3',
   date: '2023-12-14T07:51:01.243',
   urls: [
-    ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
-    ['https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg', 'png'],
+    {
+      fileName: '이름',
+      fileNameExtension: 'jpg',
+      key: 'key1',
+      url: 'https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg',
+    },
+    {
+      fileName: '이름2',
+      fileNameExtension: 'jpg',
+      key: 'key2',
+      url: 'https://images.coasterpedia.net/thumb/1/1a/AmusementPark.jpg/450px-AmusementPark.jpg',
+    },
   ],
   isMine: true,
   board: 'FREE',

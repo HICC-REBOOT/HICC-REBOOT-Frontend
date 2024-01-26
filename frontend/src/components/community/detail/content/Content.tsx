@@ -22,8 +22,8 @@ function Content({ id, data }: ContentProps) {
     <>
       <C.Subject>{data.subject}</C.Subject>
       <WriteInfo grade={data.grade} name={data.name} date={data.date} />
-      {data.urls.map(([url, extension], index) => (
-        <C.Image src={url} key={`${url}-${index}`} alt="image" />
+      {data.urls.map((image) => (
+        <C.Image src={image.url} key={image.key} alt="image" />
       ))}
       <C.Content>{data.content}</C.Content>
       <Buttons

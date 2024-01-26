@@ -22,7 +22,7 @@ function CommunityUpdate() {
 
   const imageSrc: ImageInfo[] = data.urls.map((imageMeta) => {
     return {
-      src: imageMeta[0],
+      src: imageMeta.url,
     };
   });
 
