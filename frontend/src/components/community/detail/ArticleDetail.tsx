@@ -12,7 +12,7 @@ const data: ArticleDetailType = {
   grade: 'PRESIDENT',
   name: '장윤영3',
   date: '2023-12-14T07:51:01.243',
-  urls: [
+  images: [
     {
       fileName: '이름',
       fileNameExtension: 'jpg',

@@ -22,7 +22,7 @@ function Content({ id, data }: ContentProps) {
     <>
       <C.Subject>{data.subject}</C.Subject>
       <WriteInfo grade={data.grade} name={data.name} date={data.date} />
-      {data.urls.map((image) => (
+      {data.images.map((image) => (
         <C.Image src={image.url} key={image.key} alt="image" />
       ))}
       <C.Content>{data.content}</C.Content>

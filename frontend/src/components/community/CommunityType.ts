@@ -39,7 +39,7 @@ export interface ArticleDetailType {
   name: string;
   isMine: boolean;
   date: string;
-  urls: ImageUrl[];
+  images: ImageUrl[];
   board: Board;
   subject: string;
   content: string;

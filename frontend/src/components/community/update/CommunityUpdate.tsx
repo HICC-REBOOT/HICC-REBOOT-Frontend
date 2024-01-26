@@ -20,7 +20,7 @@ function CommunityUpdate() {
     }
   }, [data, navigate]);
 
-  const imageSrc: ImageInfo[] = data.urls.map((imageMeta) => {
+  const imageSrc: ImageInfo[] = data.images.map((imageMeta) => {
     return {
       src: imageMeta.url,
     };
