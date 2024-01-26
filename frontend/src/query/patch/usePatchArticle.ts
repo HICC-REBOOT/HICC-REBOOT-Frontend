@@ -42,7 +42,7 @@ function usePatchArticle({ articleId }: UsePatchArticleProps) {
     mutationFn: updateArticle,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.PAGEABLE, '/api/article'],
+        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
       });
 
       alert(`${articleId} 게시글이 수정되었습니다.`);

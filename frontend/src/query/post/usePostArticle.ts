@@ -37,7 +37,7 @@ function usePostArticle() {
     mutationFn: writeArticle,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.PAGEABLE, '/api/article'],
+        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
       });
 
       // 등록이 완료되면 목록으로 이동
