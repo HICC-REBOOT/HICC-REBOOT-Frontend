@@ -15,6 +15,7 @@ export const QUERY_KEYS = Object.freeze({
   POST_ARTICLE: 'post-article',
   DELETE_ARTICLE: 'delete-article',
   UPDATE_ARTICLE: 'update-article',
+  GET_USERINFO: 'get-userinfo',
 });
 
 export const STORE_KEYS = Object.freeze({
