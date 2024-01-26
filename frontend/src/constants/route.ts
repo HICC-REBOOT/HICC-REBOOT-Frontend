@@ -11,6 +11,7 @@ const ROUTE = Object.freeze({
   },
   LOGIN: '/login',
   SIGNUP: '/signup',
+  ENTERINFO: '/enterinfo',
   ADMIN: {
     BASE: '/admin',
     APPROVAL: 'approval',

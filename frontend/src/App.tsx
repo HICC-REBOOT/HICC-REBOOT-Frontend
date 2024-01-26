@@ -12,9 +12,13 @@ import MyInfomation from '@pages/MyInfo';
 import Temp from '@pages/temp/Temp';
 
 import { ArticleDetail, CommunityList, CommunityUpdate, CommunityWrite } from '@components/community';
+import SignUp from '@pages/SignUp/SignUP';
+import EnterInfo from '@components/signup/EnterInfo';
+import { ArticleDetail, CommunityList, CommunityWrite } from '@components/community';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
+import Login from '@pages/Login/Login';
 
 function App() {
   const location = useLocation();
@@ -33,6 +37,9 @@ function App() {
         </Route>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
+        <Route path={ROUTE.SIGNUP} element={<SignUp />} />
+        <Route path={ROUTE.ENTERINFO} element={<EnterInfo />} />
+        <Route path={ROUTE.LOGIN} element={<Login />} />
         <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />

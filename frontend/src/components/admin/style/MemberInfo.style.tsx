@@ -7,6 +7,7 @@ export const MemberInfoMajorDivision = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const MemberInfoNameDivision = styled.div`
   width: 5.3rem;
@@ -14,6 +15,7 @@ export const MemberInfoNameDivision = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const BlankDivision = styled.div`
   width: 1.8rem;
@@ -30,6 +32,7 @@ export const MemberInfoMajor = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const MemberInfoName = styled.div`
   width: 5.3rem;
@@ -38,6 +41,7 @@ export const MemberInfoName = styled.div`
   font-feature-settings:
     'clig' off,
     'liga' off;
+  ${(props) => props.theme.typography.common.caption1}
 `;
 export const Blank = styled.div`
   width: 1.8rem;
@@ -59,16 +63,6 @@ export const SearchBar = styled.div`
 export const SearchBox = styled.div`
   display: flex;
   width: 19rem;
-  padding: 1rem 1.2rem;
-  justify-content: space-between;
-  align-items: center;
-  flex-shrink: 0;
-  border-radius: 0.8rem;
-  background: ${(props) => props.theme.colors.black};
-`;
-export const DropDownBox = styled.div`
-  display: flex;
-  width: 10rem;
   padding: 1rem 1.2rem;
   justify-content: space-between;
   align-items: center;

@@ -1,7 +1,7 @@
 import React from 'react';
+import { CaretRightOutlined } from '@ant-design/icons';
 import type { CollapseProps } from 'antd';
 import { Collapse, ConfigProvider } from 'antd';
-import theme from '@styles/theme';
 import * as A from './style/Approval.style';
 import MemberDetail from './MemberDetail';
 import ApprovalMemberItem from './ApprovalMemberItem';
@@ -40,7 +40,13 @@ export default function Approval() {
           },
         }}
       >
-        <Collapse bordered={false} ghost={true} items={items} onChange={onChange} />
+        <Collapse
+          bordered={false}
+          ghost={true}
+          expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
+          items={items}
+          onChange={onChange}
+        />
       </ConfigProvider>
     </A.MembersBox>
   );
