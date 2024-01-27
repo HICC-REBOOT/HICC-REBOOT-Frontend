@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import type { CollapseProps } from 'antd';
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
@@ -8,6 +8,10 @@ import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
+import RadioGroup from '@components/common/radio/RadioGroup';
+import RadioType from '@components/common/radio/RadioType';
+import ExtensionModal from '@components/common/popup/confirm/ExtensionModal';
+import confirm from '@components/common/popup/confirm/Confirm';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
@@ -17,6 +21,8 @@ import UserData from './dummy/dummy';
 export default function ChangeGrade() {
   const [userInput, setUserInput] = useState('');
   const [searched, setSearched] = useState(UserData.content);
+  const [radio, setRadio] = useState<RadioType | undefined>();
+  const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
 
   const options: OptionType[] = [
     { value: '1', label: '등급 순' },
@@ -29,7 +35,7 @@ export default function ChangeGrade() {
 
   const items: CollapseProps['items'] = searched.map((user, index) => ({
     key: String(index + 1),
-    label: <ChangeGradeMemberItem userData={user} />,
+    label: <ChangeGradeMemberItem userData={user} onClick={setIsModalOpen} />,
     children: <MemberDetail userData={user} />,
     showArrow: false,
   }));
@@ -41,6 +47,45 @@ export default function ChangeGrade() {
   const searching = () => {
     const filteredData = UserData.content.filter((item) => item.name.toLowerCase().includes(userInput));
     setSearched(filteredData);
+  };
+  const radios: RadioType[] = [
+    {
+      tag: '필수',
+      disabled: false,
+      label: '1번입니다.',
+      value: '1',
+    },
+    {
+      tag: '필수',
+      disabled: false,
+      label: '2번입니다.',
+      value: '2',
+    },
+    {
+      tag: '필수',
+      disabled: true,
+      label: '3번입니다.',
+      value: '3',
+    },
+  ];
+
+  const popup = () => {
+    confirm({
+      content: '정말 탈퇴?',
+      okText: '탈퇴',
+      cancelText: '취소',
+      isDangerous: true,
+      onOk: () => console.log('d'),
+    });
+  };
+
+  const modalInfo = {
+    close: setIsModalOpen,
+    title: '[회원] 장윤영 님에 대한 회원 정보를 수정합니다.',
+    content: <RadioGroup options={radios} currentOption={radio} setCurrentOption={setRadio} />,
+    okText: '확인',
+    cancelText: '취소',
+    onOk: popup,
   };
   return (
     <>
@@ -74,6 +119,7 @@ export default function ChangeGrade() {
           <Collapse bordered={false} ghost={true} items={items} />
         </ConfigProvider>
       </A.MembersBox>
+      {modalOpen && <ExtensionModal {...modalInfo} />}
     </>
   );
 }
