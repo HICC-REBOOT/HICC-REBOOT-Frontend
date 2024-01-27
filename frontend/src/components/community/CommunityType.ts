@@ -12,7 +12,7 @@ type Union<T> = T[keyof T];
 export type Board = Union<typeof BOARD>;
 
 export interface Article {
-  article_id: number;
+  articleId: number;
   grade: Grade;
   name: string;
   date: string;
@@ -20,33 +20,60 @@ export interface Article {
   subject: string;
 }
 
-export type Image = [string, string][];
+export interface ImageUrl {
+  fileName: string;
+  fileNameExtension: string;
+  key: string;
+  url: string;
+}
+
+export interface ImageUrlSend {
+  fileName: string;
+  fileNameExtension: string;
+  key: string;
+}
 
 export interface ArticleDetailType {
+  articleId: number;
   grade: Grade;
   name: string;
+  isMine: boolean;
   date: string;
-  appendices: Image;
+  images: ImageUrl[];
   board: Board;
   subject: string;
   content: string;
 }
 
 export interface ParentComment {
-  article_id: number;
-  comment_id: number;
+  articleId: number;
+  commentId: number;
   grade: Grade;
   name: string;
+  isMine: boolean;
   date: string;
   content: string;
 }
 
 export interface NestedCommentType {
-  article_id: number;
-  comment_id: number;
-  parent_comment_id: number;
+  articleId: number;
+  commentId: number;
+  parentCommentId: number;
   grade: Grade;
   name: string;
+  isMine: boolean;
   date: string;
   content: string;
+}
+
+// 새로 등록은 file, 이미 있는 이미지면 src (수정을 위해)
+export interface ImageInfo {
+  file?: File;
+  src: string;
+}
+
+export interface CommunityWriteForm {
+  title: string;
+  content: string;
+  image: ImageInfo[];
 }

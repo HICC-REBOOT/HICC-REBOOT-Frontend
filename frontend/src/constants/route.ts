@@ -5,6 +5,7 @@ const ROUTE = Object.freeze({
     BASE: '/community',
     LIST: '',
     WRITE: 'write',
+    UPDATE: 'update',
     DETAIL: ':id',
     NOT_FOUND: '404-not-found',
   },
@@ -16,6 +17,12 @@ const ROUTE = Object.freeze({
     APPROVAL: 'approval',
     INFO: 'info',
     CHANGE: 'change',
+  },
+  PROFILE: {
+    BASE: '/mypage',
+    MYINFO: 'myinfo',
+    MYWRITINGS: 'mywritings',
+    MYCOMMENTS: 'mycomments',
   },
   TEMP: {
     BASE: '/temp',

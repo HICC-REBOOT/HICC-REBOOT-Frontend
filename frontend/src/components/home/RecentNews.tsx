@@ -39,14 +39,6 @@ function RecentNews() {
               </R.NewsBottom>
             </R.NewsBox>
           ))}
-          {/* <R.NewsBox>
-            <R.NewsTitle>저희 엠티 안 가나요?</R.NewsTitle>
-            <R.NewsBottom>
-              <R.Label>운영진</R.Label>
-              <R.Writer>장윤영3</R.Writer>
-              <R.Date>2024-01-09 16:49</R.Date>
-            </R.NewsBottom>
-          </R.NewsBox> */}
         </R.NewsList>
       </R.GroupContainer>
     </R.Container>

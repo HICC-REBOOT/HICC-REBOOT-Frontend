@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import theme from '@styles/theme';
+import seminar from '@assets/image/seminar.png';
+import project from '@assets/image/project.png';
+import meeting from '@assets/image/meeting.png';
+import mission from '@assets/image/mission.png';
+import mt from '@assets/image/mt.png';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
   width: 100%;
   flex-shrink: 0;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,7 +35,7 @@ export const Container = styled.div`
 
 export const GrouopContainer = styled.div`
   flex-shrink: 0;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,7 +65,7 @@ export const GrouopContainer = styled.div`
 export const Title = styled.div`
   position: relative;
   white-space: nowrap;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].title1};
@@ -88,7 +93,7 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].body};
@@ -153,9 +158,20 @@ export const ActivityContainer = styled.div`
   `}
 `;
 
-export const Box = styled.div`
+export const Box = styled.div<{ img: string }>`
   border-radius: 1.6rem;
-  background: ${(props) => theme.colors.grey001};
+  background: ${(props) => {
+    if (props.img === 'seminar') return `url(${seminar})`;
+    if (props.img === 'project') return `url(${project})`;
+    if (props.img === 'mission') return `url(${mission})`;
+    return `url(${seminar})`;
+  }};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:hover {
+    background-size: 120%;
+  }
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
@@ -182,9 +198,15 @@ export const Box = styled.div`
   `}
 `;
 
+export const BoxImage = styled(motion.img)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const BoxTitle = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: left;
   ${(props) => props.theme.typography[DeviceProvider()].subtitle};
@@ -216,7 +238,7 @@ export const BoxTitle = styled.div`
 
 export const BoxContent = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.caption1};
 
   ${(props) => props.theme.media.mobile`
@@ -294,10 +316,25 @@ export const BoxContainer = styled.div`
   `}
 `;
 
-export const SmallBox = styled.div`
+export const SmallBox = styled.div<{ img: string }>`
   border-radius: 1.6rem;
   border: 0.1rem, solid;
-  background: ${(props) => theme.colors.grey001};
+  border-radius: 1.6rem;
+  border: 0.1rem, solid;
+  background: ${(props) => props.theme.colors.grey001};
+  background: ${(props) => {
+    if (props.img === 'meeting') return `url(${meeting})`;
+    if (props.img === 'mt') return `url(${mt})`;
+    return {};
+  }};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  &:hover {
+    background-size: 200%;
+  }
+
+  backdrop-filter: blur(15px);
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
@@ -326,8 +363,9 @@ export const SmallBox = styled.div`
 `;
 
 export const SmallBoxTitle = styled.div`
+  white-space: pre-wrap;
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: left;
   ${(props) => props.theme.typography[DeviceProvider()].subtitle};
@@ -342,28 +380,28 @@ export const SmallBoxTitle = styled.div`
   ${(props) => props.theme.media.tablet`
     top: 3.7rem;
     left: 2.8rem;
-    width: 14.1rem;
+    width: 18.1rem;
     height: 6rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     top: 3.5rem;
     left: 2.8rem;
-    width: 16.4rem;
+    width: 18rem;
     height: 7rem;
   `}
 
   ${(props) => props.theme.media.wide`
     top: 3.5rem;
     left: 2.8rem;
-    width: 16.4rem;
+    width: 18rem;
     height: 7rem;
   `}
 `;
 
 export const SmallBoxContent = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.caption1};
 
   ${(props) => props.theme.media.mobile`
@@ -395,9 +433,12 @@ export const Logo = styled.div`
   position: absolute;
   width: 4.6rem;
   height: 4.6rem;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   background: rgba(119, 119, 119, 0.47);
   border-radius: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${(props) => props.theme.media.mobile`
     top: 17.4rem;
     left: 13.4rem;
@@ -417,4 +458,11 @@ export const Logo = styled.div`
     top: 25rem;
     left: 19rem;
   `}
+`;
+
+export const TestBox = styled.div`
+  position: absolute;
+  width: 100rem;
+  height: 50rem;
+  background: white;
 `;
