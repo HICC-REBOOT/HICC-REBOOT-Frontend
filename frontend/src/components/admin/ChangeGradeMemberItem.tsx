@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Arrow from '@assets/image/icon/arrow.svg';
 import styled, { css } from 'styled-components';
-import confirm from '@components/common/popup/confirm/Confirm';
+import extensionConfirm from '@components/common/popup/confirm/ExtensionConfirm';
 import RadioGroup from '@components/common/radio/RadioGroup';
 import RadioType from '@components/common/radio/RadioType';
 import * as A from './style/Approval.style';
@@ -38,9 +38,9 @@ const options: RadioType[] = [
 ];
 
 const handleGrade = () => {
-  confirm({
-    // content: <RadioGroup options={options} />,
-    content: '등급 변경',
+  extensionConfirm({
+    title: '등급수정',
+    content: <div>hello</div>,
     okText: '승인',
     cancelText: '거절',
     isDangerous: false, // Set to true if it's a dangerous action
@@ -60,10 +60,10 @@ export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
   const clickEvent = () => {
     setCollapsed(!collapsed);
     console.log(collapsed);
-    handleGrade();
+    // handleGrade();
   };
   return (
-    <A.MemberBox onClick={clickEvent}>
+    <A.MemberBox onClick={handleGrade}>
       <I.MemberInfoMajor>{userData.major}</I.MemberInfoMajor>
       <I.MemberInfoName>{userData.name}</I.MemberInfoName>
       <I.Blank>
