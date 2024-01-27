@@ -11,7 +11,7 @@ import useDropdown from '@hooks/useDropdown';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
-import MemberItem from './MemberItem';
+import ChangeGradeMemberItem from './ChangeGradeMemberItem';
 import UserData from './dummy/dummy';
 
 export default function ChangeGrade() {
@@ -29,7 +29,7 @@ export default function ChangeGrade() {
 
   const items: CollapseProps['items'] = searched.map((user, index) => ({
     key: String(index + 1),
-    label: <MemberItem userData={user} />,
+    label: <ChangeGradeMemberItem userData={user} />,
     children: <MemberDetail userData={user} />,
     showArrow: false,
   }));
