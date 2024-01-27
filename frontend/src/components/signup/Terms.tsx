@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import CheckBoxBlank from '@assets/image/checkbox_blank.svg';
 import CheckBox from '@assets/image/checkbox.svg';
 import theme from '@styles/theme';
+import { useNavigate } from 'react-router-dom';
+import ROUTE from '@constants/route';
 import * as T from './style/Terms.style';
 
 const AgreeTermsContent =
@@ -16,6 +18,14 @@ export default function Terms() {
   useEffect(() => {
     setAllChecked(checked1 && checked2 && checked3);
   }, [checked1, checked2, checked3]);
+
+  const navigate = useNavigate();
+
+  const clickContinue = () => {
+    if (allChecked) {
+      navigate(ROUTE.ENTERINFO);
+    }
+  };
 
   return (
     <>
@@ -62,9 +72,12 @@ export default function Terms() {
           <T.CheckBoxBlank src={CheckBoxBlank} alt="checkboxblack" onClick={() => setChecked3(!checked3)} />
         )}
       </T.CheckerWrapper>
-      <T.CountinueButton style={{ background: allChecked ? theme.colors.point1 : theme.colors.grey002 }}>
+      <T.ContinueButton
+        onClick={clickContinue}
+        style={{ background: allChecked ? theme.colors.point1 : theme.colors.grey002 }}
+      >
         가입 진행하기
-      </T.CountinueButton>
+      </T.ContinueButton>
     </>
   );
 }

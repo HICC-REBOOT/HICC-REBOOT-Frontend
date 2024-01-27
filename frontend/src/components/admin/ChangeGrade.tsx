@@ -33,9 +33,7 @@ export default function ChangeGrade() {
     children: <MemberDetail userData={user} />,
     showArrow: false,
   }));
-  // const onChange = (key: string | string[]) => {
-  //   console.log(key);
-  // };
+
   const getValue = (e: any) => {
     setUserInput(e.target.value.toLowerCase());
   };
