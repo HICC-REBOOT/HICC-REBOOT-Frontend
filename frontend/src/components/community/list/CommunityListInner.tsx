@@ -2,11 +2,17 @@ import React from 'react';
 import useServerSidePagination from '@query/get/useServerSidePagination';
 import COMMON from '@constants/common';
 import { useOutletContext } from 'react-router-dom';
+import OptionType from '@components/common/dropdown/OptionType';
 import { Article } from '../CommunityType';
 import CurrentBoardContext from '../CurrentBoardContext';
 import EachArticle from './EachArticle';
 
-function CommunityListInner() {
+interface CommunityListInnerProps {
+  currentOption: OptionType | null;
+  searchQuery?: string;
+}
+
+function CommunityListInner({ searchQuery, currentOption }: CommunityListInnerProps) {
   const { currentBoard } = useOutletContext<CurrentBoardContext>();
 
   const dummyArticle: Article[] = [
@@ -48,6 +54,8 @@ function CommunityListInner() {
   //   uri: '/api/article',
   //   size: COMMON.PAGINATION.SIZE,
   //   board: currentBoard.value as Board,
+  //   search: searchQuery,
+  //   sort: currentOption?.value,
   // });
   return (
     <>

@@ -1,10 +1,10 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-param-reassign */
-import axios, { AxiosError, AxiosResponse } from 'axios';
-import { TOKEN_KEYS } from '@constants/keys';
+import { AxiosError, AxiosResponse } from 'axios';
+import { COOKIE_KEYS } from '@constants/keys';
 import reissue from '@auth/reissue';
-import BASE_URL from '../config';
 import { removeCookie } from './cookie';
+import axiosInstance from './axiosInstance';
 
 // error 형태, 이는 백엔드의 상황을 보고 변경
 export interface IError {
@@ -13,11 +13,6 @@ export interface IError {
   reason: string;
 }
 
-const axiosInstance = axios.create({
-  baseURL: BASE_URL,
-  withCredentials: true,
-});
-
 axiosInstance.interceptors.request.use(async (config) => {
   if (!config.headers) {
     return config;
@@ -25,8 +20,6 @@ axiosInstance.interceptors.request.use(async (config) => {
 
   return config;
 });
-
-export default axiosInstance;
 
 const getAxiosError = (error: AxiosError): AxiosResponse<IError, any> | undefined => {
   const serverError = error as AxiosError<IError>;
@@ -49,7 +42,7 @@ const onAccessTokenFetched = (token: string) => {
 
 // 인증 에러시 로그아웃 시킴
 const removeRefreshAndSignOut = () => {
-  removeCookie(TOKEN_KEYS.REFRESH_KEY);
+  removeCookie(COOKIE_KEYS.REFRESH_KEY);
   window.location.href = '/login';
 };
 
