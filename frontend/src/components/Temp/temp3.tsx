@@ -36,6 +36,7 @@ function Temp3() {
       cancelText: '취소',
       isDangerous: true,
       onOk: () => console.log('d'),
+      close: setIsModalOpen,
     });
   };
 

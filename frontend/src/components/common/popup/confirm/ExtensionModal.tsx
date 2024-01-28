@@ -26,7 +26,6 @@ function ExtensionModal({ close, title, content, okText, cancelText, onOk, onCan
 
   const okAndClose = () => {
     onOk();
-    close();
   };
 
   return (
