@@ -18,6 +18,7 @@ import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
 import Login from '@pages/Login/Login';
+import ResetPassword from '@pages/ResetPassword';
 
 function App() {
   const location = useLocation();
@@ -39,6 +40,7 @@ function App() {
         <Route path={ROUTE.SIGNUP} element={<SignUp />} />
         <Route path={ROUTE.ENTERINFO} element={<EnterInfo />} />
         <Route path={ROUTE.LOGIN} element={<Login />} />
+        <Route path={ROUTE.RESET_PASSWORD} element={<ResetPassword />} />
         <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
