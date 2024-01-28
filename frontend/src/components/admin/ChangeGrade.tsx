@@ -52,19 +52,19 @@ export default function ChangeGrade() {
     {
       tag: '필수',
       disabled: false,
-      label: '1번입니다.',
+      label: '[회원]으로 등급 변경',
       value: '1',
     },
     {
       tag: '필수',
       disabled: false,
-      label: '2번입니다.',
+      label: '[운영진]으로 등급 변경',
       value: '2',
     },
     {
       tag: '필수',
-      disabled: true,
-      label: '3번입니다.',
+      disabled: false,
+      label: '강제 탈퇴',
       value: '3',
     },
   ];
