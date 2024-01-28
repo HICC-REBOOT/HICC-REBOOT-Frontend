@@ -26,7 +26,7 @@ function MobileHeader() {
 
   return (
     <NotDesktop>
-      <MH.Container>
+      <MH.Container home={matchHome !== null}>
         {matchHome === null ? (
           <MH.PreviousButton src={previous} onClick={goPreviousPage} />
         ) : (
