@@ -170,8 +170,16 @@ export const CustomCalendar = styled(Calendar)`
   }
   // 오늘 날짜 안에 있는 숫자
   .react-calendar__tile--now > abbr {
-    background-color: ${(props) => props.theme.colors.grey003};
-    color: ${(props) => props.theme.colors.black};
+    background: ${(props) => props.theme.colors.black};
+
+    ${(props) => props.theme.media.desktop`
+      background-color: ${props.theme.colors.grey001};;
+    `};
+
+    ${(props) => props.theme.media.wide`
+      background-color: ${props.theme.colors.grey001};
+    `};
+    color: ${(props) => props.theme.colors.point1};
   }
 
   // 다른 달에 있는 날짜들
