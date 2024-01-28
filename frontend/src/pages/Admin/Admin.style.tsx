@@ -5,6 +5,22 @@ export const Container = styled.div`
   min-height: 100vh;
 
   background-color: ${(props) => props.theme.colors.black};
+
+  ${(props) => props.theme.media.mobile`
+
+  `};
+
+  ${(props) => props.theme.media.tablet`
+
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    margin-top: 18.8rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    margin-top: 18.8rem;
+  `};
 `;
 
 export const TabContainer = styled.div`

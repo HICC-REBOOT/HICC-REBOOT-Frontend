@@ -4,12 +4,28 @@ import { DeviceProvider } from '@assets/mediaQuery';
 
 export const MembersBox = styled.div`
   display: flex;
-  width: 32.8rem;
+  /* width: 32.8rem; */
   flex-direction: column;
   align-items: center;
   border-radius: 2rem;
   border: none;
   background: ${(props) => props.theme.colors.grey001};
+
+  ${(props) => props.theme.media.mobile`
+    width: 32.8rem;
+  `};
+
+  ${(props) => props.theme.media.tablet`
+    width: 32.8rem;
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    width: 75.35rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    width: 75.35rem;
+  `};
 `;
 export const CategoryBox = styled.div`
   display: flex;
@@ -27,6 +43,21 @@ export const MajorDivision = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption1}
+  ${(props) => props.theme.media.mobile`
+
+  `};
+
+  ${(props) => props.theme.media.tablet`
+
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    width: 56.55rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    width: 56.55rem;
+  `};
 `;
 export const NameDivision = styled.div`
   width: 5.3rem;
@@ -53,6 +84,13 @@ export const MemberBox = styled.div`
   align-items: center;
   gap: 2rem;
   border-bottom: 0.05rem solid ${(props) => props.theme.colors.black};
+  ${(props) => props.theme.media.desktop`
+    width: 75.35rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    width: 75.35rem;
+  `};
 `;
 export const Major = styled.div`
   flex: 1 0 0;
@@ -62,6 +100,14 @@ export const Major = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption1}
+
+  ${(props) => props.theme.media.desktop`
+    width: 56.55rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    width: 56.55rem;
+  `};
 `;
 export const Name = styled.div`
   width: 5.3rem;
