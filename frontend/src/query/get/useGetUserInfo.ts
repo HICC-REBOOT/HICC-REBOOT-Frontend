@@ -1,6 +1,6 @@
 import { Grade } from '@components/type/CommonType';
 import { QUERY_KEYS } from '@constants/keys';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import request from '@utils/request';
 
 interface UserInfo {
@@ -19,13 +19,15 @@ function useGetUserInfo() {
     return response.data;
   };
 
-  const { data } = useSuspenseQuery({
+  const { data, refetch } = useQuery({
     queryKey: [QUERY_KEYS.GET_USERINFO],
     queryFn: fetchUserInfo,
+    enabled: false,
   });
 
   return {
     userinfo: data,
+    fetchUserInfo: refetch,
   };
 }
 

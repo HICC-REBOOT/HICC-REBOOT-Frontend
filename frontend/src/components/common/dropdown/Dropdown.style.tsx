@@ -6,11 +6,13 @@ import hexToRGBA from '@utils/hexToRgba';
 const DropdownStyle = styled(Select)`
   & .Dropdown {
     &__indicator-separator {
+      width: 0;
       background-color: transparent;
     }
 
     &__dropdown-indicator {
       padding: 0;
+      margin: 0 1.2rem;
     }
 
     &__control {
@@ -47,7 +49,7 @@ const DropdownStyle = styled(Select)`
     }
 
     &__menu {
-      max-width: 14.6rem;
+      max-width: 15rem;
       width: 100%;
       margin-top: 0.4rem;
       border-top: 0;

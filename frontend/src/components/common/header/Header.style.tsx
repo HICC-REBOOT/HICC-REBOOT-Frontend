@@ -160,3 +160,15 @@ export const JoinHICC = styled(Link)`
     z-index: ${STYLE.Z_INDEX.HIDE};
   }
 `;
+
+export const User = styled.img`
+  position: fixed;
+  top: 3.7rem;
+  right: 2%;
+  z-index: ${STYLE.Z_INDEX.TOP_PRIORITY};
+
+  width: 4rem;
+  height: 4rem;
+
+  cursor: pointer;
+`;

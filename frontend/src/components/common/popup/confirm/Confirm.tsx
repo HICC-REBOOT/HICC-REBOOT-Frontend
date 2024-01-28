@@ -1,3 +1,4 @@
+import React from 'react';
 import { Modal } from 'antd';
 import './CommonConfirm.css';
 
@@ -8,9 +9,10 @@ interface ConfirmParameter {
   isDangerous: boolean;
   onOk: () => void;
   onCancel?: () => void;
+  close?: React.DispatchWithoutAction;
 }
 
-function confirm({ content, okText, cancelText, isDangerous, onOk, onCancel }: ConfirmParameter) {
+function confirm({ content, okText, cancelText, isDangerous, onOk, onCancel, close }: ConfirmParameter) {
   Modal.confirm({
     prefixCls: 'Confirm',
     content,
@@ -19,12 +21,16 @@ function confirm({ content, okText, cancelText, isDangerous, onOk, onCancel }: C
     cancelText,
     onOk() {
       onOk();
+      if (close !== undefined) {
+        close();
+      }
     },
     onCancel() {
       if (onCancel !== undefined) {
         onCancel();
       }
     },
+    maskClosable: true,
   });
 }
 

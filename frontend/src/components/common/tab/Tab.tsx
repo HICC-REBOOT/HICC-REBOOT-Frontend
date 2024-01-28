@@ -1,7 +1,7 @@
 import React from 'react';
-import { ConfigProvider } from 'antd';
 import useTab from '@hooks/useTab';
-import * as T from './Tab.style';
+import TabElement from './TabElement';
+import TabContainer from './Tab.style';
 
 /**
  * TabUnit
@@ -21,19 +21,14 @@ interface TabProps {
 }
 
 function Tab({ items, initKey }: TabProps) {
-  const { activeKey, onChange } = useTab({ initKey });
+  const tabinfo = useTab({ initKey });
 
   return (
-    <ConfigProvider theme={T.tabConfigStyle}>
-      <T.StyledTabs
-        defaultActiveKey={initKey}
-        activeKey={activeKey}
-        centered
-        items={items}
-        tabBarStyle={T.tabBarStyle}
-        onChange={onChange}
-      />
-    </ConfigProvider>
+    <TabContainer>
+      {items.map((item, index) => (
+        <TabElement key={`tab-${item.key}-${index}`} item={item} {...tabinfo} />
+      ))}
+    </TabContainer>
   );
 }
 
