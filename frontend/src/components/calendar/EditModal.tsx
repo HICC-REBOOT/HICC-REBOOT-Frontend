@@ -6,6 +6,10 @@ import { ConfigProvider } from 'antd';
 import { useRecoilState } from 'recoil';
 import CompleteBtn from '@assets/image/Icon_large.svg';
 import useModal from '@hooks/useCalendarModal';
+import { ReactComponent as TrashIcon } from '@assets/image/icon/trash.svg';
+import { ReactComponent as TimeIcon } from '@assets/image/icon/time.svg';
+import { ReactComponent as TagIcon } from '@assets/image/icon/tag.svg';
+import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
 import { modalState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import TypeButton from './TypeButton';
@@ -27,7 +31,7 @@ export default function EditModal() {
       style={{ zIndex: STYLE.Z_INDEX.CALENDAR_MODAL }}
     >
       <Sheet.Container
-        style={{ backgroundColor: '#141415', borderTopLeftRadius: '1.6rem', borderTopRightRadius: '1.6rem' }}
+        style={{ backgroundColor: theme.colors.grey001, borderTopLeftRadius: '1.6rem', borderTopRightRadius: '1.6rem' }}
       >
         <Sheet.Header />
         <Sheet.Content>
@@ -40,21 +44,23 @@ export default function EditModal() {
                   placeholder={isNewSchedule ? '일정 제목을 입력해주세요' : ''}
                 />
               </E.TitleContainer>
-              <E.deleteBtn />
+              <E.deleteBtn>
+                <TrashIcon />
+              </E.deleteBtn>
             </E.Top>
             <E.Content>
               <E.Left>
                 <E.ContentWrapper>
-                  <E.Icon />
+                  <TimeIcon />
                   <DatePickerBox />
                 </E.ContentWrapper>
                 <E.ContentWrapper>
-                  <E.Icon />
+                  <TagIcon />
                   <TypeButton />
                 </E.ContentWrapper>
               </E.Left>
               <E.TextAreaContainer>
-                <E.Icon />
+                <CommentIcon />
                 <ConfigProvider
                   theme={{
                     token: {

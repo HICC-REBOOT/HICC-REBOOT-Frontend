@@ -4,6 +4,7 @@ import locale from 'antd/es/date-picker/locale/ko_KR';
 import { ConfigProvider, DatePicker } from 'antd';
 import theme from '@styles/theme';
 import useModal from '@hooks/useCalendarModal';
+import { ReactComponent as ArrowIcon } from '@assets/image/icon/arrow2.svg';
 import dayjs from 'dayjs';
 import * as D from './style/DatePicker.style';
 
@@ -48,7 +49,7 @@ export default function DatePickerBox() {
           />
         </ConfigProvider>
       </D.DateWrapper>
-      <D.NextIcon />
+      <ArrowIcon />
       <D.DateWrapper>
         <ConfigProvider
           theme={{
