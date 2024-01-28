@@ -195,7 +195,7 @@ export const Input = styled.input`
 
 export const BigBoxArea = styled.div`
   position: relative;
-  top: 19.1rem;
+  top: 17.1rem;
   margin-top: 2rem;
   flex-shrink: 0;
   display: inline;

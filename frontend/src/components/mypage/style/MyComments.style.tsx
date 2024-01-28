@@ -222,13 +222,13 @@ export const ContentsTitle = styled.div`
 `;
 
 export const Contents = styled.div`
-  display: block;
-
   /* white-space: nowrap; */
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: normal;
-  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: ${(props) => props.theme.colors.grey003};
   ${(props) => props.theme.typography.common.caption1};
 
