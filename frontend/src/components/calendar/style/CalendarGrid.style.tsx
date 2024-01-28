@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import { DeviceProvider } from '@assets/mediaQuery';
 import 'react-calendar/dist/Calendar.css';
+import hexToRGBA from '@utils/hexToRgba';
 
 export const Mark = styled.div<{ type: number }>`
   width: 0.4rem;
@@ -180,6 +181,7 @@ export const CustomCalendar = styled(Calendar)`
       background-color: ${props.theme.colors.grey001};
     `};
     color: ${(props) => props.theme.colors.point1};
+    border: 0.1rem solid ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
   }
 
   // 다른 달에 있는 날짜들
