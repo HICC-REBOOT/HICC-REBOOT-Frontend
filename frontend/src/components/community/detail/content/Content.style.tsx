@@ -27,5 +27,5 @@ export const Image = styled.img`
 
   object-fit: contain;
 
-  margin: 2rem 0;
+  margin-top: 2rem;
 `;
