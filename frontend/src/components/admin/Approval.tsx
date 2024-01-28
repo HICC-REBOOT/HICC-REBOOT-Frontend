@@ -40,13 +40,7 @@ export default function Approval() {
           },
         }}
       >
-        <Collapse
-          bordered={false}
-          ghost={true}
-          expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
-          items={items}
-          onChange={onChange}
-        />
+        <Collapse bordered={false} ghost={true} items={items} onChange={onChange} />
       </ConfigProvider>
     </A.MembersBox>
   );

@@ -85,7 +85,7 @@ export const Essential = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption2}
-  white-space:nowrap
+  white-space:nowrap;
 `;
 export const EssentialText = styled.div`
   color: ${(props) => props.theme.colors.point1};
@@ -108,7 +108,7 @@ export const CheckBox = styled.img`
   height: 2.4rem;
   cursor: pointer;
 `;
-export const CountinueButton = styled.div`
+export const ContinueButton = styled.div`
   display: flex;
   width: 12.6rem;
   height: 4.6rem;
@@ -119,13 +119,13 @@ export const CountinueButton = styled.div`
   gap: 1rem;
   flex-shrink: 0;
   border-radius: 1.2rem;
-  background: ${(props) => props.theme.colors.grey002};
   color: var(--white, var(--Greyscale-light-white, #fff));
   text-align: center;
   font-feature-settings:
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.button1}
+  cursor: pointer;
 `;
 export const CheckBoxBlank = styled.img`
   width: 2.4rem;
