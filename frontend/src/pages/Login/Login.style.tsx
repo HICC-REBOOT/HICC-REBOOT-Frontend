@@ -11,6 +11,10 @@ export const Container = styled.div`
   align-items: center;
   gap: 4.4rem;
   min-height: 80vh;
+
+  ${(props) => props.theme.media.desktop`
+    padding: 22rem 0;
+  `};
 `;
 export const Title = styled.div`
   color: ${(props) => props.theme.colors.white};
