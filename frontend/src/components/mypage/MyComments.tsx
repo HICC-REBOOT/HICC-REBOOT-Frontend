@@ -36,6 +36,7 @@ function MyComments() {
               <M.Contents>{item.content}</M.Contents>
               <M.ModifyButton>수정</M.ModifyButton>
               <M.DeleteButton>삭제</M.DeleteButton>
+              <M.Divider />
             </M.ContentsArea>
           ))}
         </M.ContentsContainer>

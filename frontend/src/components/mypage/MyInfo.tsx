@@ -5,7 +5,7 @@ import useDropdown from '@hooks/useDropdown';
 import useInput from '@hooks/useInput';
 import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
-import * as M from './style/myInfo.style';
+import * as M from './style/MyInfo.style';
 
 function MyInfo() {
   const options: OptionType[] = [
@@ -51,15 +51,19 @@ function MyInfo() {
   const { currentOption, onChange } = useDropdown({});
   const { 0: phoneNumber, 1: phoneNChange } = useInput('');
   const { 0: email, 1: scholNChange } = useInput('');
+  const { 0: password, 1: passwordChange } = useInput('');
+  const { 0: passwordConfirm, 1: passwordConfirmChange } = useInput('');
   const [buttonState, setButton] = useState(true);
   const [numberState, setNumberState] = useState(true);
   const [emailState, setEmailState] = useState(true);
   const [majorState, setMajorState] = useState(true);
+  const [passwordState, setPasswordState] = useState(true);
+  const [passwordConfirmState, setPasswordConfirmState] = useState(true);
 
   const handleWithdrawal = () => {
     const withdrawalConfirmParams: WithdrawalParameter = {
       title: '탈퇴하시겠습니까?',
-      content: '회원 정보가 모두 삭제되며, 기존에 작성한 글은 유지됩니다',
+      content: '회원 정보가 모두 삭제되며,\n 기존에 작성한 글은 유지됩니다',
       okText: '탈퇴',
       cancelText: '취소',
       isDangerous: true,
@@ -78,7 +82,9 @@ function MyInfo() {
 
   useEffect(() => {
     const phoneRE = /^010-\d{4}-\d{4}$/;
-    const emailRE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const emailRE =
+      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
+    const passwordRE = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
     if (phoneRE.test(phoneNumber)) {
       setNumberState(false);
     } else {
@@ -94,15 +100,31 @@ function MyInfo() {
     } else {
       setEmailState(true);
     }
-  }, [phoneNumber, email, currentOption]);
+    if (passwordRE.test(password)) {
+      setPasswordState(false);
+    } else {
+      setPasswordState(true);
+    }
+    if (password === passwordConfirm) {
+      setPasswordConfirmState(false);
+    } else {
+      setPasswordConfirmState(true);
+    }
+  }, [phoneNumber, email, currentOption, password, passwordConfirm]);
 
   useEffect(() => {
-    if (numberState === false && majorState === false && emailState === false) {
+    if (
+      numberState === false &&
+      majorState === false &&
+      emailState === false &&
+      passwordState === false &&
+      passwordConfirmState === false
+    ) {
       setButton(false);
     } else {
       setButton(true);
     }
-  }, [numberState, majorState, emailState]);
+  }, [numberState, majorState, emailState, passwordState, passwordConfirmState]);
 
   const handleSubmit = () => {
     const submitParam = {
@@ -114,9 +136,7 @@ function MyInfo() {
   };
 
   const formatPhoneNumber = (input: string) => {
-    // 숫자 이외에 전부 삭제
     const numericInput = input.replace(/\D/g, '');
-    // 형식 만족시 전화번호 형식으로 변경
     const formattedNumber = numericInput.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
 
     return formattedNumber;
@@ -124,7 +144,8 @@ function MyInfo() {
 
   const handlePhoneInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const formattedNumber = formatPhoneNumber(event.target.value);
-    phoneNChange(formattedNumber);
+    const limitedNumber = formattedNumber.slice(0, 13);
+    phoneNChange(limitedNumber);
   };
 
   return (
@@ -154,6 +175,26 @@ function MyInfo() {
           <M.Input onChange={scholNChange}></M.Input>
           {emailState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
+        <M.BigBoxArea>
+          <M.BoxTitle>비밀번호</M.BoxTitle>
+          <M.BigBox
+            type="password"
+            onChange={passwordChange}
+            value={password}
+            placeholder="비밀번호를 입력하세요"
+          ></M.BigBox>
+          {passwordState === true && <M.BoxAlert>영문 숫자 특수기호 조합 8자리 이상 기입해주세요</M.BoxAlert>}
+        </M.BigBoxArea>
+        <M.BigBoxArea>
+          <M.BoxTitle>비밀번호 확인</M.BoxTitle>
+          <M.BigBox
+            type="password"
+            onChange={passwordConfirmChange}
+            value={passwordConfirm}
+            placeholder="비밀번호를 입력하세요"
+          ></M.BigBox>
+          {passwordConfirmState === true && <M.BoxAlert>비밀번호가 다릅니다.</M.BoxAlert>}
+        </M.BigBoxArea>
         <M.BigBoxArea>
           <M.BoxTitle>학과</M.BoxTitle>
           <Dropdown placeholder="전공" options={options} onChange={onChange} />

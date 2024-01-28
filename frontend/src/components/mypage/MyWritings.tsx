@@ -10,7 +10,7 @@ function MyPageComponent() {
     {
       title: '일이삼사오육칠팔구십일이삼사오육칠팔구',
       content:
-        '내용이다 내용 내용이야 내용 내용입니다 내용이에요내용 내용을 출력해보아요 내용 내용내용 내용 용띠의 해  용띠의 해  용띠의 해 ',
+        '내용이다 내용 내용이야 내용 내용입니다 내용이에요내용 내용을 출력해보아요 내용 내용내용 내용 용띠의 해  용띠의 해  용띠의 해ddddddddddddddddddddddddddddddddddddddddddddddddddddddddd',
     },
     {
       title: '일이삼사오육칠팔구십일이삼사오육칠팔구',
@@ -38,6 +38,7 @@ function MyPageComponent() {
               <M.Contents>{item.content}</M.Contents>
               <M.ModifyButton>수정</M.ModifyButton>
               <M.DeleteButton>삭제</M.DeleteButton>
+              <M.Divider />
             </M.ContentsArea>
           ))}
         </M.ContentsContainer>
