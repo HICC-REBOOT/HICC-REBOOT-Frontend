@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Route, useMatch, useNavigate } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
 
 import ROUTE from '@constants/route';
 import { Desktop } from '@assets/mediaQuery';
+import useAuth from '@hooks/useAuth';
 import * as H from './Header.style';
 
 function Header() {
-  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const { isLogin } = useAuth();
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
 
   const matchCalendarTab = useMatch(ROUTE.CALENDAR);
