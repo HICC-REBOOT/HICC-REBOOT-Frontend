@@ -1,5 +1,5 @@
 import Sheet from 'react-modal-sheet';
-import React from 'react';
+import React, { useState } from 'react';
 import STYLE from '@constants/style';
 import theme from '@styles/theme';
 import { ConfigProvider } from 'antd';
@@ -17,6 +17,11 @@ import * as E from './style/EditModal.style';
 
 export default function EditModal() {
   const { isModalOpen, changeModalState, isNewSchedule, changeIsNewState } = useModal();
+
+  const [detail, setDetail] = useState<string>('');
+  const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDetail(e.target.value);
+  };
 
   const closeModal = () => {
     changeModalState(false);
@@ -61,30 +66,13 @@ export default function EditModal() {
               </E.Left>
               <E.TextAreaContainer>
                 <CommentIcon />
-                <ConfigProvider
-                  theme={{
-                    token: {
-                      borderRadius: 8,
-                      colorBgContainer: theme.colors.black,
-                      colorBorder: theme.colors.black,
-                      colorPrimary: theme.colors.black,
-                      colorText: 'rgba(255, 255, 255, 0.70)',
-                      colorTextPlaceholder: 'rgba(255, 255, 255, 0.50)',
-                    },
-                    components: {
-                      Input: {
-                        activeBorderColor: theme.colors.black,
-                        activeBg: theme.colors.black,
-                      },
-                    },
-                  }}
-                >
-                  <E.CustomTextArea
-                    rows={10}
-                    value={isNewSchedule ? '' : '일정 설명입니당'}
-                    placeholder={isNewSchedule ? '일정에 대한 설명을 입력해주세요' : ''}
-                  />
-                </ConfigProvider>
+
+                <E.TextArea
+                  rows={10}
+                  value={detail}
+                  placeholder={isNewSchedule ? '일정에 대한 설명을 입력해주세요' : ''}
+                  onChange={handleDetail}
+                />
               </E.TextAreaContainer>
             </E.Content>
             <E.CompleteBtn src={CompleteBtn} />
