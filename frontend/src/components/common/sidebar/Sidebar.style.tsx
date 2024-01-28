@@ -15,9 +15,10 @@ export const Backdrop = styled.div`
 `;
 
 export const Container = styled(motion.aside)`
-  position: absolute;
+  position: fixed;
+  top: 0;
   width: 100%;
-  z-index: ${STYLE.Z_INDEX.TOP_PRIORITY};
+  z-index: ${STYLE.Z_INDEX.TOP_PRIORITY + 1};
 
   border-radius: 0rem 0rem 1.6rem 1.6rem;
   background: ${(props) => props.theme.colors.grey001};
