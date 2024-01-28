@@ -25,6 +25,7 @@ const NEWS_ITEMS = [
 function RecentNews() {
   return (
     <R.Container>
+      <R.Circle />
       <R.GroupContainer>
         <R.Title>최근 소식</R.Title>
         <R.Content>더 많은 정보를 얻고싶다면 HICC에 가입해보세요</R.Content>

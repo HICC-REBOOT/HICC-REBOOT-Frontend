@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import seminar from '@assets/image/seminar.png';
-import project from '@assets/image/project.png';
 import meeting from '@assets/image/meeting.png';
-import mission from '@assets/image/mission.png';
 import mt from '@assets/image/mt.png';
 import { motion } from 'framer-motion';
+import theme from '@styles/theme';
 
 export const Container = styled.div`
   width: 100%;
@@ -158,45 +156,45 @@ export const ActivityContainer = styled.div`
   `}
 `;
 
-export const Box = styled.div<{ img: string }>`
-  border-radius: 1.6rem;
-  background: ${(props) => {
-    if (props.img === 'seminar') return `url(${seminar})`;
-    if (props.img === 'project') return `url(${project})`;
-    if (props.img === 'mission') return `url(${mission})`;
-    return `url(${seminar})`;
-  }};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  &:hover {
-    background-size: 120%;
-  }
-  ${(props) => props.theme.typography[DeviceProvider()].head};
+// export const Box = styled.div<{ img: string }>`
+//   border-radius: 1.6rem;
+//   background: ${(props) => {
+//     if (props.img === 'seminar') return `url(${seminar})`;
+//     if (props.img === 'project') return `url(${project})`;
+//     if (props.img === 'mission') return `url(${mission})`;
+//     return `url(${seminar})`;
+//   }};
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   &:hover {
+//     background-size: 120%;
+//   }
+//   ${(props) => props.theme.typography[DeviceProvider()].head};
 
-  ${(props) => props.theme.media.mobile`
-    width: 32.8rem;
-    height: 24rem;
-    flex-shrink: 0;
-  `}
+//   ${(props) => props.theme.media.mobile`
+//     width: 32.8rem;
+//     height: 24rem;
+//     flex-shrink: 0;
+//   `}
 
-  ${(props) => props.theme.media.tablet`
-    width: 35.2rem;
-    height: 28.8rem;
-    flex-shrink: 0;
-  `}
-  ${(props) => props.theme.media.desktop`
-    width: 61.2rem;
-    height: 31.6rem;
-    flex-shrink: 0;
-  `}
+//   ${(props) => props.theme.media.tablet`
+//     width: 35.2rem;
+//     height: 28.8rem;
+//     flex-shrink: 0;
+//   `}
+//   ${(props) => props.theme.media.desktop`
+//     width: 61.2rem;
+//     height: 31.6rem;
+//     flex-shrink: 0;
+//   `}
 
-  ${(props) => props.theme.media.wide`
-    width: 61.2rem;
-    height: 31.6rem;
-    flex-shrink: 0;
-  `}
-`;
+//   ${(props) => props.theme.media.wide`
+//     width: 61.2rem;
+//     height: 31.6rem;
+//     flex-shrink: 0;
+//   `}
+// `;
 
 export const BoxImage = styled(motion.img)`
   width: 100%;
@@ -271,8 +269,24 @@ export const BoxContent = styled.div`
 `;
 
 export const BoxContainer = styled.div`
-  overflow-x: scroll;
-  overflow-y: hidden;
+  overflow: hidden;
+
+  .scroll {
+    width: 300px;
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
+
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
   ${(props) => props.theme.media.mobile`
@@ -321,18 +335,7 @@ export const SmallBox = styled.div<{ img: string }>`
   border: 0.1rem, solid;
   border-radius: 1.6rem;
   border: 0.1rem, solid;
-  background: ${(props) => props.theme.colors.grey001};
-  background: ${(props) => {
-    if (props.img === 'meeting') return `url(${meeting})`;
-    if (props.img === 'mt') return `url(${mt})`;
-    return {};
-  }};
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  &:hover {
-    background-size: 200%;
-  }
+  background: rgba(20, 20, 21, 0.8);
 
   backdrop-filter: blur(15px);
   ${(props) => props.theme.typography[DeviceProvider()].head};
@@ -465,4 +468,32 @@ export const TestBox = styled.div`
   width: 100rem;
   height: 50rem;
   background: white;
+`;
+
+export const BackCircle = styled.div`
+  position: absolute;
+  width: 41.6rem;
+  height: 41.6rem;
+  flex-shrink: 0;
+  border-radius: 100rem;
+  background: ${theme.colors.point1};
+  ${(props) => props.theme.media.mobile`
+    margin-top: 54.5rem;
+    right: 60%;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    margin-top: 36.8rem;
+    right: 65%;
+  `}
+
+  ${(props) => props.theme.media.desktop`
+    margin-top: 43.8rem;
+    left: -12rem;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    margin-top: 43.8rem;
+    right: 70%;
+  `}
 `;

@@ -6,21 +6,25 @@ const PROJECT_ITEMS = [
     title: '프로젝트 명',
     content: '대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기다릴',
     person: '홍길동 외 6 명',
+    date: '23.06.24',
   },
   {
     title: '프로젝트 명',
     content: '대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기다릴',
     person: '홍길동 외 6 명',
+    date: '23.06.24',
   },
   {
     title: '프로젝트 명',
     content: '대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기다릴',
     person: '홍길동 외 6 명',
+    date: '23.06.24',
   },
   {
     title: '프로젝트 명',
     content: '대통령이 궐위된 때 또는 대통령 당선자가 사망하거나 판결 기다릴',
     person: '홍길동 외 6 명',
+    date: '23.06.24',
   },
 ];
 
@@ -39,6 +43,7 @@ function ProjectList() {
               <P.ListBoxPar>
                 <P.Person>{item.person}</P.Person>
               </P.ListBoxPar>
+              <P.ListBoxDate>{item.date}</P.ListBoxDate>
             </P.ListBox>
           ))}
         </P.ListContainer>

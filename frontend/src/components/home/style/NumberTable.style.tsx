@@ -47,12 +47,12 @@ export const Title = styled.div`
 
   ${(props) => props.theme.media.desktop`
       top: 20.1rem;
-      width: 32rem;
+      width: 35rem;
   `}
 
   ${(props) => props.theme.media.wide`
       top: 20.1rem;
-      width: 32rem;
+      width: 35rem;
   `}
 `;
 
@@ -246,7 +246,7 @@ export const NumberContainer = styled.div`
       display: flex;
       width: 15.7rem;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       gap: 0.4rem;
   `}
 
@@ -254,7 +254,7 @@ export const NumberContainer = styled.div`
       display: flex;
       width: 15.7rem;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       gap: 0.4rem;
   `}
 `;
@@ -277,25 +277,21 @@ export const Number = styled.div`
 
 export const Unit = styled.div`
   color: ${(props) => props.theme.colors.white};
-  ${(props) => props.theme.typography[DeviceProvider()].title};
+  ${(props) => props.theme.typography[DeviceProvider()].title1};
 
   ${(props) => props.theme.media.mobile`
       width: 2.3rem;
-      height: 3rem;
   `}
 
   ${(props) => props.theme.media.tablet`
       width: 3rem;
-      height: 4rem;
   `}
 
   ${(props) => props.theme.media.desktop`
-      width: 4.5rem;
-      height: 6rem;
+      width: 7rem;
   `}
 
   ${(props) => props.theme.media.wide`
-      width: 4.5rem;
-      height: 6rem;
+      width: 7rem;
   `}
 `;
