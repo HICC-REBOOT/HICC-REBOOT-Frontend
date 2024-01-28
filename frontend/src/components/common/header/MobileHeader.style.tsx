@@ -55,3 +55,8 @@ export const User = styled.img`
   height: 2.4rem;
   cursor: pointer;
 `;
+
+export const HeaderTopMargin = styled.div`
+  width: 100%;
+  height: 4.8rem;
+`;

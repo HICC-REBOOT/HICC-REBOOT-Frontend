@@ -26,17 +26,20 @@ function MobileHeader() {
 
   return (
     <NotDesktop>
-      <MH.Container home={matchHome !== null}>
-        {matchHome === null ? (
-          <MH.PreviousButton src={previous} onClick={goPreviousPage} />
-        ) : (
-          <MH.Logo to={ROUTE.HOME} />
-        )}
-        <MH.RightSide>
-          {matchMypage !== null && <MH.User src={user} onClick={goProfile} />}
-          <MH.Hamburger src={Hamburger} alt="hamburger" onClick={changeSidebarState} />
-        </MH.RightSide>
-      </MH.Container>
+      <>
+        <MH.Container home={matchHome !== null}>
+          {matchHome === null ? (
+            <MH.PreviousButton src={previous} onClick={goPreviousPage} />
+          ) : (
+            <MH.Logo to={ROUTE.HOME} />
+          )}
+          <MH.RightSide>
+            {matchMypage !== null && <MH.User src={user} onClick={goProfile} />}
+            <MH.Hamburger src={Hamburger} alt="hamburger" onClick={changeSidebarState} />
+          </MH.RightSide>
+        </MH.Container>
+        <MH.HeaderTopMargin />
+      </>
     </NotDesktop>
   );
 }
