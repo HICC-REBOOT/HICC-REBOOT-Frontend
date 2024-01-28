@@ -25,6 +25,7 @@ function confirm({ content, okText, cancelText, isDangerous, onOk, onCancel }: C
         onCancel();
       }
     },
+    maskClosable: true,
   });
 }
 

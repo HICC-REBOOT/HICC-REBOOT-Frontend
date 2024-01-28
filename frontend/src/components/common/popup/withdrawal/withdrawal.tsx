@@ -27,6 +27,7 @@ function withdrawal({ title, content, okText, cancelText, isDangerous, onOk, onC
         onCancel();
       }
     },
+    maskClosable: true,
   });
 }
 
