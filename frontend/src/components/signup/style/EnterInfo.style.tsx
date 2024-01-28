@@ -7,6 +7,35 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 4rem;
+  ${(props) => props.theme.media.mobile`
+
+  `};
+
+  ${(props) => props.theme.media.tablet`
+
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    flex-direction: row;
+      
+  `};
+
+  ${(props) => props.theme.media.wide`
+    flex-direction: row;
+
+  `};
+`;
+export const Wrapper1 = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4rem;
+`;
+export const Wrapper2 = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4rem;
 `;
 
 export const Label = styled.label`
@@ -153,6 +182,9 @@ export const ScrollItem = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  &:active {
+    opacity: 0.5;
+  }
 `;
 export const ScrollDropDownItem = styled.div`
   width: 28.6rem;
@@ -181,4 +213,7 @@ export const ContinueButton = styled.div`
     'liga' off;
   ${(props) => props.theme.typography.common.button1}
   cursor: pointer;
+  &:active {
+    opacity: 0.5;
+  }
 `;
