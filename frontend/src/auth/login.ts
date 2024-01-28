@@ -1,4 +1,4 @@
-import { TOKEN_KEYS } from '@constants/keys';
+import { COOKIE_KEYS } from '@constants/keys';
 import axiosInstance from '@utils/axiosInstance';
 import { setCookie } from '@utils/cookie';
 import request from '@utils/request';
@@ -21,7 +21,8 @@ async function login() {
 
   // refresh token cookie save
   // http only 설정은 추후에 넣을 예정, https 쓸 때
-  setCookie(TOKEN_KEYS.REFRESH_KEY, response.data.refreshToken);
+  setCookie(COOKIE_KEYS.REFRESH_KEY, response.data.refreshToken);
+  setCookie(COOKIE_KEYS.IS_LOGIN, 'true');
 
   // 헤더에 access token 자동으로 설정
   axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.accessToken}`;

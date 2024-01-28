@@ -9,6 +9,8 @@ import MoveToTheTopButton from '@components/utils/moveToTheTopButton/MoveToTheTo
 
 import Loading from '@components/common/loading/Loading';
 import Footer from '@components/common/footer/Footer';
+import { ErrorBoundary } from 'react-error-boundary';
+import GlobalError from '@components/common/error/GlobalError';
 import * as L from './style/Layout.style';
 
 function Layout() {
@@ -20,7 +22,9 @@ function Layout() {
         <AnimatePresence>{isSidebarOpen && <Sidebar close={changeSidebarState} />}</AnimatePresence>
         <Header />
         <MobileHeader />
-        <Outlet />
+        <ErrorBoundary FallbackComponent={GlobalError}>
+          <Outlet />
+        </ErrorBoundary>
         <Footer />
         <MoveToTheTopButton />
       </Suspense>

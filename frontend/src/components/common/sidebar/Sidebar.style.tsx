@@ -51,8 +51,12 @@ export const Tab = styled.div`
 `;
 
 export const LinkButton = styled(Link)<{ active: boolean }>`
-  margin: 1.5rem 3.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+  width: 100%;
+  height: 100%;
   color: ${(props) => (props.active ? props.theme.colors.point2 : props.theme.colors.white)};
   ${(props) => props.theme.typography[DeviceProvider()].body};
   text-transform: capitalize;

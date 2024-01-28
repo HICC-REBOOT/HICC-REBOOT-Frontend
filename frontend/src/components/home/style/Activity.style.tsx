@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import theme from '@styles/theme';
 import seminar from '@assets/image/seminar.png';
 import project from '@assets/image/project.png';
 import meeting from '@assets/image/meeting.png';
 import mission from '@assets/image/mission.png';
 import mt from '@assets/image/mt.png';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
   width: 100%;
   flex-shrink: 0;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,7 +35,7 @@ export const Container = styled.div`
 
 export const GrouopContainer = styled.div`
   flex-shrink: 0;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -65,7 +65,7 @@ export const GrouopContainer = styled.div`
 export const Title = styled.div`
   position: relative;
   white-space: nowrap;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].title1};
@@ -93,7 +93,7 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].body};
@@ -198,9 +198,15 @@ export const Box = styled.div<{ img: string }>`
   `}
 `;
 
+export const BoxImage = styled(motion.img)`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 export const BoxTitle = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: left;
   ${(props) => props.theme.typography[DeviceProvider()].subtitle};
@@ -232,7 +238,7 @@ export const BoxTitle = styled.div`
 
 export const BoxContent = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.caption1};
 
   ${(props) => props.theme.media.mobile`
@@ -395,7 +401,7 @@ export const SmallBoxTitle = styled.div`
 
 export const SmallBoxContent = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.caption1};
 
   ${(props) => props.theme.media.mobile`
@@ -427,7 +433,7 @@ export const Logo = styled.div`
   position: absolute;
   width: 4.6rem;
   height: 4.6rem;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   background: rgba(119, 119, 119, 0.47);
   border-radius: 1.2rem;
   display: flex;

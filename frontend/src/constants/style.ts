@@ -4,6 +4,8 @@ const STYLE = {
     CALENDAR_MODAL: 900,
     COMMON: 1,
     HIDE: -1,
+    BACKDROP: 1100,
+    MODAL: 1101,
   },
 };
 

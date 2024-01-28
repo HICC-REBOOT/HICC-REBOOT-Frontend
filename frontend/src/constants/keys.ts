@@ -15,15 +15,17 @@ export const QUERY_KEYS = Object.freeze({
   POST_ARTICLE: 'post-article',
   DELETE_ARTICLE: 'delete-article',
   UPDATE_ARTICLE: 'update-article',
+  GET_USERINFO: 'get-userinfo',
 });
 
 export const STORE_KEYS = Object.freeze({
   SIDEBAR: 'sidebar',
   NESTED_COMMENT: 'nestedComment',
-  RADIO: 'radio',
+  LOGIN: 'login',
 });
 
-export const TOKEN_KEYS = Object.freeze({
+export const COOKIE_KEYS = Object.freeze({
   ACCESS_KEY: 'access',
   REFRESH_KEY: 'refresh',
+  IS_LOGIN: 'is-login',
 });
