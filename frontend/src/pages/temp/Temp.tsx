@@ -1,6 +1,5 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-
 import Tab, { TabUnit } from '@components/common/tab/Tab';
 
 function Temp() {
