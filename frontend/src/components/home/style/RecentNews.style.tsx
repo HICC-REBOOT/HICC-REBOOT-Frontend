@@ -295,3 +295,13 @@ export const Date = styled.div`
     height: 1.6rem;
   `}
 `;
+
+export const Circle = styled.div`
+  position: absolute;
+  width: 55.7rem;
+  height: 55.7rem;
+  flex-shrink: 0;
+  border-radius: 100rem;
+  background: ${theme.colors.point1};
+  left: 70%;
+`;

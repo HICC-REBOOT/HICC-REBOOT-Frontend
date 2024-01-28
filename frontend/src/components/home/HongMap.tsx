@@ -14,7 +14,7 @@ function HongMap() {
           <H.Picture />
           <H.BoxTitle>HONG MAP</H.BoxTitle>
           <H.BoxContents>HICC에서 개발한 우리학교 길찾기 서비스로 동아리방 위치를 볼 수 있어요</H.BoxContents>
-          <H.GotoButton>
+          <H.GotoButton onClick={() => window.open('https://hongikmap2023.pythonanywhere.com/')}>
             <H.GotoButtonText>홍맵 바로가기</H.GotoButtonText>
             <Arrow />
           </H.GotoButton>

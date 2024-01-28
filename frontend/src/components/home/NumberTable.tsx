@@ -18,7 +18,7 @@ const FIGURE_ITEMS = [
   {
     title: '회원 수',
     number: 190,
-    unit: '+',
+    unit: '+명',
   },
 ];
 
