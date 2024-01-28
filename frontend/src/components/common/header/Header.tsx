@@ -22,7 +22,7 @@ function Header() {
   };
 
   const goProfile = () => {
-    navigate(ROUTE.PROFILE.BASE);
+    navigate(ROUTE.PROFILE.MYINFO);
   };
 
   const logout = async () => {

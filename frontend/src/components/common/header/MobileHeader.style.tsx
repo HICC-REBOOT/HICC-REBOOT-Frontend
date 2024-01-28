@@ -35,3 +35,18 @@ export const PreviousButton = styled.img`
   height: 2.4rem;
   cursor: pointer;
 `;
+
+export const RightSide = styled.aside`
+  display: flex;
+  align-items: center;
+
+  & > img {
+    margin-left: 1.6rem;
+  }
+`;
+
+export const User = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
+  cursor: pointer;
+`;
