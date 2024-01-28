@@ -21,4 +21,11 @@ const Container = styled.div`
   gap: 1.8rem;
   color: white;
   background-color: ${(props) => props.theme.colors.black};
+  ${(props) => props.theme.media.desktop`
+    margin-top: 18.8rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    margin-top: 18.8rem;
+  `};
 `;
