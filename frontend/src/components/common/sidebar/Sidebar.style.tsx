@@ -23,7 +23,7 @@ export const Container = styled(motion.aside)`
   background: ${(props) => props.theme.colors.grey001};
 `;
 
-export const Inner = styled(motion.nav)`
+export const Inner = styled.nav`
   display: flex;
   flex-direction: column;
 `;

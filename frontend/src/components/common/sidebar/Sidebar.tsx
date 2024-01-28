@@ -12,21 +12,6 @@ const asideVarients: Variants = {
   exit: { height: 0, top: '-34rem', transition: { duration: 0.3 } },
 };
 
-const sideVarients: Variants = {
-  closed: {
-    transition: {
-      staggerChildren: 0.2,
-      staggerDirection: -1,
-    },
-  },
-  open: {
-    transition: {
-      staggerChildren: 0.2,
-      staggerDirection: 1,
-    },
-  },
-};
-
 interface SidebarProps {
   close: () => void;
 }
@@ -42,7 +27,7 @@ function Sidebar({ close }: SidebarProps) {
     <NotDesktop>
       <>
         <S.Container initial="initial" animate="open" exit="exit" variants={asideVarients}>
-          <S.Inner initial="closed" animate="open" exit="closed" variants={sideVarients}>
+          <S.Inner>
             <S.Tab>
               <S.CloseButton src={Close} alt="close" onClick={close} />
             </S.Tab>
