@@ -4,6 +4,7 @@ import { useMatch, useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import { Desktop } from '@assets/mediaQuery';
 import useAuth from '@hooks/useAuth';
+import user from '@assets/image/icon/user.svg';
 import * as H from './Header.style';
 
 function Header() {
@@ -18,6 +19,10 @@ function Header() {
 
   const goLogin = () => {
     navigate(ROUTE.LOGIN);
+  };
+
+  const goProfile = () => {
+    navigate(ROUTE.PROFILE.BASE);
   };
 
   const logout = async () => {
@@ -40,12 +45,12 @@ function Header() {
           </H.Tab>
           {isAdmin && (
             <H.Tab to={ROUTE.ADMIN.BASE} active={matchAdminTab !== null}>
-              회원관리
+              관리자
             </H.Tab>
           )}
           {isLogin ? <H.Auth onClick={logout}>Log out</H.Auth> : <H.Auth onClick={goLogin}>Log in</H.Auth>}
         </H.Container>
-        <H.JoinHICC to={ROUTE.SIGNUP}>Join HICC</H.JoinHICC>
+        {isLogin ? <H.User src={user} onClick={goProfile} /> : <H.JoinHICC to={ROUTE.SIGNUP}>Join HICC</H.JoinHICC>}
       </>
     </Desktop>
   );
