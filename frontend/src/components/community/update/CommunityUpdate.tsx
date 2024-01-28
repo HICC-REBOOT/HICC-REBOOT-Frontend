@@ -20,20 +20,26 @@ function CommunityUpdate() {
     }
   }, [data, navigate]);
 
-  const imageSrc: ImageInfo[] = data.images.map((imageMeta) => {
-    return {
-      src: imageMeta.url,
-    };
-  });
+  const setDefaultValues = (): CommunityWriteForm => {
+    if (data === null) {
+      return { title: '', image: [], content: '' };
+    }
 
-  const defalutValues: CommunityWriteForm = {
-    title: data.subject,
-    image: imageSrc,
-    content: data.content,
+    const imageSrc: ImageInfo[] = data.images.map((imageMeta) => {
+      return {
+        src: imageMeta.url,
+      };
+    });
+
+    return {
+      title: data.subject,
+      image: imageSrc,
+      content: data.content,
+    };
   };
 
   const { handleSubmit, register, setValue, watch, formState } = useForm<CommunityWriteForm>({
-    defaultValues: defalutValues,
+    defaultValues: setDefaultValues(),
   });
 
   // 현재 등록되어있는 이미지
