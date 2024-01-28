@@ -47,14 +47,6 @@ export const Title = styled.div`
   ${(props) => props.theme.typography[DeviceProvider()].body}
   color: ${(props) => props.theme.colors.white};
   white-space: nowrap;
-
-  ${(props) => props.theme.media.desktop`
-    padding-right: 3.6rem;
-  `};
-
-  ${(props) => props.theme.media.wide`
-    padding-right: 3.6rem;
-  `};
 `;
 
 export const Detail = styled.div<{ isDetailOpen: boolean }>`
@@ -73,11 +65,13 @@ export const Detail = styled.div<{ isDetailOpen: boolean }>`
     `}
 
   ${(props) => props.theme.media.desktop`
-    max-width: 50rem;
+    width: 30rem;
+    padding-right: 1.2rem;
   `};
 
   ${(props) => props.theme.media.wide`
-    max-width: 50rem;
+    width: 30rem;
+    padding-right: 1.2rem;
   `};
 `;
 
