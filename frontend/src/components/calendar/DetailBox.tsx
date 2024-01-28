@@ -3,6 +3,7 @@ import useModal from '@hooks/useCalendarModal';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import { useRecoilValue } from 'recoil';
+import { ReactComponent as PlusIcon } from '@assets/image/icon/plus.svg';
 import { isAdminState } from '../../state/calendar';
 import * as D from './style/DetailBox.style';
 import ScheduleCard from './ScheduleCard';
@@ -30,7 +31,7 @@ export default function DetailBox() {
       ))}
       {isAdmin && (
         <D.AddContainer onClick={addNewSchedule}>
-          <D.AddImg />
+          <PlusIcon />
           <D.AddText>새 일정 추가하기</D.AddText>
         </D.AddContainer>
       )}

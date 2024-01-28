@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { Variants } from 'framer-motion';
 import Switch from '@components/common/switch/Switch';
 import arrow from '@assets/image/icon/arrow.svg';
+import { ReactComponent as EditIcon } from '@assets/image/icon/edit.svg';
 import { isAdminState, modalState } from '../../state/calendar';
 import * as S from './style/ScheduleCard.style';
 
@@ -43,7 +44,9 @@ export default function ScheduleCard() {
         </S.InfoContainer>
       </S.Left>
       {isAdmin ? (
-        <S.Btn onClick={() => setIsModalOpen(true)} />
+        <S.Btn onClick={() => setIsModalOpen(true)}>
+          <EditIcon />
+        </S.Btn>
       ) : (
         <S.ArrowIcon
           variants={variants}

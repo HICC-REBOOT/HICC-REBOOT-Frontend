@@ -75,13 +75,10 @@ export const Detail = styled.div<{ isDetailOpen: boolean }>`
   `};
 `;
 
-export const Btn = styled.button`
-  border: none;
-  background-color: ${(props) => props.theme.colors.red};
+export const Btn = styled.div`
   width: 2.4rem;
   height: 2.4rem;
   flex-shrink: 0;
-  margin-left: 1.2rem;
   position: absolute;
   right: 1.6rem;
   top: 2rem;

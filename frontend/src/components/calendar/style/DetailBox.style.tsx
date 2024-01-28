@@ -33,12 +33,6 @@ export const AddContainer = styled.button`
   border-radius: 1.6rem;
 `;
 
-export const AddImg = styled.img`
-  width: 2.4rem;
-  height: 2.4rem;
-  background-color: ${(props) => props.theme.colors.red};
-`;
-
 export const AddText = styled.div`
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography[DeviceProvider()].body};

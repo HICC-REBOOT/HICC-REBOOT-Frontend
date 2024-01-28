@@ -1,5 +1,4 @@
 import { atom } from 'recoil';
-import dayjs from 'dayjs';
 
 export const modalState = atom<boolean>({
   key: 'modalState',
