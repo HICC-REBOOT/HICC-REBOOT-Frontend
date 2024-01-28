@@ -20,6 +20,7 @@ function Temp3() {
       disabled: false,
       label: '2번입니다.',
       value: '2',
+      warning: '*강제 탈퇴 이후 회원 목록으로 복귀할 수 없습니다.',
     },
     {
       tag: '필수',

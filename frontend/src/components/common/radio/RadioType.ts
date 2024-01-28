@@ -3,6 +3,7 @@ interface RadioType {
   disabled: boolean;
   label: string;
   value: string;
+  warning?: string;
 }
 
 export default RadioType;
