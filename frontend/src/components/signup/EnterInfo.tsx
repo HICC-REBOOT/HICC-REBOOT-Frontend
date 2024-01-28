@@ -1,19 +1,22 @@
 /* eslint-disable no-use-before-define */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import OptionType from '@components/common/dropdown/OptionType';
+import Dropdown from '@components/common/dropdown/Dropdown';
+import useDropdown from '@hooks/useDropdown';
+import Search from '@assets/image/icon/search.svg';
+import InputMemberInfo from './InputMemberInfo';
 import * as E from './style/EnterInfo.style';
 
 export default function EnterInfo() {
+  const [major, setMajor] = useState();
   return (
     <Container>
       <E.Wrapper>
-        <E.InputWrapper>
-          <E.Label>이름(실명)</E.Label>
-          <E.InputField>
-            <E.InputFieldInput placeholder="홍길동" />
-          </E.InputField>
-          <E.ErrorMessage>에러메시지</E.ErrorMessage>
-        </E.InputWrapper>
+        <InputMemberInfo label="이름(실명)" type="text" errorMessage="2글자 이상 작성해주세요" />
+        <InputMemberInfo label="아이디(학번)" type="text" errorMessage="올바른 형식으로 기입해주세요" />
+        <InputMemberInfo label="비밀번호" type="password" errorMessage="8글자 이상 입력해주세요" />
+        <InputMemberInfo label="비밀번호 확인" type="password" errorMessage="8글자 이상 입력해주세요" />
         <E.InputWrapper>
           <E.Label>전화번호</E.Label>
           <E.PhoneNumWrapper>
@@ -28,7 +31,36 @@ export default function EnterInfo() {
             </E.PhoneNumField>
           </E.PhoneNumWrapper>
         </E.InputWrapper>
+        <E.InputWrapper>
+          <E.Label>학과</E.Label>
+          <E.DropDownWrapper>
+            <E.DropDown>
+              <E.DropDownItem>컴퓨터공학과</E.DropDownItem>
+              <SearchButton src={Search} alt="search" />
+            </E.DropDown>
+            <E.ScrollContainer>
+              <E.ScrollBox>
+                <E.ScrollItem>
+                  <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
+                </E.ScrollItem>
+                <E.ScrollItem>
+                  <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
+                </E.ScrollItem>
+                <E.ScrollItem>
+                  <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
+                </E.ScrollItem>
+                <E.ScrollItem>
+                  <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
+                </E.ScrollItem>
+                <E.ScrollItem>
+                  <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
+                </E.ScrollItem>
+              </E.ScrollBox>
+            </E.ScrollContainer>
+          </E.DropDownWrapper>
+        </E.InputWrapper>
       </E.Wrapper>
+      <E.ContinueButton>가입하기</E.ContinueButton>
     </Container>
   );
 }
@@ -43,4 +75,13 @@ const Container = styled.div`
   gap: 1.8rem;
   color: white;
   background-color: ${(props) => props.theme.colors.black};
+`;
+const SearchButton = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+  margin-left: 3.1rem;
+  &:active {
+    opacity: 0.3;
+  }
 `;

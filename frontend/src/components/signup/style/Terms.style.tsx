@@ -85,7 +85,7 @@ export const Essential = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption2}
-  white-space:nowrap
+  white-space:nowrap;
 `;
 export const EssentialText = styled.div`
   color: ${(props) => props.theme.colors.point1};
