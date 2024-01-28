@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
+import theme from '@styles/theme';
 
 export const Container = styled.div`
   position: relative;
@@ -97,7 +98,7 @@ export const Label = styled.div`
 `;
 
 export const Button = styled.button`
-  position: absolute;
+  position: relative;
   top: 29.8rem;
   width: 12.6rem;
   height: 4.6rem;
@@ -193,10 +194,42 @@ export const Input = styled.input`
 `;
 
 export const BigBoxArea = styled.div`
-  position: absolute;
-  top: 19.1rem;
+  position: relative;
+  top: 17.1rem;
+  margin-top: 2rem;
   flex-shrink: 0;
   display: inline;
+  ${(props) => props.theme.media.mobile`
+    width: 32.8rem;
+    height: 9.4rem;
+  `}
+
+  ${(props) => props.theme.media.tablet`
+    width: 34.8rem;
+    height: 9.8rem;
+  `}
+
+  ${(props) => props.theme.media.desktop`
+    width: 32.8rem;
+    height: 9.8rem;
+  `}
+
+  ${(props) => props.theme.media.wide`
+    width: 32.8rem;
+    height: 9.8rem;
+  `}
+`;
+
+export const BigBox = styled.input`
+  position: relative;
+  flex-shrink: 0;
+  display: inline;
+  border: none;
+  border-radius: 1.6rem;
+  padding-left: 1.2rem;
+  padding-right: 3.5rem;
+  color: ${theme.colors.white};
+  background: ${theme.colors.grey001};
   ${(props) => props.theme.media.mobile`
     width: 32.8rem;
     height: 5.4rem;

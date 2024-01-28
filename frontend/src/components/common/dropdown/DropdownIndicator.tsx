@@ -1,8 +1,9 @@
 import React from 'react';
 import { DropdownIndicatorProps, components } from 'react-select';
-import Arrow from '@assets/image/icon/arrow.svg';
-import { motion, Variants } from 'framer-motion';
+import arrow from '@assets/image/icon/arrow.svg';
+import { Variants } from 'framer-motion';
 import OptionType from './OptionType';
+import Arrow from './Arrow.style';
 
 const variants: Variants = {
   inactive: {
@@ -18,8 +19,8 @@ const variants: Variants = {
 function DropdownIndicator(props: DropdownIndicatorProps<OptionType, false>) {
   return (
     <components.DropdownIndicator {...props}>
-      <motion.img
-        src={Arrow}
+      <Arrow
+        src={arrow}
         alt="arrow"
         initial="inactive"
         animate={props.selectProps.menuIsOpen ? 'active' : 'inactive'}

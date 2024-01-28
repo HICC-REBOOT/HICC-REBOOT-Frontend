@@ -26,7 +26,10 @@ function EachOption({ option, currentOption, setCurrentOption }: EachOptionProps
   return (
     <R.Option>
       <R.Tag>{option.tag}</R.Tag>
-      <R.Label disabled={option.disabled}>{option.label}</R.Label>
+      <R.LabelContainer>
+        <R.Label disabled={option.disabled}>{option.label}</R.Label>
+        {option.warning !== undefined && <R.Warning>{option.warning}</R.Warning>}
+      </R.LabelContainer>
       <Radio disabled={option.disabled} checked={checked} onClick={onClick} />
     </R.Option>
   );

@@ -38,6 +38,7 @@ export const Subject = styled.div`
   white-space: nowrap;
 
   ${(props) => props.theme.typography[DeviceProvider()].body};
+  overflow: hidden;
 
   cursor: pointer;
 `;

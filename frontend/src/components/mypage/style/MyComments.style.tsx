@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
+import theme from '@styles/theme';
 
 export const Container = styled.div`
   position: relative;
@@ -27,23 +28,19 @@ export const GroupContainer = styled.div`
   ${(props) => props.theme.media.mobile`
     margin-top: 1.2rem;
     width: 32.8rem;
-    height: 73.2rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     margin-top: 2.1rem;
     width: 53.4rem;
-    height: 91.3rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     width: 103.4rem;
-    height: 177.1rem;
   `}
 
   ${(props) => props.theme.media.wide`
     width: 103.4rem;
-    height: 177.1rem;
   `}
 `;
 
@@ -140,13 +137,11 @@ export const ContentsContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   ${(props) => props.theme.media.mobile`
-    top: 2.4rem;
     width: 32.8rem;
     height: 65.3rem;
   `}
 
   ${(props) => props.theme.media.tablet`
-    top: 2.4rem;
     width: 53.4rem;
     height: 81.4rem;
   `}
@@ -174,7 +169,6 @@ export const ContentsArea = styled.div`
   padding: 2rem;
   gap: 1.2rem;
   white-space: nowrap;
-  overflow: hidden;
   ${(props) => props.theme.media.mobile`
     width: 32.8rem;
     height: 16.2rem;
@@ -228,11 +222,13 @@ export const ContentsTitle = styled.div`
 `;
 
 export const Contents = styled.div`
-  display: block;
-
-  white-space: nowrap;
+  /* white-space: nowrap; */
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   color: ${(props) => props.theme.colors.grey003};
   ${(props) => props.theme.typography.common.caption1};
 
@@ -289,4 +285,14 @@ export const DeleteButton = styled.button`
 
   border-radius: 0.8rem;
   background: rgba(255, 93, 93, 0.1);
+`;
+
+export const Divider = styled.div`
+  bottom: -4.3rem;
+  position: relative;
+  width: 105%;
+  height: 0.1rem;
+  /* align-self: stretch; */
+  color: ${theme.colors.grey001};
+  background-color: ${theme.colors.grey001};
 `;

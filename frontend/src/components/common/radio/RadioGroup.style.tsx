@@ -1,4 +1,3 @@
-import { DeviceProvider } from '@assets/mediaQuery';
 import hexToRGBA from '@utils/hexToRgba';
 import styled from 'styled-components';
 
@@ -12,12 +11,11 @@ export const Option = styled.div`
   align-items: center;
   width: 32.8rem;
   padding: 1.5rem;
-  padding-right: 2rem;
   border: none;
   background-color: ${(props) => props.theme.colors.grey001};
 
   & > div {
-    margin-right: 0.8rem;
+    margin-right: 0.7rem;
   }
 `;
 
@@ -44,8 +42,22 @@ export const Tag = styled.div`
   white-space: nowrap;
 `;
 
-export const Label = styled.div<{ disabled: boolean }>`
+export const LabelContainer = styled.div`
   min-width: 22.4rem;
+  width: 100%;
+`;
+
+export const Label = styled.div<{ disabled: boolean }>`
+  width: 100%;
+
   color: ${(props) => (props.disabled ? props.theme.colors.grey002 : props.theme.colors.white)};
-  ${(props) => props.theme.typography[DeviceProvider()].body};
+  ${(props) => props.theme.typography.mobile.body};
+`;
+
+export const Warning = styled.p`
+  width: 100%;
+  margin-top: 0.2rem;
+
+  color: ${(props) => props.theme.colors.red};
+  ${(props) => props.theme.typography.common.caption2};
 `;

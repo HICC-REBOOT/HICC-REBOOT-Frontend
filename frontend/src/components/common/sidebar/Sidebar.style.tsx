@@ -15,15 +15,16 @@ export const Backdrop = styled.div`
 `;
 
 export const Container = styled(motion.aside)`
-  position: absolute;
+  position: fixed;
+  top: 0;
   width: 100%;
-  z-index: ${STYLE.Z_INDEX.TOP_PRIORITY};
+  z-index: ${STYLE.Z_INDEX.TOP_PRIORITY + 1};
 
   border-radius: 0rem 0rem 1.6rem 1.6rem;
   background: ${(props) => props.theme.colors.grey001};
 `;
 
-export const Inner = styled(motion.nav)`
+export const Inner = styled.nav`
   display: flex;
   flex-direction: column;
 `;
@@ -65,6 +66,48 @@ export const LinkButton = styled(Link)<{ active: boolean }>`
 `;
 
 export const Auth = styled(Link)`
+  --border-width: 0.1rem;
+  --border-radius: 1.2rem;
+  --gradient: linear-gradient(180deg, #ffffff77, #ffffff11);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 4.6rem;
+  margin: 0.4rem 1.6rem;
+
+  background: var(--gradient);
+
+  border-radius: var(--border-radius);
+  background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
+
+  color: ${(props) => props.theme.colors.white};
+  ${(props) => props.theme.typography.common.button1};
+
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: ${STYLE.Z_INDEX.COMMON};
+
+  &::before {
+    content: '';
+    display: block;
+    width: calc(100% - calc(var(--border-width) * 2.5));
+    height: calc(100% - calc(var(--border-width) * 2.5));
+
+    background-color: #353538;
+    position: absolute;
+
+    top: var(--border-width);
+    left: var(--border-width);
+
+    border-radius: calc(var(--border-radius) - var(--border-width));
+    z-index: ${STYLE.Z_INDEX.HIDE};
+  }
+`;
+
+export const AuthLogout = styled.button`
   --border-width: 0.1rem;
   --border-radius: 1.2rem;
   --gradient: linear-gradient(180deg, #ffffff77, #ffffff11);

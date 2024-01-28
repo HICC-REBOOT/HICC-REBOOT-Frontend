@@ -22,7 +22,8 @@ function CommunityListInner({ searchQuery, currentOption }: CommunityListInnerPr
       name: '장윤영3',
       date: '2023-12-14T07:51:01.243',
       board: 'FREE',
-      subject: '저희 엠티 안 가나요?',
+      subject:
+        '저희 엠티 안 가나요?저희 엠티 안 가나요?저희 엠티 안 가나요?저희 엠티 안 가나요?저희 엠티 안 가나요?저희 엠티 안 가나요?',
     },
     {
       articleId: 2,

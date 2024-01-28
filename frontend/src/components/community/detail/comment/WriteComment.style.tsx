@@ -23,7 +23,7 @@ export const InputContainer = styled.div`
 
   height: 5.2rem;
   margin: 2.6rem 1.6rem;
-  padding: 2rem 1.2rem;
+  padding: 1.6rem 1.2rem;
 
   border: none;
   border-radius: 2rem;

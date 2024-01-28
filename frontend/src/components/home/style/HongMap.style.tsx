@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import theme from '@styles/theme';
+import hongmap from '@assets/image/hongmap.png';
 
 export const Container = styled.div`
   width: 100%;
@@ -103,7 +104,10 @@ export const Picture = styled.div`
   flex-shrink: 0;
   position: absolute;
   border-radius: 1.6rem;
-  background: ${(props) => props.theme.colors.black};
+  background: url(${hongmap});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   ${(props) => props.theme.media.mobile`
     top: 1.2rem;
     left: 1.2rem;
@@ -215,6 +219,7 @@ export const GotoButton = styled.div`
   width: 16.3rem;
   height: 4.6rem;
   padding: 1rem 1.2rem 1rem 2rem;
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -278,6 +283,7 @@ export const Icon = styled.div`
 export const Description = styled.div`
   width: 30rem;
   height: 2.1rem;
+  margin-top: 0.5rem;
   color: ${(props) => props.theme.colors.white};
   opacity: 0.7;
   ${(props) => props.theme.typography.common.caption1};

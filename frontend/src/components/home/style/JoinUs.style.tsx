@@ -183,6 +183,7 @@ export const Button = styled.div`
   position: absolute;
   width: 15.3rem;
   height: 4.6rem;
+  cursor: pointer;
   display: inline-flex;
   padding: 1rem 0.7rem 1rem 1.5rem;
   justify-content: center;
@@ -228,7 +229,6 @@ export const ButtonCircle = styled.div`
 `;
 
 export const BackGround = styled.div`
-  overflow: hidden;
   position: absolute;
   width: 100%;
   background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.1) 100%);

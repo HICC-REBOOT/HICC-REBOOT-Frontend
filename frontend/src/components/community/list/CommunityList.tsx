@@ -13,7 +13,7 @@ function CommunityList() {
 
   const options: OptionType[] = [
     { value: 'SUBJECT', label: '글 제목' },
-    { value: 'MEMBER', label: '등급 순' },
+    { value: 'MEMBER', label: '이름 순' },
   ];
 
   const { currentOption, onChange } = useDropdown({ defalutValue: options[0] });

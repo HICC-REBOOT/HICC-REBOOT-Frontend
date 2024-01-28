@@ -249,7 +249,7 @@ export const ListBoxTitle = styled.div`
 export const ListBoxContent = styled.div`
   position: absolute;
   overflow: hidden;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   opacity: 0.7;
   ${(props) => props.theme.typography[DeviceProvider()].body};
 
@@ -288,27 +288,27 @@ export const ListBoxPar = styled.div`
   align-items: center;
 
   border-radius: 10rem;
-  background: rgba(105, 99, 255, 0.15);
+  background: var(--point-110, rgba(91, 78, 245, 0.1));
   ${(props) => props.theme.media.mobile`
     top: 24.6rem;
-    width: 8.5rem;
+    width: 9.8rem;
     height: 2.4rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     top: 24.6rem;
-    width: 7.4rem;
+    width: 9.8rem;
     height: 2.1rem;
   `}
   ${(props) => props.theme.media.desktop`
     top: 27.2rem;
-    width: 7.4rem;
+    width: 9.8rem;
     height: 2.1rem;
   `}
 
   ${(props) => props.theme.media.wide`
     top: 27.2rem;
-    width: 7.4rem;
+    width: 9.8rem;
     height: 2.1rem;
   `}
 `;
@@ -318,6 +318,17 @@ export const Person = styled.div`
   height: 2.1rem;
   flex-shrink: 0;
   text-align: center;
-  color: ${(props) => theme.colors.point1};
+  color: ${(props) => props.theme.colors.point2};
   ${(props) => props.theme.typography.common.caption1};
+`;
+
+export const ListBoxDate = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 2.1rem;
+  ${(props) => props.theme.typography.common.caption1};
+  color: ${(props) => theme.colors.grey002};
+  text-align: right;
+  right: 1.1rem;
+  bottom: 0.9rem;
 `;
