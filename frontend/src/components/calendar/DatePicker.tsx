@@ -13,79 +13,71 @@ export default function DatePickerBox() {
 
   return (
     <D.Container>
-      <D.DateWrapper>
-        <ConfigProvider
-          theme={{
-            token: {
-              colorBgContainer: theme.colors.black,
-              colorBorder: 'none',
-              colorTextPlaceholder: theme.colors.white,
-              borderRadius: 8,
+      <ConfigProvider
+        theme={{
+          token: {
+            colorBgContainer: theme.colors.black,
+            colorBorder: 'none',
+            colorTextPlaceholder: theme.colors.white,
+            borderRadius: 8,
+            colorPrimary: theme.colors.point1,
+          },
+          components: {
+            DatePicker: {
+              activeShadow: 'none',
+              paddingInline: 10,
+              paddingBlock: 7,
+              cellHeight: 16,
+              cellWidth: 20,
+              timeCellHeight: 20,
+              timeColumnWidth: 28,
             },
-            components: {
-              DatePicker: {
-                activeShadow: 'none',
-                paddingInline: 0,
-                paddingBlock: 0,
-              },
-            },
-          }}
-        >
-          <D.CustomDatePicker
-            format={'MM.DD ddd'}
-            value={dayjs(new Date())}
-            suffixIcon={null}
-            locale={locale}
-            inputReadOnly={true}
-            style={{ padding: 0 }}
-          />
-          <D.CustomTimePicker
-            use12Hours
-            format={'hh:mm A'}
-            value={dayjs(new Date())}
-            suffixIcon={null}
-            inputReadOnly={true}
-            style={{ padding: 0 }}
-          />
-        </ConfigProvider>
-      </D.DateWrapper>
+          },
+        }}
+      >
+        <D.CustomDatePicker
+          format={'MM.DD ddd A HH:mm'}
+          value={dayjs(new Date())}
+          suffixIcon={null}
+          locale={locale}
+          inputReadOnly={true}
+          showTime
+          allowClear={false}
+        />
+      </ConfigProvider>
       <ArrowIcon />
-      <D.DateWrapper>
-        <ConfigProvider
-          theme={{
-            token: {
-              colorBgContainer: theme.colors.black,
-              colorBorder: 'none',
-              colorTextPlaceholder: theme.colors.white,
-              borderRadius: 8,
+      <ConfigProvider
+        theme={{
+          token: {
+            colorBgContainer: theme.colors.black,
+            colorBorder: 'none',
+            colorTextPlaceholder: theme.colors.white,
+            borderRadius: 8,
+            colorPrimary: theme.colors.point1,
+          },
+          components: {
+            DatePicker: {
+              activeShadow: 'none',
+              paddingInline: 10,
+              paddingBlock: 7,
+              cellHeight: 16,
+              cellWidth: 20,
+              timeCellHeight: 20,
+              timeColumnWidth: 28,
             },
-            components: {
-              DatePicker: {
-                activeShadow: 'none',
-                paddingInline: 0,
-                paddingBlock: 10,
-              },
-            },
-          }}
-        >
-          <D.CustomDatePicker
-            format={'MM.DD ddd'}
-            value={dayjs(new Date()).add(1, 'hour')}
-            suffixIcon={null}
-            locale={locale}
-            inputReadOnly={true}
-            style={{ padding: 0 }}
-          />
-          <D.CustomTimePicker
-            use12Hours
-            format={'hh:mm A'}
-            value={dayjs(new Date()).add(1, 'hour')}
-            suffixIcon={null}
-            inputReadOnly={true}
-            style={{ padding: 0 }}
-          />
-        </ConfigProvider>
-      </D.DateWrapper>
+          },
+        }}
+      >
+        <D.CustomDatePicker
+          format={'MM.DD ddd A HH:mm'}
+          value={dayjs(new Date()).add(1, 'hour')}
+          suffixIcon={null}
+          locale={locale}
+          inputReadOnly={true}
+          showTime
+          allowClear={false}
+        />
+      </ConfigProvider>
     </D.Container>
   );
 }
