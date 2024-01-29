@@ -1,11 +1,15 @@
 import Sheet from 'react-modal-sheet';
-import React from 'react';
+import React, { useState } from 'react';
 import STYLE from '@constants/style';
 import theme from '@styles/theme';
 import { ConfigProvider } from 'antd';
 import { useRecoilState } from 'recoil';
 import CompleteBtn from '@assets/image/Icon_large.svg';
 import useModal from '@hooks/useCalendarModal';
+import { ReactComponent as TrashIcon } from '@assets/image/icon/trash.svg';
+import { ReactComponent as TimeIcon } from '@assets/image/icon/time.svg';
+import { ReactComponent as TagIcon } from '@assets/image/icon/tag.svg';
+import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
 import { modalState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import TypeButton from './TypeButton';
@@ -13,6 +17,11 @@ import * as E from './style/EditModal.style';
 
 export default function EditModal() {
   const { isModalOpen, changeModalState, isNewSchedule, changeIsNewState } = useModal();
+
+  const [detail, setDetail] = useState<string>('');
+  const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setDetail(e.target.value);
+  };
 
   const closeModal = () => {
     changeModalState(false);
@@ -27,7 +36,7 @@ export default function EditModal() {
       style={{ zIndex: STYLE.Z_INDEX.CALENDAR_MODAL }}
     >
       <Sheet.Container
-        style={{ backgroundColor: '#141415', borderTopLeftRadius: '1.6rem', borderTopRightRadius: '1.6rem' }}
+        style={{ backgroundColor: theme.colors.grey001, borderTopLeftRadius: '1.6rem', borderTopRightRadius: '1.6rem' }}
       >
         <Sheet.Header />
         <Sheet.Content>
@@ -40,45 +49,30 @@ export default function EditModal() {
                   placeholder={isNewSchedule ? '일정 제목을 입력해주세요' : ''}
                 />
               </E.TitleContainer>
-              <E.deleteBtn />
+              <E.deleteBtn>
+                <TrashIcon />
+              </E.deleteBtn>
             </E.Top>
             <E.Content>
               <E.Left>
                 <E.ContentWrapper>
-                  <E.Icon />
+                  <TimeIcon />
                   <DatePickerBox />
                 </E.ContentWrapper>
                 <E.ContentWrapper>
-                  <E.Icon />
+                  <TagIcon />
                   <TypeButton />
                 </E.ContentWrapper>
               </E.Left>
               <E.TextAreaContainer>
-                <E.Icon />
-                <ConfigProvider
-                  theme={{
-                    token: {
-                      borderRadius: 8,
-                      colorBgContainer: theme.colors.black,
-                      colorBorder: theme.colors.black,
-                      colorPrimary: theme.colors.black,
-                      colorText: 'rgba(255, 255, 255, 0.70)',
-                      colorTextPlaceholder: 'rgba(255, 255, 255, 0.50)',
-                    },
-                    components: {
-                      Input: {
-                        activeBorderColor: theme.colors.black,
-                        activeBg: theme.colors.black,
-                      },
-                    },
-                  }}
-                >
-                  <E.CustomTextArea
-                    rows={10}
-                    value={isNewSchedule ? '' : '일정 설명입니당'}
-                    placeholder={isNewSchedule ? '일정에 대한 설명을 입력해주세요' : ''}
-                  />
-                </ConfigProvider>
+                <CommentIcon />
+
+                <E.TextArea
+                  rows={10}
+                  value={detail}
+                  placeholder={isNewSchedule ? '일정에 대한 설명을 입력해주세요' : ''}
+                  onChange={handleDetail}
+                />
               </E.TextAreaContainer>
             </E.Content>
             <E.CompleteBtn src={CompleteBtn} />

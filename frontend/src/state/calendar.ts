@@ -1,5 +1,4 @@
 import { atom } from 'recoil';
-import dayjs from 'dayjs';
 
 export const modalState = atom<boolean>({
   key: 'modalState',
@@ -15,4 +14,9 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 export const selectedDateState = atom<Value>({
   key: 'selectedDateState',
   default: new Date(),
+});
+
+export const isAdminState = atom<boolean>({
+  key: 'isAdminState',
+  default: false,
 });

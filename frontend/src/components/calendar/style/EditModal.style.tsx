@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import { Input } from 'antd';
 
 export const Container = styled.div`
-  padding: 4.8rem 1.6rem 6rem 1.6rem;
+  padding: 0.4rem 1.6rem 6rem 1.6rem;
   width: 100%;
+  height: 30rem;
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  position: relative;
 
   ${(props) => props.theme.media.tablet`
     padding: 4.4rem 2.4rem 7rem 2.4rem;
@@ -45,10 +44,9 @@ export const TitleContainer = styled.div`
   width: 100%;
 `;
 
-export const deleteBtn = styled.div`
+export const deleteBtn = styled.button`
   width: 2.4rem;
   height: 2.4rem;
-  background-color: ${(props) => props.theme.colors.red};
   flex-shrink: 0;
   justify-self: flex-end;
 `;
@@ -140,28 +138,20 @@ export const Icon = styled.div`
   background-color: ${(props) => props.theme.colors.red};
 `;
 
-const { TextArea } = Input;
-export const CustomTextArea = styled(TextArea)``;
+export const TextArea = styled.textarea`
+  width: 100%;
+  background-color: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.grey004};
+  border-radius: 0.8rem;
+  padding: 0.4rem 1rem;
+  ${(props) => props.theme.typography.common.caption2};
+  border: none;
+  resize: none;
+  outline: none;
+`;
 
 export const CompleteBtn = styled.img`
   width: 4.6rem;
   height: 4.6rem;
-  position: absolute;
-  right: 1.6rem;
-  bottom: 6rem;
-
-  ${(props) => props.theme.media.tablet`
-    right: 2.4rem;
-    bottom: -4.6rem;
-  `};
-
-  ${(props) => props.theme.media.desktop`
-    right: 9.6rem;
-    bottom: -4.6rem;
-  `};
-
-  ${(props) => props.theme.media.wide`
-    right: 9.6rem;
-    bottom: -4.6rem;
-  `};
+  align-self: flex-end;
 `;

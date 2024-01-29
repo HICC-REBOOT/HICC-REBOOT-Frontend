@@ -38,8 +38,7 @@ export const CustomDatePicker = styled(DatePicker)`
   .ant-picker-input > input {
     color: ${(props) => props.theme.colors.white};
     ${(props) => props.theme.typography.common.caption1};
-    opacity: 0.7;
-    width: 5rem;
+    text-align: center;
   }
 `;
 

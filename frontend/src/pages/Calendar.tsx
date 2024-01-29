@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CalendarGrid from '@components/calendar/CalendarGrid';
 import DetailBox from '@components/calendar/DetailBox';
 import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
+import { useSetRecoilState } from 'recoil';
+import { isAdminState } from '../state/calendar';
 
 const Container = styled.div`
   width: 100%;
@@ -35,9 +37,23 @@ const Container = styled.div`
   `};
 `;
 
+const TempBtnContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+const TempBtn = styled.button`
+  background-color: white;
+  color: black;
+`;
+
 export default function Calendar() {
+  const setIsAdmin = useSetRecoilState<boolean>(isAdminState);
   return (
     <Container>
+      <TempBtnContainer>
+        <TempBtn onClick={() => setIsAdmin(false)}>일반</TempBtn>
+        <TempBtn onClick={() => setIsAdmin(true)}>관리자</TempBtn>
+      </TempBtnContainer>
       <CalendarGrid />
       <DetailBox />
       <EditModal />
