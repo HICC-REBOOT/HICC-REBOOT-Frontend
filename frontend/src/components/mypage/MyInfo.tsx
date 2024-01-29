@@ -5,6 +5,7 @@ import useDropdown from '@hooks/useDropdown';
 import useInput from '@hooks/useInput';
 import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
+import theme from '@styles/theme';
 import * as M from './style/MyInfo.style';
 
 function MyInfo() {
@@ -159,7 +160,7 @@ function MyInfo() {
           <M.BoxTitle>전화번호</M.BoxTitle>
           {numberState === false && (
             <M.CheckDiv>
-              <Check />
+              <Check color={theme.colors.white} />
             </M.CheckDiv>
           )}
           <M.Input onChange={handlePhoneInputChange} value={phoneNumber}></M.Input>
@@ -169,7 +170,7 @@ function MyInfo() {
           <M.BoxTitle>이메일</M.BoxTitle>
           {emailState === false && (
             <M.CheckDiv>
-              <Check />
+              <Check color={theme.colors.white} />
             </M.CheckDiv>
           )}
           <M.Input onChange={scholNChange}></M.Input>

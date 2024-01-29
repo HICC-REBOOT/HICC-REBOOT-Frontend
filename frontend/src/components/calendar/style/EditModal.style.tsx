@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
+import hexToRGBA from '@utils/hexToRgba';
 
 export const Container = styled.div`
   padding: 0.4rem 1.6rem 6rem 1.6rem;
@@ -150,8 +151,12 @@ export const TextArea = styled.textarea`
   outline: none;
 `;
 
-export const CompleteBtn = styled.img`
+export const CompleteBtn = styled.button`
   width: 4.6rem;
   height: 4.6rem;
   align-self: flex-end;
+  border-radius: 1.2rem;
+  flex-shrink: 0;
+  border: 0.1rem solid ${(props) => props.theme.colors.grey002};
+  background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
 `;
