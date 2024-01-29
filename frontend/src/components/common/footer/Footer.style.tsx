@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ hide: boolean }>`
-  display: ${(props) => (props.hide ? 'none' : 'flex')};
+export const Container = styled.div<{ $hide: boolean }>`
+  display: ${(props) => (props.$hide ? 'none' : 'flex')};
   justify-content: space-between;
   width: 100%;
   height: 31.8rem;

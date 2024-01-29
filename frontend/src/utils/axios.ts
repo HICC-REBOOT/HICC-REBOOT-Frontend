@@ -22,11 +22,6 @@ export const axiosInstance = axios.create({
   withCredentials: true,
 });
 
-const refreshInstance = axios.create({
-  baseURL: BASE_URL,
-  withCredentials: true,
-});
-
 axiosInstance.interceptors.request.use(async (config) => {
   if (!config.headers) {
     return config;
@@ -46,7 +41,7 @@ interface AccessTokenRefresh {
 async function reissue() {
   const refresh = getCookie(COOKIE_KEYS.REFRESH_KEY);
 
-  const response = await refreshInstance.get<AccessTokenRefresh>('/api/auth/refresh', {
+  const response = await axiosInstance.get<AccessTokenRefresh>('/api/auth/refresh', {
     headers: {
       'Authorization-refresh': `Bearer ${refresh}`,
     },
@@ -82,7 +77,7 @@ const onAccessTokenFetched = (token: string) => {
 const removeRefreshAndSignOut = () => {
   removeCookie(COOKIE_KEYS.REFRESH_KEY);
   removeCookie(COOKIE_KEYS.IS_LOGIN);
-  // window.location.href = '/login';
+  window.location.href = '/login';
 };
 
 let retryCount = 0;
@@ -136,19 +131,12 @@ axiosInstance.interceptors.response.use(
       return resetTokenAndReattemptRequest(axiosError);
     }
 
-    return Promise.reject(error);
-  },
-);
-
-refreshInstance.interceptors.response.use(
-  (res) => res,
-  async (error) => {
-    const axiosError = getAxiosError(error as AxiosError);
-
-    // 401에러 시 리프레시를 사용해서 토큰 발급 뒤 다시 요청
+    // 리프레시 만료 시 로그아웃 처리
     if (axiosError?.data.code === ERROR_CODE.REFRESH_EXPIRED) {
       removeRefreshAndSignOut();
       return Promise.reject(axiosError);
     }
+
+    return Promise.reject(error);
   },
 );

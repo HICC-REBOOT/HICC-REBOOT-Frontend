@@ -10,8 +10,8 @@ export const Container = styled.div`
   padding: 2rem 1.6rem;
 `;
 
-export const WriteButton = styled(Link)<{ hide: boolean }>`
-  display: ${(props) => (props.hide ? 'none' : 'flex')};
+export const WriteButton = styled(Link)<{ $hide: boolean }>`
+  display: ${(props) => (props.$hide ? 'none' : 'flex')};
   height: 4.6rem;
   padding: 1rem 2rem;
   justify-content: center;
