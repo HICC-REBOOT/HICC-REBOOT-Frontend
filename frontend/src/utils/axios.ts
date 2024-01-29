@@ -3,6 +3,7 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { COOKIE_KEYS } from '@constants/keys';
 import reissue from '@auth/reissue';
+import ERROR_CODE from '@constants/error';
 import { removeCookie } from './cookie';
 import axiosInstance from './axiosInstance';
 
@@ -81,7 +82,7 @@ axiosInstance.interceptors.response.use(
     const axiosError = getAxiosError(error as AxiosError);
 
     // 401에러 시 리프레시를 사용해서 토큰 발급 뒤 다시 요청
-    if (axiosError?.data.status === 401) {
+    if (axiosError?.data.code === ERROR_CODE.ACCESS_EXPIRED) {
       return resetTokenAndReattemptRequest(axiosError);
     }
 
