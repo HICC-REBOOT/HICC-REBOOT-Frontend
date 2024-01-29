@@ -5,6 +5,7 @@ interface Button {
   label: string;
   onClick: () => void;
   show: boolean;
+  disabled?: boolean;
 }
 
 interface ButtonsProps {
@@ -15,10 +16,10 @@ interface ButtonsProps {
 function Buttons({ normal, dangerous }: ButtonsProps) {
   return (
     <B.Container>
-      <B.NormalButton onClick={normal.onClick} show={normal.show}>
+      <B.NormalButton onClick={normal.onClick} show={normal.show} disabled={normal.disabled}>
         {normal.label}
       </B.NormalButton>
-      <B.DangerousButton onClick={dangerous.onClick} show={dangerous.show}>
+      <B.DangerousButton onClick={dangerous.onClick} show={dangerous.show} disabled={normal.disabled}>
         {dangerous.label}
       </B.DangerousButton>
     </B.Container>

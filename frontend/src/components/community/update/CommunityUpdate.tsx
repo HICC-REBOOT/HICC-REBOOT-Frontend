@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import usePatchArticle from '@query/patch/usePatchArticle';
 import { ArticleDetailType, CommunityWriteForm, ImageInfo } from '../CommunityType';
 import * as U from '../write/CommunityWrite.style';
 import TextareaInForm from '../common/TextareaInForm';
@@ -11,6 +12,7 @@ function CommunityUpdate() {
   const data = location.state as ArticleDetailType;
 
   const navigate = useNavigate();
+  const { updateArticle, isPending } = usePatchArticle({ articleId: data.articleId });
 
   // 비정상적인 접근일 경우 뒤로가기
   useEffect(() => {
@@ -45,9 +47,7 @@ function CommunityUpdate() {
   // 현재 등록되어있는 이미지
   const currentImages = watch('image');
 
-  const onSubmit = async (formdata: CommunityWriteForm) => {
-    console.log(formdata);
-  };
+  const onSubmit = async (formdata: CommunityWriteForm) => {};
 
   return (
     <U.Container onSubmit={handleSubmit(onSubmit)}>

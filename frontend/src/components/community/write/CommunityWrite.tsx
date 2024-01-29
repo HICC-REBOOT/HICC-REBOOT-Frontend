@@ -39,7 +39,7 @@ function CommunityWrite() {
       <W.InputTitle type="text" placeholder="제목을 입력하세요" {...register('title', { required: true })} />
       <TextareaInForm register={register} />
       <ImageManager currentImages={currentImages} setImage={setValue} />
-      <W.UploadButton type="submit" disabled={!formState.isValid}>
+      <W.UploadButton type="submit" disabled={!formState.isValid || isPending}>
         업로드 하기
       </W.UploadButton>
     </W.Container>
