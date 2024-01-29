@@ -16,10 +16,10 @@ interface ButtonsProps {
 function Buttons({ normal, dangerous }: ButtonsProps) {
   return (
     <B.Container>
-      <B.NormalButton onClick={normal.onClick} show={normal.show} disabled={normal.disabled}>
+      <B.NormalButton onClick={normal.onClick} $show={normal.show} disabled={normal.disabled}>
         {normal.label}
       </B.NormalButton>
-      <B.DangerousButton onClick={dangerous.onClick} show={dangerous.show} disabled={normal.disabled}>
+      <B.DangerousButton onClick={dangerous.onClick} $show={dangerous.show} disabled={normal.disabled}>
         {dangerous.label}
       </B.DangerousButton>
     </B.Container>
