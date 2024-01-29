@@ -168,6 +168,7 @@ export const Input = styled.input`
   flex-shrink: 0;
   color: ${(props) => props.theme.colors.white};
   border: none;
+  outline: none;
   border-radius: 1.6rem;
   background: ${(props) => props.theme.colors.grey001};
   padding-left: 1.2rem;
@@ -225,6 +226,7 @@ export const BigBox = styled.input`
   flex-shrink: 0;
   display: inline;
   border: none;
+  outline: none;
   border-radius: 1.6rem;
   padding-left: 1.2rem;
   padding-right: 3.5rem;
