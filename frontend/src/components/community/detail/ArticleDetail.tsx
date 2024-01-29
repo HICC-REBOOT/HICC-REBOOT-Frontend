@@ -28,7 +28,7 @@ function ArticleDetail() {
         </A.Container>
         <Comment id={articleId} />
       </A.Wrapper>
-      <WriteComment />
+      <WriteComment id={articleId} />
     </>
   );
 }
