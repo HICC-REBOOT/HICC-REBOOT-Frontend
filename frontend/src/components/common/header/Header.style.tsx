@@ -4,7 +4,7 @@ import logo from '@assets/image/logo.svg';
 import STYLE from '@constants/style';
 import hexToRGBA from '@utils/hexToRgba';
 
-export const Container = styled.nav`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   position: fixed;
@@ -23,7 +23,7 @@ export const Container = styled.nav`
   backdrop-filter: blur(0.6rem);
 `;
 
-export const LogoContainer = styled(Link)`
+export const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,11 +46,11 @@ export const Logo = styled(Link)`
   background-size: contain;
 `;
 
-export const Tab = styled(Link)<{ active: boolean }>`
+export const Tab = styled(Link)<{ $active: boolean }>`
   margin-right: 0.8rem;
   padding: 1rem 0.5rem;
 
-  color: ${(props) => (props.active ? props.theme.colors.point2 : props.theme.colors.white)};
+  color: ${(props) => (props.$active ? props.theme.colors.point2 : props.theme.colors.white)};
   ${(props) => props.theme.typography.common.button1};
 
   text-transform: capitalize;

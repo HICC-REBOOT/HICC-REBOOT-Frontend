@@ -39,8 +39,8 @@ export const ImageView = styled.img`
   object-fit: cover;
 `;
 
-export const Backdrop = styled.div<{ show: boolean }>`
-  display: ${(props) => (props.show ? 'flex' : 'none')};
+export const Backdrop = styled.div<{ $show: boolean }>`
+  display: ${(props) => (props.$show ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
   position: absolute;
