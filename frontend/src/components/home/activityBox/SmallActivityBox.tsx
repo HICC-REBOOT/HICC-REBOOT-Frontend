@@ -17,6 +17,7 @@ function SmallActivityBox({ img, title }: BoxProps) {
   return (
     <B.SmallBox onMouseEnter={setActive} onMouseLeave={setActive}>
       <B.SmallBoxImage src={img} initial="inactive" animate={active ? 'active' : 'inactive'} variants={variants} />
+      <B.BoxFilter filter={active ? 'active' : 'inactive'}></B.BoxFilter>
       <B.SmallBoxTitle>{title}</B.SmallBoxTitle>
     </B.SmallBox>
   );
