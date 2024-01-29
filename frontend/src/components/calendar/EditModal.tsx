@@ -10,6 +10,7 @@ import { ReactComponent as TrashIcon } from '@assets/image/icon/trash.svg';
 import { ReactComponent as TimeIcon } from '@assets/image/icon/time.svg';
 import { ReactComponent as TagIcon } from '@assets/image/icon/tag.svg';
 import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
+import hexToRGBA from '@utils/hexToRgba';
 import { modalState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import TypeButton from './TypeButton';
@@ -80,7 +81,7 @@ export default function EditModal() {
           </E.Container>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onTap={closeModal} style={{ backgroundColor: 'rgba(20, 20, 21, 0.85)' }} />
+      <Sheet.Backdrop onTap={closeModal} style={{ backgroundColor: hexToRGBA(theme.colors.black, 0.7) }} />
     </Sheet>
   );
 }
