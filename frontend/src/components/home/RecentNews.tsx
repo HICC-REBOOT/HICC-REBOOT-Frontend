@@ -1,5 +1,6 @@
 import React from 'react';
 import useGetLatestNews from '@query/get/useGetLatestNews';
+import { GRADE, GRADE_ENUM } from '@components/type/CommonType';
 import * as R from '@components/home/style/RecentNews.style';
 
 // const NEWS_ITEMS = [
@@ -39,7 +40,7 @@ function RecentNews() {
               <R.NewsBox key={index}>
                 <R.NewsTitle>{item.subject}</R.NewsTitle>
                 <R.NewsBottom>
-                  <R.Label>{item.grade}</R.Label>
+                  <R.Label>{GRADE_ENUM[item.grade as keyof typeof GRADE_ENUM]}</R.Label>
                   <R.Writer>{item.name}</R.Writer>
                   <R.Date>{item.date}</R.Date>
                 </R.NewsBottom>
