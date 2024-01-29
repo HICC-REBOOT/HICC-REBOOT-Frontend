@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import axiosInstance from './axios';
+import axiosInstance from './axiosInstance';
 
 interface IRequest<T, P> {
   uri: string;
@@ -12,8 +12,7 @@ interface IRequest<T, P> {
 interface IResponse<R> {
   timestamp: string;
   isSuccess: boolean;
-  code: string;
-  message: string;
+  statusCode: string;
   data: R;
 }
 

@@ -8,9 +8,7 @@ interface TabletProps {
 
 function Tablet({ children }: TabletProps) {
   const isTablet = useMediaQuery({
-    query: `(min-width:${BREAKPOINT.TABLET}px) and (max-width:${
-      BREAKPOINT.DESKTOP - 0.1
-    }px)`,
+    query: `(min-width:${BREAKPOINT.TABLET}px) and (max-width:${BREAKPOINT.DESKTOP - 0.1}px)`,
   });
 
   return <>{isTablet && children}</>;
