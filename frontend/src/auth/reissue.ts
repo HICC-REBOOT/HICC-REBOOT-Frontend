@@ -9,7 +9,7 @@ interface AccessToken {
 async function reissue() {
   const refresh = getCookie(COOKIE_KEYS.REFRESH_KEY);
 
-  const response = await axiosInstance.get<AccessToken>('/api/refresh', {
+  const response = await axiosInstance.get<AccessToken>('/api/auth/refresh', {
     headers: {
       'Authorization-refresh': `Bearer ${refresh}`,
     },

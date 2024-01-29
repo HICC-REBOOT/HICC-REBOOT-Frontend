@@ -31,10 +31,12 @@ function WriteComment({ id }: WriteCommentProps) {
     // 댓글 작성일 때는 댓글 작성
     if (nestedId === null) {
       writeComment(comment);
+      setComment('');
       return null;
     }
 
     writeNestedComment({ parentCommentId: nestedId, content: comment });
+    setComment('');
     return null;
   };
 

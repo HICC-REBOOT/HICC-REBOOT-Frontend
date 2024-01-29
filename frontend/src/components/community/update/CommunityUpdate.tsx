@@ -53,7 +53,16 @@ function CommunityUpdate() {
 
   const onSubmit = async (formdata: CommunityWriteForm) => {
     const newImages = await processNewImage(formdata);
-    const existingImagesInfo: ImageUrlSend[] = data.images.map((image) => {
+
+    const existingImagesSrc = data.images.map((image) => image.url);
+    const currentImagesSrc = currentImages.map((image) => image.src);
+
+    // 기존과 현재의 교집합만 추림, 삭제된 정보는 보내지 않기 위해
+    const intersection = existingImagesSrc.filter((src) => currentImagesSrc.includes(src));
+
+    const existingImages = data.images.filter((image) => intersection.includes(image.url));
+
+    const existingImagesInfo: ImageUrlSend[] = existingImages.map((image) => {
       return {
         fileName: image.fileName,
         fileNameExtension: image.fileNameExtension,
