@@ -66,7 +66,6 @@ export default function EditModal() {
               </E.Left>
               <E.TextAreaContainer>
                 <CommentIcon />
-
                 <E.TextArea
                   rows={10}
                   value={detail}

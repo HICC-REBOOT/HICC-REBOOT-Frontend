@@ -56,7 +56,7 @@ export const Line = styled.div`
   width: 0.4rem;
   border-radius: 1.6rem;
   height: 3.2rem;
-  background-color: pink;
+  background-color: ${(props) => props.theme.colors.tag_academy};
   margin-right: 0.7rem;
 `;
 

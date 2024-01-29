@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ConfigProvider } from 'antd';
+import hexToRGBA from '@utils/hexToRgba';
+import theme from '@styles/theme';
 import * as T from './style/TypeButton.style';
 
 export default function TypeButton() {
@@ -16,10 +18,10 @@ export default function TypeButton() {
         theme={{
           token: {
             borderRadius: 100,
-            colorPrimary: '#FFBF18',
-            colorText: '#FFBF18',
-            colorBgContainer: 'rgba(255, 191, 24, 0.10)',
-            colorBorder: 'rgba(255, 191, 24, 0.10)',
+            colorPrimary: theme.colors.tag_academy,
+            colorText: theme.colors.tag_academy,
+            colorBgContainer: hexToRGBA(theme.colors.tag_academy, 0.1),
+            colorBorder: hexToRGBA(theme.colors.tag_academy, 0.1),
           },
         }}
       >
@@ -29,10 +31,10 @@ export default function TypeButton() {
         theme={{
           token: {
             borderRadius: 100,
-            colorPrimary: '#5B4EF5',
-            colorText: '#5B4EF5',
-            colorBgContainer: 'rgba(105, 99, 255, 0.10)',
-            colorBorder: 'rgba(105, 99, 255, 0.10)',
+            colorPrimary: theme.colors.point1,
+            colorText: theme.colors.point1,
+            colorBgContainer: hexToRGBA(theme.colors.point1, 0.1),
+            colorBorder: hexToRGBA(theme.colors.point1, 0.1),
           },
         }}
       >
@@ -42,10 +44,10 @@ export default function TypeButton() {
         theme={{
           token: {
             borderRadius: 100,
-            colorPrimary: '#FFBDF2',
-            colorText: '#FFBDF2',
-            colorBgContainer: 'rgba(255, 189, 242, 0.10)',
-            colorBorder: 'rgba(255, 189, 242, 0.10)',
+            colorPrimary: theme.colors.tag_event,
+            colorText: theme.colors.tag_event,
+            colorBgContainer: hexToRGBA(theme.colors.tag_event, 0.1),
+            colorBorder: hexToRGBA(theme.colors.tag_event, 0.1),
           },
         }}
       >

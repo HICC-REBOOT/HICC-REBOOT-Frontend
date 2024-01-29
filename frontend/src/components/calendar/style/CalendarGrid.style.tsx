@@ -64,7 +64,7 @@ export const CustomCalendar = styled(Calendar)`
   }
   // YYYY.MM 표시
   .react-calendar__navigation__label > span {
-    color: white;
+    color: ${(props) => props.theme.colors.white};
     ${(props) => props.theme.typography[DeviceProvider()].subtitle};
   }
 
@@ -186,7 +186,6 @@ export const CustomCalendar = styled(Calendar)`
 
   // 다른 달에 있는 날짜들
   .react-calendar__month-view__days__day--neighboringMonth {
-    color: white;
-    opacity: 0.5;
+    color: ${(props) => props.theme.colors.grey002};
   }
 `;

@@ -29,7 +29,7 @@ export const AddContainer = styled.button`
   display: flex;
   gap: 0.8rem;
   align-items: center;
-  background-color: #141415;
+  background-color: ${(props) => props.theme.colors.grey001};
   border-radius: 1.6rem;
 `;
 

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export const Container = styled.div`
   border-radius: 1.6rem;
-  background-color: #141415;
+  background-color: ${(props) => props.theme.colors.grey001};
   display: flex;
   justify-content: space-between;
   padding: 0.8rem 1.2rem;
@@ -25,7 +25,7 @@ export const TimeContainer = styled.div`
   flex-shrink: 0;
   padding-right: 0.8rem;
   margin-right: 0.8rem;
-  border-right: 0.2rem solid ${(props) => props.theme.colors.white};
+  border-right: 0.2rem solid ${(props) => props.theme.colors.tag_academy};
 `;
 
 export const Time1 = styled.div`
@@ -35,8 +35,7 @@ export const Time1 = styled.div`
 
 export const Time2 = styled.span`
   ${(props) => props.theme.typography.common.caption2};
-  color: ${(props) => props.theme.colors.white};
-  opacity: 0.7;
+  color: ${(props) => props.theme.colors.grey004};
 `;
 
 export const InfoContainer = styled.div`
@@ -51,8 +50,7 @@ export const Title = styled.div`
 
 export const Detail = styled.div<{ isDetailOpen: boolean }>`
   ${(props) => props.theme.typography.common.caption2};
-  color: ${(props) => props.theme.colors.white};
-  opacity: 0.7;
+  color: ${(props) => props.theme.colors.grey004};
   text-align: justify;
 
   ${(props) =>
