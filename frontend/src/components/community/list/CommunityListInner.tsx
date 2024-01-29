@@ -27,6 +27,7 @@ function CommunityListInner({ searchQuery, currentOption, isOnlyExecutive }: Com
     sort: currentOption?.value,
     articleGrade: executiveQuery,
   });
+
   return (
     <>
       {curPageItem.map((article) => (

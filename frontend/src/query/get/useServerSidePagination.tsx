@@ -97,7 +97,7 @@ function useServerSidePagination<T>({
   };
 
   const { data: cachingData } = useSuspenseQuery({
-    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page }],
+    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page, board, articleGrade }],
     queryFn: fetchPagiableData,
   });
 
