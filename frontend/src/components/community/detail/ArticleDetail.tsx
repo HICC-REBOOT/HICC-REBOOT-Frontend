@@ -29,6 +29,7 @@ function ArticleDetail() {
         <Comment id={articleId} />
       </A.Wrapper>
       <WriteComment id={articleId} />
+      <A.WriteCommentBlank />
     </>
   );
 }
