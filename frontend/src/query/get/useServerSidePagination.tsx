@@ -7,6 +7,7 @@ import PaginationComponent from '@components/common/pagination/PaginationCompone
 import { QUERY_KEYS } from '@constants/keys';
 import useInfinityScrollProvider from '@hooks/useInfinityScrollProvider';
 import { Board } from '@components/community/CommunityType';
+import { Grade } from '@components/type/CommonType';
 
 interface UseServerSidePaginationProps {
   uri: string;
@@ -14,6 +15,8 @@ interface UseServerSidePaginationProps {
   sort?: string;
   search?: string;
   board?: Board;
+  articleGrade?: Grade;
+  findBy?: string;
 }
 
 interface ResponseServerSidePagination<T> {
@@ -52,6 +55,8 @@ interface Pageable {
   sort?: string;
   search?: string;
   board?: Board;
+  articleGrade?: Grade;
+  findBy?: string;
 }
 
 interface ReturnuseServerSidePagination<T> {
@@ -65,6 +70,8 @@ function useServerSidePagination<T>({
   sort,
   search,
   board,
+  articleGrade,
+  findBy,
 }: UseServerSidePaginationProps): ReturnuseServerSidePagination<T> {
   const [data, setData] = useState<T[]>([]);
   const [dataLength, setDataLength] = useState<number>(0); // 데이터의 전체 길이
@@ -85,6 +92,8 @@ function useServerSidePagination<T>({
         sort,
         search,
         board,
+        articleGrade,
+        findBy,
       },
     });
 
@@ -92,7 +101,7 @@ function useServerSidePagination<T>({
   };
 
   const { data: cachingData } = useSuspenseQuery({
-    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page }],
+    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page, board, articleGrade, findBy }],
     queryFn: fetchPagiableData,
   });
 

@@ -18,3 +18,11 @@ export const Container = styled.main`
   border-top-right-radius: 2rem;
   border-bottom: 0;
 `;
+
+export const WriteCommentBlank = styled.div`
+  width: 100%;
+  height: 13.6rem;
+  flex-shrink: 0;
+
+  background-color: ${(props) => props.theme.colors.grey001};
+`;
