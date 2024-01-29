@@ -55,7 +55,7 @@ function Activity() {
           <ActivityBox {...projcetInfo} />
         </A.ActivityContainer>
         <A.BoxContainer className={'scroll'}>
-          <A.SmallBox img={''} style={{ border: '0.1rem solid rgba(255, 255, 255, 0.5)' }}>
+          <A.SmallBox $img={''} style={{ border: '0.1rem solid rgba(255, 255, 255, 0.5)' }}>
             <A.SmallBoxTitle>{'활발한\n친목도모활동'}</A.SmallBoxTitle>
             <A.SmallBoxContent>매 주 자율적으로 진행되는 세미나를 통해 기초 코딩 지식을 학습합니다</A.SmallBoxContent>
             <A.Logo>

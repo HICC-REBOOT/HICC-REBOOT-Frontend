@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
+  min-height: 70rem;
   height: 100%;
   padding: 2rem 1.6rem;
 `;
@@ -24,5 +25,5 @@ export const WriteCommentBlank = styled.div`
   height: 13.6rem;
   flex-shrink: 0;
 
-  background-color: ${(props) => props.theme.colors.grey001};
+  background-color: ${(props) => props.theme.colors.black};
 `;
