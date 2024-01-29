@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import usePatchArticle from '@query/patch/usePatchArticle';
 import processNewImage from '@utils/image/processNewImage';
-import { ArticleDetailType, Board, CommunityWriteForm, ImageInfo } from '../CommunityType';
+import { ArticleDetailType, Board, CommunityWriteForm, ImageInfo, ImageUrlSend } from '../CommunityType';
 import * as U from '../write/CommunityWrite.style';
 import TextareaInForm from '../common/TextareaInForm';
 import ImageManager from '../common/ImageManager';
@@ -52,9 +52,17 @@ function CommunityUpdate() {
   const currentImages = watch('image');
 
   const onSubmit = async (formdata: CommunityWriteForm) => {
-    const images = await processNewImage(formdata);
+    const newImages = await processNewImage(formdata);
+    const existingImagesInfo: ImageUrlSend[] = data.images.map((image) => {
+      return {
+        fileName: image.fileName,
+        fileNameExtension: image.fileNameExtension,
+        key: image.key,
+      };
+    });
+
     updateArticle({
-      images,
+      images: [...newImages, ...existingImagesInfo],
       board: currentBoard.value as Board,
       subject: formdata.title,
       content: formdata.content,
