@@ -3,9 +3,13 @@ import { ConfigProvider } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import theme from '@styles/theme';
 import useInput from '@hooks/useInput';
+import ROUTE from '@constants/route';
+import { useNavigate } from 'react-router-dom';
 import * as L from './Login.style';
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [id, setid] = useInput<string>('');
   const [pw, setPw] = useInput<string>('');
 
@@ -68,6 +72,7 @@ export default function Login() {
           </ConfigProvider>
           <L.ErrorMsg>{errorMsg2}</L.ErrorMsg>
         </L.InputWrapper>
+        <L.PasswordIssue onClick={() => navigate(ROUTE.RESET_PASSWORD)}>비밀번호 재발급</L.PasswordIssue>
         <ConfigProvider
           theme={{
             token: {

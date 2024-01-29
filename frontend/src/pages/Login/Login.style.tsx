@@ -32,6 +32,7 @@ export const Content = styled.div`
 export const Label = styled.div`
   ${(props) => props.theme.typography.common.caption2};
   color: ${(props) => props.theme.colors.point1};
+  padding-left: 1.2rem;
 `;
 
 export const InputWrapper = styled.div`
@@ -68,9 +69,17 @@ export const ErrorMsg = styled.div`
 
 export const CompleteBtn = styled(Button)`
   margin-top: 8.4rem;
-  ${(props) => props.theme.typography.common.button1};
   color: ${(props) => props.theme.colors.white};
   border-radius: 1.2rem;
   height: 4.6rem;
   width: 12.6rem;
+  > span {
+    ${(props) => props.theme.typography.common.button1};
+  }
+`;
+
+export const PasswordIssue = styled.a`
+  color: ${(props) => props.theme.colors.point2};
+  ${(props) => props.theme.typography.common.caption1};
+  align-self: flex-end;
 `;
