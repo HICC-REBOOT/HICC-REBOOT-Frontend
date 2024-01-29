@@ -13,7 +13,6 @@ interface ImageEnroll {
   fileName: string;
   fileNameExtension: string;
   key: string;
-  url: string;
 }
 
 interface UpdatePostRequestBody {
