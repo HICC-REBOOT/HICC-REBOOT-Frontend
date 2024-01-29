@@ -1,5 +1,3 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-param-reassign */
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { COOKIE_KEYS } from '@constants/keys';
 import ERROR_CODE from '@constants/error';
@@ -94,6 +92,7 @@ const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) 
     const retryOriginRequest = new Promise((resolve, reject) => {
       addSubscriber(async (token: string) => {
         try {
+          // eslint-disable-next-line no-param-reassign
           error.config.headers.Authorization = `Bearer ${token}`;
           resolve(axiosInstance(error.config));
         } catch (err) {
