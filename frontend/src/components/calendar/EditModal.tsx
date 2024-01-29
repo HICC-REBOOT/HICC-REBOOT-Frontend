@@ -4,7 +4,7 @@ import STYLE from '@constants/style';
 import theme from '@styles/theme';
 import { ConfigProvider } from 'antd';
 import { useRecoilState } from 'recoil';
-import CompleteBtn from '@assets/image/Icon_large.svg';
+import { ReactComponent as CheckIcon } from '@assets/image/icon/check.svg';
 import useModal from '@hooks/useCalendarModal';
 import { ReactComponent as TrashIcon } from '@assets/image/icon/trash.svg';
 import { ReactComponent as TimeIcon } from '@assets/image/icon/time.svg';
@@ -75,7 +75,9 @@ export default function EditModal() {
                 />
               </E.TextAreaContainer>
             </E.Content>
-            <E.CompleteBtn src={CompleteBtn} />
+            <E.CompleteBtn>
+              <CheckIcon color={theme.colors.white} />
+            </E.CompleteBtn>
           </E.Container>
         </Sheet.Content>
       </Sheet.Container>
