@@ -16,6 +16,7 @@ interface UseServerSidePaginationProps {
   search?: string;
   board?: Board;
   articleGrade?: Grade;
+  findBy?: string;
 }
 
 interface ResponseServerSidePagination<T> {
@@ -55,6 +56,7 @@ interface Pageable {
   search?: string;
   board?: Board;
   articleGrade?: Grade;
+  findBy?: string;
 }
 
 interface ReturnuseServerSidePagination<T> {
@@ -69,6 +71,7 @@ function useServerSidePagination<T>({
   search,
   board,
   articleGrade,
+  findBy,
 }: UseServerSidePaginationProps): ReturnuseServerSidePagination<T> {
   const [data, setData] = useState<T[]>([]);
   const [dataLength, setDataLength] = useState<number>(0); // 데이터의 전체 길이
@@ -90,6 +93,7 @@ function useServerSidePagination<T>({
         search,
         board,
         articleGrade,
+        findBy,
       },
     });
 
@@ -97,7 +101,7 @@ function useServerSidePagination<T>({
   };
 
   const { data: cachingData } = useSuspenseQuery({
-    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page, board, articleGrade }],
+    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page, board, articleGrade, findBy }],
     queryFn: fetchPagiableData,
   });
 

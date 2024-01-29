@@ -24,7 +24,7 @@ function CommunityListInner({ searchQuery, currentOption, isOnlyExecutive }: Com
     size: COMMON.PAGINATION.SIZE,
     board: currentBoard.value as Board,
     search: searchQuery,
-    sort: currentOption?.value,
+    findBy: currentOption?.value,
     articleGrade: executiveQuery,
   });
 

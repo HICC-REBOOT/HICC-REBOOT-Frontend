@@ -13,8 +13,8 @@ function CommunityList() {
   const [isOnlyExecutive, setIsOnlyExecutive] = useReducer((prev: boolean) => !prev, false);
 
   const options: OptionType[] = [
-    { value: 'SUBJECT', label: '글 제목' },
-    { value: 'MEMBER', label: '이름 순' },
+    { value: 'SUBJECT', label: '제목 검색' },
+    { value: 'MEMBER', label: '작성자 검색' },
   ];
 
   const { currentOption, onChange } = useDropdown({ defalutValue: options[0] });
