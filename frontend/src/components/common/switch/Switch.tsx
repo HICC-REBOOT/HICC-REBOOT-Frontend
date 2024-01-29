@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import theme from '@styles/theme';
 
@@ -7,9 +7,12 @@ const variants: Variants = {
   inactive: { cx: 12, transition: { duration: 0.2 } },
 };
 
-function Switch() {
-  const [active, setActive] = useReducer((prev: boolean) => !prev, false);
+interface SwitchProps {
+  active: boolean;
+  setActive: React.DispatchWithoutAction;
+}
 
+function Switch({ active, setActive }: SwitchProps) {
   const colorByState = () => {
     if (active) {
       return theme.colors.point1;

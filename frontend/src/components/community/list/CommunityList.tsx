@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useReducer, useState } from 'react';
 import useInput from '@hooks/useInput';
 import OptionType from '@components/common/dropdown/OptionType';
 import useDropdown from '@hooks/useDropdown';
@@ -10,6 +10,7 @@ import Skeleton from '../loading/Skeleton';
 function CommunityList() {
   const [keyword, setKeyword] = useInput<string>('');
   const [searchQuery, setSearchQuery] = useState<string | undefined>();
+  const [isOnlyExecutive, setIsOnlyExecutive] = useReducer((prev: boolean) => !prev, false);
 
   const options: OptionType[] = [
     { value: 'SUBJECT', label: '글 제목' },
@@ -26,9 +27,11 @@ function CommunityList() {
         setSearchQuery={setSearchQuery}
         options={options}
         onChange={onChange}
+        isOnlyExecutive={isOnlyExecutive}
+        setIsOnlyExecutive={setIsOnlyExecutive}
       />
       <Suspense fallback={<Skeleton />}>
-        <CommunityListInner currentOption={currentOption} searchQuery={searchQuery} />
+        <CommunityListInner currentOption={currentOption} searchQuery={searchQuery} isOnlyExecutive={isOnlyExecutive} />
       </Suspense>
     </Container>
   );
