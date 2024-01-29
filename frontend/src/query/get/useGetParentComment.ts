@@ -9,7 +9,7 @@ interface UseGetParentCommentProps {
 
 function useGetParentComment({ articleId }: UseGetParentCommentProps) {
   const fetchParentComment = async () => {
-    const response = await request<null, ParentComment, null>({
+    const response = await request<null, ParentComment[], null>({
       uri: `/api/comment/parent/${articleId}`,
       method: 'get',
     });
