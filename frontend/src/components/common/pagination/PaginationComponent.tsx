@@ -19,6 +19,7 @@ function PaginationComponent({ page, size, count, pageRange, setPage }: Paginati
         totalItemsCount={count}
         pageRangeDisplayed={pageRange}
         hideFirstLastPages
+        hideDisabled
         prevPageText={'<'}
         nextPageText={'>'}
         linkClassPrev="prev-button"
