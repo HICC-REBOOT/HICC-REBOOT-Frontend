@@ -29,23 +29,48 @@ const Content = styled.div`
 `;
 
 export default function ResetPassword() {
+  const [sid, setSid] = useInput<string>('');
   const [email, setEmail] = useInput<string>('');
-  const [errorMsg, setErrorMsg] = useState<string>('');
+  const [errorMsg1, setErrorMsg1] = useState<string>('');
+  const [errorMsg2, setErrorMsg2] = useState<string>('');
 
   const onClickBtn = () => {
-    const regex = /^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+)\.([a-zA-Z]{2,5})$/;
-    if (email.length === 0) setErrorMsg('이메일을 입력해주세요.');
-    else if (!regex.test(email)) setErrorMsg('이메일 형식이 올바르지 않습니다.');
-    else setErrorMsg('일치하는 회원정보가 없습니다.');
+    const sidRegex = /^[a-zA-Z][0-9]{6}$/;
+    if (sid.length === 0) setErrorMsg1('학번을 입력해주세요.');
+    else if (!sidRegex.test(sid)) setErrorMsg1('학번 형식이 올바르지 않습니다.');
+    else setErrorMsg1('일치하는 회원정보가 없습니다.');
+
+    const emailRegex = /^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+)\.([a-zA-Z]{2,5})$/;
+    if (email.length === 0) setErrorMsg2('이메일을 입력해주세요.');
+    else if (!emailRegex.test(email)) setErrorMsg2('이메일 형식이 올바르지 않습니다.');
+    else setErrorMsg2('일치하는 회원정보가 없습니다.');
   };
 
   useEffect(() => {
-    if (email.length > 0) setErrorMsg('');
+    if (sid.length > 0) setErrorMsg1('');
+  }, [sid]);
+  useEffect(() => {
+    if (email.length > 0) setErrorMsg2('');
   }, [email]);
 
   return (
     <Container>
       <Content>
+        <R.InputWrapper>
+          <R.Label>학번</R.Label>
+          <ConfigProvider
+            theme={{
+              token: {
+                colorBgContainer: theme.colors.grey001,
+                colorPrimary: theme.colors.point1,
+                lineWidth: 0,
+              },
+            }}
+          >
+            <R.CustomInput value={sid} onChange={setSid} />
+          </ConfigProvider>
+          <R.ErrorMsg>{errorMsg1}</R.ErrorMsg>
+        </R.InputWrapper>
         <R.InputWrapper>
           <R.Label>이메일</R.Label>
           <ConfigProvider
@@ -59,7 +84,7 @@ export default function ResetPassword() {
           >
             <R.CustomInput value={email} onChange={setEmail} />
           </ConfigProvider>
-          <R.ErrorMsg>{errorMsg}</R.ErrorMsg>
+          <R.ErrorMsg>{errorMsg2}</R.ErrorMsg>
         </R.InputWrapper>
         <ConfigProvider
           theme={{
