@@ -1,5 +1,5 @@
 import { COOKIE_KEYS } from '@constants/keys';
-import axiosInstance from '@utils/axiosInstance';
+import { axiosInstance } from '@utils/axios';
 import { setCookie } from '@utils/cookie';
 import request from '@utils/request';
 
