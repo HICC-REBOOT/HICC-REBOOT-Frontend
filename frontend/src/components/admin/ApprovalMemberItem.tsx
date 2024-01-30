@@ -2,6 +2,7 @@
 import React from 'react';
 import confirm from '@components/common/popup/confirm/Confirm';
 import usePatchApproval from '@query/patch/usePatchApproval';
+import useDeleteApproval from '@query/delete/useDeleteApproval';
 import * as A from './style/Approval.style';
 
 interface UserData {
@@ -16,12 +17,14 @@ interface MemberItemProps {
 
 export default function ApprovalMemberItem({ userData }: MemberItemProps) {
   const { updateApproval, isPending } = usePatchApproval({ approvalId: userData.id });
+  const { deleteApproval, isDeletePending } = useDeleteApproval({ approvalId: userData.id });
   const handleOk = () => {
     console.log('승인');
     updateApproval();
   };
   const handleCancel = () => {
     console.log('거절');
+    deleteApproval();
   };
   const ClickAccept = () => {
     confirm({

@@ -2,32 +2,32 @@ import { QUERY_KEYS } from '@constants/keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
 
-interface UsePatchApprovalProps {
+interface UseDeleteApprovalProps {
   approvalId: number;
 }
 
-function usePatchApproval({ approvalId }: UsePatchApprovalProps) {
-  const updateApproval = async () => {
+function useDeleteApproval({ approvalId }: UseDeleteApprovalProps) {
+  const deleteApproval = async () => {
     await request<null, null, null>({
       uri: `/api/admin/applicants/${approvalId}`,
-      method: 'patch',
+      method: 'delete',
     });
 
     return true;
   };
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ['update-approval', approvalId],
-    mutationFn: updateApproval,
+    mutationKey: ['delete-approval', approvalId],
+    mutationFn: deleteApproval,
     onSuccess: () => {
-      alert(`승인이 완료되었습니다.`);
+      alert(`승인이 거절되었습니다.`);
     },
   });
 
   return {
-    updateApproval: mutate,
-    isPending,
+    deleteApproval: mutate,
+    isDeletePending: isPending,
   };
 }
 
-export default usePatchApproval;
+export default useDeleteApproval;
