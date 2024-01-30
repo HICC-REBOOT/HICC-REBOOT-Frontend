@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import React from 'react';
 import confirm from '@components/common/popup/confirm/Confirm';
+import usePatchApproval from '@query/patch/usePatchApproval';
 import * as A from './style/Approval.style';
 
 interface UserData {
@@ -12,13 +13,16 @@ interface UserData {
 interface MemberItemProps {
   userData: UserData;
 }
-const handleOk = () => {
-  console.log('승인');
-};
-const handleCancel = () => {
-  console.log('거절');
-};
+
 export default function ApprovalMemberItem({ userData }: MemberItemProps) {
+  const { updateApproval, isPending } = usePatchApproval({ approvalId: userData.id });
+  const handleOk = () => {
+    console.log('승인');
+    updateApproval();
+  };
+  const handleCancel = () => {
+    console.log('거절');
+  };
   const ClickAccept = () => {
     confirm({
       content: `${userData.name} 님을 HICC 회원으로 승인하시겠습니다?`,
