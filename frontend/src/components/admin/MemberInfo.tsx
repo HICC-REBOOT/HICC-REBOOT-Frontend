@@ -13,16 +13,17 @@ import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
 import MemberItem from './MemberItem';
-import UserData from './dummy/dummy';
+// import UserData from './dummy/dummy';
 
 export default function MemberInfo() {
-  const [userInput, setUserInput] = useState('');
-  const [searched, setSearched] = useState(UserData.content);
   const { data } = useGetMembers();
+  const [userInput, setUserInput] = useState('');
+  const [searched, setSearched] = useState(data.content);
 
   useEffect(() => {
-    console.log(data);
+    console.log('회원 리스트 : ', searched);
   }, []);
+
   const options: OptionType[] = [
     { value: '1', label: '등급 순' },
     { value: '2', label: '이름 순' },
@@ -44,7 +45,7 @@ export default function MemberInfo() {
   };
 
   const searching = () => {
-    const filteredData = UserData.content.filter((item) => item.name.toLowerCase().includes(userInput));
+    const filteredData = data.content.filter((item) => item.name.toLowerCase().includes(userInput));
     setSearched(filteredData);
   };
 

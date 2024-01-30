@@ -4,7 +4,7 @@ import confirm from '@components/common/popup/confirm/Confirm';
 import * as A from './style/Approval.style';
 
 interface UserData {
-  major: string;
+  department: string;
   name: string;
 }
 
@@ -30,7 +30,7 @@ const handleCancel = () => {
 export default function ApprovalMemberItem({ userData }: MemberItemProps) {
   return (
     <A.MemberBox>
-      <A.Major>{userData.major}</A.Major>
+      <A.Major>{userData.department}</A.Major>
       <A.Name>{userData.name}</A.Name>
       <A.State onClick={ClickAccept}>
         <A.StateText>대기</A.StateText>

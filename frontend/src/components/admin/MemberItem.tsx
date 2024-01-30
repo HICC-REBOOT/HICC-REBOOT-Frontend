@@ -6,7 +6,7 @@ import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 
 interface UserData {
-  major: string;
+  department: string;
   name: string;
 }
 
@@ -21,7 +21,7 @@ export default function MemberItem({ userData }: MemberItemProps) {
   };
   return (
     <A.MemberBox onClick={clickEvent}>
-      <I.MemberInfoMajor>{userData.major}</I.MemberInfoMajor>
+      <I.MemberInfoMajor>{userData.department}</I.MemberInfoMajor>
       <I.MemberInfoName>{userData.name}</I.MemberInfoName>
       <I.Blank>
         <ArrowImage src={Arrow} alt="arrow" $rotated={collapsed} />
