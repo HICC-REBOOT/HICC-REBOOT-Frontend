@@ -12,15 +12,17 @@ import RadioGroup from '@components/common/radio/RadioGroup';
 import RadioType from '@components/common/radio/RadioType';
 import ExtensionModal from '@components/common/popup/confirm/ExtensionModal';
 import confirm from '@components/common/popup/confirm/Confirm';
+import useGetMembers from '@query/get/useGetMembers';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
 import ChangeGradeMemberItem from './ChangeGradeMemberItem';
-import UserData from './dummy/dummy';
+// import UserData from './dummy/dummy';
 
 export default function ChangeGrade() {
+  const { data } = useGetMembers();
   const [userInput, setUserInput] = useState('');
-  const [searched, setSearched] = useState(UserData.content);
+  const [searched, setSearched] = useState(data.content);
   const [radio, setRadio] = useState<RadioType | undefined>();
   const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
 
@@ -45,7 +47,7 @@ export default function ChangeGrade() {
   };
 
   const searching = () => {
-    const filteredData = UserData.content.filter((item) => item.name.toLowerCase().includes(userInput));
+    const filteredData = data.content.filter((item) => item.name.toLowerCase().includes(userInput));
     setSearched(filteredData);
   };
   const radios: RadioType[] = [
