@@ -76,7 +76,7 @@ const onAccessTokenFetched = (token: string) => {
 const removeRefreshAndSignOut = () => {
   removeCookie(COOKIE_KEYS.REFRESH_KEY);
   removeCookie(COOKIE_KEYS.IS_LOGIN);
-  window.location.href = ROUTE.LOGIN;
+  window.location.replace(ROUTE.LOGIN);
 };
 
 const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) => {
