@@ -1,10 +1,12 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Search from '@assets/image/icon/search.svg';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import useGetDepartments from '@query/get/useGetDepartments';
+import usePostSignup from '@query/post/usePostSignup';
 import InputMemberInfo from './InputMemberInfo';
 import * as E from './style/EnterInfo.style';
 
@@ -12,36 +14,173 @@ interface Department {
   name: string;
 }
 
+interface FormType {
+  name: string;
+  studentNumber: string;
+  password: string;
+  password_confirm: string;
+  num1: number;
+  num2: number;
+  num3: number;
+}
+
 export default function EnterInfo() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { isSubmitting, errors },
+  } = useForm();
+  const password = useRef();
+  password.current = watch('password');
   const { departments } = useGetDepartments();
+
+  const { writeSignup, isPending } = usePostSignup();
+
   const [major, setMajor] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log('학과', departments);
-  }, []);
+  const onSubmit = (data: FormType) => {
+    writeSignup({
+      studentNumber: data.studentNumber,
+      password: data.password,
+      name: data.name,
+      department: major,
+      phoneNumber: `${data.num1}-${data.num2}-${data.num3}`,
+      email: 'hongik@gmail.com',
+    });
+  };
+  // const onSubmit = (data: FormType) => {
+  //   console.log('data : ', data);
+  // };
 
   return (
-    <Container>
+    <Container onSubmit={handleSubmit(onSubmit)}>
       <E.Wrapper>
         <E.Wrapper1>
-          <InputMemberInfo label="이름(실명)" type="text" errorMessage="2글자 이상 작성해주세요" />
-          <InputMemberInfo label="아이디(학번)" type="text" errorMessage="올바른 형식으로 기입해주세요" />
-          <InputMemberInfo label="비밀번호" type="password" errorMessage="8글자 이상 입력해주세요" />
-          <InputMemberInfo label="비밀번호 확인" type="password" errorMessage="8글자 이상 입력해주세요" />
+          <E.InputWrapper>
+            <E.Label>이름(실명)</E.Label>
+            <E.InputField>
+              <E.InputFieldInput
+                id="name"
+                type="text"
+                placeholder="홍길동"
+                {...register('name', {
+                  required: true,
+                  pattern: {
+                    value: /^[가-힣]{2,7}$/,
+                    message: '2글자 이상 작성해주세요',
+                  },
+                })}
+              />
+            </E.InputField>
+            {errors.name && typeof errors.name.message === 'string' && (
+              <E.ErrorMessage>{errors.name.message}</E.ErrorMessage>
+            )}
+          </E.InputWrapper>
+          <E.InputWrapper>
+            <E.Label>아이디(학번)</E.Label>
+            <E.InputField>
+              <E.InputFieldInput
+                id="studentNumber"
+                type="text"
+                placeholder="C123456"
+                {...register('studentNumber', {
+                  required: true,
+                  pattern: {
+                    value: /^[A-Z]{1}\d{6}$/,
+                    message: '올바른 형식으로 기입해주세요',
+                  },
+                })}
+              />
+            </E.InputField>
+            {errors.studentNumber && typeof errors.studentNumber.message === 'string' && (
+              <E.ErrorMessage>{errors.studentNumber.message}</E.ErrorMessage>
+            )}
+          </E.InputWrapper>
+          <E.InputWrapper>
+            <E.Label>비밀번호</E.Label>
+            <E.InputField>
+              <E.InputFieldInput
+                id="password"
+                type="password"
+                placeholder="비밀번호를 입력하세요"
+                {...register('password', {
+                  required: true,
+                  minLength: {
+                    value: 8,
+                    message: '8글자 이상 입력해주세요',
+                  },
+                })}
+              />
+            </E.InputField>
+            {errors.password && typeof errors.password.message === 'string' && (
+              <E.ErrorMessage>{errors.password.message}</E.ErrorMessage>
+            )}
+          </E.InputWrapper>
+          <E.InputWrapper>
+            <E.Label>비밀번호 확인</E.Label>
+            <E.InputField>
+              <E.InputFieldInput
+                id="password_confirm"
+                type="password"
+                placeholder="비밀번호를 입력하세요"
+                {...register('password_confirm', {
+                  required: true,
+                  validate: (value) => value === password.current,
+                })}
+              />
+            </E.InputField>
+            {errors.password_confirm && typeof errors.password_confirm.message === 'string' && (
+              <E.ErrorMessage>일치하지 않습니다</E.ErrorMessage>
+            )}
+          </E.InputWrapper>
         </E.Wrapper1>
         <E.Wrapper2>
           <E.InputWrapper>
             <E.Label>전화번호</E.Label>
             <E.PhoneNumWrapper>
               <E.PhoneNumField>
-                <E.PhoneNumFieldInput placeholder="010" />
+                <E.PhoneNumFieldInput
+                  id="num1"
+                  type="number"
+                  placeholder="010"
+                  {...register('num1', {
+                    required: true,
+                    pattern: {
+                      value: /^\d{2,3}$/,
+                      message: '제대로 입력해주세요',
+                    },
+                  })}
+                />
               </E.PhoneNumField>
               <E.PhoneNumField>
-                <E.PhoneNumFieldInput placeholder="1234" />
+                <E.PhoneNumFieldInput
+                  id="num2"
+                  type="number"
+                  placeholder="1234"
+                  {...register('num2', {
+                    required: true,
+                    pattern: {
+                      value: /^\d{3,4}$/,
+                      message: '제대로 입력해주세요',
+                    },
+                  })}
+                />
               </E.PhoneNumField>
               <E.PhoneNumField>
-                <E.PhoneNumFieldInput placeholder="5678" />
+                <E.PhoneNumFieldInput
+                  id="num3"
+                  type="number"
+                  placeholder="5678"
+                  {...register('num3', {
+                    required: true,
+                    pattern: {
+                      value: /^\d{4}$/,
+                      message: '제대로 입력해주세요',
+                    },
+                  })}
+                />
               </E.PhoneNumField>
             </E.PhoneNumWrapper>
           </E.InputWrapper>
@@ -65,12 +204,14 @@ export default function EnterInfo() {
           </E.InputWrapper>
         </E.Wrapper2>
       </E.Wrapper>
-      <E.ContinueButton onClick={() => navigate(ROUTE.HOME)}>가입하기</E.ContinueButton>
+      <E.ContinueButton type="submit" disabled={isSubmitting || isPending}>
+        가입하기
+      </E.ContinueButton>
     </Container>
   );
 }
 
-const Container = styled.div`
+const Container = styled.form`
   width: 100%;
   min-height: 100vh;
   padding: 3.6rem 1.6rem;
