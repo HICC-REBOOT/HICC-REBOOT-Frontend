@@ -30,8 +30,8 @@ export default function EnterInfo() {
     handleSubmit,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm();
-  const password = useRef();
+  } = useForm<FormType>();
+  const password = useRef<string | null>();
   password.current = watch('password');
   const { departments } = useGetDepartments();
 
@@ -41,6 +41,15 @@ export default function EnterInfo() {
   const navigate = useNavigate();
 
   const onSubmit = (data: FormType) => {
+    console.log('제출 : ', {
+      studentNumber: data.studentNumber,
+      password: data.password,
+      name: data.name,
+      department: major,
+      phoneNumber: `${data.num1}-${data.num2}-${data.num3}`,
+      email: 'hongik@gmail.com',
+    });
+
     writeSignup({
       studentNumber: data.studentNumber,
       password: data.password,
