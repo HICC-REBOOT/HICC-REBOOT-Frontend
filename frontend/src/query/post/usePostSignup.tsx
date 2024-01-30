@@ -37,7 +37,7 @@ function usePostSignup() {
       console.log('회원가입 성공');
 
       // 등록이 완료되면 홈으로 이동
-      //   navigate(`${ROUTE.SIGNUP}`);
+      navigate(`${ROUTE.SIGNUP}`);
     },
     onError: () => {
       console.log('회원가입 실패');
