@@ -6,6 +6,7 @@ import RadioGroup from '@components/common/radio/RadioGroup';
 import RadioType from '@components/common/radio/RadioType';
 import ExtensionModal from '@components/common/popup/confirm/ExtensionModal';
 import confirm from '@components/common/popup/confirm/Confirm';
+import usePatchChangeGrade from '@query/patch/usePatchChangeGrade';
 import * as I from './style/MemberInfo.style';
 import * as A from './style/Approval.style';
 
@@ -13,6 +14,7 @@ interface UserData {
   department: string;
   name: string;
   grade: string;
+  studentNumber: string;
 }
 
 interface MemberItemProps {
@@ -20,6 +22,7 @@ interface MemberItemProps {
 }
 
 export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
+  const { updateGrade, isPending } = usePatchChangeGrade({ studentNumber: userData.studentNumber });
   const [collapsed, setCollapsed] = useState(false);
   const [option, setOption] = useState<RadioType | undefined>();
   const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
@@ -29,13 +32,13 @@ export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
       tag: '필수',
       disabled: false,
       label: '[회원]으로 등급 변경',
-      value: '1',
+      value: 'NORMAL',
     },
     {
       tag: '필수',
       disabled: true,
       label: '[운영진]으로 등급 변경',
-      value: '2',
+      value: 'EXECUTIVE',
     },
     {
       tag: '필수',
@@ -76,11 +79,16 @@ export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
   useEffect(() => {
     console.log('option : ', option);
   }, [option]);
+
   if (option?.value === '3') {
     modalInfo.onOk = popup;
   } else {
     modalInfo.onOk = () => {
-      alert(`등급변경이 완료되었습니다.`);
+      if (option?.value === 'NORMAL') {
+        updateGrade({ grade: 'NORMAL' });
+      } else {
+        updateGrade({ grade: 'EXECUTIVE' });
+      }
       setIsModalOpen();
     };
   }
