@@ -17,12 +17,21 @@ import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
 import ChangeGradeMemberItem from './ChangeGradeMemberItem';
-// import UserData from './dummy/dummy';
+
+interface ContentType {
+  id: number;
+  department: string;
+  name: string;
+  grade: string;
+  studentNumber: string;
+  phoneNumber: string;
+  approvedDate: string | null;
+}
 
 export default function ChangeGrade() {
   const { data } = useGetMembers();
   const [userInput, setUserInput] = useState('');
-  const [searched, setSearched] = useState(data.content);
+  const [searched, setSearched] = useState<ContentType[]>(data.content);
   const [radio, setRadio] = useState<RadioType | undefined>();
   const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
 

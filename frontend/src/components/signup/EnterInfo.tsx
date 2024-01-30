@@ -1,15 +1,25 @@
 /* eslint-disable no-use-before-define */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Search from '@assets/image/icon/search.svg';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
+import useGetDepartments from '@query/get/useGetDepartments';
 import InputMemberInfo from './InputMemberInfo';
 import * as E from './style/EnterInfo.style';
 
+interface Department {
+  name: string;
+}
+
 export default function EnterInfo() {
+  const { departments } = useGetDepartments();
   const [major, setMajor] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log('학과', departments);
+  }, []);
 
   return (
     <Container>
@@ -44,21 +54,11 @@ export default function EnterInfo() {
               </E.DropDown>
               <E.ScrollContainer>
                 <E.ScrollBox>
-                  <E.ScrollItem onClick={() => setMajor('시각디자인과')}>
-                    <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
-                  </E.ScrollItem>
-                  <E.ScrollItem onClick={() => setMajor('시각디자인과')}>
-                    <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
-                  </E.ScrollItem>
-                  <E.ScrollItem onClick={() => setMajor('시각디자인과')}>
-                    <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
-                  </E.ScrollItem>
-                  <E.ScrollItem onClick={() => setMajor('시각디자인과')}>
-                    <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
-                  </E.ScrollItem>
-                  <E.ScrollItem onClick={() => setMajor('시각디자인과')}>
-                    <E.ScrollDropDownItem>시각디자인과</E.ScrollDropDownItem>
-                  </E.ScrollItem>
+                  {departments.data.map((department: Department, index: number) => (
+                    <E.ScrollItem key={index} onClick={() => setMajor(department.name)}>
+                      <E.ScrollDropDownItem>{department.name}</E.ScrollDropDownItem>
+                    </E.ScrollItem>
+                  ))}
                 </E.ScrollBox>
               </E.ScrollContainer>
             </E.DropDownWrapper>

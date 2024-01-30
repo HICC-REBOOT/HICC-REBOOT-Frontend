@@ -5,34 +5,32 @@ import request from '@utils/request';
 interface ApprovalList {
   content: [
     {
-      grade: string;
+      id: number;
+      department: string;
       name: string;
-      id: string;
-      major: string;
-      phone_number: string;
     },
   ];
   pageable: {
+    pageNumber: number;
+    pageSize: number;
     sort: {
       empty: boolean;
-      sorted: boolean;
       unsorted: boolean;
+      sorted: boolean;
     };
     offset: number;
-    pageSize: number;
-    pageNumber: number;
     paged: boolean;
     unpaged: boolean;
   };
   last: boolean;
-  totalPages: number;
   totalElements: number;
+  totalPages: number;
   size: number;
   number: number;
   sort: {
     empty: boolean;
-    sorted: boolean;
     unsorted: boolean;
+    sorted: boolean;
   };
   first: boolean;
   numberOfElements: number;

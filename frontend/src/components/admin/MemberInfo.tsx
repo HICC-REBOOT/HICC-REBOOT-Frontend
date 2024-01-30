@@ -13,12 +13,21 @@ import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
 import MemberItem from './MemberItem';
-// import UserData from './dummy/dummy';
+
+interface ContentType {
+  id: number;
+  department: string;
+  name: string;
+  grade: string;
+  studentNumber: string;
+  phoneNumber: string;
+  approvedDate: string | null;
+}
 
 export default function MemberInfo() {
   const { data } = useGetMembers();
   const [userInput, setUserInput] = useState('');
-  const [searched, setSearched] = useState(data.content);
+  const [searched, setSearched] = useState<ContentType[]>(data.content);
 
   useEffect(() => {
     console.log('회원 리스트 : ', searched);
