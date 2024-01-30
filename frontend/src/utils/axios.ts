@@ -126,6 +126,13 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(axiosError);
     }
 
+    // 403에러 시 뒤로가기
+    if (axiosError?.data.code === ERROR_CODE.FORBIDDEN) {
+      alert('당신 아직 승인대기이군요. 권한을 부여받으세요');
+      window.history.back();
+      return Promise.reject(axiosError);
+    }
+
     return Promise.reject(error);
   },
 );
