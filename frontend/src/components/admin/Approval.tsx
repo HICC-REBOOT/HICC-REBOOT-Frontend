@@ -1,22 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { CollapseProps } from 'antd';
 import { Collapse, ConfigProvider } from 'antd';
+import useGetApprovalList from '@query/get/useGetApprovalList';
 import * as A from './style/Approval.style';
 import MemberDetail from './MemberDetail';
 import ApprovalMemberItem from './ApprovalMemberItem';
 import UserData from './dummy/dummy';
 
-const items: CollapseProps['items'] = UserData.content.map((user, index) => ({
-  key: String(index + 1),
-  label: <ApprovalMemberItem userData={user} />,
-  children: <MemberDetail userData={user} />,
-  showArrow: false,
-}));
-
 export default function Approval() {
-  const onChange = (key: string | string[]) => {
-    console.log(key);
-  };
+  // const { approvalList } = useGetApprovalList();
+  // useEffect(() => {
+  //   console.log(approvalList);
+  // }, []);
+  const items: CollapseProps['items'] = UserData.content.map((user, index) => ({
+    key: String(index + 1),
+    label: <ApprovalMemberItem userData={user} />,
+    children: <MemberDetail userData={user} />,
+    showArrow: false,
+  }));
 
   return (
     <A.MembersBox>
@@ -39,7 +40,7 @@ export default function Approval() {
           },
         }}
       >
-        <Collapse bordered={false} ghost={true} items={items} onChange={onChange} />
+        <Collapse bordered={false} ghost={true} items={items} />
       </ConfigProvider>
     </A.MembersBox>
   );

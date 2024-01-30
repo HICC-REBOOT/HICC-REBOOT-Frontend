@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import type { CollapseProps } from 'antd';
@@ -8,7 +8,7 @@ import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
-import { SettingOutlined } from '@ant-design/icons';
+import useGetMembers from '@query/get/useGetMembers';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 import MemberDetail from './MemberDetail';
@@ -18,7 +18,11 @@ import UserData from './dummy/dummy';
 export default function MemberInfo() {
   const [userInput, setUserInput] = useState('');
   const [searched, setSearched] = useState(UserData.content);
+  const { data } = useGetMembers();
 
+  useEffect(() => {
+    console.log(data);
+  }, []);
   const options: OptionType[] = [
     { value: '1', label: '등급 순' },
     { value: '2', label: '이름 순' },
@@ -43,6 +47,7 @@ export default function MemberInfo() {
     const filteredData = UserData.content.filter((item) => item.name.toLowerCase().includes(userInput));
     setSearched(filteredData);
   };
+
   return (
     <>
       <I.SearchBar>
