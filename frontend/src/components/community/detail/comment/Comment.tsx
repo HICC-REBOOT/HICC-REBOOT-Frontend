@@ -13,7 +13,7 @@ function Comment({ id }: CommentProps) {
   const { nestedComments } = useGetNestedComment({ articleId: id });
   return (
     <>
-      <C.Count>댓글 {comments.length}</C.Count>
+      <C.Count>댓글 {comments.length + nestedComments.length}</C.Count>
       {comments.map((comment) => (
         <EachComment key={comment.commentId} comment={comment} nestedComments={nestedComments} />
       ))}
