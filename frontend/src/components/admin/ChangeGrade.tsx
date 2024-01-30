@@ -8,10 +8,6 @@ import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
-import RadioGroup from '@components/common/radio/RadioGroup';
-import RadioType from '@components/common/radio/RadioType';
-import ExtensionModal from '@components/common/popup/confirm/ExtensionModal';
-import confirm from '@components/common/popup/confirm/Confirm';
 import useGetMembers from '@query/get/useGetMembers';
 import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
@@ -32,8 +28,6 @@ export default function ChangeGrade() {
   const { data } = useGetMembers();
   const [userInput, setUserInput] = useState('');
   const [searched, setSearched] = useState<ContentType[]>(data.content);
-  const [radio, setRadio] = useState<RadioType | undefined>();
-  const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
 
   const options: OptionType[] = [
     { value: '1', label: '등급 순' },
@@ -46,7 +40,7 @@ export default function ChangeGrade() {
 
   const items: CollapseProps['items'] = searched.map((user, index) => ({
     key: String(index + 1),
-    label: <ChangeGradeMemberItem userData={user} onClick={setIsModalOpen} />,
+    label: <ChangeGradeMemberItem userData={user} />,
     children: <MemberDetail userData={user} />,
     showArrow: false,
   }));
@@ -59,45 +53,7 @@ export default function ChangeGrade() {
     const filteredData = data.content.filter((item) => item.name.toLowerCase().includes(userInput));
     setSearched(filteredData);
   };
-  const radios: RadioType[] = [
-    {
-      tag: '필수',
-      disabled: false,
-      label: '[회원]으로 등급 변경',
-      value: '1',
-    },
-    {
-      tag: '필수',
-      disabled: false,
-      label: '[운영진]으로 등급 변경',
-      value: '2',
-    },
-    {
-      tag: '필수',
-      disabled: false,
-      label: '강제 탈퇴',
-      value: '3',
-    },
-  ];
 
-  const popup = () => {
-    confirm({
-      content: '정말 탈퇴?',
-      okText: '탈퇴',
-      cancelText: '취소',
-      isDangerous: true,
-      onOk: () => console.log('d'),
-    });
-  };
-
-  const modalInfo = {
-    close: setIsModalOpen,
-    title: '[회원] 장윤영 님에 대한 회원 정보를 수정합니다.',
-    content: <RadioGroup options={radios} currentOption={radio} setCurrentOption={setRadio} />,
-    okText: '확인',
-    cancelText: '취소',
-    onOk: popup,
-  };
   return (
     <>
       <I.SearchBar>
@@ -130,7 +86,6 @@ export default function ChangeGrade() {
           <Collapse bordered={false} ghost={true} items={items} />
         </ConfigProvider>
       </A.MembersBox>
-      {modalOpen && <ExtensionModal {...modalInfo} />}
     </>
   );
 }
