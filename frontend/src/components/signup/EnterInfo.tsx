@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import useGetDepartments from '@query/get/useGetDepartments';
 import usePostSignup from '@query/post/usePostSignup';
-import InputMemberInfo from './InputMemberInfo';
 import * as E from './style/EnterInfo.style';
 
 interface Department {
