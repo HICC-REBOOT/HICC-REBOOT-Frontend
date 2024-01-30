@@ -212,6 +212,7 @@ export const ContinueButton = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.button1}
+  white-space:nowrap;
   cursor: pointer;
   &:active {
     opacity: 0.5;

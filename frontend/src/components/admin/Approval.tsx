@@ -1,5 +1,4 @@
 import React from 'react';
-import { CaretRightOutlined } from '@ant-design/icons';
 import type { CollapseProps } from 'antd';
 import { Collapse, ConfigProvider } from 'antd';
 import * as A from './style/Approval.style';

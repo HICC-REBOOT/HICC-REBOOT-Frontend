@@ -128,6 +128,7 @@ export const State = styled.div`
   flex-shrink: 0;
   border-radius: 1.5rem;
   background: ${(props) => props.theme.colors.point1};
+  white-space: nowrap;
 `;
 export const StateText = styled.div`
   color: ${(props) => props.theme.colors.white};
