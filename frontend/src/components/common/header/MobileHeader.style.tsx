@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import logo from '@assets/image/logo.svg';
 import STYLE from '@constants/style';
 
-export const Container = styled.nav<{ home: boolean }>`
+export const Container = styled.nav<{ $home: boolean }>`
   display: flex;
   position: fixed;
   top: 0;
@@ -17,7 +17,7 @@ export const Container = styled.nav<{ home: boolean }>`
   z-index: ${STYLE.Z_INDEX.TOP_PRIORITY};
 
   border: none;
-  background-color: ${(props) => (props.home ? props.theme.colors.grey001 : props.theme.colors.black)};
+  background-color: ${(props) => (props.$home ? props.theme.colors.grey001 : props.theme.colors.black)};
 `;
 
 export const Logo = styled(Link)`

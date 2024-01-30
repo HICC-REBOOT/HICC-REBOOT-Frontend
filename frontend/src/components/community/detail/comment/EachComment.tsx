@@ -5,6 +5,7 @@ import Buttons from '@components/community/common/Buttons';
 import useNestedComment from '@hooks/useNestedComment';
 import * as EA from './EachComment.style';
 import NestedComment from '../nestedComment/NestedComment';
+import useDeleteComment from '../../../../query/delete/useDeleteComment';
 
 interface EachCommentProps {
   comment: ParentComment;
@@ -18,7 +19,13 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
     selectedNested(commentId);
   };
 
-  const deleteComment = (commentId: number) => {};
+  const { deleteComment, isPending } = useDeleteComment({ articleId: comment.articleId, commentId: comment.commentId });
+
+  const deleteThisComment = () => {
+    if (window.confirm('정말 이 댓글을 삭제하시겠습니까?')) {
+      deleteComment();
+    }
+  };
 
   const getNestedCommentByParent = () => {
     const nestedCommentByParent = nestedComments.filter(
@@ -39,8 +46,12 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
       <WriteInfo grade={comment.grade} name={comment.name} date={comment.date} />
       <EA.Content>{comment.content}</EA.Content>
       <Buttons
-        normal={{ label: '답글 달기', onClick: () => enrollNestedComment(comment.commentId), show: true }}
-        dangerous={{ label: '삭제', onClick: () => deleteComment(comment.commentId), show: comment.isMine }}
+        normal={{
+          label: '답글 달기',
+          onClick: () => enrollNestedComment(comment.commentId),
+          show: true,
+        }}
+        dangerous={{ label: '삭제', onClick: deleteThisComment, show: comment.isMine, disabled: isPending }}
       />
       {getNestedCommentByParent()}
     </EA.Container>

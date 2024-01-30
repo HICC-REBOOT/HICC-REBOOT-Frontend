@@ -1,17 +1,25 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-param-reassign */
-import { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { COOKIE_KEYS } from '@constants/keys';
-import reissue from '@auth/reissue';
-import { removeCookie } from './cookie';
-import axiosInstance from './axiosInstance';
+import ERROR_CODE from '@constants/error';
+import { getCookie, removeCookie } from '@utils/cookie';
+import ROUTE from '@constants/route';
+import BASE_URL from '../config';
 
 // error 형태, 이는 백엔드의 상황을 보고 변경
 export interface IError {
-  status: number;
   code: string;
+  path: string;
   reason: string;
+  status: number;
+  statusCode: string;
+  success: boolean;
+  timestamp: string;
 }
+
+export const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
 
 axiosInstance.interceptors.request.use(async (config) => {
   if (!config.headers) {
@@ -20,6 +28,30 @@ axiosInstance.interceptors.request.use(async (config) => {
 
   return config;
 });
+
+interface AccessToken {
+  accessToken: string;
+}
+
+interface AccessTokenRefresh {
+  data: AccessToken;
+}
+
+async function reissue() {
+  const refresh = getCookie(COOKIE_KEYS.REFRESH_KEY);
+
+  const response = await axiosInstance.get<AccessTokenRefresh>('/api/auth/refresh', {
+    headers: {
+      'Authorization-refresh': `Bearer ${refresh}`,
+    },
+  });
+
+  // 헤더에 access token 자동으로 설정
+  axiosInstance.defaults.headers.common.Authorization = `Bearer ${response.data.data.accessToken}`;
+
+  // 끊겼던 요청들을 재처리하기위해 access token return
+  return response.data.data.accessToken;
+}
 
 const getAxiosError = (error: AxiosError): AxiosResponse<IError, any> | undefined => {
   const serverError = error as AxiosError<IError>;
@@ -43,7 +75,8 @@ const onAccessTokenFetched = (token: string) => {
 // 인증 에러시 로그아웃 시킴
 const removeRefreshAndSignOut = () => {
   removeCookie(COOKIE_KEYS.REFRESH_KEY);
-  window.location.href = '/login';
+  removeCookie(COOKIE_KEYS.IS_LOGIN);
+  window.location.href = ROUTE.LOGIN;
 };
 
 const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) => {
@@ -51,6 +84,7 @@ const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) 
     const retryOriginRequest = new Promise((resolve, reject) => {
       addSubscriber(async (token: string) => {
         try {
+          // eslint-disable-next-line no-param-reassign
           error.config.headers.Authorization = `Bearer ${token}`;
           resolve(axiosInstance(error.config));
         } catch (err) {
@@ -81,8 +115,14 @@ axiosInstance.interceptors.response.use(
     const axiosError = getAxiosError(error as AxiosError);
 
     // 401에러 시 리프레시를 사용해서 토큰 발급 뒤 다시 요청
-    if (axiosError?.data.status === 401) {
+    if (axiosError?.data.code === ERROR_CODE.ACCESS_EXPIRED) {
       return resetTokenAndReattemptRequest(axiosError);
+    }
+
+    // 리프레시 만료 시 로그아웃 처리
+    if (axiosError?.data.code === ERROR_CODE.REFRESH_EXPIRED) {
+      removeRefreshAndSignOut();
+      return Promise.reject(axiosError);
     }
 
     return Promise.reject(error);

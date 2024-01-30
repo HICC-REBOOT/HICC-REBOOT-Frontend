@@ -3,22 +3,42 @@ import useInput from '@hooks/useInput';
 import { ReactComponent as Send } from '@assets/image/icon/send.svg';
 import useNestedComment from '@hooks/useNestedComment';
 import useOutsideClick from '@hooks/useOutsideClick';
+import usePostComment from '@query/post/usePostComment';
+import usePostNestedComment from '@query/post/usePostNestedComment';
 import * as WC from './WriteComment.style';
 
-function WriteComment() {
+interface WriteCommentProps {
+  id: number;
+}
+
+function WriteComment({ id }: WriteCommentProps) {
   const [comment, setComment] = useInput<string>('');
 
-  const onSubmit = () => {
-    if (comment.trim() === '') return null;
-
-    // 백엔드 연결
-    return 'hello';
-  };
-
   const writeCommentRef = useRef(null);
+
   const { nestedId, outsideClick } = useNestedComment();
+  const { writeComment, isPending: isCommentPending } = usePostComment({ articleId: id });
+  const { writeNestedComment, isPending: isNestedPending } = usePostNestedComment({ articleId: id });
 
   useOutsideClick(writeCommentRef, outsideClick);
+
+  const onSubmit = () => {
+    // pending 상태라면 요청하지 않기
+    if (isCommentPending || isNestedPending) return null;
+
+    if (comment.trim() === '') return null;
+
+    // 댓글 작성일 때는 댓글 작성
+    if (nestedId === null) {
+      writeComment(comment);
+      setComment('');
+      return null;
+    }
+
+    writeNestedComment({ parentCommentId: nestedId, content: comment });
+    setComment('');
+    return null;
+  };
 
   const makePlaceholder = () => {
     if (nestedId !== null) {
