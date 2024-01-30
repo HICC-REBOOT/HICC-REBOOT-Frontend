@@ -1,10 +1,10 @@
 import { COOKIE_KEYS } from '@constants/keys';
-import axiosInstance from '@utils/axiosInstance';
+import { axiosInstance } from '@utils/axios';
 import { setCookie } from '@utils/cookie';
 import request from '@utils/request';
 
 interface LoginRequest {
-  id: string;
+  studentNumber: string;
   password: string;
 }
 
@@ -13,10 +13,14 @@ interface Token {
   refreshToken: string;
 }
 
-async function login() {
+async function login({ studentNumber, password }: LoginRequest) {
   const response = await request<LoginRequest, Token, null>({
     uri: '/api/auth/login',
     method: 'post',
+    data: {
+      studentNumber,
+      password,
+    },
   });
 
   // refresh token cookie save

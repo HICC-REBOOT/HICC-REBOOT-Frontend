@@ -5,6 +5,8 @@ import theme from '@styles/theme';
 import useInput from '@hooks/useInput';
 import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
+import login from '@auth/login';
+import useAuth from '@hooks/useAuth';
 import * as L from './Login.style';
 
 export default function Login() {
@@ -16,9 +18,15 @@ export default function Login() {
   const [errorMsg1, setErrorMsg1] = useState<string>('');
   const [errorMsg2, setErrorMsg2] = useState<string>('');
 
-  const onClickBtn = () => {
+  const { setIsLogin } = useAuth();
+
+  const onClickBtn = async () => {
     if (id.length === 0) setErrorMsg1('아이디를 입력해주세요.');
     if (pw.length === 0) setErrorMsg2('비밀번호를 입력해주세요.');
+
+    await login({ studentNumber: id, password: pw });
+    setIsLogin(true);
+    navigate(ROUTE.HOME);
   };
 
   useEffect(() => {

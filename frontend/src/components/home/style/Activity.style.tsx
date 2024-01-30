@@ -330,7 +330,7 @@ export const BoxContainer = styled.div`
   `}
 `;
 
-export const SmallBox = styled.div<{ img: string }>`
+export const SmallBox = styled.div<{ $img: string }>`
   border-radius: 1.6rem;
   border: 0.1rem, solid;
   border-radius: 1.6rem;

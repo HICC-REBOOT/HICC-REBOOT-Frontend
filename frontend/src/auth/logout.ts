@@ -4,7 +4,7 @@ import request from '@utils/request';
 
 async function logout() {
   await request<null, null, null>({
-    uri: '/api/logout',
+    uri: '/api/auth/logout',
     method: 'patch',
   });
 

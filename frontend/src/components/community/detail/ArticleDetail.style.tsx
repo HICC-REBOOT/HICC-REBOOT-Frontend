@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
+  min-height: 70rem;
   height: 100%;
   padding: 2rem 1.6rem;
 `;
@@ -17,4 +18,12 @@ export const Container = styled.main`
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
   border-bottom: 0;
+`;
+
+export const WriteCommentBlank = styled.div`
+  width: 100%;
+  height: 13.6rem;
+  flex-shrink: 0;
+
+  background-color: ${(props) => props.theme.colors.black};
 `;

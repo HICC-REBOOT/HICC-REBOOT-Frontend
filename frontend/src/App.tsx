@@ -30,6 +30,7 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
+        {/* admin */}
         <Route path={ROUTE.ADMIN.BASE} element={<Admin />}>
           <Route path={ROUTE.ADMIN.APPROVAL} element={<Approval />} />
           <Route path={ROUTE.ADMIN.INFO} element={<MemberInfo />} />
@@ -41,6 +42,7 @@ function App() {
         <Route path={ROUTE.ENTERINFO} element={<EnterInfo />} />
         <Route path={ROUTE.LOGIN} element={<Login />} />
         <Route path={ROUTE.RESET_PASSWORD} element={<ResetPassword />} />
+        {/* community */}
         <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
           <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
@@ -49,10 +51,12 @@ function App() {
           <Route path={ROUTE.COMMUNITY.NOT_FOUND} element={<NotFound />} />
         </Route>
         <Route path={ROUTE.PROFILE.MYINFO} element={<MyInfomation />} />
+        {/* mypage */}
         <Route path={ROUTE.PROFILE.BASE} element={<MyPage />}>
           <Route path={ROUTE.PROFILE.MYWRITINGS} element={<MyWritings />} />
           <Route path={ROUTE.PROFILE.MYCOMMENTS} element={<MyComments />} />
         </Route>
+        {/* dev */}
         <Route path={ROUTE.TEMP.BASE} element={<Temp />}>
           <Route path={ROUTE.TEMP.APPLE} element={<Temp1 />} />
           <Route path={ROUTE.TEMP.BANANA} element={<Temp2 />} />

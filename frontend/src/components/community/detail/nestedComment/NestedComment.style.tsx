@@ -31,8 +31,8 @@ export const P = styled.p`
   ${(props) => props.theme.typography.common.caption1};
 `;
 
-export const DeleteButton = styled.button<{ isMine: boolean }>`
-  display: ${(props) => (props.isMine ? 'flex' : 'none')};
+export const DeleteButton = styled.button<{ $isMine: boolean }>`
+  display: ${(props) => (props.$isMine ? 'flex' : 'none')};
   margin-top: 1rem;
   padding: 0.8rem 1.2rem;
   justify-content: center;
