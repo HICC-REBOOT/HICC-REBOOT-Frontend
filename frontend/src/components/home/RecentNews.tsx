@@ -2,6 +2,8 @@ import React from 'react';
 import useGetLatestNews from '@query/get/useGetLatestNews';
 import { Grade, GRADE_ENUM } from '@components/type/CommonType';
 import * as R from '@components/home/style/RecentNews.style';
+import { useNavigate } from 'react-router-dom';
+import ROUTE from '@constants/route';
 
 interface News {
   articleId: number;
@@ -15,6 +17,13 @@ interface News {
 function RecentNews() {
   const newsResponse = useGetLatestNews(); // Retrieve the entire response object
   const NEWS_ITEMS = newsResponse.data;
+  console.log(NEWS_ITEMS);
+
+  const navigate = useNavigate();
+
+  const goDetail = (article: News) => {
+    navigate(`${ROUTE.COMMUNITY.BASE}/${article.articleId}`);
+  };
 
   return (
     <R.Container>
@@ -25,7 +34,7 @@ function RecentNews() {
         <R.NewsList>
           {newsResponse &&
             Object.values(NEWS_ITEMS).map((item: News, index: number) => (
-              <R.NewsBox key={index}>
+              <R.NewsBox key={index} onClick={() => goDetail(item)}>
                 <R.NewsTitle>{item.subject}</R.NewsTitle>
                 <R.NewsBottom>
                   <R.Label>{GRADE_ENUM[item.grade]}</R.Label>
