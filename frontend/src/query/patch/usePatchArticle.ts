@@ -41,10 +41,10 @@ function usePatchArticle() {
     mutationKey: [QUERY_KEYS.UPDATE_ARTICLE],
     mutationFn: updateArticle,
     onSuccess: (articleId: number) => {
-      queryClient.invalidateQueries({
+      queryClient.removeQueries({
         queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
       });
-      queryClient.invalidateQueries({
+      queryClient.removeQueries({
         queryKey: [QUERY_KEYS.GET_ARTICLE_DETAIL, articleId],
       });
 
