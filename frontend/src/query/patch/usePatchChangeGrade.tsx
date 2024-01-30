@@ -11,7 +11,7 @@ interface UpdateGradeRequestBody {
 function usePatchChangeGrade({ studentNumber }: UsePatchGradeProps) {
   const updateGrade = async (data: UpdateGradeRequestBody) => {
     await request<UpdateGradeRequestBody, null, null>({
-      uri: `/api/admin/applicants/${studentNumber}`,
+      uri: `/api/admin/president/members/${studentNumber}`,
       method: 'patch',
       data,
     });

@@ -7,6 +7,7 @@ import RadioType from '@components/common/radio/RadioType';
 import ExtensionModal from '@components/common/popup/confirm/ExtensionModal';
 import confirm from '@components/common/popup/confirm/Confirm';
 import usePatchChangeGrade from '@query/patch/usePatchChangeGrade';
+import useDeleteMember from '@query/delete/useDeleteMember';
 import * as I from './style/MemberInfo.style';
 import * as A from './style/Approval.style';
 
@@ -23,6 +24,7 @@ interface MemberItemProps {
 
 export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
   const { updateGrade, isPending } = usePatchChangeGrade({ studentNumber: userData.studentNumber });
+  const { deleteMember, isDeletePending } = useDeleteMember({ studentNumber: userData.studentNumber });
   const [collapsed, setCollapsed] = useState(false);
   const [option, setOption] = useState<RadioType | undefined>();
   const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
@@ -63,7 +65,7 @@ export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
       okText: '강제 탈퇴',
       cancelText: '취소',
       isDangerous: true,
-      onOk: () => console.log('d'),
+      onOk: () => deleteMember(),
       close: setIsModalOpen,
     });
   };
