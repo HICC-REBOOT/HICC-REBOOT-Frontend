@@ -105,6 +105,7 @@ const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) 
     return retryOriginRequest;
   } catch (newError) {
     removeRefreshAndSignOut();
+    alert('로그인 후 이용할 수 있습니다.');
     return Promise.reject(newError);
   }
 };
