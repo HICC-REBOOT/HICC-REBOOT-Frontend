@@ -1,44 +1,45 @@
 import React, { useState } from 'react';
-
+import COMMON from '@constants/common';
+import useServerSidePagination from '@query/get/useServerSidePagination';
+import { useNavigate } from 'react-router-dom';
+import ROUTE from '@constants/route';
+import * as C from '@components/mypage/style/MyPageComponent.style';
 import * as M from './style/MyComments.style';
 
+interface Comment {
+  articleId: number; // 게시글 ID
+  commentId: number; // 댓글 ID
+  subject: string; // 게시글 제목
+  content: string; // 댓글 내용
+}
+
 function MyComments() {
-  const FIGURE_ITEMS = [
-    {
-      title: '일이삼사오육칠팔구십일이삼사오육칠팔구',
-      content:
-        '내용이다 내용 내용이야 내용 내용입니다 내용이에요내용 내용을 출력해보아요 내용 내용내용 내용 용띠의 해  용띠의 해  용띠의 해. 이 뒤의 내용은 text가 2줄을 넘어갔을 때 어떻게 되는지 보기 위한 글입니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다. 근데 더 이상 할 말이 없습니다.',
-    },
-    {
-      title: '일이삼사오육칠팔구십일이삼사오육칠팔구',
-      content:
-        '내용이다 내용 내용이야 내용 내용입니다 내용이에요내용 내용을 출력해보아요 내용 내용내용 내용 용띠의 해  용띠의 해  용띠의 해 ',
-    },
-    {
-      title: '일이삼사오육칠팔구십일이삼사오육칠팔구',
-      content:
-        '내용이다 내용 내용이야 내용 내용입니다 내용이에요내용 내용을 출력해보아요 내용 내용내용 내용 용띠의 해  용띠의 해  용띠의 해 ',
-    },
-    {
-      title: '일이삼사오육칠팔구십일이삼사오육칠팔구',
-      content:
-        '내용이다 내용 내용이야 내용 내용입니다 내용이에요내용 내용을 출력해보아요 내용 내용내용 내용 용띠의 해  용띠의 해  용띠의 해 ',
-    },
-  ];
-  const [writtingState, setWrittingState] = useState(true);
+  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<Comment>({
+    uri: '/api/profile/comments',
+    size: COMMON.PAGINATION.SIZE,
+  });
+  console.log(curPageItem);
+
+  const navigate = useNavigate();
+
+  const goDetail = (article: Comment) => {
+    console.log(article.articleId);
+    navigate(`${ROUTE.COMMUNITY.BASE}/${article.articleId}`);
+  };
+
   return (
     <M.Container>
       <M.GroupContainer>
         <M.ContentsContainer>
-          {FIGURE_ITEMS.map((item, index) => (
-            <M.ContentsArea key={item.title}>
-              <M.ContentsTitle>{item.title}</M.ContentsTitle>
+          {Object.values(curPageItem).map((item: Comment, index: number) => (
+            <M.ContentsArea key={index} onClick={() => goDetail(item)}>
+              <M.ContentsTitle>{item.subject}</M.ContentsTitle>
               <M.Contents>{item.content}</M.Contents>
-              <M.ModifyButton>수정</M.ModifyButton>
               <M.DeleteButton>삭제</M.DeleteButton>
               <M.Divider />
             </M.ContentsArea>
           ))}
+          <C.PageSelectArea>{renderPaginationBtnOrInfinityScroll()}</C.PageSelectArea>
         </M.ContentsContainer>
       </M.GroupContainer>
     </M.Container>

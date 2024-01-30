@@ -25,6 +25,7 @@ export const GroupContainer = styled.div`
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
+  height: auto;
   ${(props) => props.theme.media.mobile`
     margin-top: 1.2rem;
     width: 32.8rem;
@@ -138,24 +139,20 @@ export const ContentsContainer = styled.div`
   align-items: flex-start;
   ${(props) => props.theme.media.mobile`
     width: 32.8rem;
-    height: 65.3rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     width: 53.4rem;
-    height: 81.4rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     top: 6.4rem;
     width: 103.4rem;
-    height: 163.6rem;
   `}
 
   ${(props) => props.theme.media.wide`
     top: 6.4rem;
     width: 103.4rem;
-    height: 163.6rem;
   `}
 `;
 
@@ -169,6 +166,7 @@ export const ContentsArea = styled.div`
   padding: 2rem;
   gap: 1.2rem;
   white-space: nowrap;
+  cursor: pointer;
   ${(props) => props.theme.media.mobile`
     width: 32.8rem;
     height: 16.2rem;
