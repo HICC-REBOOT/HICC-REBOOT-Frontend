@@ -4,6 +4,7 @@ import { FallbackProps } from 'react-error-boundary';
 import { IError } from '@utils/axios';
 import { useNavigate } from 'react-router-dom';
 import * as E from './GlobalError.style';
+import GradientButton from '../button/GradientButton';
 
 const errorTemplate = Object.freeze({
   title: `Oops!`,
@@ -25,7 +26,9 @@ function GlobalError({ error }: FallbackProps) {
       <E.Oops>{errorTemplate.title}</E.Oops>
       <E.ErrorMessage>{errorMessage.reason}</E.ErrorMessage>
       <E.ErrorMessage>{errorTemplate.message}</E.ErrorMessage>
-      <E.NavigatePreButton onClick={() => navigate(-1)}>{errorTemplate.button}</E.NavigatePreButton>
+      <GradientButton type="button" onClick={() => navigate(-1)}>
+        <p>페이지 새로고침</p>
+      </GradientButton>
     </E.Container>
   );
 }
