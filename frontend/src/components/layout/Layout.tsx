@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { Suspense, useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import useSidebar from '@hooks/useSidebar';
 
@@ -12,12 +12,17 @@ import Footer from '@components/common/footer/Footer';
 import * as L from './style/Layout.style';
 
 function Layout() {
-  const { isSidebarOpen, changeSidebarState } = useSidebar();
+  const { isSidebarOpen, closeSidebar } = useSidebar();
+  const location = useLocation();
+
+  useEffect(() => {
+    closeSidebar();
+  }, [closeSidebar, location.pathname]);
 
   return (
     <L.Container>
       <Suspense fallback={<Loading />}>
-        <AnimatePresence>{isSidebarOpen && <Sidebar close={changeSidebarState} />}</AnimatePresence>
+        <AnimatePresence>{isSidebarOpen && <Sidebar close={closeSidebar} />}</AnimatePresence>
         <Header />
         <MobileHeader />
         <Outlet />

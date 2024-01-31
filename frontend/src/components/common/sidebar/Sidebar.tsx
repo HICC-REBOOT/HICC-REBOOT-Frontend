@@ -3,7 +3,7 @@ import { NotDesktop } from '@assets/mediaQuery';
 import { Variants } from 'framer-motion';
 import Close from '@assets/image/icon/close.svg';
 import ROUTE from '@constants/route';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useAuth from '@hooks/useAuth';
 import logout from '@auth/logout';
 import * as S from './Sidebar.style';
@@ -21,7 +21,6 @@ function Sidebar({ close }: SidebarProps) {
     exit: { height: 0, top: `-${height}`, transition: { duration: 0.3 } },
   };
 
-  const location = useLocation();
   const { isLogin, isAdmin, setIsLogin } = useAuth();
   const navigate = useNavigate();
 
@@ -32,10 +31,6 @@ function Sidebar({ close }: SidebarProps) {
   useEffect(() => {
     setHeight(isLoginAndAdmin ? '39.5rem' : '34rem');
   }, [isLoginAndAdmin]);
-
-  useEffect(() => {
-    close();
-  }, [close, location.pathname]);
 
   const setLogout = async () => {
     await logout();
