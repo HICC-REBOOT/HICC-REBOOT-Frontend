@@ -18,12 +18,19 @@ function usePatchChangeGrade({ id }: UsePatchGradeProps) {
 
     return true;
   };
+  const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
     mutationKey: ['update-grade', id],
     mutationFn: updateGrade,
     onSuccess: () => {
       alert(`등급변경이 완료되었습니다.`);
+      queryClient.invalidateQueries({
+        queryKey: ['get-members'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['get-approval-list'],
+      });
     },
   });
 

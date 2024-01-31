@@ -128,7 +128,7 @@ export const SearchBar = styled.div`
 `;
 export const SearchBox = styled.div`
   display: flex;
-  width: 19rem;
+  width: 18rem;
   padding: 1rem 1.2rem;
   justify-content: space-between;
   align-items: center;
@@ -136,12 +136,12 @@ export const SearchBox = styled.div`
   border-radius: 0.8rem;
   background: ${(props) => props.theme.colors.black};
   ${(props) => props.theme.media.tablet`
-    width: 39.5rem;
+    width: 38.5rem;
   `};
   ${(props) => props.theme.media.desktop`
-    width: 68.3rem;
+    width: 66.3rem;
   `};
   ${(props) => props.theme.media.wide`
-    width: 68.3rem;
+    width: 66.3rem;
     `};
 `;

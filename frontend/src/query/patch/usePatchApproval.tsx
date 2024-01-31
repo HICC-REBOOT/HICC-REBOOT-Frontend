@@ -15,12 +15,16 @@ function usePatchApproval({ approvalId }: UsePatchApprovalProps) {
 
     return true;
   };
+  const queryClient = useQueryClient();
 
   const { mutate, isPending } = useMutation({
     mutationKey: ['update-approval', approvalId],
     mutationFn: updateApproval,
     onSuccess: () => {
       alert(`승인이 완료되었습니다.`);
+      queryClient.invalidateQueries({
+        queryKey: ['get-approval-list'],
+      });
     },
   });
 
