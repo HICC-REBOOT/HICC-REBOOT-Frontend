@@ -1,7 +1,8 @@
+import ExpandableList from '@components/admin/CollapseTest';
 import React from 'react';
 
 function Temp2() {
-  return <div style={{ height: '30rem' }}></div>;
+  return <div>test</div>;
 }
 
 export default Temp2;

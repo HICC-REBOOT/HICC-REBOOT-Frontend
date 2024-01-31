@@ -3,13 +3,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
 
 interface UseDeleteMemberProps {
-  studentNumber: string;
+  id: number;
 }
 
-function useDeleteMember({ studentNumber }: UseDeleteMemberProps) {
+function useDeleteMember({ id }: UseDeleteMemberProps) {
   const deleteMember = async () => {
     await request<null, null, null>({
-      uri: `/api/admin/president/members/${studentNumber}`,
+      uri: `/api/admin/president/members/${id}`,
       method: 'delete',
     });
 
@@ -17,7 +17,7 @@ function useDeleteMember({ studentNumber }: UseDeleteMemberProps) {
   };
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ['delete-member', studentNumber],
+    mutationKey: ['delete-member', id],
     mutationFn: deleteMember,
     onSuccess: () => {
       alert(`회원을 추방시켰습니다.`);

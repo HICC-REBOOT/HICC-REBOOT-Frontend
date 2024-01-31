@@ -12,6 +12,7 @@ import * as I from './style/MemberInfo.style';
 import * as A from './style/Approval.style';
 
 interface UserData {
+  id: number;
   department: string;
   name: string;
   grade: string;
@@ -23,8 +24,8 @@ interface MemberItemProps {
 }
 
 export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
-  const { updateGrade, isPending } = usePatchChangeGrade({ studentNumber: userData.studentNumber });
-  const { deleteMember, isDeletePending } = useDeleteMember({ studentNumber: userData.studentNumber });
+  const { updateGrade, isPending } = usePatchChangeGrade({ id: userData.id });
+  const { deleteMember, isDeletePending } = useDeleteMember({ id: userData.id });
   const [collapsed, setCollapsed] = useState(false);
   const [option, setOption] = useState<RadioType | undefined>();
   const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
@@ -101,13 +102,13 @@ export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
   };
   return (
     <>
-      <A.MemberBox onClick={clickEvent}>
+      <I.MemberBox onClick={clickEvent}>
         <I.MemberInfoMajor>{userData.department}</I.MemberInfoMajor>
         <I.MemberInfoName>{userData.name}</I.MemberInfoName>
         <I.Blank>
           <ArrowImage src={Arrow} alt="arrow" $rotated={collapsed} />
         </I.Blank>
-      </A.MemberBox>
+      </I.MemberBox>
       {modalOpen && <ExtensionModal {...modalInfo} />}
     </>
   );

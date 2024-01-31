@@ -3,15 +3,15 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
 
 interface UsePatchGradeProps {
-  studentNumber: string;
+  id: number;
 }
 interface UpdateGradeRequestBody {
   grade: string;
 }
-function usePatchChangeGrade({ studentNumber }: UsePatchGradeProps) {
+function usePatchChangeGrade({ id }: UsePatchGradeProps) {
   const updateGrade = async (data: UpdateGradeRequestBody) => {
     await request<UpdateGradeRequestBody, null, null>({
-      uri: `/api/admin/president/members/${studentNumber}`,
+      uri: `/api/admin/president/members/${id}`,
       method: 'patch',
       data,
     });
@@ -20,7 +20,7 @@ function usePatchChangeGrade({ studentNumber }: UsePatchGradeProps) {
   };
 
   const { mutate, isPending } = useMutation({
-    mutationKey: ['update-grade', studentNumber],
+    mutationKey: ['update-grade', id],
     mutationFn: updateGrade,
     onSuccess: () => {
       alert(`등급변경이 완료되었습니다.`);

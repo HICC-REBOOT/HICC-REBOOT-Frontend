@@ -67,12 +67,12 @@ export default function MemberInfo() {
         </I.SearchBox>
         <Dropdown placeholder="등급 순" options={options} onChange={onChange} defaultValue={defaultValue} />
       </I.SearchBar>
-      <A.MembersBox>
-        <A.CategoryBox>
+      <I.MembersBox>
+        <I.CategoryBox>
           <I.MemberInfoMajorDivision>Major</I.MemberInfoMajorDivision>
           <I.MemberInfoNameDivision>Name</I.MemberInfoNameDivision>
           <I.BlankDivision />
-        </A.CategoryBox>
+        </I.CategoryBox>
 
         <ConfigProvider
           theme={{
@@ -89,7 +89,7 @@ export default function MemberInfo() {
         >
           <Collapse bordered={false} ghost={true} items={items} />
         </ConfigProvider>
-      </A.MembersBox>
+      </I.MembersBox>
     </>
   );
 }
@@ -101,6 +101,15 @@ const Input = styled.input`
   border: none;
   outline: none;
   ${(props) => props.theme.typography[DeviceProvider()].body}
+  ${(props) => props.theme.media.tablet`
+    width: 35.3rem;
+  `};
+  ${(props) => props.theme.media.desktop`
+    width: 64.1rem;
+  `};
+  ${(props) => props.theme.media.wide`
+    width: 64.1rem;
+  `};
 `;
 const SearchButton = styled.img`
   width: 1.8rem;

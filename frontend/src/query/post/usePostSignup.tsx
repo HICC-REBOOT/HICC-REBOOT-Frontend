@@ -16,7 +16,7 @@ interface WriteSignupRequestBody {
 function usePostSignup() {
   const writeSignup = async (data: WriteSignupRequestBody) => {
     await request<WriteSignupRequestBody, null, null>({
-      uri: '/api/register/sign-up',
+      uri: '/api/auth/sign-up',
       method: 'post',
       data,
     });
@@ -28,16 +28,16 @@ function usePostSignup() {
   const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
-    mutationKey: [QUERY_KEYS.POST_ARTICLE],
+    mutationKey: ['post-signup'],
     mutationFn: writeSignup,
     onSuccess: () => {
       //   queryClient.invalidateQueries({
       //     queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/register/sign-up' }],
       //   });
       console.log('회원가입 성공');
-
+      alert('회원가입이 완료되었습니다.');
       // 등록이 완료되면 홈으로 이동
-      navigate(`${ROUTE.SIGNUP}`);
+      navigate(`${ROUTE.HOME}`);
     },
     onError: () => {
       console.log('회원가입 실패');
