@@ -4,7 +4,7 @@ import { FallbackProps } from 'react-error-boundary';
 import { IError } from '@utils/axios';
 import { useNavigate } from 'react-router-dom';
 import * as E from './GlobalError.style';
-import GradientButton from '../button/GradientButton';
+import GradientButton from '../button/color/GradientButton';
 
 const errorTemplate = Object.freeze({
   title: `Oops!`,

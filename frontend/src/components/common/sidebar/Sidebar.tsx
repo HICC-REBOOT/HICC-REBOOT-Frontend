@@ -6,7 +6,10 @@ import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '@hooks/useAuth';
 import logout from '@auth/logout';
+import theme from '@styles/theme';
 import * as S from './Sidebar.style';
+import GradientButton from '../button/color/GradientButton';
+import GradientButtonBlack from '../button/black/GradientButtonBlack';
 
 interface SidebarProps {
   close: () => void;
@@ -38,6 +41,29 @@ function Sidebar({ close }: SidebarProps) {
     navigate(ROUTE.HOME);
   };
 
+  const goLogin = () => {
+    navigate(ROUTE.LOGIN);
+  };
+
+  const goSignup = () => {
+    navigate(ROUTE.SIGNUP);
+  };
+
+  const signupStyle: React.CSSProperties = {
+    width: '100%',
+    height: '4.6rem',
+    margin: '0.4rem 1.6rem',
+    background: theme.colors.black,
+    backdropFilter: 'blur(0.2rem)',
+    justifyContent: 'center',
+  };
+
+  const authStyle: React.CSSProperties = {
+    width: '100%',
+    height: '4.6rem',
+    margin: '0.4rem 1.6rem',
+    justifyContent: 'center',
+  };
   return (
     <NotDesktop>
       <>
@@ -75,14 +101,20 @@ function Sidebar({ close }: SidebarProps) {
             {/* 로그아웃 상태 */}
             {isNotLogin && (
               <S.Tab>
-                <S.JoinHICC to={ROUTE.SIGNUP}>Join HICC</S.JoinHICC>
+                <GradientButton type="button" onClick={goSignup} style={signupStyle}>
+                  <p>Join HICC</p>
+                </GradientButton>
               </S.Tab>
             )}
             <S.Tab>
               {isNotLogin ? (
-                <S.Auth to={ROUTE.LOGIN}>Log in</S.Auth>
+                <GradientButtonBlack type="button" onClick={goLogin} style={authStyle}>
+                  <p>Log in</p>
+                </GradientButtonBlack>
               ) : (
-                <S.AuthLogout onClick={setLogout}>Logout</S.AuthLogout>
+                <GradientButtonBlack type="button" onClick={setLogout} style={authStyle}>
+                  <p>Log out</p>
+                </GradientButtonBlack>
               )}
             </S.Tab>
           </S.Inner>
