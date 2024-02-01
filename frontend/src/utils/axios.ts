@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { COOKIE_KEYS } from '@constants/keys';
 import ERROR_CODE from '@constants/error';
 import { getCookie, removeCookie } from '@utils/cookie';
+import ROUTE from '@constants/route';
 import BASE_URL from '../config';
 
 // error 형태, 이는 백엔드의 상황을 보고 변경
@@ -75,20 +76,11 @@ const onAccessTokenFetched = (token: string) => {
 const removeRefreshAndSignOut = () => {
   removeCookie(COOKIE_KEYS.REFRESH_KEY);
   removeCookie(COOKIE_KEYS.IS_LOGIN);
-  window.location.href = '/login';
+  window.location.href = ROUTE.LOGIN;
 };
-
-let retryCount = 0;
-const MAX_RETRY = 2; // 최대 재시도 횟수
 
 const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) => {
   try {
-    if (retryCount >= MAX_RETRY) {
-      // 최대 재시도 횟수를 초과하면 에러 처리
-      removeRefreshAndSignOut();
-      return Promise.reject(new Error('Exceeded maximum retry attempts'));
-    }
-
     const retryOriginRequest = new Promise((resolve, reject) => {
       addSubscriber(async (token: string) => {
         try {
@@ -109,9 +101,6 @@ const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) 
 
       onAccessTokenFetched(access);
     }
-
-    // eslint-disable-next-line no-plusplus
-    retryCount++; // 재시도 횟수 증가
 
     return retryOriginRequest;
   } catch (newError) {
