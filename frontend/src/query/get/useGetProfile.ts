@@ -3,10 +3,11 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import request from '@utils/request';
 
 interface ProfileInfo {
+  studentNumber: string;
+  name: string;
   grade: string;
-  phone_number: string;
-  id: string;
-  major: string;
+  phoneNumber: string;
+  department: string;
 }
 
 function useGetProfile() {

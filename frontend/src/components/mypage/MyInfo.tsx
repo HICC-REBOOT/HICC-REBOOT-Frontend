@@ -4,6 +4,7 @@ import Dropdown from '@components/mypage/Dropdown';
 import useDropdown from '@hooks/useDropdown';
 import useInput from '@hooks/useInput';
 import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
+import useGetProfile from '@query/get/useGetProfile';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import theme from '@styles/theme';
 import * as M from './style/MyInfo.style';
@@ -13,7 +14,7 @@ function MyInfo() {
     { value: '1', label: '기초과학과' },
     { value: '2', label: '건설환경공학과' },
     { value: '3', label: '전자전기공학부' },
-    { value: '4', label: '컴퓨터공학부' },
+    { value: '4', label: '컴퓨터공학과' },
     { value: '5', label: '산업·데이터공학과' },
     { value: '6', label: '신소재화공시스템공학부' },
     { value: '7', label: '기계·시스템디자인공학부' },
@@ -48,10 +49,12 @@ function MyInfo() {
     { value: '36', label: '캠퍼스자율전공(서울)' },
     { value: '37', label: '교양교육원' },
   ];
+  const myInfo = useGetProfile();
+  const defaultDepartmentOption = options.find((option) => option.label === myInfo.data.department);
 
-  const { currentOption, onChange } = useDropdown({});
+  const { currentOption, onChange } = useDropdown({ defalutValue: defaultDepartmentOption });
   const { 0: phoneNumber, 1: phoneNChange } = useInput('');
-  const { 0: email, 1: scholNChange } = useInput('');
+  const { 0: email, 1: emailChange } = useInput('');
   const { 0: password, 1: passwordChange } = useInput('');
   const { 0: passwordConfirm, 1: passwordConfirmChange } = useInput('');
   const [buttonState, setButton] = useState(true);
@@ -101,7 +104,7 @@ function MyInfo() {
     } else {
       setEmailState(true);
     }
-    if (passwordRE.test(password)) {
+    if (passwordRE.test(password) || !password) {
       setPasswordState(false);
     } else {
       setPasswordState(true);
@@ -114,23 +117,17 @@ function MyInfo() {
   }, [phoneNumber, email, currentOption, password, passwordConfirm]);
 
   useEffect(() => {
-    if (
-      numberState === false &&
-      majorState === false &&
-      emailState === false &&
-      passwordState === false &&
-      passwordConfirmState === false
-    ) {
+    if (numberState === false && emailState === false && passwordState === false && passwordConfirmState === false) {
       setButton(false);
     } else {
       setButton(true);
     }
-  }, [numberState, majorState, emailState, passwordState, passwordConfirmState]);
+  }, [numberState, emailState, passwordState, passwordConfirmState]);
 
   const handleSubmit = () => {
     const submitParam = {
       phoneNumber: { phoneNumber },
-      schoolNumber: { schoolNumber: email },
+      email: { email },
       major: { currentOption },
     };
     console.log(submitParam);
@@ -153,8 +150,8 @@ function MyInfo() {
     <M.Container>
       <M.GroupContainer>
         <M.Title>
-          <M.Name>홍길동</M.Name>
-          <M.Label>운영진</M.Label>
+          <M.Name>{myInfo.data.name}</M.Name>
+          <M.Label>{myInfo.data.grade}</M.Label>
         </M.Title>
         <M.BoxArea style={{ left: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>전화번호</M.BoxTitle>
@@ -163,7 +160,11 @@ function MyInfo() {
               <Check color={theme.colors.white} />
             </M.CheckDiv>
           )}
-          <M.Input onChange={handlePhoneInputChange} value={phoneNumber}></M.Input>
+          <M.Input
+            onChange={handlePhoneInputChange}
+            value={phoneNumber}
+            defaultValue={myInfo.data.phoneNumber}
+          ></M.Input>
           {numberState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BoxArea style={{ right: '0rem', top: '7.7rem' }}>
@@ -173,11 +174,11 @@ function MyInfo() {
               <Check color={theme.colors.white} />
             </M.CheckDiv>
           )}
-          <M.Input onChange={scholNChange}></M.Input>
+          <M.Input onChange={emailChange}></M.Input>
           {emailState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BigBoxArea>
-          <M.BoxTitle>비밀번호</M.BoxTitle>
+          <M.BoxTitle>비밀번호 변경</M.BoxTitle>
           <M.BigBox
             type="password"
             onChange={passwordChange}
@@ -198,8 +199,8 @@ function MyInfo() {
         </M.BigBoxArea>
         <M.BigBoxArea>
           <M.BoxTitle>학과</M.BoxTitle>
-          <Dropdown placeholder="전공" options={options} onChange={onChange} />
-          {majorState === true && <M.BoxAlert>전공을 선택해주세요</M.BoxAlert>}
+          <Dropdown placeholder="전공" options={options} onChange={onChange} defaultValue={defaultDepartmentOption} />
+          {!defaultDepartmentOption && majorState === true && <M.BoxAlert>전공을 선택해주세요</M.BoxAlert>}
         </M.BigBoxArea>
         <M.Button onClick={handleSubmit} disabled={buttonState}>
           프로필 수정

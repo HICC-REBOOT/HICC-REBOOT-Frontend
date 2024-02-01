@@ -3,7 +3,7 @@ import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
 import COMMON from '@constants/common';
 import useServerSidePagination from '@query/get/useServerSidePagination';
-import { ArticleDetailType, ImageUrl } from '@components/community/CommunityType';
+import { ArticleDetailType } from '@components/community/CommunityType';
 
 import * as C from '@components/mypage/style/MyPageComponent.style';
 import * as M from './style/MyWritings.style';
