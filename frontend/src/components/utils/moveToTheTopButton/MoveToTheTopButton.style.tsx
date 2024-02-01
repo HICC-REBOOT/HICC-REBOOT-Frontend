@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const ButtonStyle = styled.div<{ $hide: boolean }>`
   position: fixed;
-  bottom: 7rem;
+  bottom: 15rem;
   right: 2.4rem;
 
   width: 4.6rem;
