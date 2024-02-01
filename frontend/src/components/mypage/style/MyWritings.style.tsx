@@ -170,6 +170,7 @@ export const ContentsArea = styled.div`
   gap: 1.2rem;
   white-space: nowrap;
   /* overflow: hidden; */
+  cursor: pointer;
   ${(props) => props.theme.media.mobile`
     width: 32.8rem;
     height: 16.2rem;

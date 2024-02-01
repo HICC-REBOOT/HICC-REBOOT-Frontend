@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import * as C from '@components/mypage/style/MyPageComponent.style';
 import * as M from './style/MyComments.style';
+import DeleteButton from './button/CommentDeleteButton';
 
 interface Comment {
   articleId: number; // 게시글 ID
@@ -35,7 +36,7 @@ function MyComments() {
             <M.ContentsArea key={index} onClick={() => goDetail(item)}>
               <M.ContentsTitle>{item.subject}</M.ContentsTitle>
               <M.Contents>{item.content}</M.Contents>
-              <M.DeleteButton>삭제</M.DeleteButton>
+              <DeleteButton articleId={item.articleId} commentId={item.commentId}></DeleteButton>
               <M.Divider />
             </M.ContentsArea>
           ))}
