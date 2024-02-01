@@ -48,13 +48,13 @@ export const Title = styled.div`
   white-space: nowrap;
 `;
 
-export const Detail = styled.div<{ isDetailOpen: boolean }>`
+export const Detail = styled.div<{ $isDetailOpen: boolean }>`
   ${(props) => props.theme.typography.common.caption2};
   color: ${(props) => props.theme.colors.grey004};
   text-align: justify;
 
   ${(props) =>
-    !props.isDetailOpen &&
+    !props.$isDetailOpen &&
     css`
       width: calc(100% - 6.4rem);
       overflow: hidden;

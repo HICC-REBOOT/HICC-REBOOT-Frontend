@@ -3,6 +3,8 @@ import { Outlet } from 'react-router-dom';
 import Header from '@components/community/header/Header';
 import OptionType from '@components/common/dropdown/OptionType';
 import { BOARD } from '@components/community/CommunityType';
+import { ErrorBoundary } from 'react-error-boundary';
+import GlobalError from '@components/common/error/GlobalError';
 import * as C from './Community.style';
 
 function Community() {
@@ -17,12 +19,14 @@ function Community() {
 
   return (
     <C.Container>
-      <Header options={options} onChange={setCurrentBoard} />
-      <Outlet
-        context={{
-          currentBoard,
-        }}
-      />
+      <ErrorBoundary FallbackComponent={GlobalError}>
+        <Header options={options} onChange={setCurrentBoard} />
+        <Outlet
+          context={{
+            currentBoard,
+          }}
+        />
+      </ErrorBoundary>
     </C.Container>
   );
 }

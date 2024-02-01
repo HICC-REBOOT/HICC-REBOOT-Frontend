@@ -14,7 +14,7 @@ function WriteInfo({ grade, name, date }: WriteInfoProps) {
   return (
     <W.Container>
       <W.WriterPart>
-        <W.GradeTag show={isMoreThanExecutive(grade)}>{GRADE_ENUM[grade]}</W.GradeTag>
+        <W.GradeTag $show={isMoreThanExecutive(grade)}>{GRADE_ENUM[grade]}</W.GradeTag>
         <W.Writer>{name}</W.Writer>
       </W.WriterPart>
       <W.WriteTime>{time(date)}</W.WriteTime>

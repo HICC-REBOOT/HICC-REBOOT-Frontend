@@ -40,7 +40,7 @@ export default function ScheduleCard() {
         </S.TimeContainer>
         <S.InfoContainer>
           <S.Title>주간 세미나 일정</S.Title>
-          <S.Detail isDetailOpen={isDetailOpen}>{detail}</S.Detail>
+          <S.Detail $isDetailOpen={isDetailOpen}>{detail}</S.Detail>
         </S.InfoContainer>
       </S.Left>
       {isAdmin ? (

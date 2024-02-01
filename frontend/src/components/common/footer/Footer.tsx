@@ -33,7 +33,7 @@ function Footer() {
     window.open('https://www.instagram.com/hongik_hicc/');
   };
   return (
-    <F.Container hide={dontShowArticleDetail()}>
+    <F.Container $hide={dontShowArticleDetail()}>
       <F.LeftSide>
         <F.HICC>{footerText.hicc}</F.HICC>
         <F.Leader>

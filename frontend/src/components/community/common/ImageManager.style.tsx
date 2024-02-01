@@ -20,8 +20,8 @@ export const ImageUploads = styled.div`
   }
 `;
 
-export const ImageUploadButton = styled.div<{ hide: boolean }>`
-  display: ${(props) => (props.hide ? 'none' : 'flex')};
+export const ImageUploadButton = styled.div<{ $hide: boolean }>`
+  display: ${(props) => (props.$hide ? 'none' : 'flex')};
   justify-content: center;
   align-items: center;
   width: 6rem;

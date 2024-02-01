@@ -2,7 +2,7 @@ import STYLE from '@constants/style';
 import hexToRGBA from '@utils/hexToRgba';
 import styled from 'styled-components';
 
-const ButtonStyle = styled.div<{ hide: boolean }>`
+const ButtonStyle = styled.div<{ $hide: boolean }>`
   position: fixed;
 
   bottom: 4rem;
@@ -22,7 +22,7 @@ const ButtonStyle = styled.div<{ hide: boolean }>`
     ${(props) => hexToRGBA(props.theme.colors.grey001, 0.7)} 60%
   );
 
-  display: ${(props) => (props.hide ? 'none' : 'flex')};
+  display: ${(props) => (props.$hide ? 'none' : 'flex')};
   justify-content: center;
   align-items: center;
   width: 4.6rem;

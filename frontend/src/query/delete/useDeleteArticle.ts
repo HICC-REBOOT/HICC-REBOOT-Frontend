@@ -28,6 +28,9 @@ function useDeleteArticle({ articleId }: UseDeleteArticleProps) {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
       });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_ARTICLE_DETAIL, articleId],
+      });
 
       alert(`${articleId} 게시글이 삭제되었습니다.`);
 

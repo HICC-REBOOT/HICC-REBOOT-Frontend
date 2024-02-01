@@ -13,7 +13,6 @@ interface ImageEnroll {
   fileName: string;
   fileNameExtension: string;
   key: string;
-  url: string;
 }
 
 interface UpdatePostRequestBody {
@@ -43,6 +42,9 @@ function usePatchArticle({ articleId }: UsePatchArticleProps) {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_ARTICLE_DETAIL, articleId],
       });
 
       alert(`${articleId} 게시글이 수정되었습니다.`);

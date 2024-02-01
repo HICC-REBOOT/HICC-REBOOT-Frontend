@@ -14,8 +14,8 @@ export const WriterPart = styled.div`
   align-items: center;
 `;
 
-export const GradeTag = styled.div<{ show: boolean }>`
-  display: ${(props) => (props.show ? 'flex' : 'none')};
+export const GradeTag = styled.div<{ $show: boolean }>`
+  display: ${(props) => (props.$show ? 'flex' : 'none')};
   padding: 0.5rem 1.2rem;
   justify-content: center;
   align-items: center;

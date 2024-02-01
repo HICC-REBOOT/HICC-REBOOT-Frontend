@@ -4,7 +4,7 @@ import { atom } from 'recoil';
 
 const loginState = atom<boolean>({
   key: STORE_KEYS.LOGIN,
-  default: getCookie(COOKIE_KEYS.IS_LOGIN) === 'true',
+  default: getCookie(COOKIE_KEYS.IS_LOGIN) === true,
 });
 
 export default loginState;
