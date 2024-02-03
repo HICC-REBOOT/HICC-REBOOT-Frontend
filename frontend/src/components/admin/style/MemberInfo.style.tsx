@@ -25,6 +25,7 @@ export const MembersBox = styled.div`
   ${(props) => props.theme.media.wide`
     width: 82.2rem;
   `};
+  cursor: pointer;
 `;
 
 export const CategoryBox = styled.div`

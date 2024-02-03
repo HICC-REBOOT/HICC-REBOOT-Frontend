@@ -60,7 +60,6 @@ export default function MemberInfo() {
           <I.MemberInfoNameDivision>Name</I.MemberInfoNameDivision>
           <I.BlankDivision />
         </I.CategoryBox>
-
         <ConfigProvider
           theme={{
             token: {
