@@ -68,7 +68,6 @@ export const Title = styled.div`
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /* color: ${(props) => props.theme.colors.point1}; */
 
   ${(props) => props.theme.typography[DeviceProvider()].head};
 
@@ -181,20 +180,6 @@ export const SmallStar = styled.div`
 
 export const Button = styled.div`
   position: absolute;
-  width: 15.3rem;
-  height: 4.6rem;
-  cursor: pointer;
-  display: inline-flex;
-  padding: 1rem 0.7rem 1rem 1.5rem;
-  justify-content: center;
-  align-items: center;
-  gap: 0.8rem;
-  flex-shrink: 0;
-
-  border-radius: 1.2rem;
-  background: linear-gradient(95deg, rgba(91, 78, 245, 0.3) 0%, rgba(91, 78, 245, 0) 100%),
-    linear-gradient(275deg, rgba(83, 255, 203, 0.3) 0%, rgba(83, 255, 203, 0) 100%);
-  ${(props) => props.theme.typography.common.button1};
 
   ${(props) => props.theme.media.mobile`
     top: 14.6rem;
@@ -211,21 +196,6 @@ export const Button = styled.div`
   ${(props) => props.theme.media.wide`
     top: 22.4rem;
   `}
-`;
-
-export const ButtonTitle = styled.div`
-  width: 8.9rem;
-  height: 1.9rem;
-  white-space: nowrap;
-  color: #d9d9d9;
-  ${(props) => props.theme.typography.common.button1};
-`;
-
-export const ButtonCircle = styled.div`
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 50%;
-  background: ${(props) => props.theme.colors.black};
 `;
 
 export const BackGround = styled.div`

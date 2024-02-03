@@ -2,8 +2,9 @@ import React from 'react';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
 import { ReactComponent as StarL } from '@assets/image/JoinusStarL.svg';
 import { ReactComponent as StarR } from '@assets/image/JoinusStarR.svg';
-import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
+import { ReactComponent as ArrowRight } from '@assets/image/icon/arrowRight.svg';
 import { useNavigate } from 'react-router-dom';
+import GradientButton from '@components/common/button/color/GradientButton';
 import * as J from './style/JoinUs.style';
 
 function JoinUs() {
@@ -21,9 +22,10 @@ function JoinUs() {
         <J.Content>동아리 회장에게 연락 후 가입해주세요</J.Content>
         <J.Title> Join us!</J.Title>
         <J.Button>
-          <J.ButtonTitle onClick={navigateToSignup}>동아리원 등록</J.ButtonTitle>
-          <Arrow />
-          {/* <J.ButtonCircle /> */}
+          <GradientButton type="button" onClick={navigateToSignup} style={{ padding: '1rem 1.2rem 1rem 2rem' }}>
+            <p>동아리원 등록</p>
+            <ArrowRight />
+          </GradientButton>
         </J.Button>
         <J.BigStar>
           <Mobile>

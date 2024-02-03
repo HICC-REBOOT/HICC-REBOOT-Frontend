@@ -27,20 +27,6 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
     }
   };
 
-  const getNestedCommentByParent = () => {
-    const nestedCommentByParent = nestedComments.filter(
-      (nestedComment) => nestedComment.parentCommentId === comment.commentId,
-    );
-
-    if (nestedCommentByParent.length === 0) {
-      return null;
-    }
-
-    return nestedCommentByParent.map((nested) => (
-      <NestedComment key={`${nested.parentCommentId}-${nested.commentId}`} nestedComment={nested} />
-    ));
-  };
-
   return (
     <EA.Container>
       <WriteInfo grade={comment.grade} name={comment.name} date={comment.date} />
@@ -53,7 +39,13 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
         }}
         dangerous={{ label: '삭제', onClick: deleteThisComment, show: comment.isMine, disabled: isPending }}
       />
-      {getNestedCommentByParent()}
+      {nestedComments.length > 0 &&
+        nestedComments.map((nestedComment) => (
+          <NestedComment
+            key={`${nestedComment.parentCommentId}-${nestedComment.commentId}`}
+            nestedComment={nestedComment}
+          />
+        ))}
     </EA.Container>
   );
 }
