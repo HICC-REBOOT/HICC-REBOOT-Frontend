@@ -16,10 +16,16 @@ function useDeleteApproval({ approvalId }: UseDeleteApprovalProps) {
     return true;
   };
 
+  const queryClient = useQueryClient();
+
   const { mutate, isPending } = useMutation({
     mutationKey: ['delete-approval', approvalId],
     mutationFn: deleteApproval,
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/admin/applicants' }],
+      });
+
       alert(`승인이 거절되었습니다.`);
     },
   });

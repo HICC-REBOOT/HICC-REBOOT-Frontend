@@ -16,10 +16,15 @@ function useDeleteMember({ id }: UseDeleteMemberProps) {
     return true;
   };
 
+  const queryClient = useQueryClient();
+
   const { mutate, isPending } = useMutation({
     mutationKey: ['delete-member', id],
     mutationFn: deleteMember,
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/admin/members' }],
+      });
       alert(`회원을 추방시켰습니다.`);
     },
   });

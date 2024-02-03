@@ -24,13 +24,10 @@ function usePatchChangeGrade({ id }: UsePatchGradeProps) {
     mutationKey: ['update-grade', id],
     mutationFn: updateGrade,
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/admin/members' }],
+      });
       alert(`등급변경이 완료되었습니다.`);
-      queryClient.invalidateQueries({
-        queryKey: ['get-members'],
-      });
-      queryClient.invalidateQueries({
-        queryKey: ['get-approval-list'],
-      });
     },
   });
 
