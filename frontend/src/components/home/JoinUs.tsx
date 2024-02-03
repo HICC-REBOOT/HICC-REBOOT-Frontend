@@ -4,6 +4,7 @@ import { ReactComponent as StarL } from '@assets/image/JoinusStarL.svg';
 import { ReactComponent as StarR } from '@assets/image/JoinusStarR.svg';
 import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
 import { useNavigate } from 'react-router-dom';
+import GradientButton from '@components/common/button/color/GradientButton';
 import * as J from './style/JoinUs.style';
 
 function JoinUs() {
@@ -21,9 +22,10 @@ function JoinUs() {
         <J.Content>동아리 회장에게 연락 후 가입해주세요</J.Content>
         <J.Title> Join us!</J.Title>
         <J.Button>
-          <J.ButtonTitle onClick={navigateToSignup}>동아리원 등록</J.ButtonTitle>
-          <Arrow />
-          {/* <J.ButtonCircle /> */}
+          <GradientButton type="button" onClick={navigateToSignup}>
+            <p>동아리원 등록</p>
+            <Arrow />
+          </GradientButton>
         </J.Button>
         <J.BigStar>
           <Mobile>

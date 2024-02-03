@@ -4,6 +4,7 @@ import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import { Desktop } from '@assets/mediaQuery';
 import theme from '@styles/theme';
+import GradientButton from '@components/common/button/color/GradientButton';
 
 function HongMap() {
   return (
@@ -14,9 +15,11 @@ function HongMap() {
           <H.Picture />
           <H.BoxTitle>HONG MAP</H.BoxTitle>
           <H.BoxContents>HICC에서 개발한 우리학교 길찾기 서비스로 동아리방 위치를 볼 수 있어요</H.BoxContents>
-          <H.GotoButton onClick={() => window.open('https://hongikmap2023.pythonanywhere.com/')}>
-            <H.GotoButtonText>홍맵 바로가기</H.GotoButtonText>
-            <Arrow />
+          <H.GotoButton>
+            <GradientButton type="button" onClick={() => window.open('https://hongikmap2023.pythonanywhere.com/')}>
+              <p>홍맵 바로가기</p>
+              <Arrow />
+            </GradientButton>
           </H.GotoButton>
           <Desktop>
             <H.Group>
