@@ -4,6 +4,7 @@ import request from '@utils/request';
 
 interface ProfileInfo {
   studentNumber: string;
+  email: string;
   name: string;
   grade: string;
   phoneNumber: string;

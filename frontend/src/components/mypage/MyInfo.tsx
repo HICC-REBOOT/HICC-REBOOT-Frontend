@@ -64,6 +64,11 @@ function MyInfo() {
   const [passwordState, setPasswordState] = useState(true);
   const [passwordConfirmState, setPasswordConfirmState] = useState(true);
 
+  useEffect(() => {
+    phoneNChange(myInfo.data.phoneNumber ?? '');
+    emailChange(myInfo.data.email ?? '');
+  }, [myInfo.data]);
+
   const handleWithdrawal = () => {
     const withdrawalConfirmParams: WithdrawalParameter = {
       title: '탈퇴하시겠습니까?',
