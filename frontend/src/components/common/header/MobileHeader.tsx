@@ -9,7 +9,7 @@ import user from '@assets/image/icon/accountCircle.svg';
 import * as MH from './MobileHeader.style';
 
 function MobileHeader() {
-  const { changeSidebarState } = useSidebar();
+  const { openSidebar } = useSidebar();
 
   const navigate = useNavigate();
 
@@ -35,7 +35,7 @@ function MobileHeader() {
           )}
           <MH.RightSide>
             {matchMypage !== null && <MH.User src={user} onClick={goProfile} />}
-            <MH.Hamburger src={Hamburger} alt="hamburger" onClick={changeSidebarState} />
+            <MH.Hamburger src={Hamburger} alt="hamburger" onClick={openSidebar} />
           </MH.RightSide>
         </MH.Container>
         <MH.HeaderTopMargin />

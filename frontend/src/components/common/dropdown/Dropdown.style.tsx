@@ -17,7 +17,7 @@ const DropdownStyle = styled(Select)`
 
     &__control {
       ${(props) => props.theme.typography[DeviceProvider()].body};
-      width: 100%;
+      width: 15rem;
       height: 4.7rem;
       background-color: ${(props) => props.theme.colors.black} !important;
       border: none;
@@ -50,7 +50,7 @@ const DropdownStyle = styled(Select)`
 
     &__menu {
       max-width: 15rem;
-      width: 100%;
+      width: 15rem;
       margin-top: 0.4rem;
       border-top: 0;
 

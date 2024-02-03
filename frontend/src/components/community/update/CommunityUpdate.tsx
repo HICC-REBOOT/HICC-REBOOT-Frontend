@@ -16,7 +16,6 @@ function CommunityUpdate() {
   const { currentBoard } = useOutletContext<CurrentBoardContext>();
 
   const navigate = useNavigate();
-  const { updateArticle, isPending } = usePatchArticle({ articleId: data.articleId });
 
   // 비정상적인 접근일 경우 뒤로가기
   useEffect(() => {
@@ -25,6 +24,8 @@ function CommunityUpdate() {
       navigate(-1);
     }
   }, [data, navigate]);
+
+  const { updateArticle, isPending } = usePatchArticle();
 
   const setDefaultValues = (): CommunityWriteForm => {
     if (data === null) {
@@ -71,10 +72,13 @@ function CommunityUpdate() {
     });
 
     updateArticle({
-      images: [...newImages, ...existingImagesInfo],
-      board: currentBoard.value as Board,
-      subject: formdata.title,
-      content: formdata.content,
+      data: {
+        images: [...newImages, ...existingImagesInfo],
+        board: currentBoard.value as Board,
+        subject: formdata.title,
+        content: formdata.content,
+      },
+      articleId: data.articleId,
     });
   };
 

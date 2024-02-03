@@ -76,7 +76,7 @@ const onAccessTokenFetched = (token: string) => {
 const removeRefreshAndSignOut = () => {
   removeCookie(COOKIE_KEYS.REFRESH_KEY);
   removeCookie(COOKIE_KEYS.IS_LOGIN);
-  window.location.href = ROUTE.LOGIN;
+  window.location.replace(ROUTE.LOGIN);
 };
 
 const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) => {
@@ -105,6 +105,7 @@ const resetTokenAndReattemptRequest = async (error: AxiosResponse<IError, any>) 
     return retryOriginRequest;
   } catch (newError) {
     removeRefreshAndSignOut();
+    alert('로그인 후 이용할 수 있습니다.');
     return Promise.reject(newError);
   }
 };
@@ -122,6 +123,13 @@ axiosInstance.interceptors.response.use(
     // 리프레시 만료 시 로그아웃 처리
     if (axiosError?.data.code === ERROR_CODE.REFRESH_EXPIRED) {
       removeRefreshAndSignOut();
+      return Promise.reject(axiosError);
+    }
+
+    // 403에러 시 뒤로가기
+    if (axiosError?.data.code === ERROR_CODE.FORBIDDEN) {
+      alert('당신 아직 승인대기이군요. 권한을 부여받으세요');
+      window.history.back();
       return Promise.reject(axiosError);
     }
 
