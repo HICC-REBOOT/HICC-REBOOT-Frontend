@@ -18,6 +18,7 @@ function ActivityBox({ img, title, content }: BoxProps) {
   return (
     <B.Box onMouseEnter={setActive} onMouseLeave={setActive}>
       <B.BoxImage src={img} initial="inactive" animate={active ? 'active' : 'inactive'} variants={variants} />
+      <B.BoxFilter filter={active ? 'active' : 'inactive'}></B.BoxFilter>
       <B.BoxTitle>{title}</B.BoxTitle>
       <B.BoxContent>{content}</B.BoxContent>
     </B.Box>

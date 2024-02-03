@@ -2,26 +2,23 @@ import STYLE from '@constants/style';
 import hexToRGBA from '@utils/hexToRgba';
 import styled from 'styled-components';
 
-const ButtonStyle = styled.div<{ $hide: boolean }>`
-  position: fixed;
-  bottom: 15rem;
-  right: 2.4rem;
-
-  width: 4.6rem;
-  height: 4.6rem;
-
-  padding: 1.1rem;
+const ButtonStyle = styled.button`
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 1rem 2rem;
   border: none;
   border-radius: 1.2rem;
+
+  & > p {
+    color: ${(props) => props.theme.colors.white};
+    ${(props) => props.theme.typography.common.button1};
+  }
 
   background: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
 
   z-index: ${STYLE.Z_INDEX.COMMON};
   background-clip: padding-box;
-
-  &:hover {
-    background: ${(props) => props.theme.colors.black};
-  }
 
   &::after {
     position: absolute;

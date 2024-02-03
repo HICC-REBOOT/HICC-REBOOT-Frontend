@@ -47,6 +47,22 @@ export const BoxImage = styled(motion.img)`
   border-radius: 1.6rem;
 `;
 
+export const BoxFilter = styled.div<{ filter: string }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s;
+  background: ${(props) => {
+    if (props.filter === 'active')
+      return 'linear-gradient(105deg, rgba(105, 99, 255, 0.2) 27.65%, rgba(105, 99, 255, 0) 78.26%)';
+    return {};
+  }};
+  opacity: ${(props) => (props.filter === 'active' ? 1 : 0)};
+  transition: opacity 0.5s;
+`;
+
 export const BoxTitle = styled.div`
   position: relative;
   color: ${(props) => props.theme.colors.white};

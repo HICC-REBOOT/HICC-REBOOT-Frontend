@@ -5,10 +5,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
 import { useNavigate } from 'react-router-dom';
 
-interface UsePatchArticleProps {
-  articleId: number;
-}
-
 interface ImageEnroll {
   fileName: string;
   fileNameExtension: string;
@@ -22,28 +18,33 @@ interface UpdatePostRequestBody {
   content: string;
 }
 
-function usePatchArticle({ articleId }: UsePatchArticleProps) {
-  const updateArticle = async (data: UpdatePostRequestBody) => {
+interface UpdateArticleParameter {
+  data: UpdatePostRequestBody;
+  articleId: number;
+}
+
+function usePatchArticle() {
+  const updateArticle = async ({ data, articleId }: UpdateArticleParameter) => {
     await request<UpdatePostRequestBody, null, null>({
       uri: `/api/article/${articleId}`,
       method: 'patch',
       data,
     });
 
-    return true;
+    return articleId;
   };
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { mutate, isPending } = useMutation({
-    mutationKey: [QUERY_KEYS.UPDATE_ARTICLE, articleId],
+    mutationKey: [QUERY_KEYS.UPDATE_ARTICLE],
     mutationFn: updateArticle,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
+    onSuccess: (articleId: number) => {
+      queryClient.removeQueries({
         queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
       });
-      queryClient.invalidateQueries({
+      queryClient.removeQueries({
         queryKey: [QUERY_KEYS.GET_ARTICLE_DETAIL, articleId],
       });
 

@@ -25,10 +25,10 @@ function useDeleteArticle({ articleId }: UseDeleteArticleProps) {
     mutationKey: [QUERY_KEYS.DELETE_ARTICLE, articleId],
     mutationFn: deleteArticle,
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.removeQueries({
         queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
       });
-      queryClient.invalidateQueries({
+      queryClient.removeQueries({
         queryKey: [QUERY_KEYS.GET_ARTICLE_DETAIL, articleId],
       });
 
