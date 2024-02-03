@@ -11,6 +11,17 @@ export const DetailBox = styled.div`
   gap: 0.8rem 1.6rem;
   flex-wrap: wrap;
   background: ${theme.colors.black};
+  ${(props) => props.theme.media.tablet`
+    width: 53.4rem;
+  `};
+
+  ${(props) => props.theme.media.desktop`
+    width: 82.2rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    width: 82.2rem;
+  `};
 `;
 
 export const Class = styled.div`
