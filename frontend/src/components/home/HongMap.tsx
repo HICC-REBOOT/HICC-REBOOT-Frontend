@@ -1,6 +1,6 @@
 import React from 'react';
 import * as H from '@components/home/style/HongMap.style';
-import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
+import { ReactComponent as ArrowRight } from '@assets/image/icon/arrowRight.svg';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import { Desktop } from '@assets/mediaQuery';
 import theme from '@styles/theme';
@@ -16,9 +16,13 @@ function HongMap() {
           <H.BoxTitle>HONG MAP</H.BoxTitle>
           <H.BoxContents>HICC에서 개발한 우리학교 길찾기 서비스로 동아리방 위치를 볼 수 있어요</H.BoxContents>
           <H.GotoButton>
-            <GradientButton type="button" onClick={() => window.open('https://hongikmap2023.pythonanywhere.com/')}>
+            <GradientButton
+              type="button"
+              onClick={() => window.open('https://hongikmap2023.pythonanywhere.com/')}
+              style={{ padding: '1rem 1.2rem 1rem 2rem' }}
+            >
               <p>홍맵 바로가기</p>
-              <Arrow />
+              <ArrowRight />
             </GradientButton>
           </H.GotoButton>
           <Desktop>
