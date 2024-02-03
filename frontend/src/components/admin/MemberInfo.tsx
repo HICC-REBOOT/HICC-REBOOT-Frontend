@@ -40,6 +40,10 @@ export default function MemberInfo() {
   ];
   const { currentOption, onChange } = useDropdown({});
 
+  useEffect(() => {
+    console.log(currentOption);
+  }, [currentOption]);
+
   const defaultValue = { value: '1', label: '등급 순' };
 
   const items: CollapseProps['items'] = searched.map((user, index) => ({
