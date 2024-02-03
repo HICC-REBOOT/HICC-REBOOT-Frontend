@@ -14,18 +14,19 @@ export const Container = styled.div<{ $hide: boolean }>`
   ${(props) => props.theme.media.tablet`
     width: 100%;
     padding: 0 11.7rem;
+    padding-top: 3.5rem;
   `};
 
   ${(props) => props.theme.media.desktop`
     width: 100%;
     padding: 0 30.9rem;
-    margin-top: 18.8rem;
+    padding-top: 3.5rem;
   `};
 
   ${(props) => props.theme.media.wide`
     width: 100%;
     padding: 0 30.9rem;
-    margin-top: 18.8rem;
+    padding-top: 3.5rem;
   `};
 
   padding: 0 2.4rem;

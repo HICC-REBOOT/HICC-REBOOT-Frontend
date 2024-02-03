@@ -18,6 +18,7 @@ export interface Article {
   date: string;
   board: Board;
   subject: string;
+  imageExistence: boolean;
 }
 
 export interface ImageUrl {

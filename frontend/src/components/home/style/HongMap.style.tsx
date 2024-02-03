@@ -216,18 +216,6 @@ export const BoxContents = styled.div`
 
 export const GotoButton = styled.div`
   position: absolute;
-  width: 16.3rem;
-  height: 4.6rem;
-  padding: 1rem 1.2rem 1rem 2rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 1.2rem;
-  border: 0.1rem solid ${(props) => theme.colors.white};
-  background: linear-gradient(95deg, rgba(91, 78, 245, 0.3) 0%, rgba(91, 78, 245, 0) 100%),
-    linear-gradient(275deg, rgba(83, 255, 203, 0.3) 0%, rgba(83, 255, 203, 0) 100%);
 
   ${(props) => props.theme.media.mobile`
     top: 45.2rem;
@@ -246,14 +234,6 @@ export const GotoButton = styled.div`
     top: 2rem;
     right: 1.8rem;
   `}
-`;
-
-export const GotoButtonText = styled.div`
-  width: 10rem;
-  height: 1.9rem;
-  color: ${(props) => theme.colors.white};
-  text-align: center;
-  ${(props) => props.theme.typography.common.button1};
 `;
 
 export const Group = styled.div`

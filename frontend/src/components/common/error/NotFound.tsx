@@ -3,7 +3,7 @@ import ROUTE from '@constants/route';
 import * as E from './NotFound.style';
 
 const notFound = {
-  title: `Opps!`,
+  title: `Oops!`,
   message: `오류가 발생했습니다.
   메인 화면으로 돌아갑니다.`,
 };

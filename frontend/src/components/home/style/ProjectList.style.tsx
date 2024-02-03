@@ -99,8 +99,11 @@ export const ListContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  overflow-x: auto;
-  /* align-items: flex-start; */
+
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  } /* align-items: flex-start; */
   gap: 2.4rem;
 
   ${(props) => props.theme.media.mobile`

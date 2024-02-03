@@ -3,7 +3,7 @@ import { Modal } from 'antd';
 import './CommonConfirm.css';
 
 interface ConfirmParameter {
-  content: string;
+  content: React.JSX.Element | string;
   okText: string;
   cancelText: string;
   isDangerous: boolean;

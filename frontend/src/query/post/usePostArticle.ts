@@ -36,7 +36,7 @@ function usePostArticle() {
     mutationKey: [QUERY_KEYS.POST_ARTICLE],
     mutationFn: writeArticle,
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      queryClient.removeQueries({
         queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/article' }],
       });
 

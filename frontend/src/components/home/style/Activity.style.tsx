@@ -269,20 +269,19 @@ export const BoxContent = styled.div`
 `;
 
 export const BoxContainer = styled.div`
-  overflow: hidden;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .scroll {
     width: 300px;
     height: 300px;
-    overflow-x: auto;
-    overflow-y: hidden;
     white-space: nowrap;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
   }
