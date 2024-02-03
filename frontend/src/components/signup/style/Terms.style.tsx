@@ -126,6 +126,7 @@ export const ContinueButton = styled.div`
     'liga' off;
   ${(props) => props.theme.typography.common.button1}
   cursor: pointer;
+  white-space: nowrap;
 `;
 export const CheckBoxBlank = styled.img`
   width: 2.4rem;

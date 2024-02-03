@@ -194,7 +194,7 @@ export const ScrollDropDownItem = styled.div`
     'liga' off;
   ${(props) => props.theme.typography.common.caption1}
 `;
-export const ContinueButton = styled.div`
+export const ContinueButton = styled.button`
   display: flex;
   width: 12.6rem;
   height: 4.6rem;
@@ -212,6 +212,7 @@ export const ContinueButton = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.button1}
+  white-space:nowrap;
   cursor: pointer;
   &:active {
     opacity: 0.5;
