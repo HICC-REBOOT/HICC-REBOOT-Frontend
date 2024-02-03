@@ -5,8 +5,10 @@ import useDropdown from '@hooks/useDropdown';
 import useInput from '@hooks/useInput';
 import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
 import useGetProfile from '@query/get/useGetProfile';
+import usePatchProfile from '@query/patch/usePatchProfile';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import theme from '@styles/theme';
+import { GRADE_ENUM } from '@components/type/CommonType';
 import * as M from './style/MyInfo.style';
 
 function MyInfo() {
@@ -63,6 +65,8 @@ function MyInfo() {
   const [majorState, setMajorState] = useState(true);
   const [passwordState, setPasswordState] = useState(true);
   const [passwordConfirmState, setPasswordConfirmState] = useState(true);
+
+  const { patchProfile, isPending } = usePatchProfile();
 
   useEffect(() => {
     phoneNChange(myInfo.data.phoneNumber ?? '');
@@ -131,11 +135,13 @@ function MyInfo() {
 
   const handleSubmit = () => {
     const submitParam = {
-      phoneNumber: { phoneNumber },
-      email: { email },
-      major: { currentOption },
+      phoneNumber,
+      email,
+      department: currentOption ? currentOption.label : '',
+      password,
     };
     console.log(submitParam);
+    patchProfile(submitParam);
   };
 
   const formatPhoneNumber = (input: string) => {
@@ -156,7 +162,7 @@ function MyInfo() {
       <M.GroupContainer>
         <M.Title>
           <M.Name>{myInfo.data.name}</M.Name>
-          <M.Label>{myInfo.data.grade}</M.Label>
+          <M.Label>{GRADE_ENUM[myInfo.data.grade]}</M.Label>
         </M.Title>
         <M.BoxArea style={{ left: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>전화번호</M.BoxTitle>
