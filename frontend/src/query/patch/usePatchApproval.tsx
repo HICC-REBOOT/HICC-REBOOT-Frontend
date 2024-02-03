@@ -22,7 +22,7 @@ function usePatchApproval({ approvalId }: UsePatchApprovalProps) {
     mutationFn: updateApproval,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/admin/members' }],
+        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/admin/applicants' }],
       });
       alert(`승인이 완료되었습니다.`);
     },
