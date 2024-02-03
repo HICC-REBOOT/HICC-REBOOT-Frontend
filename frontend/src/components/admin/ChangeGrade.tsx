@@ -8,7 +8,6 @@ import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
-import useGetMembers from '@query/get/useGetMembers';
 import useServerSidePagination from '@query/get/useServerSidePagination';
 import COMMON from '@constants/common';
 import * as I from './style/MemberInfo.style';
