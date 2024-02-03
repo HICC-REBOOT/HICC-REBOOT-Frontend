@@ -8,45 +8,29 @@ import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
-import useGetMembers from '@query/get/useGetMembers';
-import * as A from './style/Approval.style';
+import useServerSidePagination from '@query/get/useServerSidePagination';
+import COMMON from '@constants/common';
 import * as I from './style/MemberInfo.style';
-import MemberDetail from './MemberDetail';
+import MemberDetail, { UserData } from './MemberDetail';
 import MemberItem from './MemberItem';
 
-interface ContentType {
-  id: number;
-  department: string;
-  name: string;
-  grade: string;
-  studentNumber: string;
-  phoneNumber: string;
-  approvedDate: string | null;
-}
-
 export default function MemberInfo() {
-  const { data } = useGetMembers();
   const [userInput, setUserInput] = useState('');
-  const [searched, setSearched] = useState<ContentType[]>(data.content);
-
-  useEffect(() => {
-    console.log('회원 리스트 : ', searched);
-  }, []);
-
+  const [searchQuery, setSearchQuery] = useState<string | undefined>();
   const options: OptionType[] = [
-    { value: '1', label: '등급 순' },
-    { value: '2', label: '이름 순' },
-    { value: '3', label: '학과 순' },
+    { value: 'grade', label: '등급 순' },
+    { value: 'name', label: '이름 순' },
+    { value: 'department', label: '학과 순' },
   ];
-  const { currentOption, onChange } = useDropdown({});
+  const { currentOption, onChange } = useDropdown({ defalutValue: options[0] });
+  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<UserData>({
+    uri: '/api/admin/members',
+    size: COMMON.PAGINATION.SIZE,
+    search: searchQuery,
+    sort: currentOption?.value,
+  });
 
-  useEffect(() => {
-    console.log(currentOption);
-  }, [currentOption]);
-
-  const defaultValue = { value: '1', label: '등급 순' };
-
-  const items: CollapseProps['items'] = searched.map((user, index) => ({
+  const items: CollapseProps['items'] = curPageItem.map((user, index) => ({
     key: String(index + 1),
     label: <MemberItem userData={user} />,
     children: <MemberDetail userData={user} />,
@@ -58,8 +42,7 @@ export default function MemberInfo() {
   };
 
   const searching = () => {
-    const filteredData = data.content.filter((item) => item.name.toLowerCase().includes(userInput));
-    setSearched(filteredData);
+    setSearchQuery(userInput);
   };
 
   return (
@@ -69,7 +52,7 @@ export default function MemberInfo() {
           <Input placeholder="회원명 검색" maxLength={8} onChange={getValue} />
           <SearchButton src={Search} alt="search" onClick={searching} />
         </I.SearchBox>
-        <Dropdown placeholder="등급 순" options={options} onChange={onChange} defaultValue={defaultValue} />
+        <Dropdown placeholder="등급 순" options={options} onChange={onChange} />
       </I.SearchBar>
       <I.MembersBox>
         <I.CategoryBox>
@@ -94,6 +77,7 @@ export default function MemberInfo() {
           <Collapse bordered={false} ghost={true} items={items} />
         </ConfigProvider>
       </I.MembersBox>
+      {renderPaginationBtnOrInfinityScroll()}
     </>
   );
 }

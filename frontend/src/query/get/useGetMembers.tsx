@@ -44,7 +44,7 @@ interface Members {
 function useGetMembers() {
   const fetchMembers = async () => {
     const response = await request<null, Members, null>({
-      uri: `/api/admin/members?page=0&size=10`,
+      uri: `/api/admin/members?page=0&size=10&sort=name`,
       method: 'get',
     });
 
