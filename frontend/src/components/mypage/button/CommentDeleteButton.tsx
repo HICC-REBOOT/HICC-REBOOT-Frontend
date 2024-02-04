@@ -1,5 +1,5 @@
 import React from 'react';
-import useDeleteComment from '@query/delete/useDeleteComment';
+import useDeleteMyComment from '@query/delete/useDeleteMyComment';
 
 import * as W from '../style/MyWritings.style';
 
@@ -9,7 +9,7 @@ interface DeleteButtonProps {
 }
 
 function ArticleDeleteButton({ articleId, commentId }: DeleteButtonProps) {
-  const { deleteComment, isPending } = useDeleteComment({ articleId, commentId });
+  const { deleteComment, isPending } = useDeleteMyComment({ articleId, commentId });
 
   const deleteThisArticle = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {

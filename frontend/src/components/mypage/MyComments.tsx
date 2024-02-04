@@ -24,7 +24,6 @@ function MyComments() {
   const navigate = useNavigate();
 
   const goDetail = (article: Comment) => {
-    console.log(article.articleId);
     navigate(`${ROUTE.COMMUNITY.BASE}/${article.articleId}`);
   };
 

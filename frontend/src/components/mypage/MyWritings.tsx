@@ -22,7 +22,6 @@ function MyWritings() {
   };
 
   const updateArticle = (data: ArticleDetailType) => {
-    console.log(data);
     navigate(`${ROUTE.COMMUNITY.BASE}/${ROUTE.COMMUNITY.UPDATE}`, { state: data });
   };
 

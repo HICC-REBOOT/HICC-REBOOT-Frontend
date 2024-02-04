@@ -1,5 +1,5 @@
 import React from 'react';
-import useDeleteArticle from '@query/delete/useDeleteArticle';
+import useDeleteMyArticle from '@query/delete/useDeleteMyArticle';
 
 import * as W from '../style/MyWritings.style';
 
@@ -8,7 +8,7 @@ interface DeleteButtonProps {
 }
 
 function ArticleDeleteButton({ id }: DeleteButtonProps) {
-  const { deleteArticle, isPending } = useDeleteArticle({ articleId: id });
+  const { deleteArticle, isPending } = useDeleteMyArticle({ articleId: id });
 
   const deleteThisArticle = () => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
