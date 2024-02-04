@@ -17,6 +17,7 @@ export const QUERY_KEYS = Object.freeze({
   UPDATE_ARTICLE: 'update-article',
   GET_USERINFO: 'get-userinfo',
   PATCH_PROFILE: 'patch-profile',
+  GET_MAJORS: 'get-majors',
 });
 
 export const STORE_KEYS = Object.freeze({
