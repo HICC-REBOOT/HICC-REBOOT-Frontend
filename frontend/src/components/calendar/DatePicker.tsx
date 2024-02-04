@@ -36,8 +36,8 @@ export default function DatePickerBox() {
         }}
       >
         <D.CustomDatePicker
-          format={'MM.DD ddd A HH:mm'}
           value={dayjs(new Date())}
+          format={'MM.DD ddd A hh:mm'}
           suffixIcon={null}
           locale={locale}
           inputReadOnly={true}
@@ -69,8 +69,8 @@ export default function DatePickerBox() {
         }}
       >
         <D.CustomDatePicker
-          format={'MM.DD ddd A HH:mm'}
           value={dayjs(new Date()).add(1, 'hour')}
+          format={'MM.DD ddd A hh:mm'}
           suffixIcon={null}
           locale={locale}
           inputReadOnly={true}
