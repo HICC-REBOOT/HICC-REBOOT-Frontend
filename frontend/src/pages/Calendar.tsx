@@ -3,7 +3,6 @@ import CalendarGrid from '@components/calendar/CalendarGrid';
 import DetailBox from '@components/calendar/DetailBox';
 import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
-import { useSetRecoilState } from 'recoil';
 import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
 import dayjs from 'dayjs';
 import { isAdminState } from '../state/calendar';
@@ -55,11 +54,6 @@ export default function Calendar() {
   const { data } = useGetCalendarMonthInfo({ year, month });
   return (
     <Container>
-      <TempBtnContainer>
-        <TempBtn onClick={() => setIsAdmin(false)}>일반</TempBtn>
-        <TempBtn onClick={() => setIsAdmin(true)}>관리자</TempBtn>
-      </TempBtnContainer>
-      <CalendarGrid monthInfo={data} />
       <DetailBox />
       <EditModal />
     </Container>

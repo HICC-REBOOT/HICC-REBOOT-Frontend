@@ -2,9 +2,8 @@ import React from 'react';
 import useModal from '@hooks/useCalendarModal';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import { useRecoilValue } from 'recoil';
 import { ReactComponent as PlusIcon } from '@assets/image/icon/plus.svg';
-import { isAdminState } from '../../state/calendar';
+import useAuth from '@hooks/useAuth';
 import * as D from './style/DetailBox.style';
 import ScheduleCard from './ScheduleCard';
 
@@ -12,7 +11,7 @@ export default function DetailBox() {
   const temp = [1, 1];
 
   const { changeModalState, changeIsNewState, selectedDate } = useModal();
-  const isAdmin = useRecoilValue(isAdminState);
+  const isAdmin = useAuth();
 
   const addNewSchedule = () => {
     changeIsNewState(true);

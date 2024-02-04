@@ -16,7 +16,4 @@ export const selectedDateState = atom<Value>({
   default: new Date(),
 });
 
-export const isAdminState = atom<boolean>({
-  key: 'isAdminState',
-  default: false,
 });
