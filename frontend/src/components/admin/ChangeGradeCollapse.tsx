@@ -9,21 +9,13 @@ import confirm from '@components/common/popup/confirm/Confirm';
 import usePatchChangeGrade from '@query/patch/usePatchChangeGrade';
 import useDeleteMember from '@query/delete/useDeleteMember';
 import * as I from './style/MemberInfo.style';
-import * as A from './style/Approval.style';
-
-interface UserData {
-  id: number;
-  department: string;
-  name: string;
-  grade: string;
-  studentNumber: string;
-}
+import MemberDetail, { UserData } from './MemberDetail';
 
 interface MemberItemProps {
   userData: UserData;
 }
 
-export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
+export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
   const { updateGrade, isPending } = usePatchChangeGrade({ id: userData.id });
   const { deleteMember, isDeletePending } = useDeleteMember({ id: userData.id });
   const [collapsed, setCollapsed] = useState(false);
@@ -96,19 +88,23 @@ export default function ChangeGradeMemberItem({ userData }: MemberItemProps) {
     };
   }
   const clickEvent = () => {
-    setCollapsed(!collapsed);
-    // onClick();
     setIsModalOpen();
+  };
+
+  const onClickArrow = (event: any) => {
+    event.stopPropagation();
+    setCollapsed(!collapsed);
   };
   return (
     <>
       <I.MemberBox onClick={clickEvent}>
         <I.MemberInfoMajor>{userData.department}</I.MemberInfoMajor>
         <I.MemberInfoName>{userData.name}</I.MemberInfoName>
-        <I.Blank>
+        <I.Blank onClick={onClickArrow}>
           <ArrowImage src={Arrow} alt="arrow" $rotated={collapsed} />
         </I.Blank>
       </I.MemberBox>
+      {collapsed && <MemberDetail userData={userData} />}
       {modalOpen && <ExtensionModal {...modalInfo} />}
     </>
   );

@@ -15,7 +15,7 @@ function Temp1() {
 
   return (
     <div style={{ height: '30rem' }}>
-      <Dropdown placeholder="hello" options={options} onChange={onChange} />
+      <Dropdown placeholder="hello" options={options} onChange={onChange} dropdownWidth="16rem" />
     </div>
   );
 }

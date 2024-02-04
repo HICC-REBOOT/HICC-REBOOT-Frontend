@@ -115,10 +115,10 @@ function useServerSidePagination<T>({
 
   // 페이지 이외의 데이터가 변했을 때 캐싱 날려버림, 데이터 무한 쌓임 현상 해결하기 위해서
   useEffect(() => {
-    setData([]);
     queryClient.invalidateQueries({
       queryKey: [QUERY_KEYS.PAGEABLE, { uri }],
     });
+    setData([]);
   }, [uri, size, sort, search, board, articleGrade, findBy, queryClient]);
 
   // 더 불러오기 공간이 관측되면 페이지를 1증가

@@ -36,7 +36,13 @@ function Filter({
   return (
     <F.Container>
       <F.SelectPart>
-        <DropDown placeholder="" defaultValue={options[0]} options={options} onChange={onChange} />
+        <DropDown
+          placeholder=""
+          defaultValue={options[0]}
+          options={options}
+          onChange={onChange}
+          dropdownWidth="15rem"
+        />
         <F.Manager>
           <F.OnlyManagerLabel>운영진 글만 보기</F.OnlyManagerLabel>
           <Switch active={isOnlyExecutive} setActive={setIsOnlyExecutive} />
