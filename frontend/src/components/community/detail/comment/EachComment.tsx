@@ -3,6 +3,7 @@ import { NestedCommentType, ParentComment } from '@components/community/Communit
 import WriteInfo from '@components/community/common/WriteInfo';
 import Buttons from '@components/community/common/Buttons';
 import useNestedComment from '@hooks/useNestedComment';
+import confirm from '@components/common/popup/confirm/Confirm';
 import * as EA from './EachComment.style';
 import NestedComment from '../nestedComment/NestedComment';
 import useDeleteComment from '../../../../query/delete/useDeleteComment';
@@ -21,10 +22,14 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
 
   const { deleteComment, isPending } = useDeleteComment({ articleId: comment.articleId, commentId: comment.commentId });
 
-  const deleteThisComment = () => {
-    if (window.confirm('정말 이 댓글을 삭제하시겠습니까?')) {
-      deleteComment();
-    }
+  const deleteConfirm = () => {
+    confirm({
+      content: '정말 이 댓글을\n 삭제하시겠습니까?',
+      okText: '삭제',
+      cancelText: '취소',
+      isDangerous: true,
+      onOk: deleteComment,
+    });
   };
 
   return (
@@ -37,7 +42,7 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
           onClick: () => enrollNestedComment(comment.commentId),
           show: true,
         }}
-        dangerous={{ label: '삭제', onClick: deleteThisComment, show: comment.isMine, disabled: isPending }}
+        dangerous={{ label: '삭제', onClick: deleteConfirm, show: comment.isMine, disabled: isPending }}
       />
       {nestedComments.length > 0 &&
         nestedComments.map((nestedComment) => (
