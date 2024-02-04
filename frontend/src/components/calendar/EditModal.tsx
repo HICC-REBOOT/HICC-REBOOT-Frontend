@@ -13,12 +13,13 @@ import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
 import hexToRGBA from '@utils/hexToRgba';
 import { modalState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
-import TypeButton from './TypeButton';
 import * as E from './style/EditModal.style';
+import { ScheduleType } from './CalendarType';
 
 export default function EditModal() {
   const { isModalOpen, changeModalState, isNewSchedule, changeIsNewState } = useModal();
 
+  const [type, setType] = useRecoilState(scheduleTypeState);
   const [detail, setDetail] = useState<string>('');
   const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetail(e.target.value);
@@ -29,6 +30,22 @@ export default function EditModal() {
     changeIsNewState(false);
   };
 
+  const onClickTypeButton = (selectedType: ScheduleType) => {
+    switch (selectedType) {
+      case 'ACADEMIC':
+        setType('ACADEMIC');
+        break;
+      case 'AMITY':
+        setType('AMITY');
+        break;
+      case 'SCHOOL_EVENT':
+        setType('SCHOOL_EVENT');
+        break;
+      default:
+        setType('ETC');
+        break;
+    }
+  };
   return (
     <Sheet
       isOpen={isModalOpen}
@@ -44,7 +61,7 @@ export default function EditModal() {
           <E.Container>
             <E.Top>
               <E.TitleContainer>
-                <E.Line />
+                <E.Line type={type} />
                 <E.Title
                   value={isNewSchedule ? '' : '주간 세미나'}
                   placeholder={isNewSchedule ? '일정 제목을 입력해주세요' : ''}
@@ -62,7 +79,17 @@ export default function EditModal() {
                 </E.ContentWrapper>
                 <E.ContentWrapper>
                   <TagIcon />
-                  <TypeButton />
+                  <E.TypeButtonContainer>
+                    <E.AcademicButton selected={type === 'ACADEMIC'} onClick={() => onClickTypeButton('ACADEMIC')}>
+                      • 학술
+                    </E.AcademicButton>
+                    <E.AmityButton selected={type === 'AMITY'} onClick={() => onClickTypeButton('AMITY')}>
+                      • 친목
+                    </E.AmityButton>
+                    <E.EventButton selected={type === 'SCHOOL_EVENT'} onClick={() => onClickTypeButton('SCHOOL_EVENT')}>
+                      • 학교 행사
+                    </E.EventButton>
+                  </E.TypeButtonContainer>
                 </E.ContentWrapper>
               </E.Left>
               <E.TextAreaContainer>
