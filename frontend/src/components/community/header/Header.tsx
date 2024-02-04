@@ -15,7 +15,7 @@ function Header({ options, onChange }: HeaderProps) {
 
   return (
     <H.Container>
-      <DropDown placeholder="" options={options} onChange={onChange} defaultValue={options[0]} />
+      <DropDown placeholder="" options={options} onChange={onChange} defaultValue={options[0]} dropdownWidth="15rem" />
       <H.WriteButton to={ROUTE.COMMUNITY.WRITE} $hide={matchCommunityList === null}>
         글쓰기
       </H.WriteButton>

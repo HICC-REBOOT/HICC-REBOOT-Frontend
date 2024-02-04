@@ -5,6 +5,7 @@ import Buttons from '@components/community/common/Buttons';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import useDeleteArticle from '@query/delete/useDeleteArticle';
+import confirm from '@components/common/popup/confirm/Confirm';
 import * as C from './Content.style';
 
 interface ContentProps {
@@ -20,10 +21,14 @@ function Content({ id, data }: ContentProps) {
     navigate(`${ROUTE.COMMUNITY.BASE}/${ROUTE.COMMUNITY.UPDATE}`, { state: data });
   };
 
-  const deleteThisArticle = () => {
-    if (window.confirm('정말 삭제하시겠습니까?')) {
-      deleteArticle();
-    }
+  const deleteConfirm = () => {
+    confirm({
+      content: '정말 이 게시글을\n 삭제하시겠습니까?',
+      okText: '삭제',
+      cancelText: '취소',
+      isDangerous: true,
+      onOk: deleteArticle,
+    });
   };
 
   return (
@@ -36,7 +41,7 @@ function Content({ id, data }: ContentProps) {
       <C.Content>{data.content}</C.Content>
       <Buttons
         normal={{ label: '수정', onClick: updateArticle, show: data.isMine, disabled: isPending }}
-        dangerous={{ label: '삭제', onClick: deleteThisArticle, show: data.isMine, disabled: isPending }}
+        dangerous={{ label: '삭제', onClick: deleteConfirm, show: data.isMine, disabled: isPending }}
       />
     </>
   );
