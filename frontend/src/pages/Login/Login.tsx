@@ -24,9 +24,16 @@ export default function Login() {
     if (id.length === 0) setErrorMsg1('아이디를 입력해주세요.');
     if (pw.length === 0) setErrorMsg2('비밀번호를 입력해주세요.');
 
-    await login({ studentNumber: id, password: pw });
-    setIsLogin(true);
-    navigate(ROUTE.HOME);
+    const isSuccess = await login({ studentNumber: id, password: pw });
+
+    if (isSuccess) {
+      setIsLogin(true);
+      navigate(ROUTE.HOME);
+      return null;
+    }
+
+    alert('로그인에 실패했습니다.');
+    return null;
   };
 
   useEffect(() => {
