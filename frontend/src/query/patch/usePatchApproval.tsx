@@ -21,10 +21,10 @@ function usePatchApproval({ approvalId }: UsePatchApprovalProps) {
     mutationKey: ['update-approval', approvalId],
     mutationFn: updateApproval,
     onSuccess: () => {
-      alert(`승인이 완료되었습니다.`);
       queryClient.invalidateQueries({
-        queryKey: ['get-approval-list'],
+        queryKey: [QUERY_KEYS.PAGEABLE, { uri: '/api/admin/applicants' }],
       });
+      alert(`승인이 완료되었습니다.`);
     },
   });
 
