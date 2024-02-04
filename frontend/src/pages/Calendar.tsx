@@ -59,7 +59,7 @@ export default function Calendar() {
         <TempBtn onClick={() => setIsAdmin(false)}>일반</TempBtn>
         <TempBtn onClick={() => setIsAdmin(true)}>관리자</TempBtn>
       </TempBtnContainer>
-      <CalendarGrid />
+      <CalendarGrid monthInfo={data} />
       <DetailBox />
       <EditModal />
     </Container>

@@ -3,18 +3,7 @@ import Calendar from 'react-calendar';
 import { DeviceProvider } from '@assets/mediaQuery';
 import 'react-calendar/dist/Calendar.css';
 import hexToRGBA from '@utils/hexToRgba';
-
-export const Mark = styled.div<{ type: number }>`
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 0.2rem;
-  background-color: ${(props) => {
-    if (props.type === 1) return 'pink';
-    if (props.type === 2) return 'skyblue';
-    if (props.type === 3) return 'yellow';
-    return 'pink';
-  }};
-`;
+import { ScheduleType } from '../CalendarType';
 
 export const CustomCalendar = styled(Calendar)`
   color: white;
@@ -36,15 +25,15 @@ export const CustomCalendar = styled(Calendar)`
 
     ${(props) => props.theme.media.tablet`
       padding: 0;
-    `}
+      `}
 
     ${(props) => props.theme.media.desktop`
       padding: 0;
-    `};
+      `};
 
     ${(props) => props.theme.media.wide`
       padding: 0;
-    `};
+      `};
   }
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
@@ -73,12 +62,12 @@ export const CustomCalendar = styled(Calendar)`
       background-color: ${props.theme.colors.grey001};
       border-radius: 1.6rem;
       padding: 2rem 6.4rem;
-  `};
+      `};
     ${(props) => props.theme.media.wide`
       background-color: ${props.theme.colors.grey001};
       border-radius: 1.6rem;
       padding: 2rem 6.4rem;
-  `};
+      `};
   }
 
   // 요일 전체
@@ -99,32 +88,31 @@ export const CustomCalendar = styled(Calendar)`
   .react-calendar__month-view__days {
     ${(props) => props.theme.media.desktop`
       row-gap: 4rem;
-  `};
+      `};
 
     ${(props) => props.theme.media.wide`
       row-gap: 4rem;
-  `};
+      `};
   }
   // day 하나
   .react-calendar__tile {
     border-radius: 0.8rem;
     color: ${(props) => props.theme.colors.white};
-    ${(props) => props.theme.typography[DeviceProvider()].body};
-    align-items: flex-start;
     display: flex;
     padding: 0;
     justify-content: center;
+    position: relative;
   }
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus {
     background-color: ${(props) => props.theme.colors.black};
     ${(props) => props.theme.media.desktop`
       background-color: ${props.theme.colors.grey001};
-  `};
+      `};
 
     ${(props) => props.theme.media.wide`
       background-color: ${props.theme.colors.grey001};
-  `};
+      `};
   }
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus,
@@ -133,11 +121,11 @@ export const CustomCalendar = styled(Calendar)`
 
     ${(props) => props.theme.media.desktop`
       background-color: ${props.theme.colors.grey001};;
-    `};
+      `};
 
     ${(props) => props.theme.media.wide`
       background-color: ${props.theme.colors.grey001};
-    `};
+      `};
   }
 
   // day 안에 있는 숫자
@@ -146,6 +134,7 @@ export const CustomCalendar = styled(Calendar)`
     height: 6rem;
     padding-top: 0.4rem;
     width: 4.2rem;
+    ${(props) => props.theme.typography[DeviceProvider()].body};
   }
   .react-calendar__tile--active:enabled:focus > abbr {
     background-color: ${(props) => props.theme.colors.white};
@@ -163,11 +152,11 @@ export const CustomCalendar = styled(Calendar)`
 
     ${(props) => props.theme.media.desktop`
       background-color: ${props.theme.colors.grey001};;
-    `};
+      `};
 
     ${(props) => props.theme.media.wide`
       background-color: ${props.theme.colors.grey001};
-    `};
+      `};
   }
   // 오늘 날짜 안에 있는 숫자
   .react-calendar__tile--now > abbr {
@@ -175,11 +164,11 @@ export const CustomCalendar = styled(Calendar)`
 
     ${(props) => props.theme.media.desktop`
       background-color: ${props.theme.colors.grey001};;
-    `};
+      `};
 
     ${(props) => props.theme.media.wide`
       background-color: ${props.theme.colors.grey001};
-    `};
+      `};
     color: ${(props) => props.theme.colors.point1};
     border: 0.1rem solid ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
   }
@@ -188,4 +177,25 @@ export const CustomCalendar = styled(Calendar)`
   .react-calendar__month-view__days__day--neighboringMonth {
     color: ${(props) => props.theme.colors.grey002};
   }
+`;
+
+export const DotContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  position: absolute;
+  top: 3rem;
+`;
+
+export const Dot = styled.div<{ type: ScheduleType }>`
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 0.2rem;
+  background-color: ${(props) => {
+    if (props.type === 'ACADEMIC') return props.theme.colors.tag_academy;
+    if (props.type === 'AMITY') return props.theme.colors.point1;
+    if (props.type === 'SCHOOL_EVENT') return props.theme.colors.tag_event;
+    return props.theme.colors.grey004;
+  }};
 `;
