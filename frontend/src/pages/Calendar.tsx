@@ -4,6 +4,8 @@ import DetailBox from '@components/calendar/DetailBox';
 import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
 import { useSetRecoilState } from 'recoil';
+import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
+import dayjs from 'dayjs';
 import { isAdminState } from '../state/calendar';
 
 const Container = styled.div`
@@ -48,6 +50,9 @@ const TempBtn = styled.button`
 
 export default function Calendar() {
   const setIsAdmin = useSetRecoilState<boolean>(isAdminState);
+  const year = dayjs(new Date()).year();
+  const month = dayjs(new Date()).month() + 1;
+  const { data } = useGetCalendarMonthInfo({ year, month });
   return (
     <Container>
       <TempBtnContainer>
