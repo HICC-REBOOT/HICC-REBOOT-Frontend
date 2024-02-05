@@ -24,19 +24,25 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
 
   const options: RadioType[] = [
     {
-      tag: '필수',
+      tag: '등급',
+      disabled: false,
+      label: '[회장]으로 위임',
+      value: 'PRESIDENT',
+    },
+    {
+      tag: '등급',
       disabled: false,
       label: '[회원]으로 등급 변경',
       value: 'NORMAL',
     },
     {
-      tag: '필수',
+      tag: '등급',
       disabled: true,
       label: '[운영진]으로 등급 변경',
       value: 'EXECUTIVE',
     },
     {
-      tag: '필수',
+      tag: '강퇴',
       disabled: false,
       label: '강제 탈퇴',
       value: '3',
@@ -46,10 +52,17 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
 
   if (userData.grade === 'NORMAL') {
     options[0].disabled = true;
-    options[1].disabled = false;
-  } else {
-    options[0].disabled = false;
     options[1].disabled = true;
+    options[2].disabled = false;
+  } else if (userData.grade === 'EXECUTIVE') {
+    options[0].disabled = false;
+    options[1].disabled = false;
+    options[2].disabled = true;
+  } else {
+    options[0].disabled = true;
+    options[1].disabled = true;
+    options[2].disabled = true;
+    options[3].disabled = true;
   }
 
   const popup = () => {
@@ -59,6 +72,26 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
       cancelText: '취소',
       isDangerous: true,
       onOk: () => deleteMember(),
+      close: setIsModalOpen,
+    });
+  };
+  const checkPopup = () => {
+    confirm({
+      content: `${userData.name} 님을 [회장]으로 위임합니다.`,
+      okText: '위임하기',
+      cancelText: '취소',
+      isDangerous: false,
+      onOk: () => doubleCheckPopup(),
+      close: setIsModalOpen,
+    });
+  };
+  const doubleCheckPopup = () => {
+    confirm({
+      content: `${userData.name} 님은 [운영진]으로 변경됩니다.`,
+      okText: '확인했어요',
+      cancelText: '취소',
+      isDangerous: true,
+      onOk: () => updateGrade({ grade: 'PRESIDENT' }),
       close: setIsModalOpen,
     });
   };
@@ -77,11 +110,13 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
 
   if (option?.value === '3') {
     modalInfo.onOk = popup;
+  } else if (option?.value === 'PRESIDENT') {
+    modalInfo.onOk = checkPopup;
   } else {
     modalInfo.onOk = () => {
       if (option?.value === 'NORMAL') {
         updateGrade({ grade: 'NORMAL' });
-      } else {
+      } else if (option?.value === 'EXECUTIVE') {
         updateGrade({ grade: 'EXECUTIVE' });
       }
       setIsModalOpen();
