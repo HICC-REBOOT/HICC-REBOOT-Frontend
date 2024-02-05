@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Arrow from '@assets/image/icon/arrow.svg';
 import styled, { css } from 'styled-components';
-import * as A from './style/Approval.style';
 import * as I from './style/MemberInfo.style';
 
 interface UserData {
@@ -20,7 +19,7 @@ export default function MemberItem({ userData }: MemberItemProps) {
     setCollapsed(!collapsed);
   };
   return (
-    <I.MemberBox onClick={clickEvent}>
+    <I.MemberBox onClick={clickEvent} style={{ backgroundColor: collapsed ? '#5B4EF5' : undefined }}>
       <I.MemberInfoMajor>{userData.department}</I.MemberInfoMajor>
       <I.MemberInfoName>{userData.name}</I.MemberInfoName>
       <I.Blank>

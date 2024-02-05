@@ -97,7 +97,7 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
   };
   return (
     <>
-      <I.MemberBox onClick={clickEvent}>
+      <I.MemberBox onClick={clickEvent} style={{ backgroundColor: collapsed ? '#5B4EF5' : undefined }}>
         <I.MemberInfoMajor>{userData.department}</I.MemberInfoMajor>
         <I.MemberInfoName>{userData.name}</I.MemberInfoName>
         <I.Blank onClick={onClickArrow}>

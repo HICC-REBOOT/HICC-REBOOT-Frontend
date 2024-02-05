@@ -80,5 +80,5 @@
     "prettier": "^3.1.0",
     "typescript": "^5.3.2"
   },
-  "proxy": "http://hicc.co.kr:8080"
+  "proxy": "https://hicc.co.kr:8080"
 }
