@@ -3,7 +3,7 @@ import Select from 'react-select';
 import { DeviceProvider } from '@assets/mediaQuery';
 import hexToRGBA from '@utils/hexToRgba';
 
-const DropdownStyle = styled(Select)`
+const DropdownStyle = styled(Select)<{ name: string }>`
   & .Dropdown {
     &__indicator-separator {
       width: 0;
@@ -16,8 +16,8 @@ const DropdownStyle = styled(Select)`
     }
 
     &__control {
+      width: ${(props) => props.name};
       ${(props) => props.theme.typography[DeviceProvider()].body};
-      width: 100%;
       height: 4.7rem;
       background-color: ${(props) => props.theme.colors.black} !important;
       border: none;
@@ -49,8 +49,8 @@ const DropdownStyle = styled(Select)`
     }
 
     &__menu {
-      max-width: 15rem;
-      width: 100%;
+      max-width: ${(props) => props.name};
+      width: ${(props) => props.name};
       margin-top: 0.4rem;
       border-top: 0;
 

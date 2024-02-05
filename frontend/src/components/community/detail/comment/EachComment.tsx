@@ -3,8 +3,10 @@ import { NestedCommentType, ParentComment } from '@components/community/Communit
 import WriteInfo from '@components/community/common/WriteInfo';
 import Buttons from '@components/community/common/Buttons';
 import useNestedComment from '@hooks/useNestedComment';
+import confirm from '@components/common/popup/confirm/Confirm';
 import * as EA from './EachComment.style';
 import NestedComment from '../nestedComment/NestedComment';
+import useDeleteComment from '../../../../query/delete/useDeleteComment';
 
 interface EachCommentProps {
   comment: ParentComment;
@@ -18,20 +20,16 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
     selectedNested(commentId);
   };
 
-  const deleteComment = (commentId: number) => {};
+  const { deleteComment, isPending } = useDeleteComment({ articleId: comment.articleId, commentId: comment.commentId });
 
-  const getNestedCommentByParent = () => {
-    const nestedCommentByParent = nestedComments.filter(
-      (nestedComment) => nestedComment.parentCommentId === comment.commentId,
-    );
-
-    if (nestedCommentByParent.length === 0) {
-      return null;
-    }
-
-    return nestedCommentByParent.map((nested) => (
-      <NestedComment key={`${nested.parentCommentId}-${nested.commentId}`} nestedComment={nested} />
-    ));
+  const deleteConfirm = () => {
+    confirm({
+      content: '정말 이 댓글을\n 삭제하시겠습니까?',
+      okText: '삭제',
+      cancelText: '취소',
+      isDangerous: true,
+      onOk: deleteComment,
+    });
   };
 
   return (
@@ -39,10 +37,20 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
       <WriteInfo grade={comment.grade} name={comment.name} date={comment.date} />
       <EA.Content>{comment.content}</EA.Content>
       <Buttons
-        normal={{ label: '답글 달기', onClick: () => enrollNestedComment(comment.commentId), show: true }}
-        dangerous={{ label: '삭제', onClick: () => deleteComment(comment.commentId), show: comment.isMine }}
+        normal={{
+          label: '답글 달기',
+          onClick: () => enrollNestedComment(comment.commentId),
+          show: true,
+        }}
+        dangerous={{ label: '삭제', onClick: deleteConfirm, show: comment.isMine, disabled: isPending }}
       />
-      {getNestedCommentByParent()}
+      {nestedComments.length > 0 &&
+        nestedComments.map((nestedComment) => (
+          <NestedComment
+            key={`${nestedComment.parentCommentId}-${nestedComment.commentId}`}
+            nestedComment={nestedComment}
+          />
+        ))}
     </EA.Container>
   );
 }

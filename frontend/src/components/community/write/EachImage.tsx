@@ -24,7 +24,7 @@ function EachImage({ image, deleteImage }: EachImageProps) {
       <Desktop>
         <I.ImageContainer onMouseEnter={setBackdropShow} onMouseLeave={setBackdropShow}>
           <I.ImageView src={image} alt="image" />
-          <I.Backdrop show={backdropShow}>
+          <I.Backdrop $show={backdropShow}>
             <Delete style={{ cursor: 'pointer' }} onClick={deleteImage} />
           </I.Backdrop>
         </I.ImageContainer>

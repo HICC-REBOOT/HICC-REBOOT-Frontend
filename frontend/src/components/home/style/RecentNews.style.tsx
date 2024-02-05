@@ -133,6 +133,7 @@ export const NewsList = styled.div`
 `;
 
 export const NewsBox = styled.div`
+  cursor: pointer;
   ${(props) => props.theme.media.mobile`
     display: flex;
     width: 32.8rem;

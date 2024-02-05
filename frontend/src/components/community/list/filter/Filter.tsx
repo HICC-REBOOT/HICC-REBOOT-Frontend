@@ -11,9 +11,19 @@ interface FilterProps {
   setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
   options: OptionType[];
   onChange: (selectedOption: OptionType | null) => void;
+  isOnlyExecutive: boolean;
+  setIsOnlyExecutive: React.DispatchWithoutAction;
 }
 
-function Filter({ keyword, setKeyword, setSearchQuery, options, onChange }: FilterProps) {
+function Filter({
+  keyword,
+  setKeyword,
+  setSearchQuery,
+  options,
+  onChange,
+  isOnlyExecutive,
+  setIsOnlyExecutive,
+}: FilterProps) {
   // 키워드가 검색버튼 클릭 시 반영되기 위해
   const onSearchClick = () => {
     if (keyword.trim() === '') {
@@ -26,10 +36,16 @@ function Filter({ keyword, setKeyword, setSearchQuery, options, onChange }: Filt
   return (
     <F.Container>
       <F.SelectPart>
-        <DropDown placeholder="" defaultValue={options[0]} options={options} onChange={onChange} />
+        <DropDown
+          placeholder=""
+          defaultValue={options[0]}
+          options={options}
+          onChange={onChange}
+          dropdownWidth="15rem"
+        />
         <F.Manager>
           <F.OnlyManagerLabel>운영진 글만 보기</F.OnlyManagerLabel>
-          <Switch />
+          <Switch active={isOnlyExecutive} setActive={setIsOnlyExecutive} />
         </F.Manager>
       </F.SelectPart>
       <F.SearchPart>
