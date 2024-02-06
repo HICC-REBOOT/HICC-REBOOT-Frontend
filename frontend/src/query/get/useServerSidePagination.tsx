@@ -118,6 +118,8 @@ function useServerSidePagination<T>({
     queryClient.invalidateQueries({
       queryKey: [QUERY_KEYS.PAGEABLE, { uri }],
     });
+    setPage(0);
+    setIsLast(false);
     setData([]);
   }, [uri, size, sort, search, board, articleGrade, findBy, queryClient]);
 
@@ -133,13 +135,13 @@ function useServerSidePagination<T>({
       setData(cachingData.content);
     }
 
-    if (isInfinityScroll) {
+    if (isInfinityScroll && !isLast) {
       setData((prev) => [...prev, ...cachingData.content]);
       setIsLast(cachingData.last);
     }
 
     setDataLength(cachingData.totalElements);
-  }, [cachingData, isInfinityScroll]);
+  }, [cachingData, isInfinityScroll, isLast]);
 
   const onSetPage = (pageNum: number) => {
     setPage(pageNum - 1);
