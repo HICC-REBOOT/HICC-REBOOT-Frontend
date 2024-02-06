@@ -17,7 +17,6 @@ interface News {
 function RecentNews() {
   const newsResponse = useGetLatestNews(); // Retrieve the entire response object
   const NEWS_ITEMS = newsResponse.data;
-  console.log(NEWS_ITEMS);
 
   const navigate = useNavigate();
 
