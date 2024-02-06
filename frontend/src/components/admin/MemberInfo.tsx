@@ -30,8 +30,6 @@ export default function MemberInfo() {
     sort: currentOption?.value,
   });
 
-  console.log(curPageItem);
-
   const items: CollapseProps['items'] = curPageItem.map((user, index) => ({
     key: String(index + 1),
     label: <MemberItem userData={user} />,
