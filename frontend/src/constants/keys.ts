@@ -23,6 +23,7 @@ export const STORE_KEYS = Object.freeze({
   NESTED_COMMENT: 'nestedComment',
   LOGIN: 'login',
   ADMIN: 'admin',
+  PRESIDENT: 'president',
 });
 
 export const COOKIE_KEYS = Object.freeze({
