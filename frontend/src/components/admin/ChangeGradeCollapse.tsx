@@ -77,7 +77,14 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
   };
   const checkPopup = () => {
     confirm({
-      content: `${userData.name} 님을 [회장]으로 위임합니다.`,
+      content: (
+        <TitleWrapper>
+          <Title>{userData.name} 님을 [회장]으로 위임합니다.</Title>
+          <SubTitle>
+            * 회장 위임 시 {userData.name} 님은 [회장]으로 위임되고, 본인은 [운영진]으로 등급이 수정됩니다.
+          </SubTitle>
+        </TitleWrapper>
+      ),
       okText: '위임하기',
       cancelText: '취소',
       isDangerous: false,
@@ -87,7 +94,15 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
   };
   const doubleCheckPopup = () => {
     confirm({
-      content: `${userData.name} 님은 [운영진]으로 변경됩니다.`,
+      content: (
+        <TitleWrapper>
+          <Title>본인은 [운영진]으로 변경됩니다.</Title>
+          <SubTitle>
+            * 확인 즉시 {userData.name} 님은 [회장]으로, 본인은 [운영진]으로 등급이 수정되며, 이후 회장 위임을 취소할 수
+            없습니다.
+          </SubTitle>
+        </TitleWrapper>
+      ),
       okText: '확인했어요',
       cancelText: '취소',
       isDangerous: true,
@@ -158,4 +173,36 @@ const ArrowImage = styled.img<ArrowImageProps>`
     css`
       transform: rotate(180deg);
     `}
+`;
+const TitleWrapper = styled.div`
+  display: flex;
+  width: 28.2rem;
+  height: 7.7rem;
+  flex-direction: column;
+  justify-content: center;
+`;
+const Title = styled.div`
+  color: var(--white, var(--Greyscale-light-white, #fff));
+  text-align: center;
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  font-family: 'Source Sans Pro';
+  font-size: 1.7rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160%; /* 2.72rem */
+  letter-spacing: 0.1rem;
+`;
+const SubTitle = styled.div`
+  color: var(--grey003, var(--Greyscale-light-white, #a3a4a9));
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  font-family: 'Source Sans Pro';
+  font-size: 1.3rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 160%;
+  letter-spacing: 0.1rem;
 `;

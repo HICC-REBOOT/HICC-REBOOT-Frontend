@@ -56,7 +56,7 @@ export default function EnterInfo() {
       name: data.name,
       department: major,
       phoneNumber: `${data.num1}-${data.num2}-${data.num3}`,
-      email: 'hongik@gmail.com',
+      email: data.email,
     });
   };
   // const onSubmit = (data: FormType) => {
