@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import theme from '@styles/theme';
 
 export const Container = styled.div`
   position: relative;
