@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import * as A from '@components/home/style/Activity.style';
 import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
 import seminar from '@assets/image/seminar.png';
@@ -44,6 +44,16 @@ const mtInfo = {
 };
 
 function Activity() {
+  const overflowRef = useRef<HTMLDivElement>(null);
+
+  const moveRight = () => {
+    const { current } = overflowRef;
+
+    if (current) {
+      current.scrollLeft = current.scrollWidth - current.clientWidth;
+    }
+  };
+
   return (
     <A.Container>
       <A.BackCircle />
@@ -54,11 +64,11 @@ function Activity() {
           <ActivityBox {...seminarInfo} />
           <ActivityBox {...projcetInfo} />
         </A.ActivityContainer>
-        <A.BoxContainer className={'scroll'}>
-          <A.SmallBox img={''} style={{ border: '0.1rem solid rgba(255, 255, 255, 0.5)' }}>
+        <A.BoxContainer className={'scroll'} ref={overflowRef}>
+          <A.SmallBox $img={''} style={{ border: '0.1rem solid rgba(255, 255, 255, 0.5)' }}>
             <A.SmallBoxTitle>{'활발한\n친목도모활동'}</A.SmallBoxTitle>
             <A.SmallBoxContent>매 주 자율적으로 진행되는 세미나를 통해 기초 코딩 지식을 학습합니다</A.SmallBoxContent>
-            <A.Logo>
+            <A.Logo onClick={moveRight}>
               <Arrow />
             </A.Logo>
           </A.SmallBox>

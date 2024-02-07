@@ -1,5 +1,6 @@
 import React from 'react';
 import useScrollCount from '@hooks/animations/useScrollCount';
+import useGetMemberCount from '@query/get/useGetJoinedPeopleNumber';
 import * as N from './style/NumberTable.style';
 
 const year = Number(new Date().getFullYear());
@@ -27,10 +28,11 @@ type CountItem = {
 };
 
 function NumberTable() {
+  const JoinedNumber = Number(useGetMemberCount().data);
   const countItem: CountItem = {
     0: useScrollCount(FIGURE_ITEMS[0].number, 2000, 1000, 'donw'),
     1: useScrollCount(FIGURE_ITEMS[1].number, 0, 1000),
-    2: useScrollCount(FIGURE_ITEMS[2].number, 0, 1700),
+    2: useScrollCount(JoinedNumber, 0, 1700),
   };
   return (
     <N.Container>
@@ -42,7 +44,7 @@ function NumberTable() {
             <N.TableContent>
               <N.TableTitle>{item.title}</N.TableTitle>
               <N.NumberContainer>
-                <N.Number {...countItem[index]}>{item.number}</N.Number>
+                <N.Number {...countItem[index]}>{0}</N.Number>
                 <N.Unit>{item.unit}</N.Unit>
               </N.NumberContainer>
             </N.TableContent>

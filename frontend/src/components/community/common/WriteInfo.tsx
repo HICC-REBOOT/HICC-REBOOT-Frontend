@@ -1,7 +1,7 @@
 import React from 'react';
 import { GRADE_ENUM, Grade } from '@components/type/CommonType';
-import isMoreThanExecutive from '@utils/isMoreThanExecutive';
 import time from '@utils/time';
+import Authorization from '@utils/Authorization';
 import * as W from './WriteInfo.style';
 
 interface WriteInfoProps {
@@ -11,11 +11,21 @@ interface WriteInfoProps {
 }
 
 function WriteInfo({ grade, name, date }: WriteInfoProps) {
+  const isLeaveUser = name === '';
+
+  const showName = () => {
+    if (isLeaveUser) {
+      return '(알 수 없음)';
+    }
+
+    return name;
+  };
+
   return (
     <W.Container>
       <W.WriterPart>
-        <W.GradeTag show={isMoreThanExecutive(grade)}>{GRADE_ENUM[grade]}</W.GradeTag>
-        <W.Writer>{name}</W.Writer>
+        <W.GradeTag $show={Authorization.isMoreThanExecutive(grade) && !isLeaveUser}>{GRADE_ENUM[grade]}</W.GradeTag>
+        <W.Writer>{showName()}</W.Writer>
       </W.WriterPart>
       <W.WriteTime>{time(date)}</W.WriteTime>
     </W.Container>

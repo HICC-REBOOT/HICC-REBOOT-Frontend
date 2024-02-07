@@ -71,7 +71,7 @@ function ImageManager({ currentImages, setImage }: ImageManagerProps) {
           {currentImages?.map((image, index) => (
             <EachImage key={index} image={image.src} deleteImage={() => deleteImage(index)} />
           ))}
-          <I.ImageUploadButton hide={currentImages?.length >= COMMON.IMAGE.MAX_LENGTH} onClick={handleImgBtn}>
+          <I.ImageUploadButton $hide={currentImages?.length >= COMMON.IMAGE.MAX_LENGTH} onClick={handleImgBtn}>
             <ImageUpload style={{ cursor: 'pointer' }} />
           </I.ImageUploadButton>
         </I.ImageUploads>

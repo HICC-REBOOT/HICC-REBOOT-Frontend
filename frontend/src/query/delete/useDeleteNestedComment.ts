@@ -10,7 +10,7 @@ interface UseDeleteNestedCommentProps {
 function useDeleteNestedComment({ articleId, commentId }: UseDeleteNestedCommentProps) {
   const deleteNestedComment = async () => {
     await request<null, null, null>({
-      uri: '/api/comment',
+      uri: `/api/comment/${commentId}`,
       method: 'delete',
     });
 
@@ -25,6 +25,9 @@ function useDeleteNestedComment({ articleId, commentId }: UseDeleteNestedComment
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.GET_PARENT_COMMENT, articleId],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_NESTED_COMMENT, articleId],
       });
     },
   });

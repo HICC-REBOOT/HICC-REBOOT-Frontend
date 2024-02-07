@@ -9,7 +9,7 @@ interface UseGetNestedCommentProps {
 
 function useGetNestedComment({ articleId }: UseGetNestedCommentProps) {
   const fetchNestedComment = async () => {
-    const response = await request<null, NestedCommentType, null>({
+    const response = await request<null, NestedCommentType[], null>({
       uri: `/api/comment/child/${articleId}`,
       method: 'get',
     });

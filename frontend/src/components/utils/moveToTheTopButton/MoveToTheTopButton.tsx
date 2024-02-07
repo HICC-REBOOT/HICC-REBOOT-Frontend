@@ -15,7 +15,7 @@ function MoveToTheTopButton() {
 
   return (
     <Mobile>
-      <ButtonStyle onClick={moveToTheTop} hide={matchCommunityList === null}>
+      <ButtonStyle onClick={moveToTheTop} $hide={matchCommunityList === null}>
         <ScrollToTop />
       </ButtonStyle>
     </Mobile>

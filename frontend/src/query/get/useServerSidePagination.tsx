@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
 
 import request from '@utils/request';
@@ -7,6 +7,7 @@ import PaginationComponent from '@components/common/pagination/PaginationCompone
 import { QUERY_KEYS } from '@constants/keys';
 import useInfinityScrollProvider from '@hooks/useInfinityScrollProvider';
 import { Board } from '@components/community/CommunityType';
+import { Grade } from '@components/type/CommonType';
 
 interface UseServerSidePaginationProps {
   uri: string;
@@ -14,6 +15,8 @@ interface UseServerSidePaginationProps {
   sort?: string;
   search?: string;
   board?: Board;
+  articleGrade?: Grade;
+  findBy?: string;
 }
 
 interface ResponseServerSidePagination<T> {
@@ -52,6 +55,8 @@ interface Pageable {
   sort?: string;
   search?: string;
   board?: Board;
+  articleGrade?: Grade;
+  findBy?: string;
 }
 
 interface ReturnuseServerSidePagination<T> {
@@ -65,6 +70,8 @@ function useServerSidePagination<T>({
   sort,
   search,
   board,
+  articleGrade,
+  findBy,
 }: UseServerSidePaginationProps): ReturnuseServerSidePagination<T> {
   const [data, setData] = useState<T[]>([]);
   const [dataLength, setDataLength] = useState<number>(0); // 데이터의 전체 길이
@@ -85,6 +92,8 @@ function useServerSidePagination<T>({
         sort,
         search,
         board,
+        articleGrade,
+        findBy,
       },
     });
 
@@ -92,7 +101,7 @@ function useServerSidePagination<T>({
   };
 
   const { data: cachingData } = useSuspenseQuery({
-    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page }],
+    queryKey: [QUERY_KEYS.PAGEABLE, { uri, size, sort, search, page, board, articleGrade, findBy }],
     queryFn: fetchPagiableData,
   });
 
@@ -101,6 +110,18 @@ function useServerSidePagination<T>({
     setPage(0);
     setData([]);
   }, [isInfinityScroll]);
+
+  const queryClient = useQueryClient();
+
+  // 페이지 이외의 데이터가 변했을 때 캐싱 날려버림, 데이터 무한 쌓임 현상 해결하기 위해서
+  useEffect(() => {
+    queryClient.invalidateQueries({
+      queryKey: [QUERY_KEYS.PAGEABLE, { uri }],
+    });
+    setPage(0);
+    setIsLast(false);
+    setData([]);
+  }, [uri, size, sort, search, board, articleGrade, findBy, queryClient]);
 
   // 더 불러오기 공간이 관측되면 페이지를 1증가
   useEffect(() => {
@@ -114,13 +135,13 @@ function useServerSidePagination<T>({
       setData(cachingData.content);
     }
 
-    if (isInfinityScroll) {
+    if (isInfinityScroll && !isLast) {
       setData((prev) => [...prev, ...cachingData.content]);
       setIsLast(cachingData.last);
     }
 
     setDataLength(cachingData.totalElements);
-  }, [cachingData, isInfinityScroll]);
+  }, [cachingData, isInfinityScroll, isLast]);
 
   const onSetPage = (pageNum: number) => {
     setPage(pageNum - 1);

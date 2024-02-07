@@ -1,28 +1,32 @@
 import styled from 'styled-components';
 
-export const Container = styled.div<{ hide: boolean }>`
-  display: ${(props) => (props.hide ? 'none' : 'flex')};
+export const Container = styled.div<{ $hide: boolean }>`
+  display: ${(props) => (props.$hide ? 'none' : 'flex')};
   justify-content: space-between;
   width: 100%;
   height: 31.8rem;
 
   ${(props) => props.theme.media.mobile`
+    width: 100%;
     height: 24.8rem;
   `};
 
   ${(props) => props.theme.media.tablet`
-    max-width: 76.8rem;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 11.7rem;
+    padding-top: 3.5rem;
   `};
 
   ${(props) => props.theme.media.desktop`
-    max-width: 103.4rem;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 30.9rem;
+    padding-top: 3.5rem;
   `};
 
   ${(props) => props.theme.media.wide`
-    max-width: 103.4rem;
-    margin: 0 auto;
+    width: 100%;
+    padding: 0 30.9rem;
+    padding-top: 3.5rem;
   `};
 
   padding: 0 2.4rem;

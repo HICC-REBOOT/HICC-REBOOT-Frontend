@@ -9,20 +9,24 @@ export const Container = styled.main`
   background-color: ${(props) => props.theme.colors.black};
 
   ${(props) => props.theme.media.mobile`
-    max-width: 32.8rem;
+    width: 100%;
+    padding: 0 1.6rem;
   `};
 
   ${(props) => props.theme.media.tablet`
-    max-width: 53.4rem;
+    width: 100%;
+    padding: 0 11.7rem;
   `};
 
   ${(props) => props.theme.media.desktop`
-    max-width: 82.2rem;
+    width: 100%;
+    padding: 0 30.9rem;
     margin-top: 18.8rem;
   `};
 
   ${(props) => props.theme.media.wide`
-    max-width: 82.2rem;
+    width: 100%;
+    padding: 0 30.9rem;
     margin-top: 18.8rem;
   `};
 `;

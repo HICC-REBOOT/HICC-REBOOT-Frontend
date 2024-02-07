@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import axiosInstance from './axiosInstance';
+import { axiosInstance } from './axios';
 
 interface IRequest<T, P> {
   uri: string;

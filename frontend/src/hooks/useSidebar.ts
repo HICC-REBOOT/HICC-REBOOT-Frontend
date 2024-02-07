@@ -5,13 +5,18 @@ import { useRecoilState } from 'recoil';
 function useSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useRecoilState(sidebarStore);
 
-  const changeSidebarState = useCallback(() => {
-    setIsSidebarOpen((prev) => !prev);
+  const openSidebar = useCallback(() => {
+    setIsSidebarOpen(true);
+  }, [setIsSidebarOpen]);
+
+  const closeSidebar = useCallback(() => {
+    setIsSidebarOpen(false);
   }, [setIsSidebarOpen]);
 
   return {
     isSidebarOpen,
-    changeSidebarState,
+    openSidebar,
+    closeSidebar,
   };
 }
 
