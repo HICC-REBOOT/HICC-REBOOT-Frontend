@@ -49,7 +49,7 @@ function ProjectList() {
         <P.ListContainer>
           {PROJECT_ITEMS.map((item, index) => (
             <P.ListBox key={index}>
-              <P.Picture image={item.image} />
+              <P.Picture $image={item.image} />
               <P.ListBoxTitle>{item.title}</P.ListBoxTitle>
               <P.ListBoxContent>{item.content}</P.ListBoxContent>
               <P.ListBoxPar>

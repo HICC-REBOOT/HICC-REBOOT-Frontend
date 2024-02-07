@@ -5,7 +5,7 @@ import theme from '@styles/theme';
 import { useForm } from 'react-hook-form';
 import { DeviceProvider } from '@assets/mediaQuery';
 import usePostChangePassword, { ChangePasswordRequest } from '@query/post/usePostChangePassword';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import * as R from './Login/Login.style';
 
 const Container = styled.div`

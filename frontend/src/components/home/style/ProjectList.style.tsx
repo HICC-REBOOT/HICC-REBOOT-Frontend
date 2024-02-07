@@ -177,9 +177,9 @@ export const ListBox = styled.div`
   `};
 `;
 
-export const Picture = styled.div<{ image: string }>`
+export const Picture = styled.div<{ $image: string }>`
   position: relative;
-  background: url(${(props) => props.image});
+  background: url(${(props) => props.$image});
   background-size: cover;
   background-repeat: no-repeat;
 
