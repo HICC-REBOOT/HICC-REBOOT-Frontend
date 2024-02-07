@@ -18,6 +18,7 @@ interface FormType {
   studentNumber: string;
   password: string;
   password_confirm: string;
+  email: string;
   num1: number;
   num2: number;
   num3: number;
@@ -55,7 +56,7 @@ export default function EnterInfo() {
       name: data.name,
       department: major,
       phoneNumber: `${data.num1}-${data.num2}-${data.num3}`,
-      email: 'hongik@gmail.com',
+      email: data.email,
     });
   };
   // const onSubmit = (data: FormType) => {
@@ -145,6 +146,22 @@ export default function EnterInfo() {
           </E.InputWrapper>
         </E.Wrapper1>
         <E.Wrapper2>
+          <E.InputWrapper>
+            <E.Label>이메일</E.Label>
+            <E.InputField>
+              <E.InputFieldInput
+                id="email"
+                type="email"
+                placeholder="Hongik@gmail.com"
+                {...register('email', {
+                  required: true,
+                })}
+              />
+            </E.InputField>
+            {errors.email && typeof errors.email.message === 'string' && (
+              <E.ErrorMessage>올바른 형식으로 기입해주세요</E.ErrorMessage>
+            )}
+          </E.InputWrapper>
           <E.InputWrapper>
             <E.Label>전화번호</E.Label>
             <E.PhoneNumWrapper>
