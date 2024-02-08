@@ -1,10 +1,6 @@
-/* eslint-disable no-use-before-define */
 import { useForm } from 'react-hook-form';
-import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
+import React, { useRef, useState } from 'react';
 import Search from '@assets/image/icon/search.svg';
-import { useNavigate } from 'react-router-dom';
-import ROUTE from '@constants/route';
 import useGetDepartments from '@query/get/useGetDepartments';
 import usePostSignup from '@query/post/usePostSignup';
 import * as E from './style/EnterInfo.style';
@@ -38,7 +34,6 @@ export default function EnterInfo() {
   const { writeSignup, isPending } = usePostSignup();
 
   const [major, setMajor] = useState('');
-  const navigate = useNavigate();
 
   const onSubmit = (data: FormType) => {
     console.log('제출 : ', {
@@ -64,7 +59,7 @@ export default function EnterInfo() {
   // };
 
   return (
-    <Container onSubmit={handleSubmit(onSubmit)}>
+    <E.Container onSubmit={handleSubmit(onSubmit)}>
       <E.Wrapper>
         <E.Wrapper1>
           <E.InputWrapper>
@@ -214,7 +209,7 @@ export default function EnterInfo() {
             <E.DropDownWrapper>
               <E.DropDown>
                 <E.DropDownItem>{major}</E.DropDownItem>
-                <SearchButton src={Search} alt="search" />
+                <E.SearchButton src={Search} alt="search" />
               </E.DropDown>
               <E.ScrollContainer>
                 <E.ScrollBox>
@@ -232,34 +227,6 @@ export default function EnterInfo() {
       <E.ContinueButton type="submit" disabled={isSubmitting || isPending}>
         가입하기
       </E.ContinueButton>
-    </Container>
+    </E.Container>
   );
 }
-
-const Container = styled.form`
-  width: 100%;
-  min-height: 100vh;
-  padding: 3.6rem 1.6rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.8rem;
-  color: white;
-  background-color: ${(props) => props.theme.colors.black};
-  ${(props) => props.theme.media.desktop`
-    margin-top: 18.8rem;
-  `};
-
-  ${(props) => props.theme.media.wide`
-    margin-top: 18.8rem;
-  `};
-`;
-const SearchButton = styled.img`
-  width: 2.4rem;
-  height: 2.4rem;
-  flex-shrink: 0;
-  margin-left: 3.1rem;
-  &:active {
-    opacity: 0.3;
-  }
-`;

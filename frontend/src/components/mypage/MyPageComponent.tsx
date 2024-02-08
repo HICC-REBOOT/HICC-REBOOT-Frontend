@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Tab, { TabUnit } from '@components/common/tab/Tab';
 import { Outlet } from 'react-router-dom';
 import ROUTE from '@constants/route';

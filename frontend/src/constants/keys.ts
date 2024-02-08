@@ -16,6 +16,8 @@ export const QUERY_KEYS = Object.freeze({
   DELETE_ARTICLE: 'delete-article',
   UPDATE_ARTICLE: 'update-article',
   GET_USERINFO: 'get-userinfo',
+  POST_RESET_PASSWORD: 'post-reset-password',
+  POST_CHANGE_PASSWORD: 'post-change-password',
 });
 
 export const STORE_KEYS = Object.freeze({

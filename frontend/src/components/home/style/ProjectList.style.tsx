@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import theme from '@styles/theme';
 
 export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
 `;
 
 export const GroupContainer = styled.div`
@@ -38,7 +37,7 @@ export const GroupContainer = styled.div`
 export const Title = styled.div`
   position: relative;
   text-align: center;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography[DeviceProvider()].title};
 
   ${(props) => props.theme.media.mobile`
@@ -65,7 +64,7 @@ export const Title = styled.div`
 export const Content = styled.div`
   position: relative;
   text-align: center;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   opacity: 0.7;
   ${(props) => props.theme.typography[DeviceProvider()].body};
 
@@ -130,7 +129,7 @@ export const ListContainer = styled.div`
 export const ListBox = styled.div`
   position: relative;
   justify-content: center;
-  background: ${(props) => theme.colors.grey001};
+  background: ${(props) => props.theme.colors.grey001};
   flex-shrink: 0;
 
   ${(props) => props.theme.media.mobile`
@@ -178,9 +177,12 @@ export const ListBox = styled.div`
   `};
 `;
 
-export const Picture = styled.div`
+export const Picture = styled.div<{ $image: string }>`
   position: relative;
-  background: ${(props) => theme.colors.black};
+  background: url(${(props) => props.$image});
+  background-size: cover;
+  background-repeat: no-repeat;
+
   ${(props) => props.theme.media.mobile`
     top: 0.8rem;
     width: 23.4rem;
@@ -189,7 +191,6 @@ export const Picture = styled.div`
 
     border-radius: 2rem;
   `}
-
   ${(props) => props.theme.media.tablet`
     width: 23.4rem;
     height: 22.2rem;
@@ -197,28 +198,26 @@ export const Picture = styled.div`
 
     border-radius: 2rem;
   `}
-
-  ${(props) => props.theme.media.desktop`
+    ${(props) => props.theme.media.desktop`
     width: 26rem;
     height: 24.7rem;
     flex-shrink: 0;
 
     border-radius: 2rem;
   `}
-
-  ${(props) => props.theme.media.wide`
+    ${(props) => props.theme.media.wide`
     width: 26rem;
     height: 24.7rem;
     flex-shrink: 0;
 
     border-radius: 2rem;
-  `}
+  `};
 `;
 
 export const ListBoxTitle = styled.div`
   position: absolute;
   text-align: left;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography[DeviceProvider()].subtitle};
 
   ${(props) => props.theme.media.mobile`
@@ -330,7 +329,7 @@ export const ListBoxDate = styled.div`
   width: 100%;
   height: 2.1rem;
   ${(props) => props.theme.typography.common.caption1};
-  color: ${(props) => theme.colors.grey002};
+  color: ${(props) => props.theme.colors.grey002};
   text-align: right;
   right: 1.1rem;
   bottom: 0.9rem;
