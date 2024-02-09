@@ -163,12 +163,14 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num1"
-                  type="number"
+                  type="text"
+                  maxLength={3}
                   placeholder="010"
                   {...register('num1', {
                     required: true,
+                    maxLength: 3,
                     pattern: {
-                      value: /^\d{2,3}$/,
+                      value: /^\d{3}$/,
                       message: '제대로 입력해주세요',
                     },
                   })}
@@ -177,10 +179,12 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num2"
-                  type="number"
+                  type="text"
+                  maxLength={4}
                   placeholder="1234"
                   {...register('num2', {
                     required: true,
+                    maxLength: 4,
                     pattern: {
                       value: /^\d{3,4}$/,
                       message: '제대로 입력해주세요',
@@ -191,10 +195,12 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num3"
-                  type="number"
+                  type="text"
+                  maxLength={4}
                   placeholder="5678"
                   {...register('num3', {
                     required: true,
+                    maxLength: 4,
                     pattern: {
                       value: /^\d{4}$/,
                       message: '제대로 입력해주세요',
