@@ -2,8 +2,11 @@
 export interface MonthSchedule {
   name: string;
   scheduleId: number;
-  date: string;
+  startDateTime: string;
+  endDateTime: string;
+  dates: string[];
   type: ScheduleType;
+  content: string;
 }
 export type ScheduleType = ACADEMIC | AMITY | SCHOOL_EVENT | ETC;
 type ACADEMIC = 'ACADEMIC';
