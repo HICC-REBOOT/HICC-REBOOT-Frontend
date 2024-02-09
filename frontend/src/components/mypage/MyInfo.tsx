@@ -77,10 +77,10 @@ function MyInfo() {
   const defaultDepartmentOption = options.find((option) => option.label === myInfo.data.department);
 
   const { currentOption, onChange } = useDropdown({ defalutValue: defaultDepartmentOption });
-  const { 0: phoneNumber, 1: phoneNChange } = useInput('');
-  const { 0: email, 1: emailChange } = useInput('');
-  const { 0: password, 1: passwordChange } = useInput('');
-  const { 0: passwordConfirm, 1: passwordConfirmChange } = useInput('');
+  const [phoneNumber, phoneNChange] = useInput('');
+  const [email, emailChange] = useInput('');
+  const [password, passwordChange] = useInput('');
+  const [passwordConfirm, passwordConfirmChange] = useInput('');
   const [buttonState, setButton] = useState(true);
   const [numberState, setNumberState] = useState(true);
   const [emailState, setEmailState] = useState(true);
