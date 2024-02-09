@@ -6,6 +6,7 @@ export const QUERY_KEYS = Object.freeze({
   GET_PROFILE: 'get-profile',
   GET_MY_ARTICLES: 'get-my-articles',
   GET_MY_COMMENTS: 'get-my-comments',
+  Delete_PROFILE: 'delete-profile',
   GET_ARTICLE_DETAIL: 'get-article-detail',
   GET_PARENT_COMMENT: 'get-parent-comment',
   POST_PARENT_COMMENT: 'post-parent-comment',

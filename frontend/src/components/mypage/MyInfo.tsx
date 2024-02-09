@@ -10,6 +10,8 @@ import useGetMajors from '@query/get/useGetMajors';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import theme from '@styles/theme';
 import { GRADE_ENUM } from '@components/type/CommonType';
+import useDeleteProfile from '@query/delete/useDeleteProfile';
+
 import * as M from './style/MyInfo.style';
 
 interface MajorInfo {
@@ -50,6 +52,8 @@ function MyInfo() {
 
   const { patchProfile, isPending } = usePatchProfile();
 
+  const { deleteProfile } = useDeleteProfile();
+
   useEffect(() => {
     phoneNChange(myInfo.data.phoneNumber ?? '');
     emailChange(myInfo.data.email ?? '');
@@ -63,13 +67,8 @@ function MyInfo() {
       cancelText: '취소',
       isDangerous: true,
       onOk: () => {
-        // Perform the withdrawal action here
-        console.log('Withdrawal confirmed');
+        deleteProfile();
       },
-      // onCancel: () => {
-      //   // Handle cancellation
-      //   console.log('Withdrawal canceled');
-      // },
     };
 
     withdrawal(withdrawalConfirmParams);
@@ -122,7 +121,6 @@ function MyInfo() {
       department: currentOption ? currentOption.label : '',
       password,
     };
-    console.log(submitParam);
     patchProfile(submitParam);
   };
 
