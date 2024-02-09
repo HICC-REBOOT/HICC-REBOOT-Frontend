@@ -19,7 +19,6 @@ function MyComments() {
     uri: '/api/profile/comments',
     size: COMMON.PAGINATION.SIZE,
   });
-  console.log(curPageItem);
 
   const navigate = useNavigate();
 
