@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CalendarGrid from '@components/calendar/CalendarGrid';
 import DetailBox from '@components/calendar/DetailBox';
 import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
 import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
 import dayjs from 'dayjs';
-import { isAdminState } from '../state/calendar';
+import useModal from '@hooks/useCalendarModal';
 
 const Container = styled.div`
   width: 100%;
@@ -48,12 +48,14 @@ const TempBtn = styled.button`
 `;
 
 export default function Calendar() {
-  const setIsAdmin = useSetRecoilState<boolean>(isAdminState);
-  const year = dayjs(new Date()).year();
-  const month = dayjs(new Date()).month() + 1;
-  const { data } = useGetCalendarMonthInfo({ year, month });
+  const { currentCalendarView } = useModal();
+  const year = dayjs(currentCalendarView?.toString()).year();
+  const month = dayjs(currentCalendarView?.toString()).month() + 1;
+  const { data: monthInfo } = useGetCalendarMonthInfo({ year, month });
+
   return (
     <Container>
+      <CalendarGrid monthInfo={monthInfo} />
       <DetailBox />
       <EditModal />
     </Container>

@@ -14,7 +14,6 @@ export default function useGetCalendarMonthInfo({ year, month }: MonthInfoProps)
       uri: `/api/calendar/month-schedule?year=${year}&month=${month}`,
       method: 'get',
     });
-
     return response.data;
   };
 

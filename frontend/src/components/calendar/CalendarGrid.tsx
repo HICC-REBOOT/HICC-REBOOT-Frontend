@@ -1,22 +1,46 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
-import { MonthSchedule } from './CalendarType';
+import { MonthSchedule, ScheduleType } from './CalendarType';
 import * as C from './style/CalendarGrid.style';
 
 interface CalendarGridProps {
   monthInfo: MonthSchedule[];
 }
 
-export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
-  const { selectedDate, setSelectedDate } = useModal();
+interface ConvertedMonthInfo {
+  date: string;
+  type: ScheduleType[];
+}
 
-  useEffect(() => {
-    console.log(monthInfo);
-  }, []);
+export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
+  const { selectedDate, setSelectedDate, setCurrentCalendarView } = useModal();
+
+  const convertMonthInfo = (): ConvertedMonthInfo[] => {
+    const convertedMonthInfo: ConvertedMonthInfo[] = [];
+
+    monthInfo.forEach((info) => {
+      info.dates.forEach((date) => {
+        const isDateExists = convertedMonthInfo.find((convertedItem) => convertedItem.date === date);
+
+        if (isDateExists) {
+          isDateExists.type.push(info.type);
+        } else {
+          convertedMonthInfo.push({
+            date,
+            type: [info.type],
+          });
+        }
+      });
+    });
+    return convertedMonthInfo;
+  };
 
   return (
     <C.CustomCalendar
+      onActiveStartDateChange={({ action, activeStartDate, value, view }) => {
+        setCurrentCalendarView(activeStartDate);
+      }}
       onChange={setSelectedDate}
       value={selectedDate}
       locale="ko-KR"
@@ -25,11 +49,14 @@ export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
       minDetail="month"
       formatShortWeekday={(locale, currentDate) => dayjs(currentDate).format('ddd').toUpperCase()}
       tileContent={({ date: currentDate, view }) => {
-        const isInfoExist = monthInfo.find((info) => info.date === dayjs(currentDate).format('YYYY-MM-DD'));
+        const convertedMonthInfo = convertMonthInfo();
+        const isInfoExist = convertedMonthInfo.find((info) => info.date === dayjs(currentDate).format('YYYY-MM-DD'));
         if (isInfoExist) {
           return (
             <C.DotContainer>
-              <C.Dot type={isInfoExist.type} />
+              {isInfoExist.type.map((type, i) => (
+                <C.Dot type={type} key={i} />
+              ))}
             </C.DotContainer>
           );
         }

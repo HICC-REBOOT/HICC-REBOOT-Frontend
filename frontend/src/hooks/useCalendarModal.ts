@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
-import { isNewScheduleState, modalState, selectedDateState } from '../state/calendar';
+import { currentCalendarViewState, isNewScheduleState, modalState, selectedDateState } from '../state/calendar';
 
 export default function useModal() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
@@ -21,6 +21,8 @@ export default function useModal() {
 
   const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
 
+  const [currentCalendarView, setCurrentCalendarView] = useRecoilState(currentCalendarViewState);
+
   return {
     isModalOpen,
     changeModalState,
@@ -28,5 +30,7 @@ export default function useModal() {
     changeIsNewState,
     selectedDate,
     setSelectedDate,
+    currentCalendarView,
+    setCurrentCalendarView,
   };
 }

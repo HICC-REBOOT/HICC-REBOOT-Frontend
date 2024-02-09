@@ -15,5 +15,9 @@ export const selectedDateState = atom<Value>({
   key: 'selectedDateState',
   default: new Date(),
 });
+export const currentCalendarViewState = atom<Value>({
+  key: 'currentCalendarViewState',
+  default: new Date(),
+});
 
 });
