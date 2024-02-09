@@ -4,21 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import COMMON from '@constants/common';
 import useServerSidePagination from '@query/get/useServerSidePagination';
 import { ArticleDetailType } from '@components/community/CommunityType';
-import fetchArticleDetail from '@query/get/useGetArticleDetail';
 
 import * as C from '@components/mypage/style/MyPageComponent.style';
 import * as M from './style/MyWritings.style';
 import DeleteButton from './button/ArticleDeleteButton';
-
-async function updateArticle(data: ArticleDetailType, navigate: any) {
-  try {
-    const DetailData = await fetchArticleDetail({ articleId: data.articleId });
-    navigate(`${ROUTE.COMMUNITY.BASE}/${ROUTE.COMMUNITY.UPDATE}`, { state: DetailData });
-  } catch (error) {
-    // Handle error if needed
-    console.error('Failed to fetch article details', error);
-  }
-}
+import ModifyButton from './button/ModifyButton';
 
 function MyWritings() {
   const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<ArticleDetailType>({
@@ -40,7 +30,7 @@ function MyWritings() {
             <M.ContentsArea key={index}>
               <M.ContentsTitle onClick={() => goDetail(item)}>{item.subject}</M.ContentsTitle>
               <M.Contents onClick={() => goDetail(item)}>{item.content}</M.Contents>
-              <M.ModifyButton onClick={() => updateArticle(item, navigate)}>수정</M.ModifyButton>
+              <ModifyButton articleId={item.articleId}></ModifyButton>
               <DeleteButton id={item.articleId}></DeleteButton>
               <M.Divider />
             </M.ContentsArea>

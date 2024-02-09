@@ -74,7 +74,6 @@ function MyInfo() {
   const options: OptionType[] = mapToOptionsFormat(majorsList);
 
   const myInfo = useGetProfile();
-  console.log(myInfo);
   const defaultDepartmentOption = options.find((option) => option.label === myInfo.data.department);
 
   const { currentOption, onChange } = useDropdown({ defalutValue: defaultDepartmentOption });
@@ -208,7 +207,7 @@ function MyInfo() {
               <Check color={theme.colors.white} />
             </M.CheckDiv>
           )}
-          <M.Input onChange={emailChange}></M.Input>
+          <M.Input onChange={emailChange} value={email}></M.Input>
           {emailState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BigBoxArea>
