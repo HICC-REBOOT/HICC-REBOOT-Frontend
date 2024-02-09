@@ -30,7 +30,7 @@ function MyComments() {
     <M.Container>
       <M.GroupContainer>
         <M.ContentsContainer>
-          {Object.values(curPageItem).map((item: Comment, index: number) => (
+          {curPageItem.map((item: Comment, index: number) => (
             <M.ContentsArea key={index} onClick={() => goDetail(item)}>
               <M.ContentsTitle>{item.subject}</M.ContentsTitle>
               <M.Contents>{item.content}</M.Contents>
