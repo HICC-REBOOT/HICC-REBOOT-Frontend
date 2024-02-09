@@ -46,12 +46,14 @@ function ResetPassword() {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = useForm<ResetPasswordRequest>();
 
   const { resetPassword, isPending } = usePostResetPassword();
 
   const onSubmit = async (data: ResetPasswordRequest) => {
     resetPassword(data);
+    reset();
   };
 
   return (
