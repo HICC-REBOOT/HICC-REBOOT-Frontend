@@ -54,6 +54,7 @@ export interface ParentComment {
   isMine: boolean;
   date: string;
   content: string;
+  isDeleted: boolean;
 }
 
 export interface NestedCommentType {
@@ -65,6 +66,7 @@ export interface NestedCommentType {
   isMine: boolean;
   date: string;
   content: string;
+  isDeleted: boolean;
 }
 
 // 새로 등록은 file, 이미 있는 이미지면 src (수정을 위해)
