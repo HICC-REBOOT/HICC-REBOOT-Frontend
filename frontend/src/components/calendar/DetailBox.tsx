@@ -7,15 +7,15 @@ import useAuth from '@hooks/useAuth';
 import useGetCalendarDayInfo from '@query/get/useGetCalendarDayInfo';
 import * as D from './style/DetailBox.style';
 import ScheduleCard from './ScheduleCard';
+import { DaySchedule } from './CalendarType';
 
-export default function DetailBox() {
+interface DetailBoxProps {
+  dayInfo: DaySchedule[];
+}
+
+export default function DetailBox({ dayInfo }: DetailBoxProps) {
   const isAdmin = useAuth();
 
-
-  const year = dayjs(selectedDate?.toString()).year();
-  const month = dayjs(selectedDate?.toString()).month() + 1;
-  const date = dayjs(selectedDate?.toString()).date();
-  const { data: dayInfo } = useGetCalendarDayInfo({ year, month, date });
   const { changeModalState, changeIsNewState, selectedDateInfo } = useModal();
 
   const addNewSchedule = () => {

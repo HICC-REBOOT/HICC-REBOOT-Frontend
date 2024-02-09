@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
+import useGetCalendarDayInfo from '@query/get/useGetCalendarDayInfo';
 
 const Container = styled.div`
   width: 100%;
@@ -48,15 +49,20 @@ const TempBtn = styled.button`
 `;
 
 export default function Calendar() {
-  const { currentCalendarView } = useModal();
-  const year = dayjs(currentCalendarView?.toString()).year();
-  const month = dayjs(currentCalendarView?.toString()).month() + 1;
-  const { data: monthInfo } = useGetCalendarMonthInfo({ year, month });
+  const { currentCalendarView, selectedDateInfo } = useModal();
+  const currentYear = dayjs(currentCalendarView?.toString()).year();
+  const currentMonth = dayjs(currentCalendarView?.toString()).month() + 1;
+  const { data: monthInfo } = useGetCalendarMonthInfo({ year: currentYear, month: currentMonth });
+
+  const selectedYear = dayjs(selectedDateInfo?.toString()).year();
+  const selectedMonth = dayjs(selectedDateInfo?.toString()).month() + 1;
+  const selectedDate = dayjs(selectedDateInfo?.toString()).date();
+  const { data: dayInfo } = useGetCalendarDayInfo({ year: selectedYear, month: selectedMonth, date: selectedDate });
 
   return (
     <Container>
       <CalendarGrid monthInfo={monthInfo} />
-      <DetailBox />
+      <DetailBox dayInfo={dayInfo} />
       <EditModal />
     </Container>
   );
