@@ -190,7 +190,7 @@ function MyInfo() {
           <M.BoxTitle>전화번호</M.BoxTitle>
           {numberState === false && (
             <M.CheckDiv>
-              <Check color={theme.colors.white} />
+              <Check color={theme.colors.point2} />
             </M.CheckDiv>
           )}
           <M.Input
@@ -204,7 +204,7 @@ function MyInfo() {
           <M.BoxTitle>이메일</M.BoxTitle>
           {emailState === false && (
             <M.CheckDiv>
-              <Check color={theme.colors.white} />
+              <Check color={theme.colors.point2} />
             </M.CheckDiv>
           )}
           <M.Input onChange={emailChange} value={email}></M.Input>
