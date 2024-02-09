@@ -33,9 +33,9 @@ export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
 
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
 
-  const { selectedDate } = useModal();
+  const { selectedDateInfo } = useModal();
   const showStartTime = () => {
-    if (dayjs(selectedDate as Date).format('YYYY-MM-DD') > dayjs(dayInfo.startDateTime).format('YYYY-MM-DD'))
+    if (dayjs(selectedDateInfo as Date).format('YYYY-MM-DD') > dayjs(dayInfo.startDateTime).format('YYYY-MM-DD'))
       return (
         <S.Time1>
           00:00 <S.Time2>AM</S.Time2>
@@ -48,7 +48,7 @@ export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
     );
   };
   const showEndTime = () => {
-    if (dayjs(selectedDate as Date).format('YYYY-MM-DD') < dayjs(dayInfo.endDateTime).format('YYYY-MM-DD'))
+    if (dayjs(selectedDateInfo as Date).format('YYYY-MM-DD') < dayjs(dayInfo.endDateTime).format('YYYY-MM-DD'))
       return <S.Time2>24:00 PM</S.Time2>;
     return <S.Time2>{dayjs(dayInfo.endDateTime).format('hh:mm A')}</S.Time2>;
   };

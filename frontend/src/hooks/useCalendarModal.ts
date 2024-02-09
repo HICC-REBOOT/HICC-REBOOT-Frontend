@@ -19,7 +19,7 @@ export default function useModal() {
     [isNewSchedule],
   );
 
-  const [selectedDate, setSelectedDate] = useRecoilState(selectedDateState);
+  const [selectedDateInfo, setSelectedDateInfo] = useRecoilState(selectedDateState);
 
   const [currentCalendarView, setCurrentCalendarView] = useRecoilState(currentCalendarViewState);
 
@@ -28,8 +28,8 @@ export default function useModal() {
     changeModalState,
     isNewSchedule,
     changeIsNewState,
-    selectedDate,
-    setSelectedDate,
+    selectedDateInfo,
+    setSelectedDateInfo,
     currentCalendarView,
     setCurrentCalendarView,
   };

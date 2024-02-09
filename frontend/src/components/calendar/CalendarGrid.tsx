@@ -14,7 +14,7 @@ interface ConvertedMonthInfo {
 }
 
 export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
-  const { selectedDate, setSelectedDate, setCurrentCalendarView } = useModal();
+  const { selectedDateInfo, setSelectedDateInfo, setCurrentCalendarView } = useModal();
 
   const convertMonthInfo = (): ConvertedMonthInfo[] => {
     const convertedMonthInfo: ConvertedMonthInfo[] = [];
@@ -41,8 +41,8 @@ export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
       onActiveStartDateChange={({ action, activeStartDate, value, view }) => {
         setCurrentCalendarView(activeStartDate);
       }}
-      onChange={setSelectedDate}
-      value={selectedDate}
+      onChange={setSelectedDateInfo}
+      value={selectedDateInfo}
       locale="ko-KR"
       formatDay={(locale, currentDate) => dayjs(currentDate).format('D')}
       formatMonthYear={(locale, currentDate) => dayjs(currentDate).format('YYYY.MM')}

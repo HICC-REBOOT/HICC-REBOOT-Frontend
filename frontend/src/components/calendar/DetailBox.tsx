@@ -11,12 +11,12 @@ import ScheduleCard from './ScheduleCard';
 export default function DetailBox() {
   const isAdmin = useAuth();
 
-  const { changeModalState, changeIsNewState, selectedDate } = useModal();
 
   const year = dayjs(selectedDate?.toString()).year();
   const month = dayjs(selectedDate?.toString()).month() + 1;
   const date = dayjs(selectedDate?.toString()).date();
   const { data: dayInfo } = useGetCalendarDayInfo({ year, month, date });
+  const { changeModalState, changeIsNewState, selectedDateInfo } = useModal();
 
   const addNewSchedule = () => {
     changeIsNewState(true);
@@ -26,7 +26,7 @@ export default function DetailBox() {
   return (
     <D.Container>
       <D.Date>
-        {dayjs(selectedDate as Date)
+        {dayjs(selectedDateInfo as Date)
           .locale('ko')
           .format('YYYY.MM.DD ddd')}
       </D.Date>
