@@ -4,14 +4,19 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 import { ReactComponent as PlusIcon } from '@assets/image/icon/plus.svg';
 import useAuth from '@hooks/useAuth';
+import useGetCalendarDayInfo from '@query/get/useGetCalendarDayInfo';
 import * as D from './style/DetailBox.style';
 import ScheduleCard from './ScheduleCard';
 
 export default function DetailBox() {
-  const temp = [1, 1];
+  const isAdmin = useAuth();
 
   const { changeModalState, changeIsNewState, selectedDate } = useModal();
-  const isAdmin = useAuth();
+
+  const year = dayjs(selectedDate?.toString()).year();
+  const month = dayjs(selectedDate?.toString()).month() + 1;
+  const date = dayjs(selectedDate?.toString()).date();
+  const { data: dayInfo } = useGetCalendarDayInfo({ year, month, date });
 
   const addNewSchedule = () => {
     changeIsNewState(true);
@@ -25,8 +30,8 @@ export default function DetailBox() {
           .locale('ko')
           .format('YYYY.MM.DD ddd')}
       </D.Date>
-      {temp.map((_, i) => (
-        <ScheduleCard key={i} />
+      {dayInfo.map((info, i) => (
+        <ScheduleCard dayInfo={info} key={i} />
       ))}
       {isAdmin && (
         <D.AddContainer onClick={addNewSchedule}>

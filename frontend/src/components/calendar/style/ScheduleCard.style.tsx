@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import { motion } from 'framer-motion';
+import { ScheduleType } from '../CalendarType';
 
 export const Container = styled.div`
   border-radius: 1.6rem;
@@ -19,13 +20,21 @@ export const Left = styled.div`
   width: 100%;
 `;
 
-export const TimeContainer = styled.div`
+export const TimeContainer = styled.div<{ type: ScheduleType }>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   padding-right: 0.8rem;
   margin-right: 0.8rem;
-  border-right: 0.2rem solid ${(props) => props.theme.colors.tag_academy};
+  border-right: 0.2rem solid
+    ${(props) =>
+      props.type === 'ACADEMIC'
+        ? props.theme.colors.tag_academy
+        : props.type === 'AMITY'
+          ? props.theme.colors.point1
+          : props.type === 'SCHOOL_EVENT'
+            ? props.theme.colors.tag_event
+            : props.theme.colors.grey001};
 `;
 
 export const Time1 = styled.div`
