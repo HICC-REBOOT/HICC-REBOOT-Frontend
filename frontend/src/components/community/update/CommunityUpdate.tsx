@@ -32,7 +32,7 @@ function CommunityUpdate() {
       return { title: '', image: [], content: '' };
     }
 
-    const imageSrc: ImageInfo[] = data.images.map((imageMeta) => {
+    const imageSrc: ImageInfo[] = data.images?.map((imageMeta) => {
       return {
         src: imageMeta.url,
       };

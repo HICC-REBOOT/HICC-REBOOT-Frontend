@@ -1,6 +1,4 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
-import { DeviceProvider } from '@assets/mediaQuery';
 
 export const MembersBox = styled.div`
   display: flex;

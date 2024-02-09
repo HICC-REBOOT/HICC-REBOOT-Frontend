@@ -3,7 +3,6 @@ import { DeviceProvider } from '@assets/mediaQuery';
 import meeting from '@assets/image/meeting.png';
 import mt from '@assets/image/mt.png';
 import { motion } from 'framer-motion';
-import theme from '@styles/theme';
 
 export const Container = styled.div`
   width: 100%;
@@ -475,7 +474,7 @@ export const BackCircle = styled.div`
   height: 41.6rem;
   flex-shrink: 0;
   border-radius: 100rem;
-  background: ${theme.colors.point1};
+  background: ${(props) => props.theme.colors.point1};
   ${(props) => props.theme.media.mobile`
     margin-top: 54.5rem;
     right: 60%;

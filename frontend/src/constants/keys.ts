@@ -18,6 +18,8 @@ export const QUERY_KEYS = Object.freeze({
   GET_USERINFO: 'get-userinfo',
   PATCH_PROFILE: 'patch-profile',
   GET_MAJORS: 'get-majors',
+  POST_RESET_PASSWORD: 'post-reset-password',
+  POST_CHANGE_PASSWORD: 'post-change-password',
 });
 
 export const STORE_KEYS = Object.freeze({
@@ -25,6 +27,7 @@ export const STORE_KEYS = Object.freeze({
   NESTED_COMMENT: 'nestedComment',
   LOGIN: 'login',
   ADMIN: 'admin',
+  PRESIDENT: 'president',
 });
 
 export const COOKIE_KEYS = Object.freeze({

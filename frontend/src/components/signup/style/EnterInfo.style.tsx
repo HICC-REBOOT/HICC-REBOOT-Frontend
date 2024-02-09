@@ -1,6 +1,33 @@
-/* eslint-disable import/prefer-default-export */
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
+
+export const Container = styled.form`
+  width: 100%;
+  min-height: 100vh;
+  padding: 3.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+  color: white;
+  background-color: ${(props) => props.theme.colors.black};
+  ${(props) => props.theme.media.desktop`
+    margin-top: 18.8rem;
+  `};
+
+  ${(props) => props.theme.media.wide`
+    margin-top: 18.8rem;
+  `};
+`;
+export const SearchButton = styled.img`
+  width: 2.4rem;
+  height: 2.4rem;
+  flex-shrink: 0;
+  margin-left: 3.1rem;
+  &:active {
+    opacity: 0.3;
+  }
+`;
 
 export const Wrapper = styled.div`
   display: inline-flex;

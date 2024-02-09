@@ -37,8 +37,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco --max_old_space_size=8192 start",
-    "build": "craco --max_old_space_size=8192 build",
+    "start": "craco start",
+    "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
   },
@@ -80,5 +80,5 @@
     "prettier": "^3.1.0",
     "typescript": "^5.3.2"
   },
-  "proxy": "https://hicc.co.kr:8080"
+  "proxy": "https://www.hicc.co.kr:8080"
 }

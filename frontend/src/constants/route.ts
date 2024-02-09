@@ -11,7 +11,8 @@ const ROUTE = Object.freeze({
   },
   LOGIN: '/login',
   SIGNUP: '/signup',
-  RESET_PASSWORD: '/resetpassword',
+  RESET_PASSWORD: '/reset-password',
+  RESET_PASSWORD_AFTER_EMAIL_VERIFY: '/change-password',
   ENTERINFO: '/enterinfo',
   ADMIN: {
     BASE: '/admin',
