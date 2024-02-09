@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import STYLE from '@constants/style';
 import theme from '@styles/theme';
 import { ConfigProvider } from 'antd';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import dayjs from 'dayjs';
 import { ReactComponent as CheckIcon } from '@assets/image/icon/check.svg';
 import useModal from '@hooks/useCalendarModal';
 import { ReactComponent as TrashIcon } from '@assets/image/icon/trash.svg';
@@ -13,7 +14,8 @@ import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
 import hexToRGBA from '@utils/hexToRgba';
 import useGetCalendarEachInfo from '@query/get/useGetCalendarEachInfo';
 import useInput from '@hooks/useInput';
-import { modalState, scheduleTypeState } from '../../state/calendar';
+import usePostSchedule from '@query/post/usePostSchedule';
+import { endTimeState, modalState, scheduleTypeState, startTimeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import * as E from './style/EditModal.style';
 import { ScheduleType } from './CalendarType';
@@ -21,11 +23,21 @@ import { ScheduleType } from './CalendarType';
 export default function EditModal() {
   const { isModalOpen, changeModalState, scheduleId, changeScheduleId } = useModal();
 
-  const { data: scheduleInfo } = useGetCalendarEachInfo({ scheduleId });
-
   const [title, setTitle] = useInput<string>('');
   const [type, setType] = useRecoilState(scheduleTypeState);
   const [detail, setDetail] = useState<string>('');
+  const startTime = useRecoilValue(startTimeState);
+  const endTime = useRecoilValue(endTimeState);
+
+  const { data: scheduleInfo } = useGetCalendarEachInfo({ scheduleId });
+  const { postSchedule, isPending } = usePostSchedule({
+    name: title,
+    startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
+    endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
+    type,
+    content: detail,
+  });
+
   const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetail(e.target.value);
   };
@@ -64,10 +76,33 @@ export default function EditModal() {
     }
   }, [scheduleId]);
 
+  const checkValidity = () => {
+    if (title.length === 0) {
+      alert('일정 제목을 입력해주세요.');
+      return false;
+    }
+    if (detail.length === 0) {
+      alert('일정 설명을 입력해주세요.');
+      return false;
+    }
+    if (dayjs(startTime) > dayjs(endTime)) {
+      alert('일정 시간을 다시 입력해주세요.');
+      return false;
+    }
+    return true;
+  };
+
   const onClickCompleteBtn = () => {
-    console.log(title);
-    console.log(detail);
-    console.log(type);
+    if (!checkValidity()) return null;
+
+    if (scheduleId === -1) {
+      if (isPending) return null;
+
+      postSchedule();
+      changeModalState(false);
+      return null;
+    }
+    return null;
   };
 
   return (
