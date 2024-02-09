@@ -1,5 +1,5 @@
 import Sheet from 'react-modal-sheet';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import STYLE from '@constants/style';
 import theme from '@styles/theme';
 import { ConfigProvider } from 'antd';
@@ -11,14 +11,19 @@ import { ReactComponent as TimeIcon } from '@assets/image/icon/time.svg';
 import { ReactComponent as TagIcon } from '@assets/image/icon/tag.svg';
 import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
 import hexToRGBA from '@utils/hexToRgba';
-import { modalState } from '../../state/calendar';
+import useGetCalendarEachInfo from '@query/get/useGetCalendarEachInfo';
+import useInput from '@hooks/useInput';
+import { modalState, scheduleTypeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import * as E from './style/EditModal.style';
 import { ScheduleType } from './CalendarType';
 
 export default function EditModal() {
-  const { isModalOpen, changeModalState, isNewSchedule, changeIsNewState } = useModal();
+  const { isModalOpen, changeModalState, scheduleId, changeScheduleId } = useModal();
 
+  const { data: scheduleInfo } = useGetCalendarEachInfo({ scheduleId });
+
+  const [title, setTitle] = useInput<string>('');
   const [type, setType] = useRecoilState(scheduleTypeState);
   const [detail, setDetail] = useState<string>('');
   const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -27,7 +32,7 @@ export default function EditModal() {
 
   const closeModal = () => {
     changeModalState(false);
-    changeIsNewState(false);
+    changeScheduleId(-1);
   };
 
   const onClickTypeButton = (selectedType: ScheduleType) => {
@@ -46,6 +51,25 @@ export default function EditModal() {
         break;
     }
   };
+
+  useEffect(() => {
+    if (scheduleId !== -1) {
+      setTitle(scheduleInfo?.name as string);
+      setDetail(scheduleInfo?.content as string);
+      setType(scheduleInfo?.type ?? 'ACADEMIC');
+    } else {
+      setTitle('');
+      setDetail('');
+      setType('ACADEMIC');
+    }
+  }, [scheduleId]);
+
+  const onClickCompleteBtn = () => {
+    console.log(title);
+    console.log(detail);
+    console.log(type);
+  };
+
   return (
     <Sheet
       isOpen={isModalOpen}
@@ -63,8 +87,9 @@ export default function EditModal() {
               <E.TitleContainer>
                 <E.Line type={type} />
                 <E.Title
-                  value={isNewSchedule ? '' : '주간 세미나'}
-                  placeholder={isNewSchedule ? '일정 제목을 입력해주세요' : ''}
+                  onChange={setTitle}
+                  value={title}
+                  placeholder={scheduleId === -1 ? '일정 제목을 입력해주세요' : ''}
                 />
               </E.TitleContainer>
               <E.deleteBtn>
@@ -75,7 +100,11 @@ export default function EditModal() {
               <E.Left>
                 <E.ContentWrapper>
                   <TimeIcon />
-                  <DatePickerBox />
+                  <DatePickerBox
+                    startDateTime={scheduleInfo?.startDateTime as string}
+                    endDateTime={scheduleInfo?.endDateTime as string}
+                    scheduleId={scheduleInfo?.scheduleId}
+                  />
                 </E.ContentWrapper>
                 <E.ContentWrapper>
                   <TagIcon />
@@ -97,12 +126,12 @@ export default function EditModal() {
                 <E.TextArea
                   rows={10}
                   value={detail}
-                  placeholder={isNewSchedule ? '일정에 대한 설명을 입력해주세요' : ''}
+                  placeholder={scheduleId === -1 ? '일정에 대한 설명을 입력해주세요' : ''}
                   onChange={handleDetail}
                 />
               </E.TextAreaContainer>
             </E.Content>
-            <E.CompleteBtn>
+            <E.CompleteBtn onClick={onClickCompleteBtn}>
               <CheckIcon color={theme.colors.white} />
             </E.CompleteBtn>
           </E.Container>

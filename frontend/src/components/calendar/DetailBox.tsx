@@ -9,17 +9,17 @@ import * as D from './style/DetailBox.style';
 import ScheduleCard from './ScheduleCard';
 import { DaySchedule } from './CalendarType';
 
-interface DetailBoxProps {
-  dayInfo: DaySchedule[];
-}
-
-export default function DetailBox({ dayInfo }: DetailBoxProps) {
+export default function DetailBox() {
   const isAdmin = useAuth();
 
-  const { changeModalState, changeIsNewState, selectedDateInfo } = useModal();
+  const { changeModalState, changeIsNewState, selectedDateInfo, changeScheduleId } = useModal();
+  const selectedYear = dayjs(selectedDateInfo?.toString()).year();
+  const selectedMonth = dayjs(selectedDateInfo?.toString()).month() + 1;
+  const selectedDate = dayjs(selectedDateInfo?.toString()).date();
+  const { data: dayInfo } = useGetCalendarDayInfo({ year: selectedYear, month: selectedMonth, date: selectedDate });
 
   const addNewSchedule = () => {
-    changeIsNewState(true);
+    changeScheduleId(-1);
     changeModalState(true);
   };
 

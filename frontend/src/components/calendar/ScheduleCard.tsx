@@ -28,7 +28,7 @@ interface ScheduleCardProps {
 }
 
 export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
-  const [isModalOpen, setIsModalOpen] = useRecoilState(modalState);
+  const { isModalOpen, changeModalState, changeScheduleId } = useModal();
   const isAdmin = useAuth();
 
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
@@ -53,6 +53,11 @@ export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
     return <S.Time2>{dayjs(dayInfo.endDateTime).format('hh:mm A')}</S.Time2>;
   };
 
+  const showModal = () => {
+    changeScheduleId(dayInfo.scheduleId);
+    changeModalState(true);
+  };
+
   return (
     <S.Container>
       <S.Left>
@@ -66,7 +71,7 @@ export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
         </S.InfoContainer>
       </S.Left>
       {isAdmin ? (
-        <S.Btn onClick={() => setIsModalOpen(true)}>
+        <S.Btn onClick={showModal}>
           <EditIcon />
         </S.Btn>
       ) : (
