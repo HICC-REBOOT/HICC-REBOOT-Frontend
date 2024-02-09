@@ -18,6 +18,7 @@ export const QUERY_KEYS = Object.freeze({
   POST_NESTED_COMMENT: 'post-nested-comment',
   POST_ARTICLE: 'post-article',
   DELETE_ARTICLE: 'delete-article',
+  DELETE_SCHEDULE: 'delete-schedule',
   UPDATE_ARTICLE: 'update-article',
   GET_USERINFO: 'get-userinfo',
 });

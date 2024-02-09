@@ -15,6 +15,7 @@ import hexToRGBA from '@utils/hexToRgba';
 import useGetCalendarEachInfo from '@query/get/useGetCalendarEachInfo';
 import useInput from '@hooks/useInput';
 import usePostSchedule from '@query/post/usePostSchedule';
+import useDeleteSchedule from '@query/delete/useDeleteSchedule';
 import { endTimeState, modalState, scheduleTypeState, startTimeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import * as E from './style/EditModal.style';
@@ -30,13 +31,14 @@ export default function EditModal() {
   const endTime = useRecoilValue(endTimeState);
 
   const { data: scheduleInfo } = useGetCalendarEachInfo({ scheduleId });
-  const { postSchedule, isPending } = usePostSchedule({
+  const { postSchedule, isPending: isPostSchedulePending } = usePostSchedule({
     name: title,
     startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
     endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
     type,
     content: detail,
   });
+  const { deleteSchedule, isPending: isDeleteSchedulePending } = useDeleteSchedule();
 
   const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetail(e.target.value);
@@ -96,12 +98,20 @@ export default function EditModal() {
     if (!checkValidity()) return null;
 
     if (scheduleId === -1) {
-      if (isPending) return null;
-
+      if (isPostSchedulePending) return null;
       postSchedule();
-      changeModalState(false);
+      closeModal();
+      window.location.reload();
       return null;
     }
+    return null;
+  };
+
+  const onClickDeleteBtn = () => {
+    if (isDeleteSchedulePending) return null;
+    deleteSchedule(scheduleId);
+    closeModal();
+    window.location.reload();
     return null;
   };
 
@@ -127,7 +137,7 @@ export default function EditModal() {
                   placeholder={scheduleId === -1 ? '일정 제목을 입력해주세요' : ''}
                 />
               </E.TitleContainer>
-              <E.deleteBtn>
+              <E.deleteBtn onClick={onClickDeleteBtn}>
                 <TrashIcon />
               </E.deleteBtn>
             </E.Top>
