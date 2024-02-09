@@ -11,11 +11,11 @@ interface ChangePasswordRequestBody {
   password: string;
 }
 
-function usePostChangePassword() {
+function usePatchChangePassword() {
   const requestChangePassword = async (data: ChangePasswordRequest) => {
     await request<ChangePasswordRequestBody, null, null>({
       uri: `/api/auth/password/verify/${data.nonce}`,
-      method: 'post',
+      method: 'patch',
       data: {
         password: data.password,
       },
@@ -23,7 +23,7 @@ function usePostChangePassword() {
   };
 
   const { mutate, isPending } = useMutation({
-    mutationKey: [QUERY_KEYS.POST_CHANGE_PASSWORD],
+    mutationKey: [QUERY_KEYS.PATCH_CHANGE_PASSWORD],
     mutationFn: requestChangePassword,
     onSuccess: () => {},
   });
@@ -34,4 +34,4 @@ function usePostChangePassword() {
   };
 }
 
-export default usePostChangePassword;
+export default usePatchChangePassword;

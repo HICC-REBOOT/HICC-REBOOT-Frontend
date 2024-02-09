@@ -22,7 +22,7 @@ export const QUERY_KEYS = Object.freeze({
   PATCH_PROFILE: 'patch-profile',
   GET_MAJORS: 'get-majors',
   POST_RESET_PASSWORD: 'post-reset-password',
-  POST_CHANGE_PASSWORD: 'post-change-password',
+  PATCH_CHANGE_PASSWORD: 'patch-change-password',
 });
 
 export const STORE_KEYS = Object.freeze({

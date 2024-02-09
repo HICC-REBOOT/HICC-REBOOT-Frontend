@@ -4,8 +4,8 @@ import { ConfigProvider } from 'antd';
 import theme from '@styles/theme';
 import { useForm } from 'react-hook-form';
 import { DeviceProvider } from '@assets/mediaQuery';
-import usePostChangePassword, { ChangePasswordRequest } from '@query/post/usePostChangePassword';
 import { useLocation, useNavigate } from 'react-router-dom';
+import usePatchChangePassword, { ChangePasswordRequest } from '@query/patch/usePatchChangePassword';
 import * as R from './Login/Login.style';
 
 const Container = styled.div`
@@ -66,7 +66,7 @@ function ChangePassword() {
     navigate('/');
   }, [nonce, navigate, setValue]);
 
-  const { changePassword, isPending } = usePostChangePassword();
+  const { changePassword, isPending } = usePatchChangePassword();
 
   const onSubmit = async (data: ChangePasswordRequest) => {
     changePassword(data);
@@ -87,6 +87,7 @@ function ChangePassword() {
             }}
           >
             <CustomInput
+              type="password"
               {...register('password', {
                 required: '비밀번호를 입력해주세요.',
                 minLength: {

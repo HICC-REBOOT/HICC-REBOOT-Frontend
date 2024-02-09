@@ -48,7 +48,7 @@ function usePatchArticle() {
         queryKey: [QUERY_KEYS.GET_ARTICLE_DETAIL, articleId],
       });
 
-      alert(`${articleId} 게시글이 수정되었습니다.`);
+      alert('게시글이 수정되었습니다.');
 
       // 등록이 완료되면 목록으로 이동
       navigate(`${ROUTE.COMMUNITY.BASE}`);
