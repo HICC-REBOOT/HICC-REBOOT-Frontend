@@ -6,6 +6,7 @@ export const QUERY_KEYS = Object.freeze({
   GET_PROFILE: 'get-profile',
   GET_MY_ARTICLES: 'get-my-articles',
   GET_MY_COMMENTS: 'get-my-comments',
+  Delete_PROFILE: 'delete-profile',
   GET_ARTICLE_DETAIL: 'get-article-detail',
   GET_PARENT_COMMENT: 'get-parent-comment',
   POST_PARENT_COMMENT: 'post-parent-comment',
@@ -16,6 +17,8 @@ export const QUERY_KEYS = Object.freeze({
   DELETE_ARTICLE: 'delete-article',
   UPDATE_ARTICLE: 'update-article',
   GET_USERINFO: 'get-userinfo',
+  PATCH_PROFILE: 'patch-profile',
+  GET_MAJORS: 'get-majors',
   POST_RESET_PASSWORD: 'post-reset-password',
   POST_CHANGE_PASSWORD: 'post-change-password',
 });

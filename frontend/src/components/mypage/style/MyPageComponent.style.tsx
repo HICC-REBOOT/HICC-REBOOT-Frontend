@@ -41,25 +41,21 @@ export const GroupContainer = styled.div`
   ${(props) => props.theme.media.mobile`
     margin-top: 1.2rem;
     width: 32.8rem;
-    height: 73.2rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     margin-top: 2.1rem;
     width: 53.4rem;
-    height: 91.3rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     margin-top: 13.9rem;
     width: 103.4rem;
-    height: 177.1rem;
   `}
 
   ${(props) => props.theme.media.wide`
     margin-top: 13.9rem;
     width: 103.4rem;
-    height: 177.1rem;
   `}
 `;
 
@@ -305,4 +301,11 @@ export const DeleteButton = styled.button`
 
   border-radius: 0.8rem;
   background: rgba(255, 93, 93, 0.1);
+`;
+
+export const PageSelectArea = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;

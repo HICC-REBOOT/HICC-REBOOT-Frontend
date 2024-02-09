@@ -1,21 +1,16 @@
 import { QUERY_KEYS } from '@constants/keys';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import request from '@utils/request';
-import { Grade } from '@components/type/CommonType';
 
-interface ProfileInfo {
-  studentNumber: string;
-  email: string;
-  name: string;
-  grade: Grade;
-  phoneNumber: string;
-  department: string;
+interface MajorInfo {
+  value: number;
+  label: string;
 }
 
 function useGetProfile() {
   const fetchProfile = async () => {
-    const response = await request<null, ProfileInfo, null>({
-      uri: '/api/profile',
+    const response = await request<null, MajorInfo, null>({
+      uri: '/api/auth/departments',
       method: 'get',
     });
 
@@ -23,7 +18,7 @@ function useGetProfile() {
   };
 
   const { data } = useSuspenseQuery({
-    queryKey: [QUERY_KEYS.GET_PROFILE],
+    queryKey: [QUERY_KEYS.GET_MAJORS],
     queryFn: fetchProfile,
   });
 
