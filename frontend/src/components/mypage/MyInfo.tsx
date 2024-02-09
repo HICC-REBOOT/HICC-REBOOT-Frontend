@@ -195,7 +195,7 @@ function MyInfo() {
           <Dropdown placeholder="전공" options={options} onChange={onChange} defaultValue={defaultDepartmentOption} />
           {!defaultDepartmentOption && majorState === true && <M.BoxAlert>전공을 선택해주세요</M.BoxAlert>}
         </M.BigBoxArea>
-        <M.Button onClick={handleSubmit} disabled={buttonState}>
+        <M.Button onClick={handleSubmit} disabled={buttonState || isPending}>
           프로필 수정
         </M.Button>
       </M.GroupContainer>
