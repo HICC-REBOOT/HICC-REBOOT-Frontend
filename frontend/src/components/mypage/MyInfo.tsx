@@ -57,7 +57,7 @@ function MyInfo() {
   useEffect(() => {
     phoneNChange(myInfo.data.phoneNumber ?? '');
     emailChange(myInfo.data.email ?? '');
-  }, [myInfo.data]);
+  }, [emailChange, myInfo.data, phoneNChange]);
 
   const handleWithdrawal = () => {
     const withdrawalConfirmParams: WithdrawalParameter = {

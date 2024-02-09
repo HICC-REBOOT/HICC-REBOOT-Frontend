@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
-import useGetArticleDetail from '@query/get/useGetArticleDetail';
-import { UseGetArticleDetailProps } from '@query/get/useGetArticleDetail';
+import useGetArticleDetail, { UseGetArticleDetailProps } from '@query/get/useGetArticleDetail';
 
 import * as M from '../style/MyWritings.style';
 

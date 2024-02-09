@@ -36,15 +36,6 @@ export default function EnterInfo() {
   const [major, setMajor] = useState('');
 
   const onSubmit = (data: FormType) => {
-    console.log('제출 : ', {
-      studentNumber: data.studentNumber,
-      password: data.password,
-      name: data.name,
-      department: major,
-      phoneNumber: `${data.num1}-${data.num2}-${data.num3}`,
-      email: 'hongik@gmail.com',
-    });
-
     writeSignup({
       studentNumber: data.studentNumber,
       password: data.password,
