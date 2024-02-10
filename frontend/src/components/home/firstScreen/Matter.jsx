@@ -36,6 +36,7 @@ export default function MatterDisplay(props) {
       },
     });
     const rate = props.width / 1920 || 1;
+    console.log(rate);
 
     // eslint-disable-next-line react/prop-types
     const floor = Bodies.rectangle(props.width / 2, props.height + 10, props.width, 20, {
@@ -43,7 +44,7 @@ export default function MatterDisplay(props) {
       render: { fillStyle: '#0A0A0A' },
     });
 
-    const HelloWorld = Bodies.rectangle(800 * rate, 0, 800 * rate, 144 * rate, {
+    const HelloWorld = Bodies.rectangle(800 * rate, 0, 608 * rate, 144 * rate, {
       chamfer: {
         radius: [72 * rate, 72 * rate],
       },
@@ -158,7 +159,7 @@ export default function MatterDisplay(props) {
       restitution: 0.1,
     });
 
-    const Component = Bodies.rectangle(1280 * rate, 200 * rate, 172 * rate, 116 * rate, {
+    const Component = Bodies.rectangle(1280 * rate, 200 * rate, 189 * rate, 116 * rate, {
       chamfer: {},
       render: {
         sprite: {
