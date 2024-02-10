@@ -15,6 +15,7 @@ import hexToRGBA from '@utils/hexToRgba';
 import useGetCalendarEachInfo from '@query/get/useGetCalendarEachInfo';
 import useInput from '@hooks/useInput';
 import usePostSchedule from '@query/post/usePostSchedule';
+import usePatchSchedule from '@query/patch/usePatchSchedule';
 import useDeleteSchedule from '@query/delete/useDeleteSchedule';
 import { endTimeState, modalState, scheduleTypeState, startTimeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
@@ -39,6 +40,7 @@ export default function EditModal() {
     content: detail,
   });
   const { deleteSchedule, isPending: isDeleteSchedulePending } = useDeleteSchedule();
+  const { updateSchedule, isPending: isPatchSchedulePending } = usePatchSchedule();
 
   const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetail(e.target.value);
@@ -97,6 +99,7 @@ export default function EditModal() {
   const onClickCompleteBtn = () => {
     if (!checkValidity()) return null;
 
+    // 일정 추가일 때
     if (scheduleId === -1) {
       if (isPostSchedulePending) return null;
       postSchedule();
@@ -104,6 +107,16 @@ export default function EditModal() {
       window.location.reload();
       return null;
     }
+    // 일정 수정일 때
+    if (isPatchSchedulePending) return null;
+    updateSchedule({
+      name: title,
+      startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
+      endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
+      type,
+      content: detail,
+      scheduleId,
+    });
     return null;
   };
 

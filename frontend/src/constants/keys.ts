@@ -20,6 +20,7 @@ export const QUERY_KEYS = Object.freeze({
   DELETE_ARTICLE: 'delete-article',
   DELETE_SCHEDULE: 'delete-schedule',
   UPDATE_ARTICLE: 'update-article',
+  UPDATE_SCHEDULE: 'update-schedule',
   GET_USERINFO: 'get-userinfo',
 });
 
