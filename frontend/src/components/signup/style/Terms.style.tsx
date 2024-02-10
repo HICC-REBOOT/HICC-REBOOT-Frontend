@@ -60,6 +60,7 @@ export const TextArea = styled.div`
     'liga' off;
   ${(props) => props.theme.typography.common.caption2}
   margin-right: 1.7rem;
+  white-space: pre-line;
 `;
 
 export const CheckerWrapper = styled.div`

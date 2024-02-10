@@ -22,7 +22,7 @@ function useGetFooterInfo() {
     queryFn: fetchPresidentName,
   });
 
-  return { data };
+  return { presidentInfo: data };
 }
 
 export default useGetFooterInfo;
