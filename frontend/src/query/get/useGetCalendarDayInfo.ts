@@ -3,13 +3,13 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import request from '@utils/request';
 import { DaySchedule } from '@components/calendar/CalendarType';
 
-interface MonthInfoProps {
+interface DayInfoProps {
   year: number;
   month: number;
   date: number;
 }
 
-export default function useGetCalendarDayInfo({ year, month, date }: MonthInfoProps) {
+export default function useGetCalendarDayInfo({ year, month, date }: DayInfoProps) {
   const fetchDayInfo = async () => {
     const response = await request<null, DaySchedule[], null>({
       uri: `/api/calendar/date-schedule?year=${year}&month=${month}&day=${date}`,
