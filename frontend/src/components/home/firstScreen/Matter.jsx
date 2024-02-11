@@ -36,51 +36,59 @@ export default function MatterDisplay(props) {
       },
     });
     const rate = props.width / 1920 || 1;
-    console.log(rate);
+    const SizeRate = Math.min(props.width / 1920 + 0.18, 1) || 1;
 
     // eslint-disable-next-line react/prop-types
     const floor = Bodies.rectangle(props.width / 2, props.height + 10, props.width, 20, {
       isStatic: true,
       render: { fillStyle: '#0A0A0A' },
     });
+    const leftWall = Bodies.rectangle(-40, props.height, 20, 200, {
+      isStatic: true,
+      render: { fillStyle: '#0A0A0A' },
+    });
+    const rightWall = Bodies.rectangle(props.width + 40, props.height, 20, 200, {
+      isStatic: true,
+      render: { fillStyle: '#0A0A0A' },
+    });
 
-    const HelloWorld = Bodies.rectangle(800 * rate, 0, 608 * rate, 144 * rate, {
+    const HelloWorld = Bodies.rectangle(800 * rate, 0, 608, 144, {
       chamfer: {
         radius: [72 * rate, 72 * rate],
       },
       render: {
         sprite: {
           texture: helloworld,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    const Include = Bodies.rectangle(1600 * rate, 200 * rate, 496 * rate, 144 * rate, {
+    const Include = Bodies.rectangle(1600 * rate, 200 * rate, 496, 144, {
       chamfer: {
         radius: [72 * rate, 72 * rate],
       },
       render: {
         sprite: {
           texture: include,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    const Blank = Bodies.rectangle(250 * rate, 200 * rate, 300 * rate, 144 * rate, {
+    const Blank = Bodies.rectangle(250 * rate, 200 * rate, 300, 144, {
       chamfer: {
         radius: [40 * rate, 40 * rate],
       },
       render: {
         sprite: {
           texture: blank,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
@@ -91,32 +99,32 @@ export default function MatterDisplay(props) {
       render: {
         sprite: {
           texture: and,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    const Bracket = Bodies.rectangle(1080 * rate, 200 * rate, 352 * rate, 108 * rate, {
+    const Bracket = Bodies.rectangle(1080 * rate, 200 * rate, 352, 108, {
       chamfer: {},
       render: {
         sprite: {
           texture: bracket,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    const AndAnd = Bodies.circle(300 * rate, 100 * rate, 100 * rate, {
+    const AndAnd = Bodies.circle(300 * rate, 100, 100, {
       chamfer: {},
       render: {
         sprite: {
           texture: andand,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
@@ -145,60 +153,71 @@ export default function MatterDisplay(props) {
       { x: 40, y: 144 },
       { x: 0, y: 72 },
     ];
-    const Rect = createSvgBody(800 * rate, 200 * rate, rectVertices, rate, '#5B4EF5');
+    const Rect = createSvgBody(800 * rate, 200 * rate, rectVertices, SizeRate, '#5B4EF5');
 
-    const Semicolon = Bodies.rectangle(1280 * rate, 200 * rate, 24.8 * rate, 95 * rate, {
+    const Semicolon = Bodies.rectangle(1280 * rate, 200 * rate, 24.8, 95, {
       chamfer: {},
       render: {
         sprite: {
           texture: semicolon,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    const Component = Bodies.rectangle(1280 * rate, 200 * rate, 189 * rate, 116 * rate, {
+    const Component = Bodies.rectangle(1280 * rate, 200 * rate, 189, 116, {
       chamfer: {},
       render: {
         sprite: {
           texture: component,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    const Arrow = Bodies.rectangle(1280 * rate, 200 * rate, 184 * rate, 126 * rate, {
+    const Arrow = Bodies.rectangle(1280 * rate, 200 * rate, 184, 126, {
       chamfer: {},
       render: {
         sprite: {
           texture: arrow,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    const Wave = Bodies.rectangle(1480 * rate, 200 * rate, 300 * rate, 160 * rate, {
+    const Wave = Bodies.rectangle(1480 * rate, 200 * rate, 300, 160, {
       chamfer: {},
       render: {
         sprite: {
           texture: wave,
-          xScale: rate,
-          yScale: rate,
+          xScale: SizeRate,
+          yScale: SizeRate,
         },
       },
       restitution: 0.1,
     });
 
-    Matter.Body.scale(And, rate, rate);
+    Matter.Body.scale(HelloWorld, SizeRate, SizeRate);
+    Matter.Body.scale(Include, SizeRate, SizeRate);
+    Matter.Body.scale(Blank, SizeRate, SizeRate);
+    Matter.Body.scale(And, SizeRate, SizeRate);
+    Matter.Body.scale(Bracket, SizeRate, SizeRate);
+    Matter.Body.scale(AndAnd, SizeRate, SizeRate);
+    Matter.Body.scale(Semicolon, SizeRate, SizeRate);
+    Matter.Body.scale(Component, SizeRate, SizeRate);
+    Matter.Body.scale(Arrow, SizeRate, SizeRate);
+    Matter.Body.scale(Wave, SizeRate, SizeRate);
 
     World.add(engine.world, [
       floor,
+      leftWall,
+      rightWall,
       HelloWorld,
       Include,
       And,
