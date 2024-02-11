@@ -36,6 +36,15 @@ export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
     return convertedMonthInfo;
   };
 
+  const showMarks = (types: ScheduleType[]) => {
+    const marks = [];
+    if (types.find((type) => type === 'ACADEMIC')) marks.push(<C.Dot type="ACADEMIC" />);
+    if (types.find((type) => type === 'AMITY')) marks.push(<C.Dot type="AMITY" />);
+    if (types.find((type) => type === 'SCHOOL_EVENT')) marks.push(<C.Dot type="SCHOOL_EVENT" />);
+    if (types.find((type) => type === 'ETC')) marks.push(<C.Dot type="ETC" />);
+    return marks;
+  };
+
   return (
     <C.CustomCalendar
       onActiveStartDateChange={({ action, activeStartDate, value, view }) => {
@@ -52,13 +61,7 @@ export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
         const convertedMonthInfo = convertMonthInfo();
         const isInfoExist = convertedMonthInfo.find((info) => info.date === dayjs(currentDate).format('YYYY-MM-DD'));
         if (isInfoExist) {
-          return (
-            <C.DotContainer>
-              {isInfoExist.type.map((type, i) => (
-                <C.Dot type={type} key={i} />
-              ))}
-            </C.DotContainer>
-          );
+          return <C.DotContainer>{showMarks(isInfoExist.type)}</C.DotContainer>;
         }
         return null;
       }}
