@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import CalendarGrid from '@components/calendar/CalendarGrid';
 import DetailBox from '@components/calendar/DetailBox';
 import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
 import usePostSchedule from '@query/post/usePostSchedule';
 import usePatchSchedule from '@query/patch/usePatchSchedule';
+import Loading from '@components/common/loading/Loading';
 
 const Container = styled.div`
   width: 100%;
@@ -40,9 +41,11 @@ const Container = styled.div`
 export default function Calendar() {
   return (
     <Container>
-      <CalendarGrid />
-      <DetailBox />
-      <EditModal />
+      <Suspense fallback={<Loading />}>
+        <CalendarGrid />
+        <DetailBox />
+        <EditModal />
+      </Suspense>
     </Container>
   );
 }
