@@ -150,9 +150,11 @@ export default function EditModal() {
                   placeholder={scheduleId === -1 ? '일정 제목을 입력해주세요' : ''}
                 />
               </E.TitleContainer>
-              <E.deleteBtn onClick={onClickDeleteBtn}>
-                <TrashIcon />
-              </E.deleteBtn>
+              {scheduleId !== -1 && (
+                <E.deleteBtn onClick={onClickDeleteBtn}>
+                  <TrashIcon />
+                </E.deleteBtn>
+              )}
             </E.Top>
             <E.Content>
               <E.Left>
