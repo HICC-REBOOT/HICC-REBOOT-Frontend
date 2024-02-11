@@ -3,10 +3,8 @@ import CalendarGrid from '@components/calendar/CalendarGrid';
 import DetailBox from '@components/calendar/DetailBox';
 import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
-import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
-import dayjs from 'dayjs';
-import useModal from '@hooks/useCalendarModal';
-import useGetCalendarDayInfo from '@query/get/useGetCalendarDayInfo';
+import usePostSchedule from '@query/post/usePostSchedule';
+import usePatchSchedule from '@query/patch/usePatchSchedule';
 
 const Container = styled.div`
   width: 100%;
@@ -39,30 +37,11 @@ const Container = styled.div`
   `};
 `;
 
-const TempBtnContainer = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-const TempBtn = styled.button`
-  background-color: white;
-  color: black;
-`;
-
 export default function Calendar() {
-  const { currentCalendarView, selectedDateInfo } = useModal();
-  const currentYear = dayjs(currentCalendarView?.toString()).year();
-  const currentMonth = dayjs(currentCalendarView?.toString()).month() + 1;
-  const { data: monthInfo } = useGetCalendarMonthInfo({ year: currentYear, month: currentMonth });
-
-  const selectedYear = dayjs(selectedDateInfo?.toString()).year();
-  const selectedMonth = dayjs(selectedDateInfo?.toString()).month() + 1;
-  const selectedDate = dayjs(selectedDateInfo?.toString()).date();
-  const { data: dayInfo } = useGetCalendarDayInfo({ year: selectedYear, month: selectedMonth, date: selectedDate });
-
   return (
     <Container>
-      <CalendarGrid monthInfo={monthInfo} />
-      <DetailBox dayInfo={dayInfo} />
+      <CalendarGrid />
+      <DetailBox />
       <EditModal />
     </Container>
   );

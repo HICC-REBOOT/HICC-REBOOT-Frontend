@@ -1,20 +1,21 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
+import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
 import { MonthSchedule, ScheduleType } from './CalendarType';
 import * as C from './style/CalendarGrid.style';
-
-interface CalendarGridProps {
-  monthInfo: MonthSchedule[];
-}
 
 interface ConvertedMonthInfo {
   date: string;
   type: ScheduleType[];
 }
 
-export default function CalendarGrid({ monthInfo }: CalendarGridProps) {
-  const { selectedDateInfo, setSelectedDateInfo, setCurrentCalendarView } = useModal();
+export default function CalendarGrid() {
+  const { selectedDateInfo, setSelectedDateInfo, setCurrentCalendarView, currentCalendarView } = useModal();
+
+  const currentYear = dayjs(currentCalendarView?.toString()).year();
+  const currentMonth = dayjs(currentCalendarView?.toString()).month() + 1;
+  const { data: monthInfo } = useGetCalendarMonthInfo({ year: currentYear, month: currentMonth });
 
   const convertMonthInfo = (): ConvertedMonthInfo[] => {
     const convertedMonthInfo: ConvertedMonthInfo[] = [];

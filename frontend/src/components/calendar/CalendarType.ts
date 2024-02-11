@@ -18,6 +18,7 @@ export interface DaySchedule {
   startDateTime: string;
   endDateTime: string;
 }
+
 export type ScheduleType = ACADEMIC | AMITY | SCHOOL_EVENT | ETC;
 type ACADEMIC = 'ACADEMIC';
 type AMITY = 'AMITY';
