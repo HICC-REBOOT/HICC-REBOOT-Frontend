@@ -11,6 +11,27 @@ export const CustomCalendar = styled(Calendar)`
   width: 100%;
   border: none;
 
+  ${(props) => props.theme.media.desktop`
+    width: 82.1rem;
+    height: 61.8rem;
+  `};
+  ${(props) => props.theme.media.wide`
+    width: 82.1rem;
+  `};
+
+  // 요일 + 날짜 전체 container
+  .react-calendar__viewContainer {
+    ${(props) => props.theme.media.desktop`
+    background-color: ${props.theme.colors.grey001};
+    border-radius: 1.6rem;
+    padding: 2rem;
+    `};
+    ${(props) => props.theme.media.wide`
+    background-color: ${props.theme.colors.grey001};
+    border-radius: 1.6rem;
+    padding: 2rem 2rem;
+    `};
+  }
   // 달력 위에 화살표 & YYYY.MM
   .react-calendar__navigation {
     margin-bottom: 4.4rem;
@@ -55,19 +76,6 @@ export const CustomCalendar = styled(Calendar)`
   .react-calendar__navigation__label > span {
     color: ${(props) => props.theme.colors.white};
     ${(props) => props.theme.typography[DeviceProvider()].subtitle};
-  }
-
-  .react-calendar__viewContainer {
-    ${(props) => props.theme.media.desktop`
-      background-color: ${props.theme.colors.grey001};
-      border-radius: 1.6rem;
-      padding: 2rem 6.4rem;
-      `};
-    ${(props) => props.theme.media.wide`
-      background-color: ${props.theme.colors.grey001};
-      border-radius: 1.6rem;
-      padding: 2rem 6.4rem;
-      `};
   }
 
   // 요일 전체
@@ -135,6 +143,10 @@ export const CustomCalendar = styled(Calendar)`
     padding-top: 0.4rem;
     width: 4.2rem;
     ${(props) => props.theme.typography[DeviceProvider()].body};
+
+    ${(props) => props.theme.media.desktop`
+      padding-top: 0;
+    `}
   }
   .react-calendar__tile--active:enabled:focus > abbr {
     background-color: ${(props) => props.theme.colors.white};
@@ -186,6 +198,10 @@ export const DotContainer = styled.div`
   gap: 0.4rem;
   position: absolute;
   top: 3rem;
+
+  ${(props) => props.theme.media.desktop`
+    top: 3.3rem;
+  `}
 `;
 
 export const Dot = styled.div<{ type: ScheduleType }>`

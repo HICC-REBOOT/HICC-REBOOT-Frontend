@@ -9,18 +9,25 @@ export const Container = styled.div`
 
   ${(props) => props.theme.media.desktop`
     padding-top: 7.9rem;
-    width: auto;
+    width: 32.8rem;
   `};
 
   ${(props) => props.theme.media.wide`
     padding-top: 7.9rem;
-    width: auto;
+    width: 32.8rem;
   `};
 `;
 
 export const Date = styled.div`
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography[DeviceProvider()].subtitle};
+
+  ${(props) => props.theme.media.desktop`
+    ${props.theme.typography.mobile.subtitle};
+  `}
+  ${(props) => props.theme.media.wide`
+    ${props.theme.typography.mobile.subtitle};
+  `}
 `;
 
 export const AddContainer = styled.button`

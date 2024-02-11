@@ -72,12 +72,10 @@ export const Detail = styled.div<{ $isDetailOpen: boolean }>`
     `}
 
   ${(props) => props.theme.media.desktop`
-    width: 30rem;
     padding-right: 1.2rem;
   `};
 
   ${(props) => props.theme.media.wide`
-    width: 30rem;
     padding-right: 1.2rem;
   `};
 `;
