@@ -20,14 +20,11 @@ export const Container = styled.div`
 
 export const Date = styled.div`
   color: ${(props) => props.theme.colors.white};
-  ${(props) => props.theme.typography[DeviceProvider()].subtitle};
+  ${(props) => props.theme.typography.mobile.subtitle};
 
-  ${(props) => props.theme.media.desktop`
-    ${props.theme.typography.mobile.subtitle};
-  `}
-  ${(props) => props.theme.media.wide`
-    ${props.theme.typography.mobile.subtitle};
-  `}
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    ${(props) => props.theme.typography.desktop.subtitle}
+  }
 `;
 
 export const AddContainer = styled.button`

@@ -25,7 +25,7 @@ function useGetDepartments() {
   };
 
   const { data } = useSuspenseQuery({
-    queryKey: ['get-departments'],
+    queryKey: [QUERY_KEYS.GET_DEPARTMENTS],
     queryFn: fetchDepartments,
   });
 

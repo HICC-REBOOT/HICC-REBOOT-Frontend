@@ -4,62 +4,60 @@ import Dropdown from '@components/mypage/Dropdown';
 import useDropdown from '@hooks/useDropdown';
 import useInput from '@hooks/useInput';
 import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
+import useGetProfile from '@query/get/useGetProfile';
+import usePatchProfile from '@query/patch/usePatchProfile';
+import useGetMajors from '@query/get/useGetMajors';
 import { ReactComponent as Check } from '@assets/image/icon/check.svg';
 import theme from '@styles/theme';
+import { GRADE_ENUM } from '@components/type/CommonType';
+import useDeleteProfile from '@query/delete/useDeleteProfile';
+
 import * as M from './style/MyInfo.style';
 
-function MyInfo() {
-  const options: OptionType[] = [
-    { value: '1', label: '기초과학과' },
-    { value: '2', label: '건설환경공학과' },
-    { value: '3', label: '전자전기공학부' },
-    { value: '4', label: '컴퓨터공학부' },
-    { value: '5', label: '산업·데이터공학과' },
-    { value: '6', label: '신소재화공시스템공학부' },
-    { value: '7', label: '기계·시스템디자인공학부' },
-    { value: '8', label: '건축학부' },
-    { value: '9', label: '도시공학과' },
-    { value: '10', label: '경영학부' },
-    { value: '11', label: '영어영문학과' },
-    { value: '12', label: '독어독문학과' },
-    { value: '13', label: '독어독문학과' },
-    { value: '14', label: '불어불문학과' },
-    { value: '15', label: '국어국문학과' },
-    { value: '16', label: '법학부' },
-    { value: '17', label: '수학교육과' },
-    { value: '18', label: '국어교육과' },
-    { value: '19', label: '영어교육과' },
-    { value: '20', label: '역사교육과' },
-    { value: '21', label: '교육학과' },
-    { value: '22', label: '동양화과' },
-    { value: '23', label: '회화과' },
-    { value: '24', label: '판화과' },
-    { value: '25', label: '조소과' },
-    { value: '26', label: '목조형가구학과' },
-    { value: '27', label: '예술학과' },
-    { value: '28', label: '금속조형디자인과' },
-    { value: '29', label: '도예유리과' },
-    { value: '30', label: '섬유미술패션디자인과' },
-    { value: '31', label: '자율전공' },
-    { value: '32', label: '디자인학부' },
-    { value: '33', label: '경제학부' },
-    { value: '34', label: '공연예술학부' },
-    { value: '35', label: '디자인경영융합학부' },
-    { value: '36', label: '캠퍼스자율전공(서울)' },
-    { value: '37', label: '교양교육원' },
-  ];
+interface MajorInfo {
+  name: string;
+}
 
-  const { currentOption, onChange } = useDropdown({});
-  const { 0: phoneNumber, 1: phoneNChange } = useInput('');
-  const { 0: email, 1: scholNChange } = useInput('');
-  const { 0: password, 1: passwordChange } = useInput('');
-  const { 0: passwordConfirm, 1: passwordConfirmChange } = useInput('');
+function MyInfo() {
+  const majorsData = useGetMajors().data;
+  const majorsList: MajorInfo[] = Array.isArray(majorsData) ? majorsData : [];
+
+  const mapToOptionsFormat = (majors: MajorInfo[] | undefined): OptionType[] => {
+    if (!majors) {
+      return [];
+    }
+
+    return majors.map((major, index) => ({
+      value: `${index + 1}`,
+      label: major.name,
+    }));
+  };
+
+  const options: OptionType[] = mapToOptionsFormat(majorsList);
+
+  const myInfo = useGetProfile();
+  const defaultDepartmentOption = options.find((option) => option.label === myInfo.data.department);
+
+  const { currentOption, onChange } = useDropdown({ defalutValue: defaultDepartmentOption });
+  const [phoneNumber, phoneNChange] = useInput('');
+  const [email, emailChange] = useInput('');
+  const [password, passwordChange] = useInput('');
+  const [passwordConfirm, passwordConfirmChange] = useInput('');
   const [buttonState, setButton] = useState(true);
   const [numberState, setNumberState] = useState(true);
   const [emailState, setEmailState] = useState(true);
   const [majorState, setMajorState] = useState(true);
   const [passwordState, setPasswordState] = useState(true);
   const [passwordConfirmState, setPasswordConfirmState] = useState(true);
+
+  const { patchProfile, isPending } = usePatchProfile();
+
+  const { deleteProfile } = useDeleteProfile();
+
+  useEffect(() => {
+    phoneNChange(myInfo.data.phoneNumber ?? '');
+    emailChange(myInfo.data.email ?? '');
+  }, [emailChange, myInfo.data, phoneNChange]);
 
   const handleWithdrawal = () => {
     const withdrawalConfirmParams: WithdrawalParameter = {
@@ -69,13 +67,8 @@ function MyInfo() {
       cancelText: '취소',
       isDangerous: true,
       onOk: () => {
-        // Perform the withdrawal action here
-        console.log('Withdrawal confirmed');
+        deleteProfile();
       },
-      // onCancel: () => {
-      //   // Handle cancellation
-      //   console.log('Withdrawal canceled');
-      // },
     };
 
     withdrawal(withdrawalConfirmParams);
@@ -101,7 +94,7 @@ function MyInfo() {
     } else {
       setEmailState(true);
     }
-    if (passwordRE.test(password)) {
+    if (passwordRE.test(password) || !password) {
       setPasswordState(false);
     } else {
       setPasswordState(true);
@@ -114,26 +107,21 @@ function MyInfo() {
   }, [phoneNumber, email, currentOption, password, passwordConfirm]);
 
   useEffect(() => {
-    if (
-      numberState === false &&
-      majorState === false &&
-      emailState === false &&
-      passwordState === false &&
-      passwordConfirmState === false
-    ) {
+    if (numberState === false && emailState === false && passwordState === false && passwordConfirmState === false) {
       setButton(false);
     } else {
       setButton(true);
     }
-  }, [numberState, majorState, emailState, passwordState, passwordConfirmState]);
+  }, [numberState, emailState, passwordState, passwordConfirmState]);
 
   const handleSubmit = () => {
     const submitParam = {
-      phoneNumber: { phoneNumber },
-      schoolNumber: { schoolNumber: email },
-      major: { currentOption },
+      phoneNumber,
+      email,
+      department: currentOption ? currentOption.label : '',
+      password,
     };
-    console.log(submitParam);
+    patchProfile(submitParam);
   };
 
   const formatPhoneNumber = (input: string) => {
@@ -153,31 +141,35 @@ function MyInfo() {
     <M.Container>
       <M.GroupContainer>
         <M.Title>
-          <M.Name>홍길동</M.Name>
-          <M.Label>운영진</M.Label>
+          <M.Name>{myInfo.data.name}</M.Name>
+          <M.Label>{GRADE_ENUM[myInfo.data.grade]}</M.Label>
         </M.Title>
         <M.BoxArea style={{ left: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>전화번호</M.BoxTitle>
           {numberState === false && (
             <M.CheckDiv>
-              <Check color={theme.colors.white} />
+              <Check color={theme.colors.point2} />
             </M.CheckDiv>
           )}
-          <M.Input onChange={handlePhoneInputChange} value={phoneNumber}></M.Input>
+          <M.Input
+            onChange={handlePhoneInputChange}
+            value={phoneNumber}
+            defaultValue={myInfo.data.phoneNumber}
+          ></M.Input>
           {numberState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BoxArea style={{ right: '0rem', top: '7.7rem' }}>
           <M.BoxTitle>이메일</M.BoxTitle>
           {emailState === false && (
             <M.CheckDiv>
-              <Check color={theme.colors.white} />
+              <Check color={theme.colors.point2} />
             </M.CheckDiv>
           )}
-          <M.Input onChange={scholNChange}></M.Input>
+          <M.Input onChange={emailChange} value={email}></M.Input>
           {emailState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BigBoxArea>
-          <M.BoxTitle>비밀번호</M.BoxTitle>
+          <M.BoxTitle>비밀번호 변경</M.BoxTitle>
           <M.BigBox
             type="password"
             onChange={passwordChange}
@@ -198,10 +190,10 @@ function MyInfo() {
         </M.BigBoxArea>
         <M.BigBoxArea>
           <M.BoxTitle>학과</M.BoxTitle>
-          <Dropdown placeholder="전공" options={options} onChange={onChange} />
-          {majorState === true && <M.BoxAlert>전공을 선택해주세요</M.BoxAlert>}
+          <Dropdown placeholder="전공" options={options} onChange={onChange} defaultValue={defaultDepartmentOption} />
+          {!defaultDepartmentOption && majorState === true && <M.BoxAlert>전공을 선택해주세요</M.BoxAlert>}
         </M.BigBoxArea>
-        <M.Button onClick={handleSubmit} disabled={buttonState}>
+        <M.Button onClick={handleSubmit} disabled={buttonState || isPending}>
           프로필 수정
         </M.Button>
       </M.GroupContainer>

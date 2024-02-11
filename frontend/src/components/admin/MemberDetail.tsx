@@ -1,7 +1,7 @@
 import React from 'react';
 import * as M from './style/MemberDetail';
 
-interface UserData {
+export interface UserData {
   id: number;
   grade: string;
   name: string;

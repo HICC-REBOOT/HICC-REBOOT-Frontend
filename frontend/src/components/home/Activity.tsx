@@ -6,6 +6,7 @@ import project from '@assets/image/project.png';
 import mission from '@assets/image/mission.png';
 import meeting from '@assets/image/meeting.png';
 import mt from '@assets/image/mt.png';
+import useMoveScroll from '@hooks/useMoveScroll';
 import ActivityBox from './activityBox/ActivityBox';
 import SmallActivityBox from './activityBox/SmallActivityBox';
 
@@ -44,6 +45,8 @@ const mtInfo = {
 };
 
 function Activity() {
+  const { element, onMoveToElement } = useMoveScroll();
+
   return (
     <A.Container>
       <A.BackCircle />
@@ -58,13 +61,15 @@ function Activity() {
           <A.SmallBox $img={''} style={{ border: '0.1rem solid rgba(255, 255, 255, 0.5)' }}>
             <A.SmallBoxTitle>{'활발한\n친목도모활동'}</A.SmallBoxTitle>
             <A.SmallBoxContent>매 주 자율적으로 진행되는 세미나를 통해 기초 코딩 지식을 학습합니다</A.SmallBoxContent>
-            <A.Logo>
+            <A.Logo onClick={onMoveToElement} style={{ cursor: 'pointer' }}>
               <Arrow />
             </A.Logo>
           </A.SmallBox>
           <SmallActivityBox {...meetingInfo} />
           <ActivityBox {...missionInfo} />
           <SmallActivityBox {...mtInfo} />
+          {/* 오른쪽으로 이동하는 기능인데 마지막에 gap이 추가되는게 별로 좋지 않아서 빼는 방법 좀 */}
+          <div ref={element} />
         </A.BoxContainer>
       </A.GrouopContainer>
     </A.Container>

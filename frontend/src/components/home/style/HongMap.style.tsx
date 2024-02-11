@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import theme from '@styles/theme';
 import hongmap from '@assets/image/hongmap.png';
 
 export const Container = styled.div`
@@ -177,7 +176,7 @@ export const BoxTitle = styled.div`
 `;
 
 export const BoxContents = styled.div`
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].body};
 

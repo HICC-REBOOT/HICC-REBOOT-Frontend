@@ -16,6 +16,7 @@ const items: TabUnit[] = [
   {
     key: ROUTE.ADMIN.CHANGE,
     label: '등급 수정',
+    presidentAuthorization: true,
   },
 ];
 

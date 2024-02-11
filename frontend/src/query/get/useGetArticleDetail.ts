@@ -3,7 +3,7 @@ import { QUERY_KEYS } from '@constants/keys';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import request from '@utils/request';
 
-interface UseGetArticleDetailProps {
+export interface UseGetArticleDetailProps {
   articleId: number;
 }
 

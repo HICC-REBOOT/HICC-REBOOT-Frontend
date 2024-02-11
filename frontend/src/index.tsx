@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { CookiesProvider } from 'react-cookie';
+import { HelmetProvider } from 'react-helmet-async';
 
 import theme from '@styles/theme';
 import GlobalStyle from '@styles/GlobalStyle';
@@ -27,16 +28,18 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <CookiesProvider defaultSetOptions={{ path: '/' }}>
-        <BrowserRouter>
-          <RecoilRoot>
-            <QueryClientProvider client={queryClient}>
-              <App />
-              <ReactQueryDevtools initialIsOpen={false} />
-            </QueryClientProvider>
-          </RecoilRoot>
-        </BrowserRouter>
-      </CookiesProvider>
+      <HelmetProvider>
+        <CookiesProvider defaultSetOptions={{ path: '/' }}>
+          <BrowserRouter>
+            <RecoilRoot>
+              <QueryClientProvider client={queryClient}>
+                <App />
+                <ReactQueryDevtools initialIsOpen={false} />
+              </QueryClientProvider>
+            </RecoilRoot>
+          </BrowserRouter>
+        </CookiesProvider>
+      </HelmetProvider>
     </ThemeProvider>
   </React.StrictMode>,
 );
