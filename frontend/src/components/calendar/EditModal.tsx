@@ -103,20 +103,21 @@ export default function EditModal() {
     if (scheduleId === -1) {
       if (isPostSchedulePending) return null;
       postSchedule();
-      closeModal();
       window.location.reload();
-      return null;
     }
     // 일정 수정일 때
-    if (isPatchSchedulePending) return null;
-    updateSchedule({
-      name: title,
-      startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
-      endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
-      type,
-      content: detail,
-      scheduleId,
-    });
+    else {
+      if (isPatchSchedulePending) return null;
+      updateSchedule({
+        name: title,
+        startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
+        endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
+        type,
+        content: detail,
+        scheduleId,
+      });
+    }
+    closeModal();
     return null;
   };
 
