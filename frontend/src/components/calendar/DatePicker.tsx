@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import 'dayjs/locale/ko';
 import locale from 'antd/es/date-picker/locale/ko_KR';
-import { ConfigProvider, DatePicker } from 'antd';
+import { ConfigProvider } from 'antd';
 import theme from '@styles/theme';
-import useModal from '@hooks/useCalendarModal';
 import { ReactComponent as ArrowIcon } from '@assets/image/icon/arrow2.svg';
 import { useRecoilState } from 'recoil';
 import dayjs from 'dayjs';

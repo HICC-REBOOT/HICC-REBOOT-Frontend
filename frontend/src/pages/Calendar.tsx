@@ -3,8 +3,6 @@ import CalendarGrid from '@components/calendar/CalendarGrid';
 import DetailBox from '@components/calendar/DetailBox';
 import EditModal from '@components/calendar/EditModal';
 import styled from 'styled-components';
-import usePostSchedule from '@query/post/usePostSchedule';
-import usePatchSchedule from '@query/patch/usePatchSchedule';
 import Loading from '@components/common/loading/Loading';
 
 const Container = styled.div`

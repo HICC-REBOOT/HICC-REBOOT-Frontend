@@ -24,6 +24,7 @@ export default function useModal() {
     },
     [isNewSchedule],
   );
+
   const [scheduleId, setScheduleId] = useRecoilState(scheduleIdState);
   const changeScheduleId = useCallback(
     (id: number) => {

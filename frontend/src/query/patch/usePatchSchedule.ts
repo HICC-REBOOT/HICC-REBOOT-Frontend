@@ -1,10 +1,7 @@
 import { ScheduleType } from '@components/calendar/CalendarType';
-import { Board } from '@components/community/CommunityType';
 import { QUERY_KEYS } from '@constants/keys';
-import ROUTE from '@constants/route';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import request from '@utils/request';
-import { useNavigate } from 'react-router-dom';
 
 interface UpdateScheduleRequestBody {
   name: string;
@@ -49,22 +46,9 @@ function usePatchSchedule() {
     return scheduleId;
   };
 
-  const queryClient = useQueryClient();
-  const navigate = useNavigate();
-
   const { mutate, isPending } = useMutation({
     mutationKey: [QUERY_KEYS.UPDATE_SCHEDULE],
     mutationFn: updateSchedule,
-    // onSuccess: (scheduleId: number) => {
-    //   queryClient.removeQueries({
-    //     queryKey: [QUERY_KEYS.GET_EACH_INFO, scheduleId],
-    //   });
-    //   queryClient.removeQueries({
-    //     queryKey: [QUERY_KEYS.GET_DAY_INFO],
-    //   });
-
-    //   alert(`${scheduleId} 일정이 수정되었습니다.`);
-    // },
   });
 
   return {

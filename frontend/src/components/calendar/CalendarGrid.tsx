@@ -2,7 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
 import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
-import { MonthSchedule, ScheduleType } from './CalendarType';
+import { ScheduleType } from './CalendarType';
 import * as C from './style/CalendarGrid.style';
 
 interface ConvertedMonthInfo {

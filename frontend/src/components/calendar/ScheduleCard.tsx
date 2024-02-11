@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import theme from '@styles/theme';
-import { useRecoilState } from 'recoil';
 import { Variants } from 'framer-motion';
-import Switch from '@components/common/switch/Switch';
 import arrow from '@assets/image/icon/arrow.svg';
 import { ReactComponent as EditIcon } from '@assets/image/icon/edit.svg';
 import useAuth from '@hooks/useAuth';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
-import { modalState } from '../../state/calendar';
 import * as S from './style/ScheduleCard.style';
 import { DaySchedule } from './CalendarType';
 
@@ -28,7 +24,7 @@ interface ScheduleCardProps {
 }
 
 export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
-  const { isModalOpen, changeModalState, changeScheduleId } = useModal();
+  const { changeModalState, changeScheduleId } = useModal();
   const isAdmin = useAuth();
 
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
