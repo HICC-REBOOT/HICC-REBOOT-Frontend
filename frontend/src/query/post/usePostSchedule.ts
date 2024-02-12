@@ -2,6 +2,8 @@ import { ScheduleType } from '@components/calendar/CalendarType';
 import { QUERY_KEYS } from '@constants/keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
+import dayjs from 'dayjs';
+import useModal from '@hooks/useCalendarModal';
 
 interface usePostScheduleProps {
   name: string;
@@ -40,12 +42,20 @@ function usePostSchedule({ name, startDateTime, endDateTime, type, content }: us
 
   const queryClient = useQueryClient();
 
+  const { selectedDateInfo } = useModal();
+  const selectedYear = dayjs(selectedDateInfo?.toString()).year();
+  const selectedMonth = dayjs(selectedDateInfo?.toString()).month() + 1;
+  const selectedDate = dayjs(selectedDateInfo?.toString()).date();
+
   const { mutate, isPending } = useMutation({
     mutationKey: [QUERY_KEYS.POST_SCHEDULE, { name, startDateTime, endDateTime, type, content }],
     mutationFn: postSchedule,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.POST_SCHEDULE, { name, startDateTime, endDateTime, type, content }],
+        queryKey: [QUERY_KEYS.GET_DAY_INFO, { year: selectedYear, month: selectedMonth, date: selectedDate }],
+      });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.GET_MONTH_INFO, { year: selectedYear, month: selectedMonth }],
       });
       window.location.reload();
     },
