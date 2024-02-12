@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import usePatchArticle from '@query/patch/usePatchArticle';
 import processNewImage from '@utils/image/processNewImage';
 import { ArticleDetailType, Board, CommunityWriteForm, ImageInfo, ImageUrlSend } from '../CommunityType';
-import * as U from '../write/CommunityWrite.style';
+import * as U from '../write/style/CommunityWrite.style';
 import TextareaInForm from '../common/TextareaInForm';
 import ImageManager from '../common/ImageManager';
 import CurrentBoardContext from '../CurrentBoardContext';

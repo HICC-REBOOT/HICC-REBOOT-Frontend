@@ -8,7 +8,7 @@ import user from '@assets/image/icon/user.svg';
 import logout from '@auth/logout';
 import theme from '@styles/theme';
 import STYLE from '@constants/style';
-import * as H from './Header.style';
+import * as H from './style/Header.style';
 import GradientButton from '../button/color/GradientButton';
 import GradientButtonBlack from '../button/black/GradientButtonBlack';
 

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import processNewImage from '@utils/image/processNewImage';
 import usePostArticle from '@query/post/usePostArticle';
 import { useOutletContext } from 'react-router-dom';
-import * as W from './CommunityWrite.style';
+import * as W from './style/CommunityWrite.style';
 import { Board, CommunityWriteForm } from '../CommunityType';
 import ImageManager from '../common/ImageManager';
 import TextareaInForm from '../common/TextareaInForm';

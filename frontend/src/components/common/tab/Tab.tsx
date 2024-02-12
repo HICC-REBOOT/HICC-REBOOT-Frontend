@@ -2,7 +2,7 @@ import React from 'react';
 import useTab from '@hooks/useTab';
 import useAuth from '@hooks/useAuth';
 import TabElement from './TabElement';
-import TabContainer from './Tab.style';
+import TabContainer from './style/Tab.style';
 
 /**
  * TabUnit
