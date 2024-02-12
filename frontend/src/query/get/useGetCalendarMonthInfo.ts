@@ -10,9 +10,13 @@ interface MonthInfoProps {
 
 export default function useGetCalendarMonthInfo({ year, month }: MonthInfoProps) {
   const fetchMonthInfo = async () => {
-    const response = await request<null, MonthSchedule[], null>({
-      uri: `/api/calendar/month-schedule?year=${year}&month=${month}`,
+    const response = await request<null, MonthSchedule[], MonthInfoProps>({
+      uri: `/api/calendar/month-schedule`,
       method: 'get',
+      params: {
+        year,
+        month,
+      },
     });
     return response.data;
   };

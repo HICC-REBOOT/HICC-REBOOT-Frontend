@@ -9,11 +9,22 @@ interface DayInfoProps {
   date: number;
 }
 
+interface DayInfoParams {
+  year: number;
+  month: number;
+  day: number;
+}
+
 export default function useGetCalendarDayInfo({ year, month, date }: DayInfoProps) {
   const fetchDayInfo = async () => {
-    const response = await request<null, DaySchedule[], null>({
-      uri: `/api/calendar/date-schedule?year=${year}&month=${month}&day=${date}`,
+    const response = await request<null, DaySchedule[], DayInfoParams>({
+      uri: `/api/calendar/date-schedule`,
       method: 'get',
+      params: {
+        year,
+        month,
+        day: date,
+      },
     });
     return response.data;
   };
