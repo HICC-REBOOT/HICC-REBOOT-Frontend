@@ -2,6 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
 import useGetCalendarMonthInfo from '@query/get/useGetCalendarMonthInfo';
+import { JSX } from 'react/jsx-runtime';
 import { ScheduleType } from './CalendarType';
 import * as C from './style/CalendarGrid.style';
 
@@ -38,11 +39,11 @@ export default function CalendarGrid() {
   };
 
   const showMarks = (types: ScheduleType[]) => {
-    const marks = [];
-    if (types.find((type) => type === 'ACADEMIC')) marks.push(<C.Dot type="ACADEMIC" />);
-    if (types.find((type) => type === 'AMITY')) marks.push(<C.Dot type="AMITY" />);
-    if (types.find((type) => type === 'SCHOOL_EVENT')) marks.push(<C.Dot type="SCHOOL_EVENT" />);
-    if (types.find((type) => type === 'ETC')) marks.push(<C.Dot type="ETC" />);
+    const marks: (string | JSX.Element)[] = [];
+    const newTypes = types.filter((type, index) => types.indexOf(type) === index);
+    newTypes.forEach((type) => {
+      marks.push(<C.Dot type={type} />);
+    });
     return marks;
   };
 
