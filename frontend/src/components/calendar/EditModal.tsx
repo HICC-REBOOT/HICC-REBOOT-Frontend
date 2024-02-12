@@ -81,11 +81,11 @@ export default function EditModal() {
   }, [scheduleId]);
 
   const checkValidity = () => {
-    if (title.length === 0) {
+    if (title.trim().length === 0) {
       alert('일정 제목을 입력해주세요.');
       return false;
     }
-    if (detail.length === 0) {
+    if (detail.trim().length === 0) {
       alert('일정 설명을 입력해주세요.');
       return false;
     }
