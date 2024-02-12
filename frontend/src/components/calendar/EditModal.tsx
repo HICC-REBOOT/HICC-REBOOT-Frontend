@@ -16,6 +16,7 @@ import useInput from '@hooks/useInput';
 import usePostSchedule from '@query/post/usePostSchedule';
 import usePatchSchedule from '@query/patch/usePatchSchedule';
 import useDeleteSchedule from '@query/delete/useDeleteSchedule';
+import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
 import { endTimeState, scheduleTypeState, startTimeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import * as E from './style/EditModal.style';
@@ -121,11 +122,19 @@ export default function EditModal() {
   };
 
   const onClickDeleteBtn = () => {
-    if (isDeleteSchedulePending) return null;
-    deleteSchedule(scheduleId);
-    closeModal();
-    window.location.reload();
-    return null;
+    const withDrawalComfirmParams: WithdrawalParameter = {
+      title: '일정을 삭제하시겠습니까?',
+      content: '',
+      okText: '삭제',
+      cancelText: '취소',
+      isDangerous: true,
+      onOk: () => {
+        deleteSchedule(scheduleId);
+        closeModal();
+      },
+    };
+
+    withdrawal(withDrawalComfirmParams);
   };
 
   return (
