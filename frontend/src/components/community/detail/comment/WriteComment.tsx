@@ -5,7 +5,7 @@ import useNestedComment from '@hooks/useNestedComment';
 import useOutsideClick from '@hooks/useOutsideClick';
 import usePostComment from '@query/post/usePostComment';
 import usePostNestedComment from '@query/post/usePostNestedComment';
-import * as WC from './WriteComment.style';
+import * as WC from './style/WriteComment.style';
 
 interface WriteCommentProps {
   id: number;

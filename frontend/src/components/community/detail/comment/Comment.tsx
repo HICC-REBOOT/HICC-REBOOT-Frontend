@@ -2,7 +2,7 @@ import React from 'react';
 import useGetParentComment from '@query/get/useGetParentComment';
 import useGetNestedComment from '@query/get/useGetNestedComment';
 import { ParentComment } from '@components/community/CommunityType';
-import * as C from './Comment.style';
+import * as C from './style/Comment.style';
 import EachComment from './EachComment';
 
 interface CommentProps {

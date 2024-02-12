@@ -12,17 +12,17 @@ export const Container = styled.div`
 
   border: 0.05rem solid ${(props) => props.theme.colors.grey001};
 
-  &:first-child {
+  &:nth-child(2) {
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
   }
 
-  &:last-child {
+  &:nth-last-child(2) {
     border-bottom-left-radius: 2rem;
     border-bottom-right-radius: 2rem;
   }
 
-  &:not(:first-child) {
+  &:not(:first-child) &:not(:nth-child(2)) {
     border-top: none;
   }
 `;

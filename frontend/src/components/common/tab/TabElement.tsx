@@ -1,6 +1,6 @@
 import React from 'react';
 import { TabUnit } from './Tab';
-import * as TE from './TabElement.style';
+import * as TE from './style/TabElement.style';
 
 interface TabElementProps {
   item: TabUnit;

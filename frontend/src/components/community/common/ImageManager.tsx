@@ -3,7 +3,7 @@ import { UseFormSetValue } from 'react-hook-form';
 import COMMON from '@constants/common';
 import { ReactComponent as ImageUpload } from '@assets/image/icon/ImageUpload.svg';
 import getImageMetas from '@utils/image/getImageMeta';
-import * as I from './ImageManager.style';
+import * as I from './style/ImageManager.style';
 
 import EachImage from '../write/EachImage';
 import { CommunityWriteForm, ImageInfo } from '../CommunityType';

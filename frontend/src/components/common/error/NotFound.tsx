@@ -1,6 +1,6 @@
 import React from 'react';
 import ROUTE from '@constants/route';
-import * as E from './NotFound.style';
+import * as E from './style/NotFound.style';
 
 const notFound = {
   title: `Oops!`,

@@ -2,7 +2,7 @@ import React from 'react';
 import { GRADE_ENUM, Grade } from '@components/type/CommonType';
 import time from '@utils/time';
 import Authorization from '@utils/Authorization';
-import * as W from './WriteInfo.style';
+import * as W from './style/WriteInfo.style';
 
 interface WriteInfoProps {
   grade: Grade;
