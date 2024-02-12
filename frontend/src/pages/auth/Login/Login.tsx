@@ -4,9 +4,8 @@ import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import theme from '@styles/theme';
 import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
-import login from '@auth/login';
-import useAuth from '@hooks/useAuth';
 import { Controller, useForm } from 'react-hook-form';
+import usePostLogin from '@query/post/usePostLogin';
 import * as L from './Login.style';
 
 interface LoginForm {
@@ -15,26 +14,17 @@ interface LoginForm {
 }
 
 export default function Login() {
-  const navigate = useNavigate();
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginForm>();
 
-  const { setIsLogin } = useAuth();
+  const { login } = usePostLogin();
+  const navigate = useNavigate();
 
-  const onSubmit = async (data: LoginForm) => {
-    const isSuccess = await login(data);
-
-    if (isSuccess) {
-      setIsLogin(true);
-      navigate(ROUTE.HOME);
-      return null;
-    }
-
-    alert('로그인에 실패했습니다.');
-    return null;
+  const onSubmit = (data: LoginForm) => {
+    login(data);
   };
 
   return (

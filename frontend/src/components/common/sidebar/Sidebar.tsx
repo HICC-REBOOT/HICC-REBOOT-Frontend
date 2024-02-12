@@ -5,8 +5,8 @@ import Close from '@assets/image/icon/close.svg';
 import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '@hooks/useAuth';
-import logout from '@auth/logout';
 import theme from '@styles/theme';
+import usePostLogout from '@query/post/usePostLogout';
 import * as S from './Sidebar.style';
 import GradientButton from '../button/color/GradientButton';
 import GradientButtonBlack from '../button/black/GradientButtonBlack';
@@ -24,7 +24,8 @@ function Sidebar({ close }: SidebarProps) {
     exit: { height: 0, top: `-${height}`, transition: { duration: 0.3 } },
   };
 
-  const { isLogin, isAdmin, setIsLogin } = useAuth();
+  const { isLogin, isAdmin } = useAuth();
+  const { logout } = usePostLogout();
   const navigate = useNavigate();
 
   const isLoginAndAdmin = isLogin && isAdmin;
@@ -34,12 +35,6 @@ function Sidebar({ close }: SidebarProps) {
   useEffect(() => {
     setHeight(isLoginAndAdmin ? '39.5rem' : '34rem');
   }, [isLoginAndAdmin]);
-
-  const setLogout = async () => {
-    await logout();
-    setIsLogin(false);
-    navigate(ROUTE.HOME);
-  };
 
   const goLogin = () => {
     navigate(ROUTE.LOGIN);
@@ -112,7 +107,7 @@ function Sidebar({ close }: SidebarProps) {
                   <p>Log in</p>
                 </GradientButtonBlack>
               ) : (
-                <GradientButtonBlack type="button" onClick={setLogout} style={authStyle}>
+                <GradientButtonBlack type="button" onClick={() => logout()} style={authStyle}>
                   <p>Log out</p>
                 </GradientButtonBlack>
               )}
