@@ -49,6 +49,9 @@ function usePatchSchedule() {
   const { mutate, isPending } = useMutation({
     mutationKey: [QUERY_KEYS.UPDATE_SCHEDULE],
     mutationFn: updateSchedule,
+    onSuccess: () => {
+      window.location.reload();
+    },
   });
 
   return {

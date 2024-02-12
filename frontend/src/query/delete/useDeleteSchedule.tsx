@@ -15,6 +15,9 @@ function useDeleteSchedule() {
   const { mutate, isPending } = useMutation({
     mutationKey: [QUERY_KEYS.DELETE_SCHEDULE],
     mutationFn: deleteSchedule,
+    onSuccess: () => {
+      window.location.reload();
+    },
   });
 
   return {
