@@ -8,6 +8,7 @@ import { useRecoilState } from 'recoil';
 import dayjs from 'dayjs';
 import { endTimeState, startTimeState } from '../../state/calendar';
 import * as D from './style/DatePicker.style';
+import './style/DatePickerPanel.css';
 
 interface DatePickerProps {
   startDateTime: string;
@@ -57,6 +58,7 @@ export default function DatePickerBox({ startDateTime, endDateTime, scheduleId }
           inputReadOnly={true}
           showTime
           allowClear={false}
+          prefixCls="calendar-datepicker"
         />
       </ConfigProvider>
       <ArrowIcon />
@@ -91,6 +93,7 @@ export default function DatePickerBox({ startDateTime, endDateTime, scheduleId }
           inputReadOnly={true}
           showTime
           allowClear={false}
+          prefixCls="calendar-datepicker"
         />
       </ConfigProvider>
     </D.Container>

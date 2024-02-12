@@ -17,11 +17,11 @@ export const DateWrapper = styled.div`
 `;
 
 export const CustomDatePicker = styled(DatePicker)`
-  .ant-picker {
+  .calendar-datepicker {
     padding: 0;
   }
 
-  .ant-picker-input > input {
+  .calendar-datepicker-input > input {
     color: ${(props) => props.theme.colors.white};
     ${(props) => props.theme.typography.common.caption1};
     text-align: center;
@@ -29,10 +29,10 @@ export const CustomDatePicker = styled(DatePicker)`
 `;
 
 export const CustomTimePicker = styled(TimePicker)`
-  .ant-picker-input {
+  .calendar-datepicker-input {
   }
 
-  .ant-picker-input > input {
+  .calendar-datepicker-input > input {
     color: ${(props) => props.theme.colors.white};
     ${(props) => props.theme.typography[DeviceProvider()].body};
     width: auto;
