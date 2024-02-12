@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Select from 'react-select';
-import { DeviceProvider } from '@assets/mediaQuery';
 import hexToRGBA from '@utils/hexToRgba';
 
 const DropdownStyle = styled(Select)<{ name: string }>`
@@ -17,7 +16,7 @@ const DropdownStyle = styled(Select)<{ name: string }>`
 
     &__control {
       width: ${(props) => props.name};
-      ${(props) => props.theme.typography[DeviceProvider()].body};
+      ${(props) => props.theme.typography.mobile.body};
       height: 4.7rem;
       background-color: ${(props) => props.theme.colors.black} !important;
       border: none;
@@ -40,12 +39,12 @@ const DropdownStyle = styled(Select)<{ name: string }>`
 
     &__placeholder {
       margin: 0;
-      ${(props) => props.theme.typography[DeviceProvider()].body};
+      ${(props) => props.theme.typography.mobile.body};
     }
 
     &__single-value {
       color: ${(props) => props.theme.colors.white};
-      ${(props) => props.theme.typography[DeviceProvider()].body};
+      ${(props) => props.theme.typography.mobile.body};
     }
 
     &__menu {
