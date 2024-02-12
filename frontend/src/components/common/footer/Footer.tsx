@@ -3,7 +3,7 @@ import { ReactComponent as Instagram } from '@assets/image/icon/instagram.svg';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
 import { useMatch } from 'react-router-dom';
 import ROUTE from '@constants/route';
-// import useGetFooterInfo from '@query/get/useGetFooterInfo';
+import useGetFooterInfo from '@query/get/useGetFooterInfo';
 import * as F from './Footer.style';
 
 const footerText = {
@@ -30,7 +30,7 @@ function Footer() {
     return !Number.isNaN(articleId);
   };
 
-  // const { presidentInfo } = useGetFooterInfo();
+  const { presidentInfo } = useGetFooterInfo();
 
   const openInstagram = () => {
     window.open('https://www.instagram.com/hongik_hicc/');
@@ -39,11 +39,7 @@ function Footer() {
     <F.Container $hide={dontShowArticleDetail()}>
       <F.LeftSide>
         <F.HICC>{footerText.hicc}</F.HICC>
-        <F.Leader>
-          {footerText.leaderFormat}
-          {`윤찬호`}
-          {/* {`${footerText.leaderFormat}${presidentInfo.name} ${presidentInfo.phone_number}`} */}
-        </F.Leader>
+        <F.Leader>{`${footerText.leaderFormat}${presidentInfo.name} ${presidentInfo.phoneNumber}`}</F.Leader>
         <Mobile>
           <F.Location>{footerText.location.mobile}</F.Location>
         </Mobile>
