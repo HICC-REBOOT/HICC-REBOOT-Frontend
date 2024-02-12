@@ -9,7 +9,7 @@ import * as D from './style/DetailBox.style';
 import ScheduleCard from './ScheduleCard';
 
 export default function DetailBox() {
-  const isAdmin = useAuth();
+  const { isAdmin } = useAuth();
 
   const { changeModalState, selectedDateInfo, changeScheduleId } = useModal();
   const selectedYear = dayjs(selectedDateInfo?.toString()).year();
