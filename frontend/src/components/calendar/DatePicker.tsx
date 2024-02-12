@@ -20,8 +20,8 @@ export default function DatePickerBox({ startDateTime, endDateTime, scheduleId }
   const [endTime, setEndTime] = useRecoilState(endTimeState);
 
   useEffect(() => {
-    setStartTime(dayjs(startDateTime));
-    setEndTime(dayjs(endDateTime));
+    if (startDateTime !== undefined) setStartTime(dayjs(startDateTime));
+    if (endDateTime !== undefined) setEndTime(dayjs(endDateTime));
   }, [scheduleId]);
 
   return (
