@@ -19,10 +19,18 @@ interface UpdateScheduleParams {
   endDateTime: string;
   type: ScheduleType;
   content: string;
+  scheduleId: number;
 }
 
-function usePatchSchedule(scheduleId: number) {
-  const updateSchedule = async ({ name, startDateTime, endDateTime, type, content }: UpdateScheduleParams) => {
+function usePatchSchedule() {
+  const updateSchedule = async ({
+    name,
+    startDateTime,
+    endDateTime,
+    type,
+    content,
+    scheduleId,
+  }: UpdateScheduleParams) => {
     const data: UpdateScheduleRequestBody = {
       name,
       startDateTime,
@@ -42,7 +50,7 @@ function usePatchSchedule(scheduleId: number) {
 
   const queryClient = useQueryClient();
 
-  const { selectedDateInfo } = useModal();
+  const { selectedDateInfo, scheduleId } = useModal();
   const selectedYear = dayjs(selectedDateInfo?.toString()).year();
   const selectedMonth = dayjs(selectedDateInfo?.toString()).month() + 1;
   const selectedDate = dayjs(selectedDateInfo?.toString()).date();

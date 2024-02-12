@@ -40,7 +40,7 @@ export default function EditModal() {
     content: detail,
   });
   const { deleteSchedule, isPending: isDeleteSchedulePending } = useDeleteSchedule();
-  const { updateSchedule, isPending: isPatchSchedulePending } = usePatchSchedule(scheduleId);
+  const { updateSchedule, isPending: isPatchSchedulePending } = usePatchSchedule();
 
   const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetail(e.target.value);
@@ -113,6 +113,7 @@ export default function EditModal() {
         endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
         type,
         content: detail,
+        scheduleId,
       });
     }
     closeModal();
