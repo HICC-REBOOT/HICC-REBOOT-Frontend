@@ -22,7 +22,7 @@ export default function ChangeGrade() {
   ];
   const { currentOption, onChange } = useDropdown({ defalutValue: options[0] });
   const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<UserData>({
-    uri: '/api/admin/members',
+    uri: '/api/admin/president/members',
     size: COMMON.PAGINATION.SIZE,
     search: searchQuery,
     sort: currentOption?.value,
