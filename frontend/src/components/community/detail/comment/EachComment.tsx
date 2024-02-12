@@ -2,8 +2,8 @@ import React from 'react';
 import { NestedCommentType, ParentComment } from '@components/community/CommunityType';
 import WriteInfo from '@components/community/common/WriteInfo';
 import Buttons from '@components/community/common/Buttons';
-import useNestedComment from '@hooks/useNestedComment';
 import confirm from '@components/common/popup/confirm/Confirm';
+import useChangeComment from '@hooks/useChangeComment';
 import * as EA from './style/EachComment.style';
 import NestedComment from '../nestedComment/NestedComment';
 import useDeleteComment from '../../../../query/delete/useDeleteComment';
@@ -14,7 +14,7 @@ interface EachCommentProps {
 }
 
 function EachComment({ comment, nestedComments }: EachCommentProps) {
-  const { selectedNested } = useNestedComment();
+  const { selectedNested } = useChangeComment();
 
   const enrollNestedComment = (commentId: number) => {
     selectedNested(commentId);
