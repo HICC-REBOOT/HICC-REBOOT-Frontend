@@ -103,7 +103,6 @@ export default function EditModal() {
     if (scheduleId === -1) {
       if (isPostSchedulePending) return null;
       postSchedule();
-      window.location.reload();
     }
     // 일정 수정일 때
     else {

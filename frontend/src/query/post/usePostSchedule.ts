@@ -47,6 +47,7 @@ function usePostSchedule({ name, startDateTime, endDateTime, type, content }: us
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.POST_SCHEDULE, { name, startDateTime, endDateTime, type, content }],
       });
+      window.location.reload();
     },
   });
 
