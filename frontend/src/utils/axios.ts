@@ -133,6 +133,12 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(axiosError);
     }
 
+    // 500에러 시 경고창 띄우기
+    if (axiosError?.data.code === ERROR_CODE.INTERNAL_SERVER_ERROR) {
+      alert('일시적인 서버 오류입니다.');
+      return Promise.reject(axiosError);
+    }
+
     return Promise.reject(error);
   },
 );

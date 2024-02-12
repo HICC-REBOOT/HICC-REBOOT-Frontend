@@ -7,7 +7,7 @@ interface ReturnUseNestedComment {
   outsideClick: () => void;
 }
 
-function useNestedComment(): ReturnUseNestedComment {
+function useChangeComment(): ReturnUseNestedComment {
   const [nestedId, setNestedId] = useRecoilState(nestedCommentStore);
 
   const selectedNested = (id: number) => {
@@ -25,4 +25,4 @@ function useNestedComment(): ReturnUseNestedComment {
   };
 }
 
-export default useNestedComment;
+export default useChangeComment;

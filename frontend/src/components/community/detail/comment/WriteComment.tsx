@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import useInput from '@hooks/useInput';
 import { ReactComponent as Send } from '@assets/image/icon/send.svg';
-import useNestedComment from '@hooks/useNestedComment';
 import useOutsideClick from '@hooks/useOutsideClick';
 import usePostComment from '@query/post/usePostComment';
 import usePostNestedComment from '@query/post/usePostNestedComment';
+import KeyboardUtils from '@utils/keyboard';
+import useChangeComment from '@hooks/useChangeComment';
 import * as WC from './style/WriteComment.style';
 
 interface WriteCommentProps {
@@ -13,10 +14,9 @@ interface WriteCommentProps {
 
 function WriteComment({ id }: WriteCommentProps) {
   const [comment, setComment] = useInput<string>('');
+  const writeCommentRef = useRef<HTMLDivElement>(null);
 
-  const writeCommentRef = useRef(null);
-
-  const { nestedId, outsideClick } = useNestedComment();
+  const { nestedId, outsideClick } = useChangeComment();
   const { writeComment, isPending: isCommentPending } = usePostComment({ articleId: id });
   const { writeNestedComment, isPending: isNestedPending } = usePostNestedComment({ articleId: id });
 
@@ -50,7 +50,13 @@ function WriteComment({ id }: WriteCommentProps) {
   return (
     <WC.Container ref={writeCommentRef}>
       <WC.InputContainer>
-        <WC.Input type="text" placeholder={makePlaceholder()} value={comment} onChange={setComment} />
+        <WC.Input
+          type="text"
+          placeholder={makePlaceholder()}
+          value={comment}
+          onChange={setComment}
+          onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, onSubmit)}
+        />
         <Send onClick={onSubmit} />
       </WC.InputContainer>
     </WC.Container>

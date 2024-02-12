@@ -3,6 +3,7 @@ import DropDown from '@components/common/dropdown/Dropdown';
 import OptionType from '@components/common/dropdown/OptionType';
 import { ReactComponent as Search } from '@assets/image/icon/search.svg';
 import Switch from '@components/common/switch/Switch';
+import KeyboardUtils from '@utils/keyboard';
 import * as F from './Filter.style';
 
 interface FilterProps {
@@ -49,7 +50,13 @@ function Filter({
         </F.Manager>
       </F.SelectPart>
       <F.SearchPart>
-        <F.Input type="text" value={keyword} onChange={setKeyword} placeholder="제목 검색하기" />
+        <F.Input
+          type="text"
+          value={keyword}
+          onChange={setKeyword}
+          placeholder="제목 검색하기"
+          onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, onSearchClick)}
+        />
         <Search style={{ cursor: 'pointer' }} onClick={onSearchClick} />
       </F.SearchPart>
     </F.Container>
