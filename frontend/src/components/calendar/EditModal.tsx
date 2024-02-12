@@ -51,23 +51,6 @@ export default function EditModal() {
     changeScheduleId(-1);
   };
 
-  const onClickTypeButton = (selectedType: ScheduleType) => {
-    switch (selectedType) {
-      case 'ACADEMIC':
-        setType('ACADEMIC');
-        break;
-      case 'AMITY':
-        setType('AMITY');
-        break;
-      case 'SCHOOL_EVENT':
-        setType('SCHOOL_EVENT');
-        break;
-      default:
-        setType('ETC');
-        break;
-    }
-  };
-
   useEffect(() => {
     if (scheduleId !== -1) {
       setTitle(scheduleInfo?.name as string);
@@ -177,13 +160,13 @@ export default function EditModal() {
                 <E.ContentWrapper>
                   <TagIcon />
                   <E.TypeButtonContainer>
-                    <E.AcademicButton selected={type === 'ACADEMIC'} onClick={() => onClickTypeButton('ACADEMIC')}>
+                    <E.AcademicButton selected={type === 'ACADEMIC'} onClick={() => setType('ACADEMIC')}>
                       • 학술
                     </E.AcademicButton>
-                    <E.AmityButton selected={type === 'AMITY'} onClick={() => onClickTypeButton('AMITY')}>
+                    <E.AmityButton selected={type === 'AMITY'} onClick={() => setType('AMITY')}>
                       • 친목
                     </E.AmityButton>
-                    <E.EventButton selected={type === 'SCHOOL_EVENT'} onClick={() => onClickTypeButton('SCHOOL_EVENT')}>
+                    <E.EventButton selected={type === 'SCHOOL_EVENT'} onClick={() => setType('SCHOOL_EVENT')}>
                       • 학교 행사
                     </E.EventButton>
                   </E.TypeButtonContainer>
