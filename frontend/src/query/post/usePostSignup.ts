@@ -34,7 +34,14 @@ function usePostSignup() {
       // 등록이 완료되면 홈으로 이동
       navigate(`${ROUTE.HOME}`);
     },
-    onError: () => {},
+    onError: (error) => {
+      console.error('통신 실패:', error);
+      if (error.message === 'Request failed with status code 409') {
+        alert('아이디(학번)이 중복되었습니다. 다시 확인해주세요');
+      } else {
+        alert('다시 시도해주세요.');
+      }
+    },
   });
 
   return {
