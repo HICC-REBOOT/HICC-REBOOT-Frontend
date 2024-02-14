@@ -45,9 +45,6 @@ export default function EnterInfo() {
       email: data.email,
     });
   };
-  // const onSubmit = (data: FormType) => {
-  //   console.log('data : ', data);
-  // };
 
   return (
     <E.Container onSubmit={handleSubmit(onSubmit)}>
@@ -200,6 +197,9 @@ export default function EnterInfo() {
                 />
               </E.PhoneNumField>
             </E.PhoneNumWrapper>
+            {errors.num1 && typeof errors.num1.message === 'string' && (
+              <E.ErrorMessage>{errors.num1.message}</E.ErrorMessage>
+            )}
           </E.InputWrapper>
           <E.InputWrapper>
             <E.Label>학과</E.Label>

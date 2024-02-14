@@ -32,7 +32,7 @@ function usePostSignup() {
     onSuccess: () => {
       alert('회원가입이 완료되었습니다.');
       // 등록이 완료되면 홈으로 이동
-      navigate(`${ROUTE.HOME}`);
+      navigate(`${ROUTE.LOGIN}`);
     },
     onError: (error) => {
       console.error('통신 실패:', error);
