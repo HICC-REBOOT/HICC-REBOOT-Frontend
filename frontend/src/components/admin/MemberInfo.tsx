@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import type { CollapseProps } from 'antd';

@@ -1,52 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ConfigProvider } from 'antd';
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import theme from '@styles/theme';
-import useInput from '@hooks/useInput';
 import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
-import login from '@auth/login';
-import useAuth from '@hooks/useAuth';
+import { Controller, useForm } from 'react-hook-form';
+import usePostLogin from '@query/post/usePostLogin';
 import * as L from './Login.style';
 
+interface LoginForm {
+  studentNumber: string;
+  password: string;
+}
+
 export default function Login() {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginForm>();
+
+  const { login } = usePostLogin();
   const navigate = useNavigate();
 
-  const [id, setid] = useInput<string>('');
-  const [pw, setPw] = useInput<string>('');
-
-  const [errorMsg1, setErrorMsg1] = useState<string>('');
-  const [errorMsg2, setErrorMsg2] = useState<string>('');
-
-  const { setIsLogin } = useAuth();
-
-  const onClickBtn = async () => {
-    if (id.length === 0) setErrorMsg1('아이디를 입력해주세요.');
-    if (pw.length === 0) setErrorMsg2('비밀번호를 입력해주세요.');
-
-    const isSuccess = await login({ studentNumber: id, password: pw });
-
-    if (isSuccess) {
-      setIsLogin(true);
-      navigate(ROUTE.HOME);
-      return null;
-    }
-
-    alert('로그인에 실패했습니다.');
-    return null;
+  const onSubmit = (data: LoginForm) => {
+    login(data);
   };
-
-  useEffect(() => {
-    if (id.length > 0) setErrorMsg1('');
-  }, [id]);
-  useEffect(() => {
-    if (pw.length > 0) setErrorMsg2('');
-  }, [pw]);
 
   return (
     <L.Container>
       <L.Title>Login</L.Title>
-      <L.Content>
+      <L.Content onSubmit={handleSubmit(onSubmit)}>
         <L.InputWrapper>
           <L.Label>학번</L.Label>
           <ConfigProvider
@@ -58,9 +42,16 @@ export default function Login() {
               },
             }}
           >
-            <L.CustomInput value={id} onChange={setid} />
+            <Controller
+              control={control}
+              name="studentNumber"
+              rules={{ required: '아이디를 입력해주세요.' }}
+              render={({ field: { onChange, value, ref } }) => (
+                <L.CustomInput ref={ref} value={value} onChange={onChange} />
+              )}
+            />
           </ConfigProvider>
-          <L.ErrorMsg>{errorMsg1}</L.ErrorMsg>
+          <L.ErrorMsg>{errors.studentNumber?.message}</L.ErrorMsg>
         </L.InputWrapper>
         <L.InputWrapper>
           <L.Label>비밀번호</L.Label>
@@ -73,19 +64,27 @@ export default function Login() {
               },
             }}
           >
-            <L.CustomPasswordInput
-              value={pw}
-              onChange={setPw}
-              iconRender={(visible) =>
-                visible ? (
-                  <EyeOutlined style={{ color: theme.colors.grey003 }} />
-                ) : (
-                  <EyeInvisibleOutlined style={{ color: theme.colors.grey003 }} />
-                )
-              }
+            <Controller
+              control={control}
+              name="password"
+              rules={{ required: '비밀번호를 입력해주세요.' }}
+              render={({ field: { onChange, value, ref } }) => (
+                <L.CustomPasswordInput
+                  ref={ref}
+                  value={value}
+                  onChange={onChange}
+                  iconRender={(visible) =>
+                    visible ? (
+                      <EyeOutlined style={{ color: theme.colors.grey003 }} />
+                    ) : (
+                      <EyeInvisibleOutlined style={{ color: theme.colors.grey003 }} />
+                    )
+                  }
+                />
+              )}
             />
           </ConfigProvider>
-          <L.ErrorMsg>{errorMsg2}</L.ErrorMsg>
+          <L.ErrorMsg>{errors.password?.message}</L.ErrorMsg>
         </L.InputWrapper>
         <L.PasswordIssue onClick={() => navigate(ROUTE.RESET_PASSWORD)}>비밀번호 재발급</L.PasswordIssue>
         <ConfigProvider
@@ -101,7 +100,7 @@ export default function Login() {
             },
           }}
         >
-          <L.CompleteBtn type="primary" onClick={onClickBtn}>
+          <L.CompleteBtn type="primary" htmlType="submit">
             로그인
           </L.CompleteBtn>
         </ConfigProvider>

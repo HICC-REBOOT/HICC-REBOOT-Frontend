@@ -23,6 +23,8 @@ export const QUERY_KEYS = Object.freeze({
   GET_MAJORS: 'get-majors',
   POST_RESET_PASSWORD: 'post-reset-password',
   PATCH_CHANGE_PASSWORD: 'patch-change-password',
+  POST_LOGOUT: 'post-logout',
+  POST_LOGIN: 'post-login',
 });
 
 export const STORE_KEYS = Object.freeze({

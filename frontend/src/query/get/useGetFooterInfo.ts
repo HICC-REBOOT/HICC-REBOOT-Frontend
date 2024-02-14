@@ -4,13 +4,13 @@ import request from '@utils/request';
 
 interface PresidentInfo {
   name: string;
-  phone_number: string;
+  phoneNumber: string;
 }
 
 function useGetFooterInfo() {
   const fetchPresidentName = async () => {
     const response = await request<null, PresidentInfo, null>({
-      uri: '/api/footer-info',
+      uri: '/api/main/footer',
       method: 'get',
     });
 

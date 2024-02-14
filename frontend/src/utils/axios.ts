@@ -126,10 +126,29 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(axiosError);
     }
 
-    // 403에러 시 뒤로가기
-    if (axiosError?.data.code === ERROR_CODE.FORBIDDEN) {
-      alert('당신 아직 승인대기이군요. 권한을 부여받으세요');
+    // 403에러 승인대기자일 때 뒤로가기
+    if (axiosError?.data.code === ERROR_CODE.FORBIDDEN_APPLICANT) {
+      alert('당신 아직 권한이 없군요. 곧 회장이 일을 할거에요ㅎㅎ');
       window.history.back();
+      return Promise.reject(axiosError);
+    }
+
+    // 403에러 시 회장의 권한을 체크할 때 뒤로가기
+    if (axiosError?.data.code === ERROR_CODE.FORBIDDEN_PRESIDENT) {
+      alert('당신 회장이 아니군요. 회장이 아니면 이용할 수 없는 기능이에요.');
+      window.history.back();
+      return Promise.reject(axiosError);
+    }
+
+    // 회원가입 학번 중복일 때 경고창 띄움
+    if (axiosError?.data.code === ERROR_CODE.STUDENT_NUMBER_DUPLICATE) {
+      alert('이미 가입된 회원입니다.');
+      return Promise.reject(axiosError);
+    }
+
+    // 500에러 시 경고창 띄우기
+    if (axiosError?.data.code === ERROR_CODE.INTERNAL_SERVER_ERROR) {
+      alert('일시적인 서버 오류입니다.');
       return Promise.reject(axiosError);
     }
 

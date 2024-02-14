@@ -6,7 +6,7 @@ import useSidebar from '@hooks/useSidebar';
 import { useMatch, useNavigate } from 'react-router-dom';
 import previous from '@assets/image/icon/previous.svg';
 import user from '@assets/image/icon/accountCircle.svg';
-import * as MH from './MobileHeader.style';
+import * as MH from './style/MobileHeader.style';
 
 function MobileHeader() {
   const { openSidebar } = useSidebar();
