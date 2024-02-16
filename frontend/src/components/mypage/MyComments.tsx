@@ -1,44 +1,16 @@
-import React from 'react';
-import COMMON from '@constants/common';
-import useServerSidePagination from '@query/get/useServerSidePagination';
-import { useNavigate } from 'react-router-dom';
-import ROUTE from '@constants/route';
-import * as C from '@components/mypage/style/MyPageComponent.style';
+import React, { Suspense } from 'react';
+import Skeleton from '@components/community/loading/Skeleton';
 import * as M from './style/MyComments.style';
-import DeleteButton from './button/CommentDeleteButton';
-
-interface Comment {
-  articleId: number; // 게시글 ID
-  commentId: number; // 댓글 ID
-  subject: string; // 게시글 제목
-  content: string; // 댓글 내용
-}
+import CommentsInner from './mypage/CommentsInner';
 
 function MyComments() {
-  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<Comment>({
-    uri: '/api/profile/comments',
-    size: COMMON.PAGINATION.SIZE,
-  });
-
-  const navigate = useNavigate();
-
-  const goDetail = (article: Comment) => {
-    navigate(`${ROUTE.COMMUNITY.BASE}/${article.articleId}`);
-  };
-
   return (
     <M.Container>
       <M.GroupContainer>
         <M.ContentsContainer>
-          {curPageItem.map((item: Comment, index: number) => (
-            <M.ContentsArea key={index} onClick={() => goDetail(item)}>
-              <M.ContentsTitle>{item.subject}</M.ContentsTitle>
-              <M.Contents>{item.content}</M.Contents>
-              <DeleteButton articleId={item.articleId} commentId={item.commentId}></DeleteButton>
-              <M.Divider />
-            </M.ContentsArea>
-          ))}
-          <C.PageSelectArea>{renderPaginationBtnOrInfinityScroll()}</C.PageSelectArea>
+          <Suspense fallback={<Skeleton />}>
+            <CommentsInner />
+          </Suspense>
         </M.ContentsContainer>
       </M.GroupContainer>
     </M.Container>
