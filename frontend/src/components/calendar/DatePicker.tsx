@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'dayjs/locale/ko';
 import locale from 'antd/es/date-picker/locale/ko_KR';
-import { ConfigProvider, DatePicker } from 'antd';
+import { ConfigProvider } from 'antd';
 import theme from '@styles/theme';
-import useModal from '@hooks/useCalendarModal';
 import { ReactComponent as ArrowIcon } from '@assets/image/icon/arrow2.svg';
+import { useRecoilState } from 'recoil';
 import dayjs from 'dayjs';
+import { endTimeState, startTimeState } from '../../state/calendar';
 import * as D from './style/DatePicker.style';
+import './style/DatePickerPanel.css';
 
-export default function DatePickerBox() {
-  const { isNewSchedule } = useModal();
+interface DatePickerProps {
+  startDateTime: string;
+  endDateTime: string;
+  scheduleId: number | undefined;
+}
+
+export default function DatePickerBox({ startDateTime, endDateTime, scheduleId }: DatePickerProps) {
+  const [startTime, setStartTime] = useRecoilState(startTimeState);
+  const [endTime, setEndTime] = useRecoilState(endTimeState);
+
+  useEffect(() => {
+    if (startDateTime !== undefined) setStartTime(dayjs(startDateTime));
+    if (endDateTime !== undefined) setEndTime(dayjs(endDateTime));
+  }, [scheduleId]);
 
   return (
     <D.Container>
@@ -36,13 +50,15 @@ export default function DatePickerBox() {
         }}
       >
         <D.CustomDatePicker
-          format={'MM.DD ddd A HH:mm'}
-          value={dayjs(new Date())}
+          value={startTime}
+          onChange={(date, _) => setStartTime(date)}
+          format={'MM.DD ddd A hh:mm'}
           suffixIcon={null}
           locale={locale}
           inputReadOnly={true}
           showTime
           allowClear={false}
+          prefixCls="calendar-datepicker"
         />
       </ConfigProvider>
       <ArrowIcon />
@@ -69,13 +85,15 @@ export default function DatePickerBox() {
         }}
       >
         <D.CustomDatePicker
-          format={'MM.DD ddd A HH:mm'}
-          value={dayjs(new Date()).add(1, 'hour')}
+          value={endTime}
+          onChange={(date, _) => setEndTime(date)}
+          format={'MM.DD ddd A hh:mm'}
           suffixIcon={null}
           locale={locale}
           inputReadOnly={true}
           showTime
           allowClear={false}
+          prefixCls="calendar-datepicker"
         />
       </ConfigProvider>
     </D.Container>

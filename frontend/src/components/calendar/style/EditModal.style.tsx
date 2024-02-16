@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import hexToRGBA from '@utils/hexToRgba';
+import { ScheduleType } from '../CalendarType';
 
 export const Container = styled.div`
   padding: 0.4rem 1.6rem 6rem 1.6rem;
@@ -52,11 +53,18 @@ export const deleteBtn = styled.button`
   justify-self: flex-end;
 `;
 
-export const Line = styled.div`
+export const Line = styled.div<{ type: ScheduleType }>`
   width: 0.4rem;
   border-radius: 1.6rem;
   height: 3.2rem;
-  background-color: pink;
+  background-color: ${(props) =>
+    props.type === 'ACADEMIC'
+      ? props.theme.colors.tag_academy
+      : props.type === 'AMITY'
+        ? props.theme.colors.point1
+        : props.type === 'SCHOOL_EVENT'
+          ? props.theme.colors.tag_event
+          : props.theme.colors.grey001};
   margin-right: 0.7rem;
 `;
 
@@ -159,4 +167,35 @@ export const CompleteBtn = styled.button`
   flex-shrink: 0;
   border: 0.1rem solid ${(props) => props.theme.colors.grey002};
   background-color: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
+`;
+
+export const TypeButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 0.4rem;
+`;
+export const AcademicButton = styled.button<{ selected: boolean }>`
+  background-color: ${(props) => hexToRGBA(props.theme.colors.tag_academy, 0.1)};
+  border: ${(props) =>
+    props.selected ? `0.1rem solid ${props.theme.colors.tag_academy}` : '0.1rem solid transparent'};
+  color: ${(props) => props.theme.colors.tag_academy};
+  ${(props) => props.theme.typography.common.caption1};
+  border-radius: 10rem;
+  padding: 0.5rem 1.2rem;
+`;
+export const AmityButton = styled.button<{ selected: boolean }>`
+  background-color: ${(props) => hexToRGBA(props.theme.colors.point1, 0.1)};
+  border: ${(props) => (props.selected ? `0.1rem solid ${props.theme.colors.point1}` : '0.1rem solid transparent')};
+  color: ${(props) => props.theme.colors.point1};
+  ${(props) => props.theme.typography.common.caption1};
+  border-radius: 10rem;
+  padding: 0.5rem 1.2rem;
+`;
+export const EventButton = styled.button<{ selected: boolean }>`
+  background-color: ${(props) => hexToRGBA(props.theme.colors.tag_event, 0.1)};
+  border: ${(props) => (props.selected ? `0.1rem solid ${props.theme.colors.tag_event}` : '0.1rem solid transparent')};
+  color: ${(props) => props.theme.colors.tag_event};
+  ${(props) => props.theme.typography.common.caption1};
+  border-radius: 10rem;
+  padding: 0.5rem 1.2rem;
 `;

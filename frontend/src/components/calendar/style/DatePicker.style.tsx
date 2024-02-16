@@ -4,24 +4,10 @@ import { DatePicker, TimePicker } from 'antd';
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
-
-  ${(props) => props.theme.media.tablet`
-    justify-content: flex-start;
-    gap: 0.8rem;
-  `};
-
-  ${(props) => props.theme.media.desktop`
-    justify-content: flex-start;
-    gap: 0.8rem;
-  `};
-
-  ${(props) => props.theme.media.wide`
-    justify-content: flex-start;
-    gap: 0.8rem;
-  `};
+  gap: 0.8rem;
 `;
 
 export const DateWrapper = styled.div`
@@ -31,11 +17,11 @@ export const DateWrapper = styled.div`
 `;
 
 export const CustomDatePicker = styled(DatePicker)`
-  .ant-picker {
+  .calendar-datepicker {
     padding: 0;
   }
 
-  .ant-picker-input > input {
+  .calendar-datepicker-input > input {
     color: ${(props) => props.theme.colors.white};
     ${(props) => props.theme.typography.common.caption1};
     text-align: center;
@@ -43,10 +29,10 @@ export const CustomDatePicker = styled(DatePicker)`
 `;
 
 export const CustomTimePicker = styled(TimePicker)`
-  .ant-picker-input {
+  .calendar-datepicker-input {
   }
 
-  .ant-picker-input > input {
+  .calendar-datepicker-input > input {
     color: ${(props) => props.theme.colors.white};
     ${(props) => props.theme.typography[DeviceProvider()].body};
     width: auto;

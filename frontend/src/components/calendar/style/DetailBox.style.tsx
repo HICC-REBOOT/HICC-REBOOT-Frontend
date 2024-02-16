@@ -9,12 +9,12 @@ export const Container = styled.div`
 
   ${(props) => props.theme.media.desktop`
     padding-top: 7.9rem;
-    width: auto;
+    width: 32.8rem;
   `};
 
   ${(props) => props.theme.media.wide`
     padding-top: 7.9rem;
-    width: auto;
+    width: 32.8rem;
   `};
 `;
 
@@ -33,7 +33,7 @@ export const AddContainer = styled.button`
   display: flex;
   gap: 0.8rem;
   align-items: center;
-  background-color: #141415;
+  background-color: ${(props) => props.theme.colors.grey001};
   border-radius: 1.6rem;
 `;
 
