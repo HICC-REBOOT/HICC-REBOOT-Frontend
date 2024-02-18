@@ -48,6 +48,8 @@ function Header() {
   };
 
   const isLoginAndAdmin = isLogin && isAdmin;
+  const isLoginButNotAdmin = isLogin && !isAdmin;
+  const isNotLogin = !isLogin;
 
   return (
     <Desktop>
@@ -62,6 +64,7 @@ function Header() {
           <H.Tab to={ROUTE.COMMUNITY.BASE} $active={matchCommunityTab !== null}>
             community
           </H.Tab>
+          {/* 로그인 상테 && 어드민 */}
           {isLoginAndAdmin && (
             <>
               <H.Tab to={ROUTE.ADMIN.BASE} $active={matchAdminTab !== null}>
@@ -72,15 +75,17 @@ function Header() {
               </H.Tab>
             </>
           )}
+          {/* 로그인 상태 && 일반유저 */}
+          {isLoginButNotAdmin && (
+            <H.Tab to={ROUTE.PROFILE.BASE} $active={matchMypageTab !== null}>
+              마이페이지
+            </H.Tab>
+          )}
+          {/* 로그인 상태 */}
           {isLogin ? (
-            <>
-              <H.Tab to={ROUTE.PROFILE.BASE} $active={matchMypageTab !== null}>
-                마이페이지
-              </H.Tab>
-              <GradientButtonBlack type="button" onClick={() => logout()}>
-                <p>Log out</p>
-              </GradientButtonBlack>
-            </>
+            <GradientButtonBlack type="button" onClick={() => logout()}>
+              <p>Log out</p>
+            </GradientButtonBlack>
           ) : (
             <GradientButtonBlack type="button" onClick={goLogin}>
               <p>Log in</p>
