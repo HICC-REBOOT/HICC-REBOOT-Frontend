@@ -59,6 +59,11 @@ export const Title = styled.div`
 export const Name = styled.div`
   position: relative;
   color: ${(props) => props.theme.colors.white};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   ${(props) => props.theme.typography[DeviceProvider()].subtitle};
   ${(props) => props.theme.media.mobile`
     // width: 4.9rem;
@@ -92,6 +97,7 @@ export const Label = styled.div`
   gap: 1rem;
 
   color: ${(props) => props.theme.colors.white};
+  ${(props) => props.theme.typography.common.caption1};
 
   border-radius: 2rem;
   background: rgba(255, 255, 255, 0.1);

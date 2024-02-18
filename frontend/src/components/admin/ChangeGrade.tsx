@@ -8,6 +8,7 @@ import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
 import useServerSidePagination from '@query/get/useServerSidePagination';
 import COMMON from '@constants/common';
+import KeyboardUtils from '@utils/keyboard';
 import * as I from './style/MemberInfo.style';
 import { UserData } from './MemberDetail';
 import ChangeGradeCollapse from './ChangeGradeCollapse';
@@ -40,7 +41,12 @@ export default function ChangeGrade() {
     <>
       <I.SearchBar>
         <I.SearchBox>
-          <Input placeholder="회원명 검색" maxLength={10} onChange={getValue} />
+          <Input
+            placeholder="회원명 검색"
+            maxLength={10}
+            onChange={getValue}
+            onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, searching)}
+          />
           <SearchButton src={Search} alt="search" onClick={searching} />
         </I.SearchBox>
         <Dropdown placeholder="등급 순" options={options} onChange={onChange} dropdownWidth="11rem" />

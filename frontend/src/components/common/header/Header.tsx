@@ -19,6 +19,7 @@ function Header() {
   const matchCalendarTab = useMatch(ROUTE.CALENDAR);
   const matchCommunityTab = useMatch(`${ROUTE.COMMUNITY.BASE}/*`);
   const matchAdminTab = useMatch(`${ROUTE.ADMIN.BASE}/*`);
+  const matchMypageTab = useMatch(`${ROUTE.PROFILE.BASE}/*`);
 
   const navigate = useNavigate();
 
@@ -47,6 +48,8 @@ function Header() {
   };
 
   const isLoginAndAdmin = isLogin && isAdmin;
+  const isLoginButNotAdmin = isLogin && !isAdmin;
+  const isNotLogin = !isLogin;
 
   return (
     <Desktop>
@@ -61,11 +64,24 @@ function Header() {
           <H.Tab to={ROUTE.COMMUNITY.BASE} $active={matchCommunityTab !== null}>
             community
           </H.Tab>
+          {/* 로그인 상테 && 어드민 */}
           {isLoginAndAdmin && (
-            <H.Tab to={ROUTE.ADMIN.BASE} $active={matchAdminTab !== null}>
-              관리자
+            <>
+              <H.Tab to={ROUTE.ADMIN.BASE} $active={matchAdminTab !== null}>
+                관리자
+              </H.Tab>
+              <H.Tab to={ROUTE.PROFILE.BASE} $active={matchMypageTab !== null}>
+                마이페이지
+              </H.Tab>
+            </>
+          )}
+          {/* 로그인 상태 && 일반유저 */}
+          {isLoginButNotAdmin && (
+            <H.Tab to={ROUTE.PROFILE.BASE} $active={matchMypageTab !== null}>
+              마이페이지
             </H.Tab>
           )}
+          {/* 로그인 상태 */}
           {isLogin ? (
             <GradientButtonBlack type="button" onClick={() => logout()}>
               <p>Log out</p>

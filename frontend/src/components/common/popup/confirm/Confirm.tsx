@@ -31,6 +31,7 @@ function confirm({ content, okText, cancelText, isDangerous, onOk, onCancel, clo
       }
     },
     maskClosable: true,
+    centered: true,
   });
 }
 
