@@ -24,19 +24,8 @@ function usePostLogout() {
     mutationKey: [QUERY_KEYS.POST_LOGOUT],
     mutationFn: requestLogout,
     onSuccess: () => {
-      // 로그아웃 할 때 내 정보 관련 전부 캐시 날리기
-      queryClient.removeQueries({
-        queryKey: [QUERY_KEYS.GET_PROFILE],
-      });
-      queryClient.removeQueries({
-        queryKey: [QUERY_KEYS.GET_MY_ARTICLES],
-      });
-      queryClient.removeQueries({
-        queryKey: [QUERY_KEYS.GET_MY_COMMENTS],
-      });
-      queryClient.removeQueries({
-        queryKey: [QUERY_KEYS.GET_USERINFO],
-      });
+      // 로그아웃 할 때 모든 캐시정보 날리기
+      queryClient.clear();
 
       // 로그아웃 시 쿠키에서 리프레시토큰 삭제
       removeCookie(COOKIE_KEYS.REFRESH_KEY);
