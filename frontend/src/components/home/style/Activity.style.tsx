@@ -402,17 +402,18 @@ export const SmallBoxTitle = styled.div`
 
 export const SmallBoxContent = styled.div`
   position: relative;
+  text-align: left;
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.caption1};
 
   ${(props) => props.theme.media.mobile`
     top: 5.8rem;
     left: 2.8rem;
-    width: 13.1rem;
+    width: 13.9rem;
   `}
 
   ${(props) => props.theme.media.tablet`
-    top: 11.6rem;
+    top: 7.4rem;
     left: 2.8rem;
     width: 15.8rem;
   `}
