@@ -152,6 +152,17 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(axiosError);
     }
 
+    // 비밀번호 비정상적인 변경일 때 메인페이지로 돌려버리기
+    if (axiosError?.data.code === ERROR_CODE.PASSWORD_RESET_NOT_FOUND) {
+      alert('비정상적인 비밀번호 변경입니다.');
+      window.location.replace('/');
+    }
+
+    // 비밀번호 변경에서 이메일이 일치하지 않을 때
+    if (axiosError?.data.code === ERROR_CODE.EMAIL_MISMATCH) {
+      alert(axiosError?.data.reason);
+    }
+
     return Promise.reject(error);
   },
 );
