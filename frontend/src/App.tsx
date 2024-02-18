@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Layout from '@components/layout/Layout';
 import ROUTE from '@constants/route';
@@ -7,18 +8,15 @@ import Home from '@pages/Home';
 import Calendar from '@pages/Calendar';
 import Community from '@pages/community/Community';
 import MyPage from '@pages/MyPage';
-import { MyWritings, MyComments } from '@components/mypage';
 import MyInfomation from '@pages/MyInfo';
 import Temp from '@pages/temp/Temp';
 
+import { MyWritings, MyComments } from '@components/mypage';
+import { Login, SignUp, ChangePassword, ResetPassword, EnterInfo } from '@pages/auth';
 import { ArticleDetail, CommunityList, CommunityUpdate, CommunityWrite } from '@components/community';
-import SignUp from '@pages/SignUp/SignUP';
-import EnterInfo from '@components/signup/EnterInfo';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
-import Login from '@pages/Login/Login';
-import ResetPassword from '@pages/ResetPassword';
 
 function App() {
   const location = useLocation();
@@ -38,10 +36,12 @@ function App() {
         </Route>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />
+        {/* auth */}
         <Route path={ROUTE.SIGNUP} element={<SignUp />} />
         <Route path={ROUTE.ENTERINFO} element={<EnterInfo />} />
         <Route path={ROUTE.LOGIN} element={<Login />} />
         <Route path={ROUTE.RESET_PASSWORD} element={<ResetPassword />} />
+        <Route path={ROUTE.RESET_PASSWORD_AFTER_EMAIL_VERIFY} element={<ChangePassword />} />
         {/* community */}
         <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
           <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />

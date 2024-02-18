@@ -1,0 +1,81 @@
+.calendar-datepicker-dropdown .calendar-datepicker-panel-container {
+  background-color: rgba(130, 130, 136, 0.3);
+  border-radius: 0.4rem;
+  color: white;
+}
+.calendar-datepicker-dropdown {
+  background-color: #141415;
+  border-radius: 0.4rem;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-header {
+  border: none;
+  color: white;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-panel .calendar-datepicker-footer {
+  border-top: none;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-header button {
+  color: #c6c7ca;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-content th {
+  color: white;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-cell-in-view {
+  color: white;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-time-panel-column:not(:first-child) {
+  border-inline-start: none;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-datetime-panel .calendar-datepicker-time-panel {
+  border-inline-start: none;
+}
+
+.calendar-datepicker-dropdown .calendar-datepicker-cell {
+  color: #828288;
+}
+
+.calendar-datepicker-dropdown
+  .calendar-datepicker-time-panel-column
+  > li.calendar-datepicker-time-panel-cell
+  .calendar-datepicker-time-panel-cell-inner {
+  color: white;
+}
+
+.calendar-datepicker-dropdown
+  .calendar-datepicker-time-panel-column
+  > li.calendar-datepicker-time-panel-cell
+  .calendar-datepicker-time-panel-cell-inner {
+  color: white;
+}
+
+.calendar-datepicker-dropdown
+  .calendar-datepicker-time-panel-column
+  > li.calendar-datepicker-time-panel-cell-selected
+  .calendar-datepicker-time-panel-cell-inner {
+  background-color: rgba(130, 130, 136, 0.3);
+}
+
+:where(.css-dev-only-do-not-override-1r7rfjo).ant-btn-primary {
+  box-shadow: none;
+}
+
+:where(.css-dev-only-do-not-override-1r7rfjo).calendar-datepicker-dropdown
+  .calendar-datepicker-cell-in-view.calendar-datepicker-cell-selected
+  .calendar-datepicker-cell-inner {
+  background-color: rgba(130, 130, 136, 0.3);
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-1r7rfjo).calendar-datepicker-dropdown
+  .calendar-datepicker-cell-in-view.calendar-datepicker-cell-today
+  .calendar-datepicker-cell-inner::before {
+  border: none;
+  border-radius: 0.2rem;
+}

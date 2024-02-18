@@ -1,6 +1,6 @@
 import React, { FormEventHandler } from 'react';
 import { UseFormRegister } from 'react-hook-form';
-import Textarea from './TextareaInForm.style';
+import Textarea from './style/TextareaInForm.style';
 import { CommunityWriteForm } from '../CommunityType';
 
 interface TextareaInFormProps {

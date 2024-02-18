@@ -13,6 +13,8 @@ declare module 'styled-components' {
       point2: string;
       red: string;
       white: string;
+      tag_event: string;
+      tag_academy: string;
     };
     typography: {
       mobile: {

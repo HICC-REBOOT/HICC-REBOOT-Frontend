@@ -138,24 +138,24 @@ export const ContentsContainer = styled.div`
   align-items: flex-start;
   ${(props) => props.theme.media.mobile`
     width: 32.8rem;
-    height: 65.3rem;
+    min-height: 65.3rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     width: 53.4rem;
-    height: 81.4rem;
+    min-height: 81.4rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     top: 6.4rem;
     width: 103.4rem;
-    height: 163.6rem;
+    min-height: 163.6rem;
   `}
 
   ${(props) => props.theme.media.wide`
     top: 6.4rem;
     width: 103.4rem;
-    height: 163.6rem;
+    min-height: 163.6rem;
   `}
 `;
 
@@ -169,6 +169,7 @@ export const ContentsArea = styled.div`
   padding: 2rem;
   gap: 1.2rem;
   white-space: nowrap;
+  cursor: pointer;
   ${(props) => props.theme.media.mobile`
     width: 32.8rem;
     height: 16.2rem;

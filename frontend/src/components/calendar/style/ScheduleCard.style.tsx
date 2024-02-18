@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import { motion } from 'framer-motion';
+import { ScheduleType } from '../CalendarType';
 
 export const Container = styled.div`
   border-radius: 1.6rem;
-  background-color: #141415;
+  background-color: ${(props) => props.theme.colors.grey001};
   display: flex;
   justify-content: space-between;
   padding: 0.8rem 1.2rem;
@@ -19,13 +20,21 @@ export const Left = styled.div`
   width: 100%;
 `;
 
-export const TimeContainer = styled.div`
+export const TimeContainer = styled.div<{ type: ScheduleType }>`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   padding-right: 0.8rem;
   margin-right: 0.8rem;
-  border-right: 0.2rem solid ${(props) => props.theme.colors.white};
+  border-right: 0.2rem solid
+    ${(props) =>
+      props.type === 'ACADEMIC'
+        ? props.theme.colors.tag_academy
+        : props.type === 'AMITY'
+          ? props.theme.colors.point1
+          : props.type === 'SCHOOL_EVENT'
+            ? props.theme.colors.tag_event
+            : props.theme.colors.grey001};
 `;
 
 export const Time1 = styled.div`
@@ -35,8 +44,7 @@ export const Time1 = styled.div`
 
 export const Time2 = styled.span`
   ${(props) => props.theme.typography.common.caption2};
-  color: ${(props) => props.theme.colors.white};
-  opacity: 0.7;
+  color: ${(props) => props.theme.colors.grey004};
 `;
 
 export const InfoContainer = styled.div`
@@ -51,8 +59,7 @@ export const Title = styled.div`
 
 export const Detail = styled.div<{ $isDetailOpen: boolean }>`
   ${(props) => props.theme.typography.common.caption2};
-  color: ${(props) => props.theme.colors.white};
-  opacity: 0.7;
+  color: ${(props) => props.theme.colors.grey004};
   text-align: justify;
 
   ${(props) =>
@@ -65,12 +72,10 @@ export const Detail = styled.div<{ $isDetailOpen: boolean }>`
     `}
 
   ${(props) => props.theme.media.desktop`
-    width: 30rem;
     padding-right: 1.2rem;
   `};
 
   ${(props) => props.theme.media.wide`
-    width: 30rem;
     padding-right: 1.2rem;
   `};
 `;

@@ -5,15 +5,16 @@ import ROUTE from '@constants/route';
 import { Desktop } from '@assets/mediaQuery';
 import useAuth from '@hooks/useAuth';
 import user from '@assets/image/icon/user.svg';
-import logout from '@auth/logout';
 import theme from '@styles/theme';
 import STYLE from '@constants/style';
-import * as H from './Header.style';
+import usePostLogout from '@query/post/usePostLogout';
+import * as H from './style/Header.style';
 import GradientButton from '../button/color/GradientButton';
 import GradientButtonBlack from '../button/black/GradientButtonBlack';
 
 function Header() {
-  const { isLogin, isAdmin, setIsLogin } = useAuth();
+  const { isLogin, isAdmin } = useAuth();
+  const { logout } = usePostLogout();
 
   const matchCalendarTab = useMatch(ROUTE.CALENDAR);
   const matchCommunityTab = useMatch(`${ROUTE.COMMUNITY.BASE}/*`);
@@ -31,12 +32,6 @@ function Header() {
 
   const goProfile = () => {
     navigate(ROUTE.PROFILE.MYINFO);
-  };
-
-  const setLogout = async () => {
-    await logout();
-    setIsLogin(false);
-    navigate(ROUTE.HOME);
   };
 
   const signupStyle: React.CSSProperties = {
@@ -72,7 +67,7 @@ function Header() {
             </H.Tab>
           )}
           {isLogin ? (
-            <GradientButtonBlack type="button" onClick={setLogout}>
+            <GradientButtonBlack type="button" onClick={() => logout()}>
               <p>Log out</p>
             </GradientButtonBlack>
           ) : (

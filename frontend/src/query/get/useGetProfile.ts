@@ -1,12 +1,15 @@
 import { QUERY_KEYS } from '@constants/keys';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import request from '@utils/request';
+import { Grade } from '@components/type/CommonType';
 
 interface ProfileInfo {
-  grade: string;
-  phone_number: string;
-  id: string;
-  major: string;
+  studentNumber: string;
+  email: string;
+  name: string;
+  grade: Grade;
+  phoneNumber: string;
+  department: string;
 }
 
 function useGetProfile() {

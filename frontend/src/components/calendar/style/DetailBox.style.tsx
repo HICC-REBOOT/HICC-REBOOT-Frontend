@@ -9,18 +9,22 @@ export const Container = styled.div`
 
   ${(props) => props.theme.media.desktop`
     padding-top: 7.9rem;
-    width: auto;
+    width: 32.8rem;
   `};
 
   ${(props) => props.theme.media.wide`
     padding-top: 7.9rem;
-    width: auto;
+    width: 32.8rem;
   `};
 `;
 
 export const Date = styled.div`
   color: ${(props) => props.theme.colors.white};
-  ${(props) => props.theme.typography[DeviceProvider()].subtitle};
+  ${(props) => props.theme.typography.mobile.subtitle};
+
+  @media screen and (min-width: 768px) and (max-width: 1439px) {
+    ${(props) => props.theme.typography.desktop.subtitle}
+  }
 `;
 
 export const AddContainer = styled.button`
@@ -29,7 +33,7 @@ export const AddContainer = styled.button`
   display: flex;
   gap: 0.8rem;
   align-items: center;
-  background-color: #141415;
+  background-color: ${(props) => props.theme.colors.grey001};
   border-radius: 1.6rem;
 `;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import { ReactComponent as Image } from '@assets/image/icon/picture.svg';
-import * as A from './EachArticle.style';
+import * as A from './style/EachArticle.style';
 import { Article } from '../CommunityType';
 import WriteInfo from '../common/WriteInfo';
 

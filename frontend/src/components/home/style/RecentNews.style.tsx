@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import theme from '@styles/theme';
 
 export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${(props) => theme.colors.black};
+  background: ${(props) => props.theme.colors.black};
 `;
 
 export const GroupContainer = styled.div`
@@ -44,7 +43,7 @@ export const Title = styled.div`
   position: relative;
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].title};
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.media.mobile`
     width: 32.9rem;
     height: 2.5rem;
@@ -68,7 +67,7 @@ export const Title = styled.div`
 
 export const Content = styled.div`
   position: relative;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   opacity: 0.7;
   text-align: center;
   ${(props) => props.theme.typography[DeviceProvider()].body};
@@ -100,7 +99,7 @@ export const Content = styled.div`
 
 export const NewsList = styled.div`
   position: relative;
-  background: ${(props) => theme.colors.grey001};
+  background: ${(props) => props.theme.colors.grey001};
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 1.6rem;
   background: rgba(20, 20, 21, 0.8);
@@ -183,7 +182,7 @@ export const NewsTitle = styled.div`
   align-self: stretch;
 
   overflow: hidden;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   text-overflow: ellipsis;
   white-space: nowrap;
   ${(props) => props.theme.typography[DeviceProvider()].body};
@@ -244,7 +243,7 @@ export const Label = styled.div`
   border-radius: 2rem;
   background: rgba(255, 255, 255, 0.1);
 
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
   font-family: Source Sans Pro;
   font-size: 0.9rem;
   font-style: normal;
@@ -256,7 +255,7 @@ export const Label = styled.div`
 export const Writer = styled.div`
   width: 3.5rem;
   height: 1.6rem;
-  color: ${(props) => theme.colors.grey002};
+  color: ${(props) => props.theme.colors.grey002};
   font-family: Source Sans Pro;
   font-size: 0.9rem;
   font-style: normal;
@@ -267,7 +266,7 @@ export const Writer = styled.div`
 
 export const Date = styled.div`
   flex: 1 0 0;
-  color: ${(props) => theme.colors.white};
+  color: ${(props) => props.theme.colors.white};
 
   text-align: right;
   font-family: Source Sans Pro;
@@ -303,6 +302,6 @@ export const Circle = styled.div`
   height: 55.7rem;
   flex-shrink: 0;
   border-radius: 100rem;
-  background: ${theme.colors.point1};
+  background: ${(props) => props.theme.colors.point1};
   left: 70%;
 `;

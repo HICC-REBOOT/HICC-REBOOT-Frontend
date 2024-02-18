@@ -11,6 +11,8 @@ const colors = {
   point2: '#53FFCB',
   red: '#FF5D5D',
   white: '#FFFFFF',
+  tag_academy: '#FFBF18',
+  tag_event: '#FFBDF2',
 };
 
 // rem 10px: mobile font size

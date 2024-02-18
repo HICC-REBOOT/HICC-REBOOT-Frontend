@@ -34,6 +34,9 @@ async function request<T, R, P>({ uri, method, data, params }: IRequest<T, P>) {
     method,
     data,
     params,
+    headers: {
+      'Access-Control-Allow-Origin': 'https://hicc.co.kr:3000',
+    },
   };
 
   const response = await axiosInstance<T, AxiosResponse<IResponse<R>>>(config);

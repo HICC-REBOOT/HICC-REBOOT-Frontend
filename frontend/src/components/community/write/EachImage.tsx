@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { ReactComponent as Delete } from '@assets/image/icon/trash.svg';
 import { Desktop, NotDesktop } from '@assets/mediaQuery';
-import * as I from './EachImage.style';
+import * as I from './style/EachImage.style';
 
 interface EachImageProps {
   image: string;

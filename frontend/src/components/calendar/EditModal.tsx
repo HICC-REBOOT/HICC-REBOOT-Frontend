@@ -1,31 +1,122 @@
 import Sheet from 'react-modal-sheet';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import STYLE from '@constants/style';
 import theme from '@styles/theme';
-import { ConfigProvider } from 'antd';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import dayjs from 'dayjs';
 import { ReactComponent as CheckIcon } from '@assets/image/icon/check.svg';
 import useModal from '@hooks/useCalendarModal';
 import { ReactComponent as TrashIcon } from '@assets/image/icon/trash.svg';
 import { ReactComponent as TimeIcon } from '@assets/image/icon/time.svg';
 import { ReactComponent as TagIcon } from '@assets/image/icon/tag.svg';
 import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
-import { modalState } from '../../state/calendar';
+import hexToRGBA from '@utils/hexToRgba';
+import useGetCalendarEachInfo from '@query/get/useGetCalendarEachInfo';
+import useInput from '@hooks/useInput';
+import usePostSchedule from '@query/post/usePostSchedule';
+import usePatchSchedule from '@query/patch/usePatchSchedule';
+import useDeleteSchedule from '@query/delete/useDeleteSchedule';
+import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
+import { endTimeState, scheduleTypeState, startTimeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
-import TypeButton from './TypeButton';
 import * as E from './style/EditModal.style';
+import { ScheduleType } from './CalendarType';
 
 export default function EditModal() {
-  const { isModalOpen, changeModalState, isNewSchedule, changeIsNewState } = useModal();
+  const { isModalOpen, changeModalState, scheduleId, changeScheduleId } = useModal();
 
+  const [title, setTitle] = useInput<string>('');
+  const [type, setType] = useRecoilState(scheduleTypeState);
   const [detail, setDetail] = useState<string>('');
+  const startTime = useRecoilValue(startTimeState);
+  const endTime = useRecoilValue(endTimeState);
+
+  const { data: scheduleInfo } = useGetCalendarEachInfo({ scheduleId });
+  const { postSchedule, isPending: isPostSchedulePending } = usePostSchedule({
+    name: title,
+    startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
+    endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
+    type,
+    content: detail,
+  });
+  const { deleteSchedule, isPending: isDeleteSchedulePending } = useDeleteSchedule();
+  const { updateSchedule, isPending: isPatchSchedulePending } = usePatchSchedule();
+
   const handleDetail = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDetail(e.target.value);
   };
 
   const closeModal = () => {
     changeModalState(false);
-    changeIsNewState(false);
+    changeScheduleId(-1);
+  };
+
+  useEffect(() => {
+    if (scheduleId !== -1) {
+      setTitle(scheduleInfo?.name as string);
+      setDetail(scheduleInfo?.content as string);
+      setType(scheduleInfo?.type ?? 'ACADEMIC');
+    } else {
+      setTitle('');
+      setDetail('');
+      setType('ACADEMIC');
+    }
+  }, [scheduleId]);
+
+  const checkValidity = () => {
+    if (title.trim().length === 0) {
+      alert('일정 제목을 입력해주세요.');
+      return false;
+    }
+    if (detail.trim().length === 0) {
+      alert('일정 설명을 입력해주세요.');
+      return false;
+    }
+    if (dayjs(startTime) > dayjs(endTime)) {
+      alert('일정 시간을 다시 입력해주세요.');
+      return false;
+    }
+    return true;
+  };
+
+  const onClickCompleteBtn = () => {
+    if (!checkValidity()) return null;
+
+    // 일정 추가일 때
+    if (scheduleId === -1) {
+      if (isPostSchedulePending) return null;
+      postSchedule();
+    }
+    // 일정 수정일 때
+    else {
+      if (isPatchSchedulePending) return null;
+      updateSchedule({
+        name: title,
+        startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
+        endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
+        type,
+        content: detail,
+        scheduleId,
+      });
+    }
+    closeModal();
+    return null;
+  };
+
+  const onClickDeleteBtn = () => {
+    const withDrawalComfirmParams: WithdrawalParameter = {
+      title: '일정을 삭제하시겠습니까?',
+      content: '',
+      okText: '삭제',
+      cancelText: '취소',
+      isDangerous: true,
+      onOk: () => {
+        deleteSchedule(scheduleId);
+        closeModal();
+      },
+    };
+
+    withdrawal(withDrawalComfirmParams);
   };
 
   return (
@@ -43,45 +134,61 @@ export default function EditModal() {
           <E.Container>
             <E.Top>
               <E.TitleContainer>
-                <E.Line />
+                <E.Line type={type} />
                 <E.Title
-                  value={isNewSchedule ? '' : '주간 세미나'}
-                  placeholder={isNewSchedule ? '일정 제목을 입력해주세요' : ''}
+                  onChange={setTitle}
+                  value={title}
+                  placeholder={scheduleId === -1 ? '일정 제목을 입력해주세요' : ''}
                 />
               </E.TitleContainer>
-              <E.deleteBtn>
-                <TrashIcon />
-              </E.deleteBtn>
+              {scheduleId !== -1 && (
+                <E.deleteBtn onClick={onClickDeleteBtn}>
+                  <TrashIcon />
+                </E.deleteBtn>
+              )}
             </E.Top>
             <E.Content>
               <E.Left>
                 <E.ContentWrapper>
                   <TimeIcon />
-                  <DatePickerBox />
+                  <DatePickerBox
+                    startDateTime={scheduleInfo?.startDateTime as string}
+                    endDateTime={scheduleInfo?.endDateTime as string}
+                    scheduleId={scheduleInfo?.scheduleId}
+                  />
                 </E.ContentWrapper>
                 <E.ContentWrapper>
                   <TagIcon />
-                  <TypeButton />
+                  <E.TypeButtonContainer>
+                    <E.AcademicButton selected={type === 'ACADEMIC'} onClick={() => setType('ACADEMIC')}>
+                      • 학술
+                    </E.AcademicButton>
+                    <E.AmityButton selected={type === 'AMITY'} onClick={() => setType('AMITY')}>
+                      • 친목
+                    </E.AmityButton>
+                    <E.EventButton selected={type === 'SCHOOL_EVENT'} onClick={() => setType('SCHOOL_EVENT')}>
+                      • 학교 행사
+                    </E.EventButton>
+                  </E.TypeButtonContainer>
                 </E.ContentWrapper>
               </E.Left>
               <E.TextAreaContainer>
                 <CommentIcon />
-
                 <E.TextArea
                   rows={10}
                   value={detail}
-                  placeholder={isNewSchedule ? '일정에 대한 설명을 입력해주세요' : ''}
+                  placeholder={scheduleId === -1 ? '일정에 대한 설명을 입력해주세요' : ''}
                   onChange={handleDetail}
                 />
               </E.TextAreaContainer>
             </E.Content>
-            <E.CompleteBtn>
+            <E.CompleteBtn onClick={onClickCompleteBtn}>
               <CheckIcon color={theme.colors.white} />
             </E.CompleteBtn>
           </E.Container>
         </Sheet.Content>
       </Sheet.Container>
-      <Sheet.Backdrop onTap={closeModal} style={{ backgroundColor: 'rgba(20, 20, 21, 0.85)' }} />
+      <Sheet.Backdrop onTap={closeModal} style={{ backgroundColor: hexToRGBA(theme.colors.black, 0.7) }} />
     </Sheet>
   );
 }

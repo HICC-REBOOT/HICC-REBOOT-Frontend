@@ -1,21 +1,36 @@
 export const QUERY_KEYS = Object.freeze({
   PAGEABLE: 'get-pageable',
+  GET_MONTH_INFO: 'get-month-info',
+  GET_DAY_INFO: 'get-day-info',
+  GET_EACH_INFO: 'get-each-info',
+  GET_DEPARTMENTS: 'get-departments',
   GET_PRESIDENT_INFO: 'get-president-info',
   GET_MEMBER_COUNT: 'get-member-count',
   GET_LATEST_NEWS: 'get-latest-news',
   GET_PROFILE: 'get-profile',
   GET_MY_ARTICLES: 'get-my-articles',
   GET_MY_COMMENTS: 'get-my-comments',
+  Delete_PROFILE: 'delete-profile',
   GET_ARTICLE_DETAIL: 'get-article-detail',
   GET_PARENT_COMMENT: 'get-parent-comment',
   POST_PARENT_COMMENT: 'post-parent-comment',
+  POST_SCHEDULE: 'post-schedule',
+  POST_SIGNUP: 'post-signup',
   DELETE_PARENT_COMMENT: 'delete-parent-comment',
   GET_NESTED_COMMENT: 'get-nested-comment',
   POST_NESTED_COMMENT: 'post-nested-comment',
   POST_ARTICLE: 'post-article',
   DELETE_ARTICLE: 'delete-article',
+  DELETE_SCHEDULE: 'delete-schedule',
   UPDATE_ARTICLE: 'update-article',
+  UPDATE_SCHEDULE: 'update-schedule',
   GET_USERINFO: 'get-userinfo',
+  PATCH_PROFILE: 'patch-profile',
+  GET_MAJORS: 'get-majors',
+  POST_RESET_PASSWORD: 'post-reset-password',
+  PATCH_CHANGE_PASSWORD: 'patch-change-password',
+  POST_LOGOUT: 'post-logout',
+  POST_LOGIN: 'post-login',
 });
 
 export const STORE_KEYS = Object.freeze({
@@ -23,6 +38,7 @@ export const STORE_KEYS = Object.freeze({
   NESTED_COMMENT: 'nestedComment',
   LOGIN: 'login',
   ADMIN: 'admin',
+  PRESIDENT: 'president',
 });
 
 export const COOKIE_KEYS = Object.freeze({

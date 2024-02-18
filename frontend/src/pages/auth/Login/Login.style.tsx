@@ -21,7 +21,7 @@ export const Title = styled.div`
   ${(props) => props.theme.typography[DeviceProvider()].body};
 `;
 
-export const Content = styled.div`
+export const Content = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
