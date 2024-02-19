@@ -87,7 +87,8 @@ export const Name = styled.div`
 `;
 
 export const Label = styled.div`
-  width: 6.1rem;
+  /* width: 6.1rem; */
+  min-width: 6.1rem;
   height: 3.1rem;
 
   display: flex;
