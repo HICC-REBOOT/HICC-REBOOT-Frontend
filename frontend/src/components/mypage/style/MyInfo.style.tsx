@@ -101,6 +101,7 @@ export const Label = styled.div`
 
   border-radius: 2rem;
   background: rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
 `;
 
 export const Button = styled.button`
