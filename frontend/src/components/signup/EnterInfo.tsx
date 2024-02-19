@@ -64,7 +64,9 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="name"
+                autoComplete="off"
                 type="text"
+                maxLength={7}
                 placeholder="홍길동"
                 {...register('name', {
                   required: true,
@@ -84,7 +86,9 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="studentNumber"
+                autoComplete="off"
                 type="text"
+                maxLength={7}
                 placeholder="C123456"
                 {...register('studentNumber', {
                   required: true,
@@ -105,6 +109,7 @@ export default function EnterInfo() {
               <E.InputFieldInput
                 id="password"
                 type="password"
+                maxLength={20}
                 placeholder="비밀번호를 입력하세요"
                 {...register('password', {
                   required: true,
@@ -125,6 +130,7 @@ export default function EnterInfo() {
               <E.InputFieldInput
                 id="password_confirm"
                 type="password"
+                maxLength={20}
                 placeholder="비밀번호를 입력하세요"
                 {...register('password_confirm', {
                   required: true,
@@ -143,6 +149,7 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="email"
+                autoComplete="off"
                 type="email"
                 placeholder="Hongik@gmail.com"
                 {...register('email', {
@@ -160,6 +167,7 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num1"
+                  autoComplete="off"
                   type="text"
                   maxLength={3}
                   placeholder="010"
@@ -176,6 +184,7 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num2"
+                  autoComplete="off"
                   type="text"
                   maxLength={4}
                   placeholder="1234"
@@ -192,6 +201,7 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num3"
+                  autoComplete="off"
                   type="text"
                   maxLength={4}
                   placeholder="5678"
