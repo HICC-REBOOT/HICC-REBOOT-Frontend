@@ -109,10 +109,14 @@ export default function EnterInfo() {
               <E.InputFieldInput
                 id="password"
                 type="password"
-                maxLength={20}
+                maxLength={15}
                 placeholder="비밀번호를 입력하세요"
                 {...register('password', {
                   required: true,
+                  pattern: {
+                    value: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/,
+                    message: '영문 숫자 특수기호 조합 8자리 이상 기입해주세요',
+                  },
                   minLength: {
                     value: 8,
                     message: '8글자 이상 입력해주세요',
