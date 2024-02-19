@@ -134,7 +134,7 @@ export default function EnterInfo() {
               <E.InputFieldInput
                 id="password_confirm"
                 type="password"
-                maxLength={20}
+                maxLength={15}
                 placeholder="비밀번호를 입력하세요"
                 {...register('password_confirm', {
                   required: true,
@@ -158,6 +158,11 @@ export default function EnterInfo() {
                 placeholder="Hongik@gmail.com"
                 {...register('email', {
                   required: true,
+                  pattern: {
+                    value:
+                      /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+                    message: '올바른 형식으로 기입해주세요',
+                  },
                 })}
               />
             </E.InputField>
