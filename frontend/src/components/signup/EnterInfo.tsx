@@ -72,7 +72,7 @@ export default function EnterInfo() {
                   required: true,
                   pattern: {
                     value: /^[가-힣]{2,7}$/,
-                    message: '2글자 이상 작성해주세요',
+                    message: '한글로 2글자 이상 작성해주세요',
                   },
                 })}
               />
