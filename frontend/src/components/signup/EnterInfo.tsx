@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Search from '@assets/image/icon/search.svg';
 import useGetDepartments from '@query/get/useGetDepartments';
 import usePostSignup from '@query/post/usePostSignup';
@@ -34,6 +34,15 @@ export default function EnterInfo() {
   const { writeSignup, isPending } = usePostSignup();
 
   const [major, setMajor] = useState('');
+  const [phoneNumError, setPhoneNumError] = useState<boolean | undefined>(false);
+
+  useEffect(() => {
+    if (errors.num1 || errors.num2 || errors.num3) {
+      setPhoneNumError(true);
+    } else {
+      setPhoneNumError(false);
+    }
+  }, [errors.num1, errors.num2, errors.num3]);
 
   const onSubmit = (data: FormType) => {
     writeSignup({
@@ -55,7 +64,9 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="name"
+                autoComplete="off"
                 type="text"
+                maxLength={7}
                 placeholder="홍길동"
                 {...register('name', {
                   required: true,
@@ -75,7 +86,9 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="studentNumber"
+                autoComplete="off"
                 type="text"
+                maxLength={7}
                 placeholder="C123456"
                 {...register('studentNumber', {
                   required: true,
@@ -96,6 +109,7 @@ export default function EnterInfo() {
               <E.InputFieldInput
                 id="password"
                 type="password"
+                maxLength={20}
                 placeholder="비밀번호를 입력하세요"
                 {...register('password', {
                   required: true,
@@ -116,6 +130,7 @@ export default function EnterInfo() {
               <E.InputFieldInput
                 id="password_confirm"
                 type="password"
+                maxLength={20}
                 placeholder="비밀번호를 입력하세요"
                 {...register('password_confirm', {
                   required: true,
@@ -134,6 +149,7 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="email"
+                autoComplete="off"
                 type="email"
                 placeholder="Hongik@gmail.com"
                 {...register('email', {
@@ -151,6 +167,7 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num1"
+                  autoComplete="off"
                   type="text"
                   maxLength={3}
                   placeholder="010"
@@ -158,7 +175,7 @@ export default function EnterInfo() {
                     required: true,
                     maxLength: 3,
                     pattern: {
-                      value: /^\d{3}$/,
+                      value: /^010$/,
                       message: '제대로 입력해주세요',
                     },
                   })}
@@ -167,6 +184,7 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num2"
+                  autoComplete="off"
                   type="text"
                   maxLength={4}
                   placeholder="1234"
@@ -183,6 +201,7 @@ export default function EnterInfo() {
               <E.PhoneNumField>
                 <E.PhoneNumFieldInput
                   id="num3"
+                  autoComplete="off"
                   type="text"
                   maxLength={4}
                   placeholder="5678"
@@ -197,9 +216,7 @@ export default function EnterInfo() {
                 />
               </E.PhoneNumField>
             </E.PhoneNumWrapper>
-            {errors.num1 && typeof errors.num1.message === 'string' && (
-              <E.ErrorMessage>{errors.num1.message}</E.ErrorMessage>
-            )}
+            {phoneNumError && <E.ErrorMessage>제대로 입력해주세요</E.ErrorMessage>}
           </E.InputWrapper>
           <E.InputWrapper>
             <E.Label>학과</E.Label>

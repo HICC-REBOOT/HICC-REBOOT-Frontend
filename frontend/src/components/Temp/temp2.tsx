@@ -1,4 +1,3 @@
-import ExpandableList from '@components/admin/CollapseTest';
 import React from 'react';
 import GradientButton from '@components/common/button/color/GradientButton';
 import { ReactComponent as ArrowRight } from '@assets/image/icon/arrowRight.svg';

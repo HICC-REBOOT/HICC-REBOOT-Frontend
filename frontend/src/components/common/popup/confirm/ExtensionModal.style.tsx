@@ -21,7 +21,7 @@ export const Backdrop = styled.div`
 export const Container = styled.main`
   position: relative;
   width: 32.8rem;
-  height: 41.7rem;
+  /* height: 41.7rem; */
   border-radius: 2rem;
   background: ${(props) => props.theme.colors.grey001};
   z-index: ${STYLE.Z_INDEX.MODAL};
@@ -48,7 +48,8 @@ export const Title = styled.header`
 
 export const Content = styled.body`
   width: 100%;
-  height: 24rem;
+  /* height: 24rem; */
+  min-height: 3rem;
   border: none;
   background-color: ${(props) => props.theme.colors.grey001};
 `;

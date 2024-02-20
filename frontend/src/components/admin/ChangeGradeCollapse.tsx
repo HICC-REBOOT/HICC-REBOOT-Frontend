@@ -140,6 +140,9 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
   const clickEvent = () => {
     setIsModalOpen();
   };
+  useEffect(() => {
+    setCollapsed(false);
+  }, [userData]);
 
   const onClickArrow = (event: any) => {
     event.stopPropagation();

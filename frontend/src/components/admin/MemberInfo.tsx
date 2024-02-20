@@ -2,17 +2,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
-import type { CollapseProps } from 'antd';
-import { Collapse, ConfigProvider } from 'antd';
 import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
 import useServerSidePagination from '@query/get/useServerSidePagination';
 import COMMON from '@constants/common';
+import KeyboardUtils from '@utils/keyboard';
 import * as I from './style/MemberInfo.style';
-import MemberDetail, { UserData } from './MemberDetail';
-import MemberItem from './MemberItem';
+import { UserData } from './MemberDetail';
+import MemberInfoCollapse from './MemberInfoCollapse';
 
 export default function MemberInfo() {
   const [userInput, setUserInput] = useState('');
@@ -30,13 +29,6 @@ export default function MemberInfo() {
     sort: currentOption?.value,
   });
 
-  const items: CollapseProps['items'] = curPageItem.map((user, index) => ({
-    key: String(index + 1),
-    label: <MemberItem userData={user} />,
-    children: <MemberDetail userData={user} />,
-    showArrow: false,
-  }));
-
   const getValue = (e: any) => {
     setUserInput(e.target.value.toLowerCase());
   };
@@ -49,7 +41,12 @@ export default function MemberInfo() {
     <>
       <I.SearchBar>
         <I.SearchBox>
-          <Input placeholder="회원명 검색" maxLength={8} onChange={getValue} />
+          <Input
+            placeholder="회원명 검색"
+            maxLength={8}
+            onChange={getValue}
+            onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, searching)}
+          />
           <SearchButton src={Search} alt="search" onClick={searching} />
         </I.SearchBox>
         <Dropdown placeholder="등급 순" options={options} onChange={onChange} dropdownWidth="11rem" />
@@ -60,21 +57,9 @@ export default function MemberInfo() {
           <I.MemberInfoNameDivision>Name</I.MemberInfoNameDivision>
           <I.BlankDivision />
         </I.CategoryBox>
-        <ConfigProvider
-          theme={{
-            token: {
-              paddingSM: 0,
-            },
-            components: {
-              Collapse: {
-                contentPadding: 0,
-                headerPadding: 0,
-              },
-            },
-          }}
-        >
-          <Collapse bordered={false} ghost={true} items={items} />
-        </ConfigProvider>
+        {curPageItem.map((user, index) => (
+          <MemberInfoCollapse key={index} userData={user} />
+        ))}
       </I.MembersBox>
       {renderPaginationBtnOrInfinityScroll()}
     </>
