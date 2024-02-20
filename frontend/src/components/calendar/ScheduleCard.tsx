@@ -25,7 +25,7 @@ interface ScheduleCardProps {
 
 export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
   const { changeModalState, changeScheduleId } = useModal();
-  const isAdmin = useAuth();
+  const { isAdmin } = useAuth();
 
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
 
