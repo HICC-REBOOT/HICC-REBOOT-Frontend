@@ -2,16 +2,15 @@ import { QUERY_KEYS } from '@constants/keys';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import request from '@utils/request';
 
+interface DataType {
+  name: string;
+}
 interface Departments {
-  map: any;
   timestamp: string;
   statusCode: string;
-  data: [
-    {
-      name: string;
-    },
-  ];
+  data: DataType[];
   success: boolean;
+  [propName: string]: any; // 이렇게 하면 map, filter, each 등의 추가 속성을 호출해도 오류메시지가 안뜬다.
 }
 
 function useGetDepartments() {

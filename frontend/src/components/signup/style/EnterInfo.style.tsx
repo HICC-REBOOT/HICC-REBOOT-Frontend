@@ -102,6 +102,17 @@ export const InputFieldInput = styled.input`
   border: none;
   outline: none;
 `;
+export const DepartmentFieldInput = styled.input`
+  width: 24.6rem;
+  background: ${(props) => props.theme.colors.grey001};
+  color: ${(props) => props.theme.colors.white};
+  font-feature-settings:
+    'clig' off,
+    'liga' off;
+  ${(props) => props.theme.typography[DeviceProvider()].body}
+  border: none;
+  outline: none;
+`;
 export const ErrorMessage = styled.div`
   width: 23.8rem;
   color: ${(props) => props.theme.colors.red};

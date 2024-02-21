@@ -3,6 +3,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import Search from '@assets/image/icon/search.svg';
 import useGetDepartments from '@query/get/useGetDepartments';
 import usePostSignup from '@query/post/usePostSignup';
+import OptionType from '@components/common/dropdown/OptionType';
+import DropDown from '@components/mypage/Dropdown';
+import useDropdown from '@hooks/useDropdown';
 import * as E from './style/EnterInfo.style';
 
 interface Department {
@@ -18,6 +21,7 @@ interface FormType {
   num1: number;
   num2: number;
   num3: number;
+  department: string;
 }
 
 export default function EnterInfo() {
@@ -29,9 +33,26 @@ export default function EnterInfo() {
   } = useForm<FormType>();
   const password = useRef<string | null>();
   password.current = watch('password');
+
   const { departments } = useGetDepartments();
+  const majorsList: Department[] = Array.isArray(departments.data) ? departments.data : [];
+
+  const mapToOptionsFormat = (majors: Department[] | undefined): OptionType[] => {
+    if (!majors) {
+      return [];
+    }
+
+    return majors.map((major, index) => ({
+      value: `${index + 1}`,
+      label: major.name,
+    }));
+  };
+
+  const options: OptionType[] = mapToOptionsFormat(majorsList);
+  const { currentOption, onChange } = useDropdown({ defalutValue: undefined });
 
   const { writeSignup, isPending } = usePostSignup();
+  const [userInput, setUserInput] = useState('');
 
   const [major, setMajor] = useState('');
   const [phoneNumError, setPhoneNumError] = useState<boolean | undefined>(false);
@@ -45,15 +66,26 @@ export default function EnterInfo() {
   }, [errors.num1, errors.num2, errors.num3]);
 
   const onSubmit = (data: FormType) => {
-    writeSignup({
-      studentNumber: data.studentNumber,
-      password: data.password,
-      name: data.name,
-      department: major,
-      phoneNumber: `${data.num1}-${data.num2}-${data.num3}`,
-      email: data.email,
-    });
+    if (currentOption) {
+      writeSignup({
+        studentNumber: data.studentNumber,
+        password: data.password,
+        name: data.name,
+        department: currentOption ? currentOption.label : '',
+        phoneNumber: `${data.num1}-${data.num2}-${data.num3}`,
+        email: data.email,
+      });
+    } else {
+      alert('학과를 선택해주세요');
+    }
   };
+  useEffect(() => {
+    console.log('currentOption: ', currentOption);
+  }, [currentOption]);
+  const getValue = (e: any) => {
+    setUserInput(e.target.value.toLowerCase());
+  };
+  const filtered = departments.data.filter((item: { name: string }) => item.name.toLowerCase().includes(userInput));
 
   return (
     <E.Container onSubmit={handleSubmit(onSubmit)}>
@@ -229,21 +261,34 @@ export default function EnterInfo() {
           </E.InputWrapper>
           <E.InputWrapper>
             <E.Label>학과</E.Label>
-            <E.DropDownWrapper>
+            <DropDown placeholder="학과를 입력해 주세요" options={options} onChange={onChange} />
+            {!currentOption && <E.ErrorMessage>학과를 선택해주세요</E.ErrorMessage>}
+            {/* <E.DropDownWrapper>
               <E.DropDown>
                 <E.DropDownItem>{major}</E.DropDownItem>
+                <E.DepartmentFieldInput
+                  id="department"
+                  autoComplete="off"
+                  type="text"
+                  maxLength={20}
+                  placeholder="학과를 입력해 주세요"
+                  {...register('department', {
+                    required: true,
+                  })}
+                  onChange={getValue}
+                />
                 <E.SearchButton src={Search} alt="search" />
               </E.DropDown>
               <E.ScrollContainer>
                 <E.ScrollBox>
-                  {departments.data.map((department: Department, index: number) => (
+                  {filtered.map((department: Department, index: number) => (
                     <E.ScrollItem key={index} onClick={() => setMajor(department.name)}>
                       <E.ScrollDropDownItem>{department.name}</E.ScrollDropDownItem>
                     </E.ScrollItem>
                   ))}
                 </E.ScrollBox>
               </E.ScrollContainer>
-            </E.DropDownWrapper>
+            </E.DropDownWrapper> */}
           </E.InputWrapper>
         </E.Wrapper2>
       </E.Wrapper>
