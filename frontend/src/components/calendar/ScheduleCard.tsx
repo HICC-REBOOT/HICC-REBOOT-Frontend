@@ -62,7 +62,7 @@ export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
           {showEndTime()}
         </S.TimeContainer>
         <S.InfoContainer>
-          <S.Title>{dayInfo.name}</S.Title>
+          <S.Title $isDetailOpen={isDetailOpen}>{dayInfo.name}</S.Title>
           <S.Detail $isDetailOpen={isDetailOpen}>{dayInfo.content}</S.Detail>
         </S.InfoContainer>
       </S.Left>
