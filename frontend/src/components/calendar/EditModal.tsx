@@ -49,6 +49,8 @@ export default function EditModal() {
   const closeModal = () => {
     changeModalState(false);
     changeScheduleId(-1);
+    setTitle('');
+    setDetail('');
   };
 
   useEffect(() => {
