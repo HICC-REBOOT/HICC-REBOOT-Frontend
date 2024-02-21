@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import React, { useEffect, useRef, useState } from 'react';
-import Search from '@assets/image/icon/search.svg';
 import useGetDepartments from '@query/get/useGetDepartments';
 import usePostSignup from '@query/post/usePostSignup';
 import OptionType from '@components/common/dropdown/OptionType';
@@ -11,7 +10,6 @@ import * as E from './style/EnterInfo.style';
 interface Department {
   name: string;
 }
-
 interface FormType {
   name: string;
   studentNumber: string;
@@ -52,9 +50,7 @@ export default function EnterInfo() {
   const { currentOption, onChange } = useDropdown({ defalutValue: undefined });
 
   const { writeSignup, isPending } = usePostSignup();
-  const [userInput, setUserInput] = useState('');
 
-  const [major, setMajor] = useState('');
   const [phoneNumError, setPhoneNumError] = useState<boolean | undefined>(false);
 
   useEffect(() => {
@@ -79,13 +75,6 @@ export default function EnterInfo() {
       alert('학과를 선택해주세요');
     }
   };
-  useEffect(() => {
-    console.log('currentOption: ', currentOption);
-  }, [currentOption]);
-  const getValue = (e: any) => {
-    setUserInput(e.target.value.toLowerCase());
-  };
-  const filtered = departments.data.filter((item: { name: string }) => item.name.toLowerCase().includes(userInput));
 
   return (
     <E.Container onSubmit={handleSubmit(onSubmit)}>
@@ -263,32 +252,6 @@ export default function EnterInfo() {
             <E.Label>학과</E.Label>
             <DropDown placeholder="학과를 입력해 주세요" options={options} onChange={onChange} />
             {!currentOption && <E.ErrorMessage>학과를 선택해주세요</E.ErrorMessage>}
-            {/* <E.DropDownWrapper>
-              <E.DropDown>
-                <E.DropDownItem>{major}</E.DropDownItem>
-                <E.DepartmentFieldInput
-                  id="department"
-                  autoComplete="off"
-                  type="text"
-                  maxLength={20}
-                  placeholder="학과를 입력해 주세요"
-                  {...register('department', {
-                    required: true,
-                  })}
-                  onChange={getValue}
-                />
-                <E.SearchButton src={Search} alt="search" />
-              </E.DropDown>
-              <E.ScrollContainer>
-                <E.ScrollBox>
-                  {filtered.map((department: Department, index: number) => (
-                    <E.ScrollItem key={index} onClick={() => setMajor(department.name)}>
-                      <E.ScrollDropDownItem>{department.name}</E.ScrollDropDownItem>
-                    </E.ScrollItem>
-                  ))}
-                </E.ScrollBox>
-              </E.ScrollContainer>
-            </E.DropDownWrapper> */}
           </E.InputWrapper>
         </E.Wrapper2>
       </E.Wrapper>
