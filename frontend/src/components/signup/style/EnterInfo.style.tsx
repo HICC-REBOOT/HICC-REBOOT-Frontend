@@ -86,7 +86,6 @@ export const InputField = styled.div`
   flex-shrink: 0;
   border-radius: 1.6rem;
   margin-top: 0.4rem;
-  margin-bottom: 0.8rem;
   background: ${(props) => props.theme.colors.grey001};
   justify-content: center;
   align-items: center;
@@ -115,6 +114,7 @@ export const DepartmentFieldInput = styled.input`
 `;
 export const ErrorMessage = styled.div`
   width: 23.8rem;
+  margin-top: 0.8rem;
   color: ${(props) => props.theme.colors.red};
   font-feature-settings:
     'clig' off,
