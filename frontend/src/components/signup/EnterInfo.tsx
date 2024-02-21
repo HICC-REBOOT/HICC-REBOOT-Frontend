@@ -99,7 +99,7 @@ export default function EnterInfo() {
               />
             </E.InputField>
             {errors.name && typeof errors.name.message === 'string' && (
-              <E.ErrorMessage>{errors.name.message}</E.ErrorMessage>
+              <E.ErrorMessage>한글로 2글자 이상 작성해주세요</E.ErrorMessage>
             )}
           </E.InputWrapper>
           <E.InputWrapper>
@@ -121,7 +121,7 @@ export default function EnterInfo() {
               />
             </E.InputField>
             {errors.studentNumber && typeof errors.studentNumber.message === 'string' && (
-              <E.ErrorMessage>{errors.studentNumber.message}</E.ErrorMessage>
+              <E.ErrorMessage>올바른 형식으로 기입해주세요</E.ErrorMessage>
             )}
           </E.InputWrapper>
           <E.InputWrapper>
@@ -140,13 +140,13 @@ export default function EnterInfo() {
                   },
                   minLength: {
                     value: 8,
-                    message: '8글자 이상 입력해주세요',
+                    message: '영문 숫자 특수기호 조합 8자리 이상 기입해주세요',
                   },
                 })}
               />
             </E.InputField>
             {errors.password && typeof errors.password.message === 'string' && (
-              <E.ErrorMessage>{errors.password.message}</E.ErrorMessage>
+              <E.ErrorMessage>영문 숫자 특수기호 조합 8자리 이상 기입해주세요</E.ErrorMessage>
             )}
           </E.InputWrapper>
           <E.InputWrapper>
