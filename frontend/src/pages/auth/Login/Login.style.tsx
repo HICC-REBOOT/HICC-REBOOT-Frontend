@@ -85,4 +85,5 @@ export const PasswordIssue = styled.a`
   color: ${(props) => props.theme.colors.point2};
   ${(props) => props.theme.typography.common.caption1};
   align-self: flex-end;
+  cursor: pointer;
 `;
