@@ -6,6 +6,11 @@ const COMMON = {
   IMAGE: {
     MAX_LENGTH: 10,
   },
+  COMMUNITY: {
+    TITLE_LIMIT: 30,
+    CONTENT_LIMIT: 1000,
+    COMMENT_LIMIT: 250,
+  },
 };
 
 Object.freeze(COMMON);

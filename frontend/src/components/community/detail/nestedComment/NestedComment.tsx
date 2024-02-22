@@ -8,9 +8,10 @@ import * as N from './NestedComment.style';
 
 interface NestedCommentProps {
   nestedComment: NestedCommentType;
+  isAdmin: boolean;
 }
 
-function NestedComment({ nestedComment }: NestedCommentProps) {
+function NestedComment({ nestedComment, isAdmin }: NestedCommentProps) {
   const { deleteNestedComment, isPending } = useDeleteNestedComment({
     articleId: nestedComment.articleId,
     commentId: nestedComment.commentId,
@@ -26,13 +27,17 @@ function NestedComment({ nestedComment }: NestedCommentProps) {
     });
   };
 
+  const isButtonShow = () => {
+    return nestedComment.isMine || isAdmin;
+  };
+
   return (
     <N.Container>
       <KeyboardReturn />
       <N.Content>
         <WriteInfo name={nestedComment.name} grade={nestedComment.grade} date={nestedComment.date} />
         <N.P>{nestedComment.content}</N.P>
-        <N.DeleteButton $isMine={nestedComment.isMine} onClick={deleteNestedConfirm} disabled={isPending}>
+        <N.DeleteButton $isMine={isButtonShow()} onClick={deleteNestedConfirm} disabled={isPending}>
           삭제
         </N.DeleteButton>
       </N.Content>

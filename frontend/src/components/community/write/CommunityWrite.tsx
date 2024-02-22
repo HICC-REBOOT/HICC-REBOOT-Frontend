@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import processNewImage from '@utils/image/processNewImage';
 import usePostArticle from '@query/post/usePostArticle';
 import { useOutletContext } from 'react-router-dom';
+import COMMON from '@constants/common';
 import * as W from './style/CommunityWrite.style';
 import { Board, CommunityWriteForm } from '../CommunityType';
 import ImageManager from '../common/ImageManager';
@@ -39,7 +40,12 @@ function CommunityWrite() {
 
   return (
     <W.Container onSubmit={handleSubmit(onSubmit)}>
-      <W.InputTitle type="text" placeholder="제목을 입력하세요" {...register('title', { required: true })} />
+      <W.InputTitle
+        type="text"
+        maxLength={COMMON.COMMUNITY.TITLE_LIMIT}
+        placeholder="제목을 입력하세요"
+        {...register('title', { required: true, maxLength: COMMON.COMMUNITY.TITLE_LIMIT })}
+      />
       <TextareaInForm register={register} />
       <ImageManager currentImages={currentImages} setImage={setValue} />
       <W.UploadButton type="submit" disabled={!formState.isValid || isPending || imageLoading}>

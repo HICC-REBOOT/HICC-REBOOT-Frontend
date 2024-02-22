@@ -11,9 +11,10 @@ import useDeleteComment from '../../../../query/delete/useDeleteComment';
 interface EachCommentProps {
   comment: ParentComment;
   nestedComments: NestedCommentType[];
+  isAdmin: boolean;
 }
 
-function EachComment({ comment, nestedComments }: EachCommentProps) {
+function EachComment({ comment, nestedComments, isAdmin }: EachCommentProps) {
   const { selectedNested } = useChangeComment();
 
   const enrollNestedComment = (commentId: number) => {
@@ -32,6 +33,10 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
     });
   };
 
+  const isButtonShow = () => {
+    return comment.isMine || isAdmin;
+  };
+
   return (
     <EA.Container>
       <WriteInfo grade={comment.grade} name={comment.name} date={comment.date} />
@@ -42,13 +47,14 @@ function EachComment({ comment, nestedComments }: EachCommentProps) {
           onClick: () => enrollNestedComment(comment.commentId),
           show: true,
         }}
-        dangerous={{ label: '삭제', onClick: deleteConfirm, show: comment.isMine, disabled: isPending }}
+        dangerous={{ label: '삭제', onClick: deleteConfirm, show: isButtonShow(), disabled: isPending }}
       />
       {nestedComments.length > 0 &&
         nestedComments.map((nestedComment) => (
           <NestedComment
             key={`${nestedComment.parentCommentId}-${nestedComment.commentId}`}
             nestedComment={nestedComment}
+            isAdmin={isAdmin}
           />
         ))}
     </EA.Container>

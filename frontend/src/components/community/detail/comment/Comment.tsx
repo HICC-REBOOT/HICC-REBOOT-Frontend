@@ -7,9 +7,10 @@ import EachComment from './EachComment';
 
 interface CommentProps {
   id: number;
+  isAdmin: boolean;
 }
 
-function Comment({ id }: CommentProps) {
+function Comment({ id, isAdmin }: CommentProps) {
   const { comments } = useGetParentComment({ articleId: id });
   const { nestedComments } = useGetNestedComment({ articleId: id });
 
@@ -33,7 +34,12 @@ function Comment({ id }: CommentProps) {
     <>
       <C.Count>댓글 {getCommentLength()}</C.Count>
       {comments.map((comment) => (
-        <EachComment key={comment.commentId} comment={comment} nestedComments={getNestedCommentByParent(comment)} />
+        <EachComment
+          key={comment.commentId}
+          comment={comment}
+          nestedComments={getNestedCommentByParent(comment)}
+          isAdmin={isAdmin}
+        />
       ))}
     </>
   );

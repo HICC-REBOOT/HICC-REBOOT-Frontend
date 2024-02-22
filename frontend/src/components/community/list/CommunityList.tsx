@@ -26,6 +26,7 @@ function CommunityList() {
         setKeyword={setKeyword}
         setSearchQuery={setSearchQuery}
         options={options}
+        currentOption={currentOption || options[0]}
         onChange={onChange}
         isOnlyExecutive={isOnlyExecutive}
         setIsOnlyExecutive={setIsOnlyExecutive}
