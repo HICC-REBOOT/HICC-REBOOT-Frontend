@@ -51,10 +51,19 @@ export const InfoContainer = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<{ $isDetailOpen: boolean }>`
   ${(props) => props.theme.typography[DeviceProvider()].body}
   color: ${(props) => props.theme.colors.white};
   white-space: nowrap;
+
+  ${(props) =>
+    !props.$isDetailOpen &&
+    css`
+      width: calc(100% - 6.4rem);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    `}
 `;
 
 export const Detail = styled.div<{ $isDetailOpen: boolean }>`
