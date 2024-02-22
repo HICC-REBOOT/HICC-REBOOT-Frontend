@@ -36,9 +36,7 @@ export default function MemberInfo() {
   const searching = () => {
     setSearchQuery(userInput);
   };
-  useEffect(() => {
-    console.log('curPageItem : ', curPageItem);
-  }, [curPageItem]);
+
   return (
     <>
       <I.SearchBar>
