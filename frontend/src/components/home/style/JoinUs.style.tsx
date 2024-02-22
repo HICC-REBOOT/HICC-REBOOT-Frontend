@@ -248,6 +248,13 @@ export const Circle1 = styled.div`
     height: 71.8rem;
     border-radius: 175.2rem;
   `}
+  ${(props) => props.theme.media.wide`
+    top: 64.4rem;
+    left: -9.7rem;
+    width: 175.2rem;
+    height: 71.8rem;
+    border-radius: 175.2rem;
+  `}
 `;
 
 export const Circle2 = styled.div`
@@ -267,10 +274,17 @@ export const Circle2 = styled.div`
     left: 30.9rem;
     width: 60.9rem;
     height: 48.1rem;
-    border-radius: 60.98px;
+    border-radius: 60.98rem;
   `}
 
   ${(props) => props.theme.media.desktop`
+    top: 64.4rem;
+    left: 59rem;
+    width: 126.7rem;
+    height: 90.5rem;
+    border-radius: 126.7rem;
+  `}
+  ${(props) => props.theme.media.wide`
     top: 64.4rem;
     left: 59rem;
     width: 126.7rem;

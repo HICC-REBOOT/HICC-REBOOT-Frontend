@@ -17,6 +17,7 @@ import usePostSchedule from '@query/post/usePostSchedule';
 import usePatchSchedule from '@query/patch/usePatchSchedule';
 import useDeleteSchedule from '@query/delete/useDeleteSchedule';
 import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdrawal/withdrawal';
+import { ConfigProvider } from 'antd';
 import { endTimeState, scheduleTypeState, startTimeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import * as E from './style/EditModal.style';
@@ -49,6 +50,8 @@ export default function EditModal() {
   const closeModal = () => {
     changeModalState(false);
     changeScheduleId(-1);
+    setTitle('');
+    setDetail('');
   };
 
   useEffect(() => {
@@ -135,11 +138,25 @@ export default function EditModal() {
             <E.Top>
               <E.TitleContainer>
                 <E.Line type={type} />
-                <E.Title
-                  onChange={setTitle}
-                  value={title}
-                  placeholder={scheduleId === -1 ? '일정 제목을 입력해주세요' : ''}
-                />
+                <ConfigProvider
+                  theme={{
+                    token: {
+                      colorPrimary: theme.colors.black,
+                      colorBgContainer: theme.colors.black,
+                      colorText: theme.colors.white,
+                      lineWidth: 0,
+                      colorTextPlaceholder: theme.colors.grey004,
+                    },
+                  }}
+                >
+                  <E.Title
+                    onChange={setTitle}
+                    value={title}
+                    placeholder={scheduleId === -1 ? '일정 제목을 입력해주세요' : ''}
+                    showCount
+                    maxLength={30}
+                  />
+                </ConfigProvider>
               </E.TitleContainer>
               {scheduleId !== -1 && (
                 <E.deleteBtn onClick={onClickDeleteBtn}>
@@ -174,12 +191,26 @@ export default function EditModal() {
               </E.Left>
               <E.TextAreaContainer>
                 <CommentIcon />
-                <E.TextArea
-                  rows={10}
-                  value={detail}
-                  placeholder={scheduleId === -1 ? '일정에 대한 설명을 입력해주세요' : ''}
-                  onChange={handleDetail}
-                />
+                <ConfigProvider
+                  theme={{
+                    token: {
+                      colorBgContainer: theme.colors.black,
+                      colorText: theme.colors.grey004,
+                      lineWidth: 0,
+                      colorTextPlaceholder: theme.colors.grey004,
+                      fontSize: 10,
+                    },
+                  }}
+                >
+                  <E.DetailTextArea
+                    rows={10}
+                    value={detail}
+                    placeholder={scheduleId === -1 ? '일정에 대한 설명을 입력해주세요' : ''}
+                    onChange={handleDetail}
+                    showCount
+                    maxLength={300}
+                  />
+                </ConfigProvider>
               </E.TextAreaContainer>
             </E.Content>
             <E.CompleteBtn onClick={onClickCompleteBtn}>

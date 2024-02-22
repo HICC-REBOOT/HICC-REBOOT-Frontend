@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import Search from '@assets/image/icon/search.svg';
@@ -36,7 +36,9 @@ export default function MemberInfo() {
   const searching = () => {
     setSearchQuery(userInput);
   };
-
+  useEffect(() => {
+    console.log('curPageItem : ', curPageItem);
+  }, [curPageItem]);
   return (
     <>
       <I.SearchBar>

@@ -99,6 +99,7 @@ export const MemberInfoName = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption1}
+  white-space: nowrap;
 `;
 export const Blank = styled.div`
   width: 1.8rem;

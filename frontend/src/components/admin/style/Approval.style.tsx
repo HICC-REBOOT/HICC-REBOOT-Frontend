@@ -115,6 +115,7 @@ export const Name = styled.div`
     'clig' off,
     'liga' off;
   ${(props) => props.theme.typography.common.caption1}
+  white-space: nowrap;
 `;
 export const State = styled.div`
   display: flex;
