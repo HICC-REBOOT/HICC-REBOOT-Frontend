@@ -6,6 +6,7 @@ import usePostComment from '@query/post/usePostComment';
 import usePostNestedComment from '@query/post/usePostNestedComment';
 import KeyboardUtils from '@utils/keyboard';
 import useChangeComment from '@hooks/useChangeComment';
+import COMMON from '@constants/common';
 import * as WC from './style/WriteComment.style';
 
 interface WriteCommentProps {
@@ -54,6 +55,7 @@ function WriteComment({ id }: WriteCommentProps) {
           type="text"
           placeholder={makePlaceholder()}
           value={comment}
+          maxLength={COMMON.COMMUNITY.COMMENT_LIMIT}
           onChange={setComment}
           onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, onSubmit)}
         />

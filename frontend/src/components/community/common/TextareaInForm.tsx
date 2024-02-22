@@ -1,5 +1,6 @@
 import React, { FormEventHandler } from 'react';
 import { UseFormRegister } from 'react-hook-form';
+import COMMON from '@constants/common';
 import Textarea from './style/TextareaInForm.style';
 import { CommunityWriteForm } from '../CommunityType';
 
@@ -21,6 +22,7 @@ function TextareaInForm({ register }: TextareaInFormProps) {
         required: true,
         onChange: textareaAutosize,
       })}
+      maxLength={COMMON.COMMUNITY.CONTENT_LIMIT}
     />
   );
 }
