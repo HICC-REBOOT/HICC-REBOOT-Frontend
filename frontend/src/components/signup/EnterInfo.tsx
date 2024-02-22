@@ -87,7 +87,7 @@ export default function EnterInfo() {
                 id="name"
                 autoComplete="off"
                 type="text"
-                maxLength={7}
+                maxLength={6}
                 placeholder="홍길동"
                 {...register('name', {
                   required: true,
