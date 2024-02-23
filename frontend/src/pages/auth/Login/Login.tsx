@@ -47,7 +47,7 @@ export default function Login() {
               name="studentNumber"
               rules={{ required: '아이디를 입력해주세요.' }}
               render={({ field: { onChange, value, ref } }) => (
-                <L.CustomInput ref={ref} value={value} onChange={onChange} />
+                <L.CustomInput ref={ref} value={value} onChange={onChange} autoComplete="on" />
               )}
             />
           </ConfigProvider>
@@ -80,6 +80,7 @@ export default function Login() {
                       <EyeInvisibleOutlined style={{ color: theme.colors.grey003 }} />
                     )
                   }
+                  autoComplete="current-password"
                 />
               )}
             />
