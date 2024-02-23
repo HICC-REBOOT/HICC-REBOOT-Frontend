@@ -36,7 +36,7 @@ function Temp3() {
       okText: '탈퇴',
       cancelText: '취소',
       isDangerous: true,
-      onOk: () => console.log('d'),
+      onOk: () => console.log(''),
       close: setIsModalOpen,
     });
   };
