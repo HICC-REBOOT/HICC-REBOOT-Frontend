@@ -11,9 +11,10 @@ import * as C from './Content.style';
 interface ContentProps {
   id: number;
   data: ArticleDetailType;
+  isAdmin: boolean;
 }
 
-function Content({ id, data }: ContentProps) {
+function Content({ id, data, isAdmin }: ContentProps) {
   const navigate = useNavigate();
   const { deleteArticle, isPending } = useDeleteArticle({ articleId: id });
 
@@ -31,6 +32,11 @@ function Content({ id, data }: ContentProps) {
     });
   };
 
+  // 운영진과 내가 쓴 글일 때 수정, 삭제버튼 활성화
+  const isButtonShow = () => {
+    return data.isMine || isAdmin;
+  };
+
   return (
     <>
       <C.Subject>{data.subject}</C.Subject>
@@ -40,8 +46,8 @@ function Content({ id, data }: ContentProps) {
       ))}
       <C.Content>{data.content}</C.Content>
       <Buttons
-        normal={{ label: '수정', onClick: updateArticle, show: data.isMine, disabled: isPending }}
-        dangerous={{ label: '삭제', onClick: deleteConfirm, show: data.isMine, disabled: isPending }}
+        normal={{ label: '수정', onClick: updateArticle, show: isButtonShow(), disabled: isPending }}
+        dangerous={{ label: '삭제', onClick: deleteConfirm, show: isButtonShow(), disabled: isPending }}
       />
     </>
   );

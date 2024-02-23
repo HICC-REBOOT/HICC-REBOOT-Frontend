@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { DeviceProvider } from '@assets/mediaQuery';
 import hexToRGBA from '@utils/hexToRgba';
+import { Input } from 'antd';
 import { ScheduleType } from '../CalendarType';
+
+const { TextArea } = Input;
 
 export const Container = styled.div`
   padding: 0.4rem 1.6rem 6rem 1.6rem;
@@ -68,16 +71,21 @@ export const Line = styled.div<{ type: ScheduleType }>`
   margin-right: 0.7rem;
 `;
 
-export const Title = styled.input`
+export const Title = styled(Input)`
   background-color: ${(props) => props.theme.colors.black};
-  ${(props) => props.theme.typography[DeviceProvider()].body};
-  color: ${(props) => props.theme.colors.white};
   padding: 0 1rem;
-  border: none;
   height: 3.2rem;
   width: 100%;
   border-radius: 0.8rem;
-  outline: none;
+
+  .ant-input {
+    font-size: 0.9rem;
+    ${(props) => props.theme.typography.common.caption1};
+  }
+
+  .ant-input-show-count-suffix {
+    color: ${(props) => props.theme.colors.grey004};
+  }
 `;
 
 export const Content = styled.div`
@@ -147,16 +155,20 @@ export const Icon = styled.div`
   background-color: ${(props) => props.theme.colors.red};
 `;
 
-export const TextArea = styled.textarea`
+export const DetailTextArea = styled(TextArea)`
   width: 100%;
-  background-color: ${(props) => props.theme.colors.black};
-  color: ${(props) => props.theme.colors.grey004};
   border-radius: 0.8rem;
   padding: 0.4rem 1rem;
-  ${(props) => props.theme.typography.common.caption2};
-  border: none;
-  resize: none;
-  outline: none;
+
+  .ant-input-data-count {
+    color: ${(props) => props.theme.colors.grey004};
+  }
+  .ant-input {
+    resize: none;
+  }
+  .ant-input-affix-wrapper {
+    ${(props) => props.theme.typography.common.caption2};
+  }
 `;
 
 export const CompleteBtn = styled.button`

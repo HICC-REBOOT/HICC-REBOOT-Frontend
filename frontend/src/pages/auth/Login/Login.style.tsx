@@ -15,6 +15,9 @@ export const Container = styled.div`
   ${(props) => props.theme.media.desktop`
     padding: 22rem 0;
   `};
+  ${(props) => props.theme.media.wide`
+    padding: 22rem 0;
+  `};
 `;
 export const Title = styled.div`
   color: ${(props) => props.theme.colors.white};
@@ -82,4 +85,5 @@ export const PasswordIssue = styled.a`
   color: ${(props) => props.theme.colors.point2};
   ${(props) => props.theme.typography.common.caption1};
   align-self: flex-end;
+  cursor: pointer;
 `;

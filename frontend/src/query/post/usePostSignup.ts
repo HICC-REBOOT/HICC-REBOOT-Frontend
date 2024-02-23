@@ -35,7 +35,6 @@ function usePostSignup() {
       navigate(`${ROUTE.LOGIN}`);
     },
     onError: (error) => {
-      console.error('통신 실패:', error);
       if (error.message === 'Request failed with status code 409') {
         alert('아이디(학번)이 중복되었습니다. 다시 확인해주세요');
       } else {

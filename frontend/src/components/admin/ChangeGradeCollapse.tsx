@@ -119,9 +119,6 @@ export default function ChangeGradeCollapse({ userData }: MemberItemProps) {
     cancelText: '취소',
     onOk: popup,
   };
-  useEffect(() => {
-    console.log('option : ', option);
-  }, [option]);
 
   if (option?.value === '3') {
     modalInfo.onOk = popup;

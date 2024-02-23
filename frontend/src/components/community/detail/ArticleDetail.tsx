@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import useGetArticleDetail from '@query/get/useGetArticleDetail';
+import useAuth from '@hooks/useAuth';
 import * as A from './ArticleDetail.style';
 import Content from './content/Content';
 import Comment from './comment/Comment';
@@ -13,6 +14,7 @@ function ArticleDetail() {
   const { data } = useGetArticleDetail({ articleId });
 
   const navigate = useNavigate();
+  const { isAdmin } = useAuth();
 
   useEffect(() => {
     if (Number.isNaN(articleId)) {
@@ -24,9 +26,9 @@ function ArticleDetail() {
     <>
       <A.Wrapper>
         <A.Container>
-          <Content id={articleId} data={data} />
+          <Content id={articleId} data={data} isAdmin={isAdmin} />
         </A.Container>
-        <Comment id={articleId} />
+        <Comment id={articleId} isAdmin={isAdmin} />
       </A.Wrapper>
       <WriteComment id={articleId} />
       <A.WriteCommentBlank />
