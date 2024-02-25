@@ -155,6 +155,7 @@ function MyInfo() {
             onChange={handlePhoneInputChange}
             value={phoneNumber}
             defaultValue={myInfo.data.phoneNumber}
+            autoComplete="tel"
           ></M.Input>
           {numberState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
@@ -165,7 +166,7 @@ function MyInfo() {
               <Check color={theme.colors.point2} />
             </M.CheckDiv>
           )}
-          <M.Input onChange={emailChange} value={email}></M.Input>
+          <M.Input onChange={emailChange} value={email} autoComplete="email"></M.Input>
           {emailState === true && <M.BoxAlert>올바른 형식으로 기입해주세요</M.BoxAlert>}
         </M.BoxArea>
         <M.BigBoxArea>
