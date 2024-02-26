@@ -131,6 +131,7 @@ export const ListBox = styled.div`
   justify-content: center;
   background: ${(props) => props.theme.colors.grey001};
   flex-shrink: 0;
+  /* height: auto; */
 
   ${(props) => props.theme.media.mobile`
     display: flex;
@@ -253,30 +254,27 @@ export const ListBoxContent = styled.div`
   overflow: hidden;
   color: ${(props) => props.theme.colors.white};
   opacity: 0.7;
+  height: auto;
   ${(props) => props.theme.typography[DeviceProvider()].body};
 
   ${(props) => props.theme.media.mobile`
     top: 29.3rem;
     width: 23rem;
-    height: 5.2rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     top: 29.4rem;
     width: 23.4rem;
-    height: 5.4rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     top: 32.2rem;
     width: 26rem;
-    height: 5.8rem;
   `}
 
   ${(props) => props.theme.media.wide`
     top: 32.2rem;
     width: 26rem;
-    height: 5.8rem;
   `}
 `;
 
