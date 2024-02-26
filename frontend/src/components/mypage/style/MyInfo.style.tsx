@@ -175,12 +175,20 @@ export const Input = styled.input`
   position: absolute;
   flex-shrink: 0;
   color: ${(props) => props.theme.colors.white};
-  border: none;
   outline: none;
+  border: none;
   border-radius: 1.6rem;
   background: ${(props) => props.theme.colors.grey001};
   padding-left: 1.2rem;
   padding-right: 3.5rem;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px #141415 inset;
+  }
   ${(props) => props.theme.media.mobile`
     width: 15.6rem;
     height: 5.4rem;

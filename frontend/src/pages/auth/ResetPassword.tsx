@@ -21,6 +21,9 @@ const Container = styled.div`
   ${(props) => props.theme.media.desktop`
     padding: 20% 0;
   `};
+  ${(props) => props.theme.media.wide`
+    padding: 20rem 0;
+  `};
 `;
 
 const Content = styled.form`
@@ -39,6 +42,14 @@ const CustomInput = styled.input`
   background-color: ${(props) => props.theme.colors.grey001};
   border-radius: 1.6rem;
   outline: none;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px #141415 inset;
+  }
 `;
 
 function ResetPassword() {

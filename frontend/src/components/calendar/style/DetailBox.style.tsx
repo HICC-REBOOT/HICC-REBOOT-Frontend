@@ -41,3 +41,18 @@ export const AddText = styled.div`
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography[DeviceProvider()].body};
 `;
+
+export const NoSchedule = styled.div`
+  width: 100%;
+  color: ${(props) => props.theme.colors.grey004};
+  ${(props) => props.theme.typography.common.caption1};
+  text-align: center;
+  padding: 2.4rem;
+
+  ${(props) => props.theme.media.desktop`
+    padding: 4rem;
+  `};
+  ${(props) => props.theme.media.wide`
+    padding: 4rem;
+  `};
+`;

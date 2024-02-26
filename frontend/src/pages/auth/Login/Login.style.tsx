@@ -51,6 +51,14 @@ export const CustomInput = styled(Input)`
   padding: 1.2rem;
   background-color: ${(props) => props.theme.colors.grey001};
   border-radius: 1.6rem;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px #141415 inset;
+  }
 `;
 
 export const CustomPasswordInput = styled(Input.Password)`
@@ -60,6 +68,14 @@ export const CustomPasswordInput = styled(Input.Password)`
   }
   border-radius: 1.6rem;
   padding: 1.2rem;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px #141415 inset;
+  }
 `;
 
 export const ErrorMsg = styled.div`
