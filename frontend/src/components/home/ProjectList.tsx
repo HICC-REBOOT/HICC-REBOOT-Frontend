@@ -8,16 +8,14 @@ import * as P from './style/ProjectList.style';
 const PROJECT_ITEMS = [
   {
     title: '나그네',
-    content:
-      '경로기반 여행sns 나그네입니다 관심있는 여행경로를 북마크해서 정보를 얻을 수 있고 팔로워들과 좋은 여행지롤 공유할 수 있는 sns입니다',
+    content: '경로기반 sns 나그네는 관심있는 여행경로를 북마크하고 여행지를 공유할수 있는 sns입니다',
     person: '최세호 외 4명',
     date: '23.07.08',
     image: Nagne,
   },
   {
     title: '오늘뭐해',
-    content:
-      '"오늘뭐해" 는 HICC 내 식사, 스터디 등의 모임 매칭을 해주는 웹 서비스이다. 모집을 위해 모집글을 작성하면 부원들이 이를 보고 매칭신청을 할 수 있다. 인원이 다 찬 경우 대기열에 등록되어 남는 자리가 생기면 매칭되고 알림을 전송해 효율적인 모집이 가능하다.',
+    content: "'오늘뭐해'는 HICC 내 식사, 스터디 등 모임을 매칭해주는 웹 서비스이다.",
     person: '김규민 외 6명',
     date: '23.07.08',
     image: Today,
