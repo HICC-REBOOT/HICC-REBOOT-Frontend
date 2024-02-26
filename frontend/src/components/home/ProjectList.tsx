@@ -8,7 +8,7 @@ import * as P from './style/ProjectList.style';
 const PROJECT_ITEMS = [
   {
     title: '나그네',
-    content: '경로기반 sns 나그네는 관심있는 여행경로를 북마크하고 여행지를 공유할수 있는 sns입니다',
+    content: '경로기반 sns 나그네는 관심있는 여행경로를 북마크하고 여행지를 공유할 수 있는 sns입니다',
     person: '최세호 외 4명',
     date: '23.07.08',
     image: Nagne,
