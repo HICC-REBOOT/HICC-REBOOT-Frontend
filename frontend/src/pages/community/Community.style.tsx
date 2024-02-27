@@ -11,13 +11,13 @@ export const Container = styled.main`
   ${(props) => props.theme.media.mobile`
     width: 100%;
     padding: 0 1.6rem;
-    min-height: 50rem;
+    min-height: 100rem;
   `};
 
   ${(props) => props.theme.media.tablet`
     width: 100%;
     padding: 0 11.7rem;
-    min-height: 70rem;
+    min-height: 1;
   `};
 
   ${(props) => props.theme.media.desktop`
