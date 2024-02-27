@@ -11,23 +11,27 @@ export const Container = styled.main`
   ${(props) => props.theme.media.mobile`
     width: 100%;
     padding: 0 1.6rem;
+    min-height: 50rem;
   `};
 
   ${(props) => props.theme.media.tablet`
     width: 100%;
     padding: 0 11.7rem;
+    min-height: 70rem;
   `};
 
   ${(props) => props.theme.media.desktop`
     width: 100%;
     padding: 0 30.9rem;
     margin-top: 18.8rem;
+    min-height: 160rem;
   `};
 
   ${(props) => props.theme.media.wide`
     width: 100%;
     padding: 0 30.9rem;
     margin-top: 18.8rem;
+    min-height: 160rem;
   `};
 `;
 

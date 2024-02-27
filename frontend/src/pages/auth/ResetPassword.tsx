@@ -21,6 +21,9 @@ const Container = styled.div`
   ${(props) => props.theme.media.desktop`
     padding: 20% 0;
   `};
+  ${(props) => props.theme.media.wide`
+    padding: 20rem 0;
+  `};
 `;
 
 const Content = styled.form`

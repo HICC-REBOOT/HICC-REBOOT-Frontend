@@ -5,7 +5,7 @@ import request from '@utils/request';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
 
-interface usePostScheduleProps {
+interface usePostScheduleParams {
   name: string;
   startDateTime: string;
   endDateTime: string;
@@ -21,8 +21,8 @@ interface postScheduleRequestBody {
   content: string;
 }
 
-function usePostSchedule({ name, startDateTime, endDateTime, type, content }: usePostScheduleProps) {
-  const postSchedule = async () => {
+function usePostSchedule() {
+  const postSchedule = async ({ name, startDateTime, endDateTime, type, content }: usePostScheduleParams) => {
     const data: postScheduleRequestBody = {
       name,
       startDateTime,
@@ -48,7 +48,7 @@ function usePostSchedule({ name, startDateTime, endDateTime, type, content }: us
   const selectedDate = dayjs(selectedDateInfo?.toString()).date();
 
   const { mutate, isPending } = useMutation({
-    mutationKey: [QUERY_KEYS.POST_SCHEDULE, { name, startDateTime, endDateTime, type, content }],
+    mutationKey: [QUERY_KEYS.POST_SCHEDULE],
     mutationFn: postSchedule,
     onSuccess: () => {
       queryClient.invalidateQueries({

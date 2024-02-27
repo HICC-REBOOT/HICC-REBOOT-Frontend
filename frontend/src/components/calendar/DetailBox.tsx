@@ -29,9 +29,9 @@ export default function DetailBox() {
           .locale('ko')
           .format('YYYY.MM.DD ddd')}
       </D.Date>
-      {dayInfo.map((info, i) => (
-        <ScheduleCard dayInfo={info} key={i} />
-      ))}
+      {dayInfo.length === 0
+        ? !isAdmin && <D.NoSchedule>등록된 일정이 없습니다.</D.NoSchedule>
+        : dayInfo.map((info, i) => <ScheduleCard dayInfo={info} key={i} />)}
       {isAdmin && (
         <D.AddContainer onClick={addNewSchedule}>
           <PlusIcon />
