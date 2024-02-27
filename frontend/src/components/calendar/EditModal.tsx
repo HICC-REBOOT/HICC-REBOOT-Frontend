@@ -33,13 +33,7 @@ export default function EditModal() {
   const endTime = useRecoilValue(endTimeState);
 
   const { data: scheduleInfo } = useGetCalendarEachInfo({ scheduleId });
-  const { postSchedule, isPending: isPostSchedulePending } = usePostSchedule({
-    name: title,
-    startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
-    endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
-    type,
-    content: detail,
-  });
+  const { postSchedule, isPending: isPostSchedulePending } = usePostSchedule();
   const { deleteSchedule, isPending: isDeleteSchedulePending } = useDeleteSchedule();
   const { updateSchedule, isPending: isPatchSchedulePending } = usePatchSchedule();
 
@@ -88,7 +82,13 @@ export default function EditModal() {
     // 일정 추가일 때
     if (scheduleId === -1) {
       if (isPostSchedulePending) return null;
-      postSchedule();
+      postSchedule({
+        name: title,
+        startDateTime: dayjs(startTime).format('YYYY-MM-DD HH:mm:ss'),
+        endDateTime: dayjs(endTime).format('YYYY-MM-DD HH:mm:ss'),
+        type,
+        content: detail,
+      });
     }
     // 일정 수정일 때
     else {

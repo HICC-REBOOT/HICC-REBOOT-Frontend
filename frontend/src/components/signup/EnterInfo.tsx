@@ -129,6 +129,7 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="password"
+                autoComplete="off"
                 type="password"
                 maxLength={15}
                 placeholder="비밀번호를 입력하세요"
@@ -154,6 +155,7 @@ export default function EnterInfo() {
             <E.InputField>
               <E.InputFieldInput
                 id="password_confirm"
+                autoComplete="off"
                 type="password"
                 maxLength={15}
                 placeholder="비밀번호를 입력하세요"
