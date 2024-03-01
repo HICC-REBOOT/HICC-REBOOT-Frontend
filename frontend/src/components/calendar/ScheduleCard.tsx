@@ -25,7 +25,7 @@ interface ScheduleCardProps {
 
 export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
   const { changeModalState, changeScheduleId } = useModal();
-  const isAdmin = useAuth();
+  const { isAdmin } = useAuth();
 
   const [isDetailOpen, setIsDetailOpen] = useState<boolean>(false);
 
@@ -62,7 +62,7 @@ export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
           {showEndTime()}
         </S.TimeContainer>
         <S.InfoContainer>
-          <S.Title>{dayInfo.name}</S.Title>
+          <S.Title $isDetailOpen={isDetailOpen}>{dayInfo.name}</S.Title>
           <S.Detail $isDetailOpen={isDetailOpen}>{dayInfo.content}</S.Detail>
         </S.InfoContainer>
       </S.Left>

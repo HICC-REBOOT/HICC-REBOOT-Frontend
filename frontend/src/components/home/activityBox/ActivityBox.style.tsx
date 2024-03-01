@@ -155,30 +155,32 @@ export const SmallBoxTitle = styled.div`
   z-index: ${STYLE.Z_INDEX.COMMON};
 
   ${(props) => props.theme.media.mobile`
-    margin-top: 4rem;
+    margin-top: 4.4rem;
     margin-left: 2.4rem;
+    margin-bottom: 1.6rem;
+    margin-right: 2.4rem;
     width: 11.6rem;
-    height: 4.2.rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     margin-top: 3.7rem;
     margin-left: 2.8rem;
+    margin-bottom: 1.4rem;
+    margin-right: 2.4rem;
     width: 18.1rem;
-    height: 6rem;
   `}
 
   ${(props) => props.theme.media.desktop`
-    margin-top: 3.5rem;
+    margin-top: 3.7rem;
     margin-left: 2.8rem;
+    margin-bottom: 1.4rem;
     width: 18rem;
-    height: 7rem;
   `}
 
   ${(props) => props.theme.media.wide`
-    margin-top: 3.5rem;
+    margin-top: 3.7rem;
     margin-left: 2.8rem;
+    margin-bottom: 1.4rem;
     width: 18rem;
-    height: 7rem;
   `}
 `;

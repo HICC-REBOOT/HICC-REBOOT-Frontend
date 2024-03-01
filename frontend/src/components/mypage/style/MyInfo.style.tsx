@@ -87,7 +87,8 @@ export const Name = styled.div`
 `;
 
 export const Label = styled.div`
-  width: 6.1rem;
+  /* width: 6.1rem; */
+  min-width: 6.1rem;
   height: 3.1rem;
 
   display: flex;
@@ -101,6 +102,7 @@ export const Label = styled.div`
 
   border-radius: 2rem;
   background: rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
 `;
 
 export const Button = styled.button`
@@ -173,12 +175,20 @@ export const Input = styled.input`
   position: absolute;
   flex-shrink: 0;
   color: ${(props) => props.theme.colors.white};
-  border: none;
   outline: none;
+  border: none;
   border-radius: 1.6rem;
   background: ${(props) => props.theme.colors.grey001};
   padding-left: 1.2rem;
   padding-right: 3.5rem;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    transition: background-color 5000s;
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0px 1000px #141415 inset;
+  }
   ${(props) => props.theme.media.mobile`
     width: 15.6rem;
     height: 5.4rem;

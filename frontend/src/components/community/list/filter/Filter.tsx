@@ -11,6 +11,7 @@ interface FilterProps {
   setKeyword: (state: string | React.ChangeEvent<HTMLInputElement>) => void;
   setSearchQuery: React.Dispatch<React.SetStateAction<string | undefined>>;
   options: OptionType[];
+  currentOption: OptionType;
   onChange: (selectedOption: OptionType | null) => void;
   isOnlyExecutive: boolean;
   setIsOnlyExecutive: React.DispatchWithoutAction;
@@ -21,6 +22,7 @@ function Filter({
   setKeyword,
   setSearchQuery,
   options,
+  currentOption,
   onChange,
   isOnlyExecutive,
   setIsOnlyExecutive,
@@ -32,6 +34,10 @@ function Filter({
     }
 
     setSearchQuery(keyword);
+  };
+
+  const makePlaceholderByFilterState = () => {
+    return currentOption.value === 'SUBJECT' ? '제목으로 검색하기' : '작성자로 검색하기';
   };
 
   return (
@@ -54,7 +60,7 @@ function Filter({
           type="text"
           value={keyword}
           onChange={setKeyword}
-          placeholder="제목 검색하기"
+          placeholder={makePlaceholderByFilterState()}
           onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, onSearchClick)}
         />
         <Search style={{ cursor: 'pointer' }} onClick={onSearchClick} />

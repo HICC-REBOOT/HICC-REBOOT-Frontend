@@ -2,7 +2,7 @@ import React from 'react';
 import DropDown from '@components/common/dropdown/Dropdown';
 import OptionType from '@components/common/dropdown/OptionType';
 import ROUTE from '@constants/route';
-import { useMatch } from 'react-router-dom';
+import { useMatch, useParams } from 'react-router-dom';
 import * as H from './Header.style';
 
 interface HeaderProps {
@@ -12,10 +12,19 @@ interface HeaderProps {
 
 function Header({ options, onChange }: HeaderProps) {
   const matchCommunityList = useMatch(ROUTE.COMMUNITY.BASE);
+  const { id } = useParams();
+  const isDropdownDisabled = Number.isInteger(Number(id));
 
   return (
     <H.Container>
-      <DropDown placeholder="" options={options} onChange={onChange} defaultValue={options[0]} dropdownWidth="15rem" />
+      <DropDown
+        placeholder=""
+        options={options}
+        onChange={onChange}
+        defaultValue={options[0]}
+        dropdownWidth="15rem"
+        isDisabled={isDropdownDisabled}
+      />
       <H.WriteButton to={ROUTE.COMMUNITY.WRITE} $hide={matchCommunityList === null}>
         글쓰기
       </H.WriteButton>

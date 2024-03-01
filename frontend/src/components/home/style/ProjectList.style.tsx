@@ -131,11 +131,12 @@ export const ListBox = styled.div`
   justify-content: center;
   background: ${(props) => props.theme.colors.grey001};
   flex-shrink: 0;
+  height: auto;
 
   ${(props) => props.theme.media.mobile`
     display: flex;
     width: 25rem;
-    height: 39.9rem;
+    // height: 39.9rem;
     flex-shrink: 0;
     border-radius: 2.4rem;
   `}
@@ -143,7 +144,7 @@ export const ListBox = styled.div`
   ${(props) => props.theme.media.tablet`
     display: flex;
     width: 25.6rem;
-    height: 39.4rem;
+    // height: 39.4rem;
     padding: var(--Column, 0.8rem);
 
     justify-content: center;
@@ -155,7 +156,7 @@ export const ListBox = styled.div`
   ${(props) => props.theme.media.desktop`
     display: flex;
     width: 27.6rem;
-    height: 42.5rem;
+    // height: 42.5rem;
     padding: 0.8rem;
     justify-content: center;
     gap: 1rem;
@@ -167,7 +168,7 @@ export const ListBox = styled.div`
   ${(props) => props.theme.media.wide`    
     display: flex;
     width: 27.6rem;
-    height: 42.5rem;
+    // height: 42.5rem;
     padding: 0.8rem;
     justify-content: center;
     gap: 1rem;
@@ -253,30 +254,27 @@ export const ListBoxContent = styled.div`
   overflow: hidden;
   color: ${(props) => props.theme.colors.white};
   opacity: 0.7;
+  height: auto;
   ${(props) => props.theme.typography[DeviceProvider()].body};
 
   ${(props) => props.theme.media.mobile`
     top: 29.3rem;
     width: 23rem;
-    height: 5.2rem;
   `}
 
   ${(props) => props.theme.media.tablet`
     top: 29.4rem;
     width: 23.4rem;
-    height: 5.4rem;
   `}
 
   ${(props) => props.theme.media.desktop`
     top: 32.2rem;
     width: 26rem;
-    height: 5.8rem;
   `}
 
   ${(props) => props.theme.media.wide`
     top: 32.2rem;
     width: 26rem;
-    height: 5.8rem;
   `}
 `;
 

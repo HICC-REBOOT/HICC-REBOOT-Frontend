@@ -21,22 +21,10 @@ export default function ApprovalMemberItem({ userData }: MemberItemProps) {
   const { deleteApproval, isDeletePending } = useDeleteApproval({ approvalId: userData.id });
   const [modalOpen, setIsModalOpen] = useReducer((prev: boolean) => !prev, false);
   const handleOk = () => {
-    console.log('승인');
     updateApproval();
   };
   const handleCancel = () => {
-    console.log('거절');
     deleteApproval();
-  };
-  const ClickAccept = () => {
-    confirm({
-      content: `${userData.name} 님을 HICC 회원으로 승인하시겠습니까?`,
-      okText: '승인',
-      cancelText: '거절',
-      isDangerous: false, // Set to true if it's a dangerous action
-      onOk: handleOk,
-      onCancel: handleCancel,
-    });
   };
   const modalInfo = {
     close: setIsModalOpen,

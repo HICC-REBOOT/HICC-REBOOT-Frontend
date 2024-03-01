@@ -51,15 +51,9 @@ export const InfoContainer = styled.div`
   width: 100%;
 `;
 
-export const Title = styled.div`
+export const Title = styled.div<{ $isDetailOpen: boolean }>`
   ${(props) => props.theme.typography[DeviceProvider()].body}
   color: ${(props) => props.theme.colors.white};
-  white-space: nowrap;
-`;
-
-export const Detail = styled.div<{ $isDetailOpen: boolean }>`
-  ${(props) => props.theme.typography.common.caption2};
-  color: ${(props) => props.theme.colors.grey004};
   text-align: justify;
 
   ${(props) =>
@@ -70,13 +64,27 @@ export const Detail = styled.div<{ $isDetailOpen: boolean }>`
       white-space: nowrap;
       text-overflow: ellipsis;
     `}
+`;
+
+export const Detail = styled.div<{ $isDetailOpen: boolean }>`
+  ${(props) => props.theme.typography.common.caption2};
+  color: ${(props) => props.theme.colors.grey004};
+  text-align: justify;
+  width: calc(100% - 6.4rem);
+  ${(props) =>
+    !props.$isDetailOpen &&
+    css`
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    `}
 
   ${(props) => props.theme.media.desktop`
-    padding-right: 1.2rem;
+    width: ${props.$isDetailOpen ? '100%' : 'calc(100% - 6.4rem)'};
   `};
 
   ${(props) => props.theme.media.wide`
-    padding-right: 1.2rem;
+    width: ${props.$isDetailOpen ? '100%' : 'calc(100% - 6.4rem)'};
   `};
 `;
 
