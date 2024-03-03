@@ -1,4 +1,4 @@
-import { COOKIE_KEYS, QUERY_KEYS } from '@constants/keys';
+import { COOKIE_KEYS, QUERY_KEYS, STORE_KEYS } from '@constants/keys';
 import ROUTE from '@constants/route';
 import useAuth from '@hooks/useAuth';
 import { useMutation } from '@tanstack/react-query';
@@ -53,6 +53,14 @@ function usePostLogin() {
       // 헤더에 access token 자동으로 설정
       axiosInstance.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
       setIsLogin(true);
+
+      // 만약 이전에 인증이 실패해서 로그인으로 접속했다면
+      const prevPageInfo = sessionStorage.getItem(STORE_KEYS.PREV_PAGE);
+
+      if (prevPageInfo !== null) {
+        navigate(prevPageInfo);
+        return;
+      }
 
       // 로그인 후 메인페이지로 이동
       navigate(ROUTE.HOME);

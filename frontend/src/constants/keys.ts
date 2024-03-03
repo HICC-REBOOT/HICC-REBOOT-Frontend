@@ -39,6 +39,7 @@ export const STORE_KEYS = Object.freeze({
   LOGIN: 'login',
   ADMIN: 'admin',
   PRESIDENT: 'president',
+  PREV_PAGE: 'prev-page',
 });
 
 export const COOKIE_KEYS = Object.freeze({
