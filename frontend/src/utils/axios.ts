@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { COOKIE_KEYS } from '@constants/keys';
+import { COOKIE_KEYS, STORE_KEYS } from '@constants/keys';
 import ERROR_CODE from '@constants/error';
 import { getCookie, removeCookie } from '@utils/cookie';
 import ROUTE from '@constants/route';
@@ -76,6 +76,8 @@ const onAccessTokenFetched = (token: string) => {
 const removeRefreshAndSignOut = () => {
   removeCookie(COOKIE_KEYS.REFRESH_KEY);
   removeCookie(COOKIE_KEYS.IS_LOGIN);
+  // 이전 페이지 저장을 위해
+  sessionStorage.setItem(STORE_KEYS.PREV_PAGE, window.location.pathname);
   window.location.replace(ROUTE.LOGIN);
 };
 

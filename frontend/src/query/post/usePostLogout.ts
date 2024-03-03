@@ -1,4 +1,4 @@
-import { COOKIE_KEYS, QUERY_KEYS } from '@constants/keys';
+import { COOKIE_KEYS, QUERY_KEYS, STORE_KEYS } from '@constants/keys';
 import ROUTE from '@constants/route';
 import useAuth from '@hooks/useAuth';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -30,6 +30,9 @@ function usePostLogout() {
       // 로그아웃 시 쿠키에서 리프레시토큰 삭제
       removeCookie(COOKIE_KEYS.REFRESH_KEY);
       removeCookie(COOKIE_KEYS.IS_LOGIN);
+
+      // 이전 페이지 저장값 제거
+      sessionStorage.removeItem(STORE_KEYS.PREV_PAGE);
 
       // 로그인 상태를 false
       setIsLogin(false);
