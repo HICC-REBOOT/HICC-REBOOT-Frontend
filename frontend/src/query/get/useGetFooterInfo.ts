@@ -1,5 +1,5 @@
 import { QUERY_KEYS } from '@constants/keys';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import request from '@utils/request';
 
 interface PresidentInfo {
@@ -17,7 +17,7 @@ function useGetFooterInfo() {
     return response.data;
   };
 
-  const { data } = useSuspenseQuery({
+  const { data } = useQuery({
     queryKey: [QUERY_KEYS.GET_PRESIDENT_INFO],
     queryFn: fetchPresidentName,
   });
