@@ -35,11 +35,17 @@ function Footer() {
   const openInstagram = () => {
     window.open('https://www.instagram.com/hongik_hicc/');
   };
+
+  const president =
+    presidentInfo === undefined
+      ? '회장 정보를 찾을 수 없습니다.'
+      : `${footerText.leaderFormat}${presidentInfo.name} ${presidentInfo.phoneNumber}`;
+
   return (
     <F.Container $hide={dontShowArticleDetail()}>
       <F.LeftSide>
         <F.HICC>{footerText.hicc}</F.HICC>
-        <F.Leader>{`${footerText.leaderFormat}${presidentInfo.name} ${presidentInfo.phoneNumber}`}</F.Leader>
+        <F.Leader>{president}</F.Leader>
         <Mobile>
           <F.Location>{footerText.location.mobile}</F.Location>
         </Mobile>
