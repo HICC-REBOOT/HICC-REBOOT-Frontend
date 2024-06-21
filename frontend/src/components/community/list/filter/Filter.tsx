@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 import DropDown from '@components/common/dropdown/Dropdown';
 import OptionType from '@components/common/dropdown/OptionType';
-import { ReactComponent as Search } from '@assets/image/icon/search.svg';
+import Search from '@assets/image/icon/search.svg';
 import Switch from '@components/common/switch/Switch';
 import KeyboardUtils from '@utils/keyboard';
 import * as F from './Filter.style';
@@ -63,7 +65,7 @@ function Filter({
           placeholder={makePlaceholderByFilterState()}
           onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, onSearchClick)}
         />
-        <Search style={{ cursor: 'pointer' }} onClick={onSearchClick} />
+        <img src={Search} alt="" style={{ cursor: 'pointer' }} onClick={onSearchClick} />
       </F.SearchPart>
     </F.Container>
   );

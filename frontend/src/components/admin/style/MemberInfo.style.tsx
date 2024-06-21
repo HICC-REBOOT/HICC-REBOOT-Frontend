@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+import { DeviceProvider } from '@assets/mediaQuery';
 import styled from 'styled-components';
 
 export const MembersBox = styled.div`
@@ -146,4 +147,31 @@ export const SearchBox = styled.div`
   ${(props) => props.theme.media.wide`
     width: 66.3rem;
     `};
+`;
+
+export const Input = styled.input`
+  width: 14.8rem;
+  background: ${(props) => props.theme.colors.black};
+  color: ${(props) => props.theme.colors.white};
+  border: none;
+  outline: none;
+  ${(props) => props.theme.typography[DeviceProvider()].body}
+  ${(props) => props.theme.media.tablet`
+    width: 35.3rem;
+  `};
+  ${(props) => props.theme.media.desktop`
+    width: 64.1rem;
+  `};
+  ${(props) => props.theme.media.wide`
+    width: 64.1rem;
+  `};
+`;
+
+export const SearchButton = styled.img`
+  width: 1.8rem;
+  height: 1.8rem;
+  flex-shrink: 0;
+  &:active {
+    opacity: 0.3;
+  }
 `;

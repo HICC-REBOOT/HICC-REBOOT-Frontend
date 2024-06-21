@@ -1,12 +1,12 @@
 import React from 'react';
 import { DropdownIndicatorProps, components } from 'react-select';
-import { ReactComponent as Magnifier } from '@assets/image/icon/magnifier.svg';
+import Magnifier from '@assets/image/icon/magnifier.svg';
 import OptionType from './OptionType';
 
 function DropdownIndicator(props: DropdownIndicatorProps<OptionType, false>) {
   return (
     <components.DropdownIndicator {...props}>
-      <Magnifier style={{ position: 'relative', right: '1.5rem' }}></Magnifier>
+      <img src={Magnifier} alt="" style={{ position: 'relative', right: '1.5rem' }} />
     </components.DropdownIndicator>
   );
 }

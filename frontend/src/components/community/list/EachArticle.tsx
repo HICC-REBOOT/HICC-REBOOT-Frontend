@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
-import { ReactComponent as Image } from '@assets/image/icon/picture.svg';
+import Image from '@assets/image/icon/picture.svg';
 import * as A from './style/EachArticle.style';
 import { Article } from '../CommunityType';
 import WriteInfo from '../common/WriteInfo';
@@ -21,7 +21,7 @@ function EachArticle({ article }: EachArticleProps) {
     <A.Container>
       <A.SubjectAndImageInfo>
         <A.Subject onClick={goDetail}>{article.subject}</A.Subject>
-        {article.imageExistence && <Image />}
+        {article.imageExistence && <img src={Image} alt="" />}
       </A.SubjectAndImageInfo>
       <WriteInfo grade={article.grade} name={article.name} date={article.date} />
     </A.Container>
