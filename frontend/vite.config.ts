@@ -9,6 +9,12 @@ export default defineConfig({
   define: {
     global: {},
   },
+  server: {
+    port: 3000,
+  },
+  preview: {
+    port: 3000,
+  },
   resolve: {
     alias: [
       { find: '@assets', replacement: path.resolve(__dirname, 'src/assets') },
