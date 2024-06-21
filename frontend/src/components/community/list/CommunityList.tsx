@@ -17,7 +17,7 @@ function CommunityList() {
     { value: 'MEMBER', label: '작성자 검색' },
   ];
 
-  const { currentOption, onChange } = useDropdown({ defalutValue: options[0] });
+  const { currentOption, onChange } = useDropdown({ defaultValue: options[0] });
 
   return (
     <Container>

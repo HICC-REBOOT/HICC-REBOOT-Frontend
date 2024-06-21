@@ -17,7 +17,7 @@ export const Container = styled.main`
   ${(props) => props.theme.media.tablet`
     width: 100%;
     padding: 0 11.7rem;
-    min-height: 1;
+    min-height: 100rem;
   `};
 
   ${(props) => props.theme.media.desktop`

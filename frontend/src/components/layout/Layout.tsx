@@ -2,6 +2,7 @@ import React, { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import useSidebar from '@hooks/useSidebar';
+import { ErrorBoundary } from 'react-error-boundary';
 
 import { Header, MobileHeader } from '@components/common/header';
 import Sidebar from '@components/common/sidebar/Sidebar';

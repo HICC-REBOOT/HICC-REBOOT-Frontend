@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReactComponent as Instagram } from '@assets/image/icon/instagram.svg';
+import Instagram from '@assets/image/icon/instagram.svg';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
 import { useMatch } from 'react-router-dom';
 import ROUTE from '@constants/route';
@@ -35,11 +35,17 @@ function Footer() {
   const openInstagram = () => {
     window.open('https://www.instagram.com/hongik_hicc/');
   };
+
+  const president =
+    presidentInfo === undefined
+      ? '회장 정보를 찾을 수 없습니다.'
+      : `${footerText.leaderFormat}${presidentInfo.name} ${presidentInfo.phoneNumber}`;
+
   return (
     <F.Container $hide={dontShowArticleDetail()}>
       <F.LeftSide>
         <F.HICC>{footerText.hicc}</F.HICC>
-        <F.Leader>{`${footerText.leaderFormat}${presidentInfo.name} ${presidentInfo.phoneNumber}`}</F.Leader>
+        <F.Leader>{president}</F.Leader>
         <Mobile>
           <F.Location>{footerText.location.mobile}</F.Location>
         </Mobile>
@@ -54,7 +60,7 @@ function Footer() {
       <F.RightSide>
         <F.InstagramMent>{footerText.instagramMent}</F.InstagramMent>
         <F.InstagramButton onClick={openInstagram}>
-          <Instagram />
+          <img src={Instagram} alt="인스타그램으로 이동" />
         </F.InstagramButton>
       </F.RightSide>
     </F.Container>

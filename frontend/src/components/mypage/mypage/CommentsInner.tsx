@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 
-import useServerSidePagination from '@query/get/useServerSidePagination';
+import useInfinityScroll from '@query/get/useInfinityScroll';
 import COMMON from '@constants/common';
 
 import * as C from '@components/mypage/style/MyPageComponent.style';
@@ -17,7 +17,7 @@ interface Comment {
 }
 
 function CommentsInner() {
-  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<Comment>({
+  const { curPageItem, renderNextAreaForInfinityScroll } = useInfinityScroll<Comment>({
     uri: '/api/profile/comments',
     size: COMMON.PAGINATION.SIZE,
   });
@@ -37,7 +37,7 @@ function CommentsInner() {
           <M.Divider />
         </M.ContentsArea>
       ))}
-      <C.PageSelectArea>{renderPaginationBtnOrInfinityScroll()}</C.PageSelectArea>
+      <C.PageSelectArea>{renderNextAreaForInfinityScroll()}</C.PageSelectArea>
     </>
   );
 }

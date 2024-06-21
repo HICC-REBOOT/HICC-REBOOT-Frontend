@@ -4,12 +4,12 @@ import STYLE from '@constants/style';
 import theme from '@styles/theme';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
-import { ReactComponent as CheckIcon } from '@assets/image/icon/check.svg';
 import useModal from '@hooks/useCalendarModal';
-import { ReactComponent as TrashIcon } from '@assets/image/icon/trash.svg';
-import { ReactComponent as TimeIcon } from '@assets/image/icon/time.svg';
-import { ReactComponent as TagIcon } from '@assets/image/icon/tag.svg';
-import { ReactComponent as CommentIcon } from '@assets/image/icon/comment.svg';
+import CheckIcon from '@assets/image/icon/check.svg';
+import TrashIcon from '@assets/image/icon/trash.svg';
+import TimeIcon from '@assets/image/icon/time.svg';
+import TagIcon from '@assets/image/icon/tag.svg';
+import CommentIcon from '@assets/image/icon/comment.svg';
 import hexToRGBA from '@utils/hexToRgba';
 import useGetCalendarEachInfo from '@query/get/useGetCalendarEachInfo';
 import useInput from '@hooks/useInput';
@@ -21,7 +21,6 @@ import { ConfigProvider } from 'antd';
 import { endTimeState, scheduleTypeState, startTimeState } from '../../state/calendar';
 import DatePickerBox from './DatePicker';
 import * as E from './style/EditModal.style';
-import { ScheduleType } from './CalendarType';
 
 export default function EditModal() {
   const { isModalOpen, changeModalState, scheduleId, changeScheduleId } = useModal();
@@ -160,7 +159,7 @@ export default function EditModal() {
               </E.TitleContainer>
               {scheduleId !== -1 && (
                 <E.deleteBtn onClick={onClickDeleteBtn}>
-                  <TrashIcon />
+                  <img src={TrashIcon} alt="" />
                 </E.deleteBtn>
               )}
             </E.Top>
@@ -175,7 +174,7 @@ export default function EditModal() {
                   />
                 </E.ContentWrapper>
                 <E.ContentWrapper>
-                  <TagIcon />
+                  <img src={TagIcon} alt="" />
                   <E.TypeButtonContainer>
                     <E.AcademicButton selected={type === 'ACADEMIC'} onClick={() => setType('ACADEMIC')}>
                       • 학술
@@ -190,7 +189,7 @@ export default function EditModal() {
                 </E.ContentWrapper>
               </E.Left>
               <E.TextAreaContainer>
-                <CommentIcon />
+                <img src={CommentIcon} alt="" />
                 <ConfigProvider
                   theme={{
                     token: {
@@ -214,7 +213,7 @@ export default function EditModal() {
               </E.TextAreaContainer>
             </E.Content>
             <E.CompleteBtn onClick={onClickCompleteBtn}>
-              <CheckIcon color={theme.colors.white} />
+              <img src={CheckIcon} alt="" style={{ color: theme.colors.white }} />
             </E.CompleteBtn>
           </E.Container>
         </Sheet.Content>
