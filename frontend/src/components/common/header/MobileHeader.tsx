@@ -1,6 +1,8 @@
 import React from 'react';
 import ROUTE from '@constants/route';
 import Hamburger from '@assets/image/icon/hamburger.svg';
+import logo from '@assets/image/logo.svg';
+
 import { NotDesktop } from '@assets/mediaQuery';
 import useSidebar from '@hooks/useSidebar';
 import { useMatch, useNavigate } from 'react-router-dom';
@@ -31,7 +33,7 @@ function MobileHeader() {
           {matchHome === null ? (
             <MH.PreviousButton src={previous} onClick={goPreviousPage} />
           ) : (
-            <MH.Logo to={ROUTE.HOME} />
+            <MH.LogoImage src={logo} alt="logo" onClick={() => navigate(ROUTE.HOME)} />
           )}
           <MH.RightSide>
             {matchMypage !== null && <MH.User src={user} onClick={goProfile} />}
