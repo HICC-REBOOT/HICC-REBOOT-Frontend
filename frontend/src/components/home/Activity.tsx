@@ -1,6 +1,6 @@
 import React from 'react';
 import * as A from '@components/home/style/Activity.style';
-import { ReactComponent as Arrow } from '@assets/image/icon/arrow2.svg';
+import Arrow from '@assets/image/icon/arrow2.svg';
 import seminar from '@assets/image/seminar.png';
 import project from '@assets/image/project.png';
 import mission from '@assets/image/mission.png';
@@ -80,7 +80,7 @@ function Activity() {
               있습니다.
             </A.SmallBoxContent>
             <A.Logo onClick={onMoveToElement} style={{ cursor: 'pointer' }}>
-              <Arrow />
+              <img src={Arrow} alt="" />
             </A.Logo>
           </A.SmallBox>
           <SmallActivityBox {...missionInfo} />

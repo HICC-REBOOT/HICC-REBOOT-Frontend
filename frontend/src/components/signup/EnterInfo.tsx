@@ -47,7 +47,7 @@ export default function EnterInfo() {
   };
 
   const options: OptionType[] = mapToOptionsFormat(majorsList);
-  const { currentOption, onChange } = useDropdown({ defalutValue: undefined });
+  const { currentOption, onChange } = useDropdown({ defaultValue: undefined });
 
   const { writeSignup, isPending } = usePostSignup();
 

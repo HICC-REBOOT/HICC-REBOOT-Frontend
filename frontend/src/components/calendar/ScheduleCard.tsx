@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Variants } from 'framer-motion';
 import arrow from '@assets/image/icon/arrow.svg';
-import { ReactComponent as EditIcon } from '@assets/image/icon/edit.svg';
+import EditIcon from '@assets/image/icon/edit.svg';
 import useAuth from '@hooks/useAuth';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
@@ -68,7 +68,7 @@ export default function ScheduleCard({ dayInfo }: ScheduleCardProps) {
       </S.Left>
       {isAdmin ? (
         <S.Btn onClick={showModal}>
-          <EditIcon />
+          <img src={EditIcon} alt="" />
         </S.Btn>
       ) : (
         <S.ArrowIcon

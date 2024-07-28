@@ -29,6 +29,13 @@ export const Logo = styled(Link)`
   background-size: contain;
 `;
 
+export const LogoImage = styled.img`
+  width: 3.04rem;
+  height: 2.6rem;
+
+  object-fit: contain;
+`;
+
 export const Hamburger = styled.img`
   width: 2.4rem;
   height: 2.4rem;

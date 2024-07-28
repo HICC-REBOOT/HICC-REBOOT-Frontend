@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useRef } from 'react';
 import useInput from '@hooks/useInput';
-import { ReactComponent as Send } from '@assets/image/icon/send.svg';
+import Send from '@assets/image/icon/send.svg';
 import useOutsideClick from '@hooks/useOutsideClick';
 import usePostComment from '@query/post/usePostComment';
 import usePostNestedComment from '@query/post/usePostNestedComment';
@@ -59,7 +61,7 @@ function WriteComment({ id }: WriteCommentProps) {
           onChange={setComment}
           onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, onSubmit)}
         />
-        <Send onClick={onSubmit} />
+        <img src={Send} alt="" onClick={onSubmit} />
       </WC.InputContainer>
     </WC.Container>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import ROUTE from '@constants/route';
 import { useNavigate } from 'react-router-dom';
 import COMMON from '@constants/common';
-import useServerSidePagination from '@query/get/useServerSidePagination';
+import useInfinityScroll from '@query/get/useInfinityScroll';
 import { ArticleDetailType } from '@components/community/CommunityType';
 
 import * as C from '@components/mypage/style/MyPageComponent.style';
@@ -11,7 +11,7 @@ import DeleteButton from '../button/ArticleDeleteButton';
 import ModifyButton from '../button/ModifyButton';
 
 function WritingsInner() {
-  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<ArticleDetailType>({
+  const { curPageItem, renderNextAreaForInfinityScroll } = useInfinityScroll<ArticleDetailType>({
     uri: '/api/profile/articles',
     size: COMMON.PAGINATION.SIZE,
   });
@@ -33,7 +33,7 @@ function WritingsInner() {
           <M.Divider />
         </M.ContentsArea>
       ))}
-      <C.PageSelectArea>{renderPaginationBtnOrInfinityScroll()}</C.PageSelectArea>
+      <C.PageSelectArea>{renderNextAreaForInfinityScroll()}</C.PageSelectArea>
     </>
   );
 }

@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useReducer } from 'react';
-import { ReactComponent as Delete } from '@assets/image/icon/trash.svg';
+import Delete from '@assets/image/icon/trash.svg';
 import { Desktop, NotDesktop } from '@assets/mediaQuery';
 import * as I from './style/EachImage.style';
 
@@ -17,7 +19,7 @@ function EachImage({ image, deleteImage }: EachImageProps) {
         <I.ImageContainer>
           <I.ImageView src={image} alt="image" />
           <I.NotDesktopBackdrop>
-            <Delete style={{ cursor: 'pointer' }} onClick={deleteImage} />
+            <img src={Delete} alt="" style={{ cursor: 'pointer' }} onClick={deleteImage} />
           </I.NotDesktopBackdrop>
         </I.ImageContainer>
       </NotDesktop>
@@ -25,7 +27,7 @@ function EachImage({ image, deleteImage }: EachImageProps) {
         <I.ImageContainer onMouseEnter={setBackdropShow} onMouseLeave={setBackdropShow}>
           <I.ImageView src={image} alt="image" />
           <I.Backdrop $show={backdropShow}>
-            <Delete style={{ cursor: 'pointer' }} onClick={deleteImage} />
+            <img src={Delete} alt="" style={{ cursor: 'pointer' }} onClick={deleteImage} />
           </I.Backdrop>
         </I.ImageContainer>
       </Desktop>

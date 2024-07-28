@@ -1,8 +1,8 @@
 import React from 'react';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
-import { ReactComponent as StarL } from '@assets/image/JoinusStarL.svg';
-import { ReactComponent as StarR } from '@assets/image/JoinusStarR.svg';
-import { ReactComponent as ArrowRight } from '@assets/image/icon/arrowRight.svg';
+import StarL from '@assets/image/JoinusStarL.svg';
+import StarR from '@assets/image/JoinusStarR.svg';
+import ArrowRight from '@assets/image/icon/arrowRight.svg';
 import { useNavigate } from 'react-router-dom';
 import GradientButton from '@components/common/button/color/GradientButton';
 import * as J from './style/JoinUs.style';
@@ -24,29 +24,29 @@ function JoinUs() {
         <J.Button>
           <GradientButton type="button" onClick={navigateToSignup} style={{ padding: '1rem 1.2rem 1rem 2rem' }}>
             <p>동아리원 등록</p>
-            <ArrowRight />
+            <img src={ArrowRight} alt="" />
           </GradientButton>
         </J.Button>
         <J.BigStar>
           <Mobile>
-            <StarR width={'2.93rem'} height={'2.93rem'} />
+            <img src={StarR} alt="" width={'2.93rem'} height={'2.93rem'} />
           </Mobile>
           <Tablet>
-            <StarR width={'4.4rem'} height={'4.4rem'} />
+            <img src={StarR} alt="" width={'4.4rem'} height={'4.4rem'} />
           </Tablet>
           <Desktop>
-            <StarR width={'4.4rem'} height={'4.4rem'} />
+            <img src={StarR} alt="" width={'4.4rem'} height={'4.4rem'} />
           </Desktop>
         </J.BigStar>
         <J.SmallStar>
           <Mobile>
-            <StarL width={'1.47em'} height={'1.47rem'} />
+            <img src={StarL} alt="" width={'1.47em'} height={'1.47rem'} />
           </Mobile>
           <Tablet>
-            <StarL width={'2.2rem'} height={'2.2rem'} />
+            <img src={StarL} alt="" width={'2.2rem'} height={'2.2rem'} />
           </Tablet>
           <Desktop>
-            <StarL width={'2.2em'} height={'2.2rem'} />
+            <img src={StarL} alt="" width={'2.2em'} height={'2.2rem'} />
           </Desktop>
         </J.SmallStar>
       </J.GroupContainer>

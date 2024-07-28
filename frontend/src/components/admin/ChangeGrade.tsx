@@ -6,7 +6,7 @@ import Search from '@assets/image/icon/search.svg';
 import OptionType from '@components/common/dropdown/OptionType';
 import Dropdown from '@components/common/dropdown/Dropdown';
 import useDropdown from '@hooks/useDropdown';
-import useServerSidePagination from '@query/get/useServerSidePagination';
+import useInfinityScroll from '@query/get/useInfinityScroll';
 import COMMON from '@constants/common';
 import KeyboardUtils from '@utils/keyboard';
 import * as I from './style/MemberInfo.style';
@@ -21,8 +21,8 @@ export default function ChangeGrade() {
     { value: 'name', label: '이름 순' },
     { value: 'department', label: '학과 순' },
   ];
-  const { currentOption, onChange } = useDropdown({ defalutValue: options[0] });
-  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<UserData>({
+  const { currentOption, onChange } = useDropdown({ defaultValue: options[0] });
+  const { curPageItem, renderNextAreaForInfinityScroll } = useInfinityScroll<UserData>({
     uri: '/api/admin/president/members',
     size: COMMON.PAGINATION.SIZE,
     search: searchQuery,
@@ -61,7 +61,7 @@ export default function ChangeGrade() {
           <ChangeGradeCollapse key={index} userData={user} />
         ))}
       </I.MembersBox>
-      {renderPaginationBtnOrInfinityScroll()}
+      {renderNextAreaForInfinityScroll()}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import useServerSidePagination from '@query/get/useServerSidePagination';
+import useInfinityScroll from '@query/get/useInfinityScroll';
 import COMMON from '@constants/common';
 import { useOutletContext } from 'react-router-dom';
 import OptionType from '@components/common/dropdown/OptionType';
@@ -19,7 +19,7 @@ function CommunityListInner({ searchQuery, currentOption, isOnlyExecutive }: Com
 
   const executiveQuery = isOnlyExecutive ? GRADE.EXECUTIVE : GRADE.NORMAL;
 
-  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<Article>({
+  const { curPageItem, renderNextAreaForInfinityScroll } = useInfinityScroll<Article>({
     uri: '/api/article',
     size: COMMON.PAGINATION.SIZE,
     board: currentBoard.value as Board,
@@ -33,7 +33,7 @@ function CommunityListInner({ searchQuery, currentOption, isOnlyExecutive }: Com
       {curPageItem.map((article) => (
         <EachArticle key={article.articleId} article={article} />
       ))}
-      {renderPaginationBtnOrInfinityScroll()}
+      {renderNextAreaForInfinityScroll()}
     </>
   );
 }

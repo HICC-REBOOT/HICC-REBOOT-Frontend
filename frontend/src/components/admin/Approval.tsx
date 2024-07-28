@@ -1,11 +1,11 @@
 import React from 'react';
-import useServerSidePagination from '@query/get/useServerSidePagination';
+import useInfinityScroll from '@query/get/useInfinityScroll';
 import COMMON from '@constants/common';
 import * as A from './style/Approval.style';
 import ApprovalMemberItem, { UserApprovalDate } from './ApprovalMemberItem';
 
 export default function Approval() {
-  const { curPageItem, renderPaginationBtnOrInfinityScroll } = useServerSidePagination<UserApprovalDate>({
+  const { curPageItem, renderNextAreaForInfinityScroll } = useInfinityScroll<UserApprovalDate>({
     uri: '/api/admin/applicants',
     size: COMMON.PAGINATION.SIZE,
   });
@@ -21,7 +21,7 @@ export default function Approval() {
           <ApprovalMemberItem key={index} userData={user} />
         ))}
       </A.MembersBox>
-      {renderPaginationBtnOrInfinityScroll()}
+      {renderNextAreaForInfinityScroll()}
     </>
   );
 }
