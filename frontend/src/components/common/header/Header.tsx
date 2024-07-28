@@ -1,5 +1,6 @@
 import React from 'react';
 import { useMatch, useNavigate } from 'react-router-dom';
+import logo from '@assets/image/logo.svg';
 
 import ROUTE from '@constants/route';
 import { Desktop } from '@assets/mediaQuery';
@@ -56,7 +57,7 @@ function Header() {
       <>
         <H.Container>
           <H.LogoContainer>
-            <H.Logo to={ROUTE.HOME} />
+            <H.LogoImage src={logo} alt="logo" onClick={() => navigate(ROUTE.HOME)} />
           </H.LogoContainer>
           <H.Tab to={ROUTE.CALENDAR} $active={matchCalendarTab !== null}>
             calendar

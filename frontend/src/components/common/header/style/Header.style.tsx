@@ -46,6 +46,13 @@ export const Logo = styled(Link)`
   background-size: contain;
 `;
 
+export const LogoImage = styled.img`
+  display: inline-block;
+  width: 3.04rem;
+  height: 2.6rem;
+  object-fit: contain;
+`;
+
 export const Tab = styled(Link)<{ $active: boolean }>`
   margin-right: 0.8rem;
   padding: 1rem 0.5rem;
