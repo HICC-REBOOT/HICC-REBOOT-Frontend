@@ -7,7 +7,7 @@ import withdrawal, { WithdrawalParameter } from '@components/common/popup/withdr
 import useGetProfile from '@query/get/useGetProfile';
 import usePatchProfile from '@query/patch/usePatchProfile';
 import useGetMajors from '@query/get/useGetMajors';
-import Check from '@assets/image/icon/check.svg';
+import Check from '@assets/image/icon/check.svg?react';
 import theme from '@styles/theme';
 import { GRADE_ENUM } from '@components/type/CommonType';
 import useDeleteProfile from '@query/delete/useDeleteProfile';
@@ -148,7 +148,7 @@ function MyInfo() {
           <M.BoxTitle>전화번호</M.BoxTitle>
           {numberState === false && (
             <M.CheckDiv>
-              <img src={Check} alt="" style={{ color: theme.colors.point2 }} />
+              <Check style={{ color: theme.colors.point2 }} />
             </M.CheckDiv>
           )}
           <M.Input
@@ -163,7 +163,7 @@ function MyInfo() {
           <M.BoxTitle>이메일</M.BoxTitle>
           {emailState === false && (
             <M.CheckDiv>
-              <img src={Check} alt="" style={{ color: theme.colors.point2 }} />
+              <Check style={{ color: theme.colors.point2 }} />
             </M.CheckDiv>
           )}
           <M.Input onChange={emailChange} value={email} autoComplete="email"></M.Input>

@@ -1,5 +1,5 @@
 import React from 'react';
-import KeyboardReturn from '@assets/image/icon/keyboardReturn.svg';
+import KeyboardReturn from '@assets/image/icon/keyboardReturn.svg?react';
 import WriteInfo from '@components/community/common/WriteInfo';
 import { NestedCommentType } from '@components/community/CommunityType';
 import useDeleteNestedComment from '@query/delete/useDeleteNestedComment';
@@ -33,7 +33,7 @@ function NestedComment({ nestedComment, isAdmin }: NestedCommentProps) {
 
   return (
     <N.Container>
-      <img src={KeyboardReturn} alt="" />
+      <KeyboardReturn />
       <N.Content>
         <WriteInfo name={nestedComment.name} grade={nestedComment.grade} date={nestedComment.date} />
         <N.P>{nestedComment.content}</N.P>

@@ -5,11 +5,13 @@ import theme from '@styles/theme';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import dayjs from 'dayjs';
 import useModal from '@hooks/useCalendarModal';
-import CheckIcon from '@assets/image/icon/check.svg';
-import TrashIcon from '@assets/image/icon/trash.svg';
-import TimeIcon from '@assets/image/icon/time.svg';
-import TagIcon from '@assets/image/icon/tag.svg';
-import CommentIcon from '@assets/image/icon/comment.svg';
+
+import CheckIcon from '@assets/image/icon/check.svg?react';
+import TrashIcon from '@assets/image/icon/trash.svg?react';
+import TimeIcon from '@assets/image/icon/time.svg?react';
+import TagIcon from '@assets/image/icon/tag.svg?react';
+import CommentIcon from '@assets/image/icon/comment.svg?react';
+
 import hexToRGBA from '@utils/hexToRgba';
 import useGetCalendarEachInfo from '@query/get/useGetCalendarEachInfo';
 import useInput from '@hooks/useInput';
@@ -159,7 +161,7 @@ export default function EditModal() {
               </E.TitleContainer>
               {scheduleId !== -1 && (
                 <E.deleteBtn onClick={onClickDeleteBtn}>
-                  <img src={TrashIcon} alt="" />
+                  <TrashIcon />
                 </E.deleteBtn>
               )}
             </E.Top>
@@ -174,7 +176,7 @@ export default function EditModal() {
                   />
                 </E.ContentWrapper>
                 <E.ContentWrapper>
-                  <img src={TagIcon} alt="" />
+                  <TagIcon />
                   <E.TypeButtonContainer>
                     <E.AcademicButton selected={type === 'ACADEMIC'} onClick={() => setType('ACADEMIC')}>
                       • 학술
@@ -189,7 +191,7 @@ export default function EditModal() {
                 </E.ContentWrapper>
               </E.Left>
               <E.TextAreaContainer>
-                <img src={CommentIcon} alt="" />
+                <CommentIcon />
                 <ConfigProvider
                   theme={{
                     token: {
@@ -213,7 +215,7 @@ export default function EditModal() {
               </E.TextAreaContainer>
             </E.Content>
             <E.CompleteBtn onClick={onClickCompleteBtn}>
-              <img src={CheckIcon} alt="" style={{ color: theme.colors.white }} />
+              <CheckIcon style={{ color: theme.colors.white }} />
             </E.CompleteBtn>
           </E.Container>
         </Sheet.Content>

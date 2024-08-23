@@ -2,7 +2,7 @@ import React from 'react';
 import useModal from '@hooks/useCalendarModal';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
-import PlusIcon from '@assets/image/icon/plus.svg';
+import PlusIcon from '@assets/image/icon/plus.svg?react';
 import useAuth from '@hooks/useAuth';
 import useGetCalendarDayInfo from '@query/get/useGetCalendarDayInfo';
 import * as D from './style/DetailBox.style';
@@ -34,7 +34,7 @@ export default function DetailBox() {
         : dayInfo.map((info, i) => <ScheduleCard dayInfo={info} key={i} />)}
       {isAdmin && (
         <D.AddContainer onClick={addNewSchedule}>
-          <img src={PlusIcon} alt="" />
+          <PlusIcon />
           <D.AddText>새 일정 추가하기</D.AddText>
         </D.AddContainer>
       )}

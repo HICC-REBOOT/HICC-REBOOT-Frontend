@@ -3,7 +3,7 @@
 import React from 'react';
 import DropDown from '@components/common/dropdown/Dropdown';
 import OptionType from '@components/common/dropdown/OptionType';
-import Search from '@assets/image/icon/search.svg';
+import Search from '@assets/image/icon/search.svg?react';
 import Switch from '@components/common/switch/Switch';
 import KeyboardUtils from '@utils/keyboard';
 import * as F from './Filter.style';
@@ -65,7 +65,7 @@ function Filter({
           placeholder={makePlaceholderByFilterState()}
           onKeyDown={(event) => KeyboardUtils.onPressEnterByInput(event, onSearchClick)}
         />
-        <img src={Search} alt="" style={{ cursor: 'pointer' }} onClick={onSearchClick} />
+        <Search style={{ cursor: 'pointer' }} onClick={onSearchClick} />
       </F.SearchPart>
     </F.Container>
   );
