@@ -24,18 +24,18 @@ function JoinUs() {
         <J.Button>
           <GradientButton type="button" onClick={navigateToSignup} style={{ padding: '1rem 1.2rem 1rem 2rem' }}>
             <p>동아리원 등록</p>
-            <ArrowRight alt="" />
+            <ArrowRight />
           </GradientButton>
         </J.Button>
         <J.BigStar>
           <Mobile>
-            <StarL width={'2.93rem'} height={'2.93rem'} />
+            <StarR width={'2.93rem'} height={'2.93rem'} />
           </Mobile>
           <Tablet>
-            <StarL width={'4.4rem'} height={'4.4rem'} />
+            <StarR width={'4.4rem'} height={'4.4rem'} />
           </Tablet>
           <Desktop>
-            <StarL width={'4.4rem'} height={'4.4rem'} />
+            <StarR width={'4.4rem'} height={'4.4rem'} />
           </Desktop>
         </J.BigStar>
         <J.SmallStar>
