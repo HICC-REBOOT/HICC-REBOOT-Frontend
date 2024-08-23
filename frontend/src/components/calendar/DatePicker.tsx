@@ -3,7 +3,7 @@ import 'dayjs/locale/ko';
 import locale from 'antd/es/date-picker/locale/ko_KR';
 import { ConfigProvider } from 'antd';
 import theme from '@styles/theme';
-import ArrowIcon from '@assets/image/icon/arrow2.svg';
+import ArrowIcon from '@assets/image/icon/arrow2.svg?react';
 import { useRecoilState } from 'recoil';
 import dayjs from 'dayjs';
 import { endTimeState, startTimeState } from '../../state/calendar';
@@ -61,7 +61,7 @@ export default function DatePickerBox({ startDateTime, endDateTime, scheduleId }
           prefixCls="calendar-datepicker"
         />
       </ConfigProvider>
-      <img src={ArrowIcon} alt="" />
+      <ArrowIcon />
       <ConfigProvider
         theme={{
           token: {

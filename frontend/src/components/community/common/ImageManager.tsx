@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 import COMMON from '@constants/common';
-import ImageUpload from '@assets/image/icon/ImageUpload.svg';
+import ImageUpload from '@assets/image/icon/ImageUpload.svg?react';
 import getImageMetas from '@utils/image/getImageMeta';
 import * as I from './style/ImageManager.style';
 
@@ -72,7 +72,7 @@ function ImageManager({ currentImages, setImage }: ImageManagerProps) {
             <EachImage key={index} image={image.src} deleteImage={() => deleteImage(index)} />
           ))}
           <I.ImageUploadButton $hide={currentImages?.length >= COMMON.IMAGE.MAX_LENGTH} onClick={handleImgBtn}>
-            <img src={ImageUpload} alt="" style={{ cursor: 'pointer' }} />
+            <ImageUpload style={{ cursor: 'pointer' }} />
           </I.ImageUploadButton>
         </I.ImageUploads>
       </I.ImageContainer>

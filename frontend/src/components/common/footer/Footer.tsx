@@ -1,5 +1,5 @@
 import React from 'react';
-import Instagram from '@assets/image/icon/instagram.svg';
+import Instagram from '@assets/image/icon/instagram.svg?react';
 import { Desktop, Mobile, Tablet } from '@assets/mediaQuery';
 import { useMatch } from 'react-router-dom';
 import ROUTE from '@constants/route';
@@ -60,7 +60,7 @@ function Footer() {
       <F.RightSide>
         <F.InstagramMent>{footerText.instagramMent}</F.InstagramMent>
         <F.InstagramButton onClick={openInstagram}>
-          <img src={Instagram} alt="인스타그램으로 이동" />
+          <Instagram />
         </F.InstagramButton>
       </F.RightSide>
     </F.Container>

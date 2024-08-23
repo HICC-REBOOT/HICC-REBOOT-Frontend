@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollToTop from '@assets/image/icon/scrollToTop.svg';
+import ScrollToTop from '@assets/image/icon/scrollToTop.svg?react';
 import { Mobile } from '@assets/mediaQuery';
 import { useMatch } from 'react-router-dom';
 import ROUTE from '@constants/route';
@@ -16,7 +16,7 @@ function MoveToTheTopButton() {
   return (
     <Mobile>
       <ButtonStyle onClick={moveToTheTop} $hide={matchCommunityList === null}>
-        <img src={ScrollToTop} alt="맨 위로" />
+        <ScrollToTop />
       </ButtonStyle>
     </Mobile>
   );

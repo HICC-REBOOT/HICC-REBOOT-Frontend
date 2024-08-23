@@ -26,12 +26,6 @@ const ROUTE = Object.freeze({
     MYWRITINGS: 'mywritings',
     MYCOMMENTS: 'mycomments',
   },
-  TEMP: {
-    BASE: '/temp',
-    APPLE: 'apple',
-    BANANA: 'banana',
-    MANGO: 'mango',
-  },
 });
 
 export default ROUTE;

@@ -15,7 +15,6 @@ import { MyWritings, MyComments } from '@components/mypage';
 import { Login, SignUp, ChangePassword, ResetPassword, EnterInfo } from '@pages/auth';
 import { ArticleDetail, CommunityList, CommunityUpdate, CommunityWrite } from '@components/community';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
-import { Temp1, Temp2, Temp3 } from '@components/Temp';
 import NotFound from '@components/common/error/NotFound';
 
 function App() {
@@ -55,12 +54,6 @@ function App() {
         <Route path={ROUTE.PROFILE.BASE} element={<MyPage />}>
           <Route path={ROUTE.PROFILE.MYWRITINGS} element={<MyWritings />} />
           <Route path={ROUTE.PROFILE.MYCOMMENTS} element={<MyComments />} />
-        </Route>
-        {/* dev */}
-        <Route path={ROUTE.TEMP.BASE} element={<Temp />}>
-          <Route path={ROUTE.TEMP.APPLE} element={<Temp1 />} />
-          <Route path={ROUTE.TEMP.BANANA} element={<Temp2 />} />
-          <Route path={ROUTE.TEMP.MANGO} element={<Temp3 />} />
         </Route>
         <Route path="*" element={<NotFound />} />
       </Route>
