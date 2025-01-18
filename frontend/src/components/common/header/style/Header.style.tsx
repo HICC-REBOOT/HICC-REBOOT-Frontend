@@ -34,6 +34,8 @@ export const LogoContainer = styled.div`
 
   border-radius: 1.2rem;
   background: ${(props) => hexToRGBA(props.theme.colors.grey002, 0.3)};
+
+  cursor: pointer;
 `;
 
 export const Logo = styled(Link)`
