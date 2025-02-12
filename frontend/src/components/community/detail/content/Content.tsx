@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import useDeleteArticle from '@query/delete/useDeleteArticle';
 import confirm from '@components/common/popup/confirm/Confirm';
+import TuiViewer from '@components/community/markdown/Viewer';
 import * as C from './Content.style';
 
 interface ContentProps {
@@ -41,10 +42,9 @@ function Content({ id, data, isAdmin }: ContentProps) {
     <>
       <C.Subject>{data.subject}</C.Subject>
       <WriteInfo grade={data.grade} name={data.name} date={data.date} />
-      {data.images.map((image) => (
-        <C.Image src={image.url} key={image.key} alt="image" />
-      ))}
-      <C.Content>{data.content}</C.Content>
+      <C.Content>
+        <TuiViewer content={data.content} />
+      </C.Content>
       <Buttons
         normal={{ label: '수정', onClick: updateArticle, show: isButtonShow(), disabled: isPending }}
         dangerous={{ label: '삭제', onClick: deleteConfirm, show: isButtonShow(), disabled: isPending }}
