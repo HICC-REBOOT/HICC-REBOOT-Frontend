@@ -7,4 +7,5 @@ export interface PresignedUrlInfo {
   fileName: string;
   key: string;
   preSignedUrl: string;
+  url: string;
 }

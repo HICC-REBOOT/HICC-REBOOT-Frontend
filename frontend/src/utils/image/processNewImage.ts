@@ -1,38 +1,19 @@
-import { CommunityWriteForm, ImageUrlSend } from '@components/community/CommunityType';
 import fetchPresignedUrl from './fetchPresignedUrl';
+import getFileInfo from './getFileInfo';
 import uploadImageToS3 from './uploadImageToS3';
 
 // 확장자와 파일 이름 뽑아내서 백엔드에서 presigned url 요청
-async function processNewImage(data: CommunityWriteForm) {
-  const images: ImageUrlSend[] = [];
+async function processNewImage(file: File) {
+  const { fileName, fileNameExtension } = getFileInfo(file);
 
-  if (data.image.length === 0) {
-    return [];
-  }
+  const imageInfo = await fetchPresignedUrl({
+    fileName,
+    fileNameExtension,
+  });
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const image of data.image) {
-    if (image.file !== undefined) {
-      const fileName = image.file.name;
-      const fileNameSplitExtension = image.file.name.split('.');
-      const fileNameExtension = fileNameSplitExtension[fileNameSplitExtension.length - 1];
+  await uploadImageToS3(imageInfo.preSignedUrl, file);
 
-      const imageInfo = await fetchPresignedUrl({
-        fileName,
-        fileNameExtension,
-      });
-
-      await uploadImageToS3(imageInfo.preSignedUrl, image.file);
-
-      images.push({
-        fileName: imageInfo.fileName,
-        fileNameExtension,
-        key: imageInfo.key,
-      });
-    }
-  }
-
-  return images;
+  return imageInfo;
 }
 
 export default processNewImage;
