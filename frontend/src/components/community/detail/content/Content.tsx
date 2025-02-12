@@ -1,7 +1,7 @@
 import React from 'react';
 import WriteInfo from '@components/community/common/WriteInfo';
 import { ArticleDetailType } from '@components/community/CommunityType';
-import Buttons from '@components/community/common/Buttons';
+import Buttons from '@components/common/buttons/Buttons';
 import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import useDeleteArticle from '@query/delete/useDeleteArticle';

@@ -18,6 +18,10 @@ const items: TabUnit[] = [
     label: '등급 수정',
     presidentAuthorization: true,
   },
+  {
+    key: ROUTE.ADMIN.COMMUNITY,
+    label: '게시판 수정',
+  },
 ];
 
 function Admin() {

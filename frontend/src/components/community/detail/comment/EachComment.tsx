@@ -1,7 +1,7 @@
 import React from 'react';
 import { NestedCommentType, ParentComment } from '@components/community/CommunityType';
 import WriteInfo from '@components/community/common/WriteInfo';
-import Buttons from '@components/community/common/Buttons';
+import Buttons from '@components/common/buttons/Buttons';
 import confirm from '@components/common/popup/confirm/Confirm';
 import useChangeComment from '@hooks/useChangeComment';
 import * as EA from './style/EachComment.style';
