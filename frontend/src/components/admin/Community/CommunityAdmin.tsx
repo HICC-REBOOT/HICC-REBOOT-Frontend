@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useGetBoardList from '@query/get/useGetBoardList';
 import { Board } from '@components/type/CommonType';
+import usePostBoard from '@query/post/usePostBoard';
+import usePatchBoard from '@query/patch/usePatchBoard';
+import useDeleteBoard from '@query/delete/useDeleteBoard';
+import { useQueryClient } from '@tanstack/react-query';
+import { QUERY_KEYS } from '@constants/keys';
 import * as B from './CommunityAdmin.style';
 import BoardItem from './BoardItem';
 
@@ -9,19 +14,24 @@ export type ClientStateBoard = Board & {
 };
 
 export default function CommunityAdmin() {
-  // const { boardList } = useGetBoardList();
+  const { boardList } = useGetBoardList();
+  const { postBoard } = usePostBoard();
+  const { patchBoard } = usePatchBoard();
+  const { deleteBoard } = useDeleteBoard();
 
-  const boardList = [
-    { boardType: '자유게시판', boardTypeId: 1 },
-    { boardType: '게시판', boardTypeId: 2 },
-  ];
+  // const boardList = [
+  //   { boardType: '자유게시판', boardTypeId: 1 },
+  //   { boardType: '게시판', boardTypeId: 2 },
+  // ];
 
   const [addMode, setAddMode] = useState(false);
   const buttonText = addMode ? '완료' : '추가';
 
-  const [boardState, setBoardState] = useState<ClientStateBoard[]>(
-    boardList.map((board) => ({ ...board, state: 'none' })),
-  );
+  const [boardState, setBoardState] = useState<ClientStateBoard[]>([]);
+
+  useEffect(() => {
+    setBoardState(boardList.map((board) => ({ ...board, state: 'none' })));
+  }, [boardList]);
 
   const getServerStateBoard = (boardTypeId: number) => {
     return boardList.filter((server) => server.boardTypeId === boardTypeId)[0];
@@ -80,6 +90,26 @@ export default function CommunityAdmin() {
     setAddMode((prev) => !prev);
   };
 
+  const queryClient = useQueryClient();
+
+  const onSubmit = async () => {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const board of boardState) {
+      if (board.state === 'create') {
+        await postBoard({ name: board.boardType });
+      } else if (board.state === 'update') {
+        await patchBoard({ name: board.boardType, id: board.boardTypeId });
+      } else if (board.state === 'delete') {
+        await deleteBoard({ id: board.boardTypeId });
+      }
+    }
+
+    alert('게시판이 수정되었습니다.');
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.GET_BOARD_LIST] });
+  };
+
+  const notChanged = boardState.every((board) => board.state === 'none');
+
   return (
     <B.Container>
       <B.BoardListContainer>
@@ -94,7 +124,12 @@ export default function CommunityAdmin() {
           </B.BoardStyle>
         )}
       </B.BoardListContainer>
-      <B.AddButton onClick={handleAdd}>{buttonText}</B.AddButton>
+      <B.Buttons>
+        <B.AddButton onClick={handleAdd}>{buttonText}</B.AddButton>
+        <B.ActionButton onClick={onSubmit} disabled={notChanged}>
+          수정완료
+        </B.ActionButton>
+      </B.Buttons>
     </B.Container>
   );
 }

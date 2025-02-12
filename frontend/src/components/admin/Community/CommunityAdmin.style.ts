@@ -74,3 +74,17 @@ export const AddButton = styled.button`
   color: ${(props) => props.theme.colors.white};
   ${(props) => props.theme.typography.common.caption1};
 `;
+
+export const ActionButton = styled.button`
+  margin-right: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 0.8rem;
+  background-color: ${(props) => (props.disabled ? props.theme.colors.grey001 : props.theme.colors.point1)};
+
+  color: ${(props) => props.theme.colors.white};
+  ${(props) => props.theme.typography.common.caption1};
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+`;

@@ -30,8 +30,8 @@ const BoardItem = ({ handleDelete, handleUpdate, ...board }: BoardProps) => {
       />
       <B.Buttons>
         <Buttons
-          normal={{ label: buttonText, onClick: onClickChange, show: true }}
-          dangerous={{ label: '삭제', onClick: () => handleDelete(board), show: true }}
+          normal={{ label: buttonText, onClick: onClickChange, show: board.boardType !== '전체게시판' }}
+          dangerous={{ label: '삭제', onClick: () => handleDelete(board), show: board.boardType !== '전체게시판' }}
         />
       </B.Buttons>
     </B.BoardStyle>

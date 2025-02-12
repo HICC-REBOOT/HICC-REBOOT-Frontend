@@ -17,7 +17,7 @@ const useGetBoardList = () => {
     queryKey: [QUERY_KEYS.GET_BOARD_LIST],
     queryFn: fetchBoardList,
     select: (boardList) => [
-      { boardTypeId: -1, boardType: '전체' },
+      { boardTypeId: -1, boardType: '전체게시판' },
       ...boardList.sort((a, b) => a.boardType.localeCompare(b.boardType)),
     ],
   });
