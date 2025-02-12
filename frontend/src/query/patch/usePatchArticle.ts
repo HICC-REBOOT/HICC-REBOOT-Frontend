@@ -1,4 +1,4 @@
-import { Board } from '@components/community/CommunityType';
+import { Board, NewImageUrl } from '@components/community/CommunityType';
 import { QUERY_KEYS } from '@constants/keys';
 import ROUTE from '@constants/route';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -6,6 +6,7 @@ import request from '@utils/request';
 import { useNavigate } from 'react-router-dom';
 
 interface UpdatePostRequestBody {
+  images: NewImageUrl[];
   board: Board;
   subject: string;
   content: string;

@@ -4,12 +4,15 @@ import '@toast-ui/editor/toastui-editor.css';
 import './Editor.style.css';
 import processNewImage from '@utils/image/processNewImage';
 import { DeviceProvider } from '@assets/mediaQuery';
+import { NewImageUrl } from '@components/community/CommunityType';
+import getFileInfo from '@utils/image/getFileInfo';
 
 export type HookCallback = (url: string, text?: string) => void;
 
 interface Props extends EditorProps {
   initialValue?: string;
   setContent: (content: string) => void;
+  handleNewImage: (newImage: NewImageUrl) => void;
 }
 
 const toolbar = [
@@ -19,7 +22,7 @@ const toolbar = [
   ['scrollSync'],
 ];
 
-function TuiEditor({ setContent, initialValue, ...restProps }: Props) {
+function TuiEditor({ setContent, initialValue, handleNewImage, ...restProps }: Props) {
   const isDesktop = DeviceProvider() !== 'mobile';
   const editorRef = useRef<Editor>(null);
 
@@ -40,10 +43,13 @@ function TuiEditor({ setContent, initialValue, ...restProps }: Props) {
 
   const imageHandler = async (blob: File | Blob, callback: HookCallback) => {
     const file = blob as File;
-    const imageUrl = await processNewImage(file);
+    const imageInfo = await processNewImage(file);
+    const { fileName, fileNameExtension } = getFileInfo(file);
 
-    if (imageUrl) {
-      callback(imageUrl, file.name);
+    handleNewImage({ fileName, fileNameExtension, key: imageInfo.key });
+
+    if (imageInfo.url) {
+      callback(imageInfo.url, file.name);
     }
   };
 

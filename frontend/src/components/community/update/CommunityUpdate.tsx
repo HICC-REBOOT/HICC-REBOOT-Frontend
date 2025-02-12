@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import usePatchArticle from '@query/patch/usePatchArticle';
 import TuiEditor from '@components/markdownEditor/Editor';
-import { ArticleDetailType, Board, CommunityWriteForm } from '../CommunityType';
+import { ArticleDetailType, Board, CommunityWriteForm, NewImageUrl } from '../CommunityType';
 import * as U from '../write/style/CommunityWrite.style';
 import CurrentBoardContext from '../CurrentBoardContext';
 
@@ -44,9 +44,16 @@ function CommunityUpdate() {
     setValue('content', content);
   };
 
+  const [newImages, setNewImages] = useState<NewImageUrl[]>([]);
+
+  const handleNewImages = (newImage: NewImageUrl) => {
+    setNewImages((prev) => [...prev, newImage]);
+  };
+
   const onSubmit = async (formdata: CommunityWriteForm) => {
     updateArticle({
       data: {
+        images: newImages,
         board: currentBoard.value as Board,
         subject: formdata.title,
         content: formdata.content,
@@ -58,7 +65,7 @@ function CommunityUpdate() {
   return (
     <U.Container onSubmit={handleSubmit(onSubmit)}>
       <U.InputTitle type="text" placeholder="제목을 입력하세요" {...register('title', { required: true })} />
-      <TuiEditor setContent={setContent} initialValue={data.content} />
+      <TuiEditor handleNewImage={handleNewImages} setContent={setContent} initialValue={data.content} />
       <U.UploadButton type="submit" disabled={!formState.isValid || isPending}>
         업로드 하기
       </U.UploadButton>

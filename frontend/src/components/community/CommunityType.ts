@@ -28,6 +28,8 @@ export interface ImageUrl {
   url: string;
 }
 
+export type NewImageUrl = Omit<ImageUrl, 'url'>;
+
 export interface ArticleDetailType {
   articleId: number;
   grade: Grade;

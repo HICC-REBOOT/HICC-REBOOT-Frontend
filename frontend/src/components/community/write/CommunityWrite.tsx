@@ -5,7 +5,7 @@ import * as W from './style/CommunityWrite.style';
 import useCommunityWrite from '../hooks/useCommunityWrite';
 
 function CommunityWrite() {
-  const { register, disabled, setValue, onSubmit } = useCommunityWrite();
+  const { register, disabled, setValue, onSubmit, handleNewImages } = useCommunityWrite();
 
   const setContent = (content: string) => {
     setValue('content', content);
@@ -19,7 +19,7 @@ function CommunityWrite() {
         placeholder="제목을 입력하세요"
         {...register('title', { required: true, maxLength: COMMON.COMMUNITY.TITLE_LIMIT })}
       />
-      <TuiEditor setContent={setContent} />
+      <TuiEditor handleNewImage={handleNewImages} setContent={setContent} />
       <W.UploadButton type="submit" disabled={disabled}>
         업로드 하기
       </W.UploadButton>
