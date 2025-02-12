@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import ROUTE from '@constants/route';
 import useDeleteArticle from '@query/delete/useDeleteArticle';
 import confirm from '@components/common/popup/confirm/Confirm';
-import { Viewer } from '@toast-ui/react-editor';
 import TuiViewer from '@components/community/markdown/Viewer';
 import * as C from './Content.style';
 
