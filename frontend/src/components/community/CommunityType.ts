@@ -1,22 +1,11 @@
 import { Grade } from '@components/type/CommonType';
 
-export const BOARD = {
-  FREE: 'FREE',
-  ACTIVITY_PICTURE: 'ACTIVITY_PICTURE',
-  EMPLOYMENT_INFORMATION: 'EMPLOYMENT_INFORMATION',
-  HICCS_PICK: 'HICCS_PICK',
-} as const;
-
-type Union<T> = T[keyof T];
-
-export type Board = Union<typeof BOARD>;
-
 export interface Article {
   articleId: number;
   grade: Grade;
   name: string;
   date: string;
-  board: Board;
+  board: string;
   subject: string;
   imageExistence: boolean;
 }
@@ -37,7 +26,7 @@ export interface ArticleDetailType {
   isMine: boolean;
   date: string;
   images: ImageUrl[];
-  board: Board;
+  board: string;
   subject: string;
   content: string;
 }

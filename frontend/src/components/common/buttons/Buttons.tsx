@@ -1,5 +1,5 @@
 import React from 'react';
-import * as B from './style/Buttons.style';
+import * as B from './Buttons.style';
 
 interface Button {
   label: string;

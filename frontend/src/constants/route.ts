@@ -19,6 +19,7 @@ const ROUTE = Object.freeze({
     APPROVAL: 'approval',
     INFO: 'info',
     CHANGE: 'change',
+    COMMUNITY: 'community',
   },
   PROFILE: {
     BASE: '/mypage',

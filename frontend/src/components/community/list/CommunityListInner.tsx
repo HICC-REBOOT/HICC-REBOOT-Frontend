@@ -4,7 +4,7 @@ import COMMON from '@constants/common';
 import { useOutletContext } from 'react-router-dom';
 import OptionType from '@components/common/dropdown/OptionType';
 import { GRADE } from '@components/type/CommonType';
-import { Article, Board } from '../CommunityType';
+import { Article } from '../CommunityType';
 import CurrentBoardContext from '../CurrentBoardContext';
 import EachArticle from './EachArticle';
 
@@ -22,7 +22,7 @@ function CommunityListInner({ searchQuery, currentOption, isOnlyExecutive }: Com
   const { curPageItem, renderNextAreaForInfinityScroll } = useInfinityScroll<Article>({
     uri: '/api/article',
     size: COMMON.PAGINATION.SIZE,
-    board: currentBoard.value as Board,
+    board: parseInt(currentBoard.value, 10),
     search: searchQuery,
     findBy: currentOption?.value,
     articleGrade: executiveQuery,
