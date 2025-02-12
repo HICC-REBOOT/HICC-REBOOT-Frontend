@@ -3,6 +3,7 @@ import { Editor, EditorProps } from '@toast-ui/react-editor';
 import '@toast-ui/editor/toastui-editor.css';
 import './Editor.style.css';
 import processNewImage from '@utils/image/processNewImage';
+import { DeviceProvider } from '@assets/mediaQuery';
 
 export type HookCallback = (url: string, text?: string) => void;
 
@@ -19,7 +20,7 @@ const toolbar = [
 ];
 
 function TuiEditor({ setContent, initialValue, ...restProps }: Props) {
-  const isDesktop = window.innerWidth >= 768;
+  const isDesktop = DeviceProvider() !== 'mobile';
   const editorRef = useRef<Editor>(null);
 
   useEffect(() => {

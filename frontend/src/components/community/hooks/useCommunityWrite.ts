@@ -11,8 +11,8 @@ const useCommunityWrite = () => {
       content: '',
     },
   });
-  const { currentBoard } = useOutletContext<CurrentBoardContext>();
 
+  const { currentBoard } = useOutletContext<CurrentBoardContext>();
   const { writeArticle, isPending } = usePostArticle();
 
   const onSubmit = async (data: CommunityWriteForm) => {
