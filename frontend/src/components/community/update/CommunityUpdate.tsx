@@ -36,9 +36,11 @@ function CommunityUpdate() {
     };
   };
 
-  const { handleSubmit, register, setValue, formState } = useForm<CommunityWriteForm>({
+  const { handleSubmit, register, setValue, getValues, formState } = useForm<CommunityWriteForm>({
     defaultValues: setDefaultValues(),
   });
+
+  const typingCount = getValues('content').length;
 
   const setContent = (content: string) => {
     setValue('content', content);
@@ -66,6 +68,7 @@ function CommunityUpdate() {
     <U.Container onSubmit={handleSubmit(onSubmit)}>
       <U.InputTitle type="text" placeholder="제목을 입력하세요" {...register('title', { required: true })} />
       <TuiEditor handleNewImage={handleNewImages} setContent={setContent} initialValue={data.content} />
+      <U.TypingCount>{`${typingCount.toLocaleString('ko-kr')} / 50,000`}</U.TypingCount>
       <U.UploadButton type="submit" disabled={!formState.isValid || isPending}>
         업로드 하기
       </U.UploadButton>

@@ -6,7 +6,7 @@ import { Board, CommunityWriteForm, NewImageUrl } from '../CommunityType';
 import CurrentBoardContext from '../CurrentBoardContext';
 
 const useCommunityWrite = () => {
-  const { handleSubmit, register, setValue, formState } = useForm<CommunityWriteForm>({
+  const { handleSubmit, register, setValue, getValues, formState } = useForm<CommunityWriteForm>({
     defaultValues: {
       title: '',
       content: '',
@@ -30,6 +30,8 @@ const useCommunityWrite = () => {
     });
   };
 
+  const typingCount = getValues('content').length;
+
   const disabled = !formState.isValid || isPending;
 
   return {
@@ -37,6 +39,7 @@ const useCommunityWrite = () => {
     setValue,
     handleNewImages,
     formState,
+    typingCount,
     onSubmit: handleSubmit(onSubmit),
     disabled,
   };
