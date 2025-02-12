@@ -1,6 +1,6 @@
 import React from 'react';
 import COMMON from '@constants/common';
-import TuiEditor from '@components/markdownEditor/Editor';
+import TuiEditor from '@components/community/markdown/Editor';
 import * as W from './style/CommunityWrite.style';
 import useCommunityWrite from '../hooks/useCommunityWrite';
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import usePatchArticle from '@query/patch/usePatchArticle';
-import TuiEditor from '@components/markdownEditor/Editor';
+import TuiEditor from '@components/community/markdown/Editor';
 import { ArticleDetailType, Board, CommunityWriteForm, NewImageUrl } from '../CommunityType';
 import * as U from '../write/style/CommunityWrite.style';
 import CurrentBoardContext from '../CurrentBoardContext';
