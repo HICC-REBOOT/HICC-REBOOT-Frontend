@@ -1,12 +1,15 @@
 import React from 'react';
 import COMMON from '@constants/common';
+import TuiEditor from '@components/markdownEditor/Editor';
 import * as W from './style/CommunityWrite.style';
-import ImageManager from '../common/ImageManager';
-import TextareaInForm from '../common/TextareaInForm';
 import useCommunityWrite from '../hooks/useCommunityWrite';
 
 function CommunityWrite() {
-  const { register, disabled, setValue, currentImages, onSubmit } = useCommunityWrite();
+  const { register, disabled, setValue, onSubmit } = useCommunityWrite();
+
+  const setContent = (content: string) => {
+    setValue('content', content);
+  };
 
   return (
     <W.Container onSubmit={onSubmit}>
@@ -16,8 +19,7 @@ function CommunityWrite() {
         placeholder="제목을 입력하세요"
         {...register('title', { required: true, maxLength: COMMON.COMMUNITY.TITLE_LIMIT })}
       />
-      <TextareaInForm register={register} />
-      <ImageManager currentImages={currentImages} setImage={setValue} />
+      <TuiEditor setContent={setContent} />
       <W.UploadButton type="submit" disabled={disabled}>
         업로드 하기
       </W.UploadButton>

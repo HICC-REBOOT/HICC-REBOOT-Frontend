@@ -5,14 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import request from '@utils/request';
 import { useNavigate } from 'react-router-dom';
 
-interface ImageEnroll {
-  fileName: string;
-  fileNameExtension: string;
-  key: string;
-}
-
 interface UpdatePostRequestBody {
-  images: ImageEnroll[];
   board: Board;
   subject: string;
   content: string;
