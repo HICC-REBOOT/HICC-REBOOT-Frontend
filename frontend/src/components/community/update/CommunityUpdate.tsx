@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useOutletContext } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import usePatchArticle from '@query/patch/usePatchArticle';
 import TuiEditor from '@components/community/markdown/Editor';
-import { ArticleDetailType, Board, CommunityWriteForm, NewImageUrl } from '../CommunityType';
+import { ArticleDetailType, CommunityWriteForm, NewImageUrl } from '../CommunityType';
 import * as U from '../write/style/CommunityWrite.style';
 import CurrentBoardContext from '../CurrentBoardContext';
 
@@ -11,7 +11,7 @@ function CommunityUpdate() {
   const location = useLocation();
   const data = location.state as ArticleDetailType;
 
-  const { currentBoard } = useOutletContext<CurrentBoardContext>();
+  const { currentBoard, boardList } = useOutletContext<CurrentBoardContext>();
 
   const navigate = useNavigate();
 
@@ -52,16 +52,23 @@ function CommunityUpdate() {
     setNewImages((prev) => [...prev, newImage]);
   };
 
+  const getBoardTypeId = (boardType: string) => {
+    return boardList.filter((board) => board.boardType === boardType)[0].boardTypeId;
+  };
+
   const onSubmit = async (formdata: CommunityWriteForm) => {
     if (formdata.content.length >= 50000) {
       alert('최대 글자 수를 초과했습니다.');
       return;
     }
 
+    const boardTypeId =
+      parseInt(currentBoard.value, 10) === -1 ? getBoardTypeId(data.board) : parseInt(currentBoard.value, 10);
+
     updateArticle({
       data: {
         images: newImages,
-        board: currentBoard.value as Board,
+        boardTypeId,
         subject: formdata.title,
         content: formdata.content,
       },

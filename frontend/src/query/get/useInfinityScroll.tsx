@@ -4,15 +4,14 @@ import { useInView } from 'react-intersection-observer';
 
 import request from '@utils/request';
 import { QUERY_KEYS } from '@constants/keys';
-import { Board } from '@components/community/CommunityType';
-import { Grade } from '@components/type/CommonType';
+import { Board, Grade } from '@components/type/CommonType';
 
 interface UseInfinityScrollProps {
   uri: string;
   size: number;
   sort?: string;
   search?: string;
-  board?: Board;
+  board?: number;
   articleGrade?: Grade;
   findBy?: string;
 }
@@ -52,7 +51,7 @@ interface Pageable {
   size: number;
   sort?: string;
   search?: string;
-  board?: Board;
+  board?: number;
   articleGrade?: Grade;
   findBy?: string;
 }

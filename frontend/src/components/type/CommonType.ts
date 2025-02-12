@@ -15,3 +15,8 @@ export const GRADE_ENUM: Record<Grade, string> = {
   NORMAL: '일반',
   APPLICANT: '승인대기자',
 };
+
+export type Board = {
+  boardTypeId: number;
+  boardType: string;
+};

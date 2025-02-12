@@ -31,6 +31,7 @@ export const QUERY_KEYS = Object.freeze({
   PATCH_CHANGE_PASSWORD: 'patch-change-password',
   POST_LOGOUT: 'post-logout',
   POST_LOGIN: 'post-login',
+  GET_BOARD_LIST: 'get-board-list',
 });
 
 export const STORE_KEYS = Object.freeze({

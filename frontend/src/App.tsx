@@ -9,13 +9,13 @@ import Calendar from '@pages/Calendar';
 import Community from '@pages/community/Community';
 import MyPage from '@pages/MyPage';
 import MyInfomation from '@pages/MyInfo';
-import Temp from '@pages/temp/Temp';
 
 import { MyWritings, MyComments } from '@components/mypage';
 import { Login, SignUp, ChangePassword, ResetPassword, EnterInfo } from '@pages/auth';
 import { ArticleDetail, CommunityList, CommunityUpdate, CommunityWrite } from '@components/community';
 import { Approval, ChangeGrade, MemberInfo } from '@components/admin';
 import NotFound from '@components/common/error/NotFound';
+import CommunityAdmin from '@components/admin/Community/CommunityAdmin';
 
 function App() {
   const location = useLocation();
@@ -32,6 +32,7 @@ function App() {
           <Route path={ROUTE.ADMIN.APPROVAL} element={<Approval />} />
           <Route path={ROUTE.ADMIN.INFO} element={<MemberInfo />} />
           <Route path={ROUTE.ADMIN.CHANGE} element={<ChangeGrade />} />
+          <Route path={ROUTE.ADMIN.COMMUNITY} element={<CommunityAdmin />} />
         </Route>
         <Route path={ROUTE.HOME} element={<Home />} />
         <Route path={ROUTE.CALENDAR} element={<Calendar />} />

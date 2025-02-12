@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useOutletContext } from 'react-router-dom';
 import usePostArticle from '@query/post/usePostArticle';
 import { useState } from 'react';
-import { Board, CommunityWriteForm, NewImageUrl } from '../CommunityType';
+import { CommunityWriteForm, NewImageUrl } from '../CommunityType';
 import CurrentBoardContext from '../CurrentBoardContext';
 
 const useCommunityWrite = () => {
@@ -13,12 +13,16 @@ const useCommunityWrite = () => {
     },
   });
 
-  const { currentBoard } = useOutletContext<CurrentBoardContext>();
+  const { currentBoard, boardList } = useOutletContext<CurrentBoardContext>();
   const { writeArticle, isPending } = usePostArticle();
   const [newImages, setNewImages] = useState<NewImageUrl[]>([]);
 
   const handleNewImages = (newImage: NewImageUrl) => {
     setNewImages((prev) => [...prev, newImage]);
+  };
+
+  const getBoardTypeId = (boardType: string) => {
+    return boardList.filter((board) => board.boardType === boardType)[0].boardTypeId;
   };
 
   const onSubmit = async (data: CommunityWriteForm) => {
@@ -27,9 +31,12 @@ const useCommunityWrite = () => {
       return;
     }
 
+    const boardTypeId =
+      parseInt(currentBoard.value, 10) === -1 ? getBoardTypeId('자유게시판') : parseInt(currentBoard.value, 10);
+
     writeArticle({
       images: newImages,
-      board: currentBoard.value as Board,
+      boardTypeId,
       subject: data.title,
       content: data.content,
     });
