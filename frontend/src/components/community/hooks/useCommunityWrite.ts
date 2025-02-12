@@ -22,6 +22,11 @@ const useCommunityWrite = () => {
   };
 
   const onSubmit = async (data: CommunityWriteForm) => {
+    if (data.content.length >= 50000) {
+      alert('최대 글자 수를 초과했습니다.');
+      return;
+    }
+
     writeArticle({
       images: newImages,
       board: currentBoard.value as Board,

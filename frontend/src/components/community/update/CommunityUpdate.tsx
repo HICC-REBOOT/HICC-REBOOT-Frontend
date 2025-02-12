@@ -53,6 +53,11 @@ function CommunityUpdate() {
   };
 
   const onSubmit = async (formdata: CommunityWriteForm) => {
+    if (formdata.content.length >= 50000) {
+      alert('최대 글자 수를 초과했습니다.');
+      return;
+    }
+
     updateArticle({
       data: {
         images: newImages,
