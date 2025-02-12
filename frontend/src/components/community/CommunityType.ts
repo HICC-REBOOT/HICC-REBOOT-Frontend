@@ -28,11 +28,7 @@ export interface ImageUrl {
   url: string;
 }
 
-export interface ImageUrlSend {
-  fileName: string;
-  fileNameExtension: string;
-  key: string;
-}
+export type NewImageUrl = Omit<ImageUrl, 'url'>;
 
 export interface ArticleDetailType {
   articleId: number;
@@ -69,14 +65,7 @@ export interface NestedCommentType {
   isDeleted: boolean;
 }
 
-// 새로 등록은 file, 이미 있는 이미지면 src (수정을 위해)
-export interface ImageInfo {
-  file?: File;
-  src: string;
-}
-
 export interface CommunityWriteForm {
   title: string;
   content: string;
-  image: ImageInfo[];
 }

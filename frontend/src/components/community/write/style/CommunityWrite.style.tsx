@@ -35,6 +35,15 @@ export const InputTitle = styled.input`
   }
 `;
 
+export const TypingCount = styled.p`
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 1rem;
+
+  color: ${(props) => props.theme.colors.white};
+`;
+
 export const UploadButton = styled.button`
   display: flex;
   justify-content: center;
