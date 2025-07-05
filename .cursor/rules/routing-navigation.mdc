@@ -1,0 +1,185 @@
+---
+description: "Routing and navigation rules - React Router DOM, nested routes, route protection, 404 handling, loading states, route constants, navigation hooks"
+globs:
+alwaysApply: false
+---
+
+# Routing and Navigation Rules
+
+## 🗺️ Routing Architecture
+
+### Route Structure
+
+```typescript
+// ✅ CORRECT - Route organization in App.tsx
+<Routes>
+  <Route element={<Layout />}>
+    <Route path={ROUTE.HOME} element={<Home />} />
+    <Route path={ROUTE.CALENDAR} element={<Calendar />} />
+
+    {/* Nested routes */}
+    <Route path={ROUTE.COMMUNITY.BASE} element={<Community />}>
+      <Route path={ROUTE.COMMUNITY.LIST} element={<CommunityList />} />
+      <Route path={ROUTE.COMMUNITY.WRITE} element={<CommunityWrite />} />
+      <Route path={ROUTE.COMMUNITY.DETAIL} element={<ArticleDetail />} />
+    </Route>
+
+    {/* Admin routes */}
+    <Route path={ROUTE.ADMIN.BASE} element={<Admin />}>
+      <Route path={ROUTE.ADMIN.APPROVAL} element={<Approval />} />
+      <Route path={ROUTE.ADMIN.INFO} element={<MemberInfo />} />
+    </Route>
+  </Route>
+</Routes>
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** use React Router DOM for navigation
+✅ **ALWAYS** define routes in constants file
+✅ **ALWAYS** use nested routes for related pages
+✅ **ALWAYS** implement proper route protection
+✅ **ALWAYS** handle 404 routes with NotFound component
+✅ **ALWAYS** use proper route parameters
+✅ **ALWAYS** implement loading states for route transitions
+
+### NEVER DO Rules
+
+❌ **NEVER** use window.location for navigation
+❌ **NEVER** hardcode route paths in components
+❌ **NEVER** forget to handle route parameters
+❌ **NEVER** create routes without proper protection
+❌ **NEVER** forget to implement 404 handling
+❌ **NEVER** use anchor tags for internal navigation
+
+### Route Constants
+
+```typescript
+// ✅ CORRECT - Route constants structure
+const ROUTE = Object.freeze({
+  HOME: "/",
+  CALENDAR: "/calendar",
+  COMMUNITY: {
+    BASE: "/community",
+    LIST: "",
+    WRITE: "write",
+    UPDATE: "update",
+    DETAIL: ":id",
+    NOT_FOUND: "404-not-found",
+  },
+  ADMIN: {
+    BASE: "/admin",
+    APPROVAL: "approval",
+    INFO: "info",
+    CHANGE: "change",
+    COMMUNITY: "community",
+  },
+  PROFILE: {
+    BASE: "/mypage",
+    MYINFO: "myinfo",
+    MYWRITINGS: "mywritings",
+    MYCOMMENTS: "mycomments",
+  },
+});
+```
+
+### Navigation Hooks
+
+```typescript
+// ✅ CORRECT - Navigation hook usage
+import { useNavigate, useLocation } from "react-router-dom";
+import ROUTE from "@constants/route";
+
+function Component() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = () => {
+    navigate(ROUTE.COMMUNITY.WRITE);
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+}
+```
+
+### Route Protection
+
+```typescript
+// ✅ CORRECT - Protected route component
+function ProtectedRoute({ children, requiredRole }: { children: React.ReactNode; requiredRole: string }) {
+  const { user, isLoading } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      navigate(ROUTE.LOGIN);
+    }
+  }, [user, isLoading, navigate]);
+
+  if (isLoading) return <Loading />;
+  if (!user) return null;
+
+  return <>{children}</>;
+}
+
+// ✅ CORRECT - Usage in routes
+<Route
+  path={ROUTE.ADMIN.BASE}
+  element={
+    <ProtectedRoute requiredRole="admin">
+      <Admin />
+    </ProtectedRoute>
+  }
+>
+```
+
+### Route Parameters
+
+```typescript
+// ✅ CORRECT - Route parameter handling
+import { useParams } from "react-router-dom";
+
+function ArticleDetail() {
+  const { id } = useParams<{ id: string }>();
+
+  if (!id) {
+    return <NotFound />;
+  }
+
+  const {
+    data: article,
+    isLoading,
+    error,
+  } = useGetArticleDetail({ articleId: parseInt(id, 10) });
+
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorMessage error={error} />;
+  if (!article) return <NotFound />;
+
+  return <ArticleContent article={article} />;
+}
+```
+
+### Loading and Error States
+
+```typescript
+// ✅ CORRECT - Route-level error handling
+function App() {
+  return (
+    <ErrorBoundary fallback={<GlobalError />}>
+      <Suspense fallback={<Loading />}>
+        <Routes>{/* Routes */}</Routes>
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+```
+
+### Reference Files
+
+- Main routing: [frontend/src/App.tsx](mdc:frontend/src/App.tsx)
+- Route constants: [frontend/src/constants/route.ts](mdc:frontend/src/constants/route.ts)
+- Layout component: [frontend/src/components/layout/Layout.tsx](mdc:frontend/src/components/layout/Layout.tsx)
+- Error components: [frontend/src/components/common/error/](mdc:frontend/src/components/common/error)

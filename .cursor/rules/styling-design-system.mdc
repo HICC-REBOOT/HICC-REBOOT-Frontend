@@ -1,0 +1,137 @@
+---
+alwaysApply: true
+---
+# Styling and Design System Rules
+
+## 🎨 Design System Architecture
+
+### Theme Structure
+```typescript
+// ✅ CORRECT - Use theme from styles/theme.ts
+import { DefaultTheme } from 'styled-components';
+
+const theme: DefaultTheme = {
+  colors: {
+    black: '#0A0A0A',
+    grey001: '#141415',
+    point1: '#6963FF',
+    point2: '#53FFCB',
+    white: '#FFFFFF',
+  },
+  typography: {
+    mobile: { /* mobile typography */ },
+    tablet: { /* tablet typography */ },
+    desktop: { /* desktop typography */ },
+  },
+  media: { /* responsive breakpoints */ },
+};
+```
+
+### MUST FOLLOW Rules
+✅ **ALWAYS** use styled-components for styling
+✅ **ALWAYS** use theme colors and typography
+✅ **ALWAYS** implement responsive design with theme.media
+✅ **ALWAYS** use rem units (62.5% base font size)
+✅ **ALWAYS** create separate style files for components
+✅ **ALWAYS** use semantic color names from theme
+✅ **ALWAYS** implement proper hover and focus states
+
+### NEVER DO Rules
+❌ **NEVER** use inline styles or CSS classes
+❌ **NEVER** hardcode colors or font sizes
+❌ **NEVER** use px units (use rem)
+❌ **NEVER** forget responsive design
+❌ **NEVER** use !important in styled-components
+❌ **NEVER** create styles without theme integration
+
+### Responsive Design Rules
+```typescript
+// ✅ CORRECT - Responsive styling
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  
+  ${({ theme }) => theme.media.mobile`
+    flex-direction: column;
+    padding: 1rem;
+  `}
+  
+  ${({ theme }) => theme.media.tablet`
+    padding: 1.5rem;
+  `}
+  
+  ${({ theme }) => theme.media.desktop`
+    padding: 2rem;
+  `}
+`;
+
+// ❌ WRONG - Hardcoded responsive design
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 10px;
+  }
+`;
+```
+
+### Typography Usage
+```typescript
+// ✅ CORRECT - Using theme typography
+const Title = styled.h1`
+  ${({ theme }) => theme.typography.desktop.title}
+  color: ${({ theme }) => theme.colors.black};
+  
+  ${({ theme }) => theme.media.mobile`
+    ${theme.typography.mobile.title}
+  `}
+`;
+
+// ❌ WRONG - Hardcoded typography
+const Title = styled.h1`
+  font-family: Area;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: normal;
+`;
+```
+
+### Color Usage
+```typescript
+// ✅ CORRECT - Using theme colors
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.point1};
+  color: ${({ theme }) => theme.colors.white};
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.point2};
+  }
+`;
+
+// ❌ WRONG - Hardcoded colors
+const Button = styled.button`
+  background-color: #6963FF;
+  color: #FFFFFF;
+`;
+```
+
+### Breakpoint System
+```typescript
+const BREAKPOINT = {
+  MOBILE: 360,    // 0-767px
+  TABLET: 768,    // 768-1439px
+  DESKTOP: 1440,  // 1440-1919px
+  WIDE: 1920      // 1920px+
+};
+```
+
+### Reference Files
+- Global styles: [frontend/src/styles/GlobalStyle.ts](mdc:frontend/src/styles/GlobalStyle.ts)
+- Theme configuration: [frontend/src/styles/theme.ts](mdc:frontend/src/styles/theme.ts)
+- Media queries: [frontend/src/styles/media.ts](mdc:frontend/src/styles/media.ts)
+- Breakpoints: [frontend/src/constants/breakpoint.ts](mdc:frontend/src/constants/breakpoint.ts)
+

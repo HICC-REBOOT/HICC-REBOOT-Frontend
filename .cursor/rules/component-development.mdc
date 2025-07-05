@@ -1,0 +1,55 @@
+---
+alwaysApply: true
+---
+
+# Component Development Rules
+
+## 🧩 Component Structure Standards
+
+### Component Template Structure
+
+```typescript
+import React from "react";
+import { ComponentProps } from "./ComponentType";
+import * as S from "./style/Component.style";
+
+interface ComponentProps {
+  // Define props with proper types
+}
+
+function Component({ prop1, prop2 }: ComponentProps) {
+  // Hooks first
+  // Business logic
+  // Event handlers
+  // Render
+  return <S.Container>{/* JSX */}</S.Container>;
+}
+
+export default Component;
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** create separate style files for components
+✅ **ALWAYS** use proper TypeScript interfaces for props
+✅ **ALWAYS** destructure props in function parameters
+✅ **ALWAYS** use semantic HTML elements
+✅ **ALWAYS** handle loading and error states
+✅ **ALWAYS** use React.memo for expensive components
+✅ **ALWAYS** implement proper accessibility (aria-labels, roles)
+✅ **ALWAYS** use styled-components with theme integration
+
+### NEVER DO Rules
+
+❌ **NEVER** use inline styles or className strings
+❌ **NEVER** create components without proper TypeScript types
+❌ **NEVER** forget to export components as default
+❌ **NEVER** use div for semantic elements (use section, article, etc.)
+❌ **NEVER** forget error boundaries for complex components
+❌ **NEVER** use any type for props or state
+
+### Reference Components
+
+- Button component: [frontend/src/components/common/button/color/GradientButton.tsx](mdc:frontend/src/components/common/button/color/GradientButton.tsx)
+
+- Layout component: [frontend/src/components/layout/Layout.tsx](mdc:frontend/src/components/layout/Layout.tsx)

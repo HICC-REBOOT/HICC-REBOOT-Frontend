@@ -1,0 +1,150 @@
+---
+description: "Error handling and validation rules - Error boundaries, form validation, API error handling, user-friendly error messages, recovery options, client/server validation"
+globs:
+alwaysApply: false
+---
+
+# Error Handling & Validation Rules
+
+## ⚠️ Error Handling Patterns
+
+### Global Error Boundary
+
+```typescript
+// ✅ CORRECT - Global error boundary
+function App() {
+  return (
+    <ErrorBoundary fallback={<GlobalError />}>
+      <Suspense fallback={<Loading />}>
+        <Router>
+          <Routes />
+        </Router>
+      </Suspense>
+    </ErrorBoundary>
+  );
+}
+
+// ✅ CORRECT - Component error boundary
+function ComponentErrorBoundary({ children }: { children: React.ReactNode }) {
+  return (
+    <ErrorBoundary
+      fallback={({ error, resetErrorBoundary }) => (
+        <div>
+          <h2>Something went wrong</h2>
+          <pre>{error.message}</pre>
+          <button onClick={resetErrorBoundary}>Try again</button>
+        </div>
+      )}
+    >
+      {children}
+    </ErrorBoundary>
+  );
+}
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** implement error boundaries for all components
+✅ **ALWAYS** handle API errors gracefully
+✅ **ALWAYS** provide user-friendly error messages
+✅ **ALWAYS** implement proper form validation
+✅ **ALWAYS** log errors for debugging
+✅ **ALWAYS** provide recovery options for users
+✅ **ALWAYS** validate user input on both client and server
+
+### NEVER DO Rules
+
+❌ **NEVER** let errors crash the application
+❌ **NEVER** expose sensitive information in error messages
+❌ **NEVER** forget to handle network errors
+❌ **NEVER** trust client-side validation only
+❌ **NEVER** show technical error details to users
+❌ **NEVER** forget to implement retry mechanisms
+
+### Form Validation Pattern
+
+```typescript
+// ✅ CORRECT - Form validation with react-hook-form
+import { useForm } from "react-hook-form";
+
+interface FormData {
+  email: string;
+  password: string;
+}
+
+function LoginForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
+
+  const onSubmit = (data: FormData) => {
+    // Handle form submission
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        {...register("email", {
+          required: "Email is required",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+            message: "Invalid email address",
+          },
+        })}
+      />
+      {errors.email && <span>{errors.email.message}</span>}
+
+      <input
+        type="password"
+        {...register("password", {
+          required: "Password is required",
+          minLength: {
+            value: 8,
+            message: "Password must be at least 8 characters",
+          },
+        })}
+      />
+      {errors.password && <span>{errors.password.message}</span>}
+
+      <button type="submit">Login</button>
+    </form>
+  );
+}
+```
+
+### API Error Handling
+
+```typescript
+// ✅ CORRECT - API error handling
+function useApiWithErrorHandling() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["data"],
+    queryFn: fetchData,
+    retry: 1,
+    retryDelay: 1000,
+  });
+
+  if (isLoading) return <Loading />;
+  if (error) {
+    if (error.code === "NETWORK_ERROR") {
+      return <NetworkError onRetry={() => window.location.reload()} />;
+    }
+    if (error.code === "UNAUTHORIZED") {
+      return <LoginRequired />;
+    }
+    return <ErrorMessage error={error} />;
+  }
+  if (!data) return <NotFound />;
+
+  return <DataDisplay data={data} />;
+}
+```
+
+### Reference Files
+
+- Error components: [frontend/src/components/common/error/](mdc:frontend/src/components/common/error/)
+- Axios error handling: [frontend/src/utils/axios.ts](mdc:frontend/src/utils/axios.ts)
+
+- Error constants: [frontend/src/constants/error.ts](mdc:frontend/src/constants/error.ts)

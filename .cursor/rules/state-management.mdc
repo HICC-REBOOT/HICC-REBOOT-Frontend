@@ -1,0 +1,85 @@
+---
+description: "State management rules - Use Recoil for global state, TanStack Query for server state, proper state hierarchy, TypeScript types, query keys, staleTime configuration"
+globs:
+alwaysApply: false
+---
+
+# State Management Rules
+
+## 🔄 State Management Architecture
+
+### State Hierarchy
+
+1. **Local State**: useState for component-specific state
+2. **Global State**: Recoil for app-wide state
+3. **Server State**: TanStack Query for API data
+
+### Recoil Usage Rules
+
+```typescript
+// ✅ CORRECT - Create atoms in libs/store/
+import { atom } from "recoil";
+import { STORE_KEYS } from "@constants/keys";
+
+const userState = atom<User | null>({
+  key: STORE_KEYS.USER,
+  default: null,
+});
+
+// ✅ CORRECT - Use in components
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import userState from "@libs/store/userState";
+
+function Component() {
+  const user = useRecoilValue(userState);
+  const setUser = useSetRecoilState(userState);
+}
+```
+
+### TanStack Query Rules
+
+```typescript
+// ✅ CORRECT - Create in query/ directory
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "@constants/keys";
+import request from "@utils/request";
+
+function useGetUserData(userId: number) {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER, userId],
+    queryFn: () => request.get(`/api/users/${userId}`),
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+}
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** use Recoil for global UI state (sidebar, modals, etc.)
+✅ **ALWAYS** use TanStack Query for server data
+✅ **ALWAYS** define query keys in constants
+✅ **ALWAYS** set appropriate staleTime for queries
+✅ **ALWAYS** handle loading and error states
+✅ **ALWAYS** use proper TypeScript for state types
+✅ **ALWAYS** create atoms in libs/store directory
+
+### NEVER DO Rules
+
+❌ **NEVER** use useState for global state
+❌ **NEVER** use Redux or Context API (use Recoil)
+❌ **NEVER** forget to handle query errors
+❌ **NEVER** create queries without proper keys
+❌ **NEVER** use localStorage for sensitive data
+❌ **NEVER** mix different state management libraries
+
+### State Naming Conventions
+
+- Recoil atoms: `camelCaseState` (e.g., `userState`, `sidebarState`)
+- Query hooks: `useGet/usePost/usePatch/useDelete` + `EntityName`
+- State variables: descriptive names (e.g., `isLoading`, `userData`)
+
+### Reference Files
+
+- Admin state: [frontend/src/libs/store/adminState.ts](mdc:frontend/src/libs/store/adminState.ts)
+- Query example: [frontend/src/query/get/useGetArticleDetail.ts](mdc:frontend/src/query/get/useGetArticleDetail.ts)
+- Main app with providers: [frontend/src/index.tsx](mdc:frontend/src/index.tsx)

@@ -1,0 +1,103 @@
+---
+description: "Custom hooks development rules - use prefix, TypeScript interfaces, cleanup handling, useCallback, error handling, JSDoc comments, consistent return structures"
+globs:
+alwaysApply: false
+---
+
+# Custom Hooks Development Rules
+
+## 🪝 Custom Hooks Patterns
+
+### Hook Template Structure
+
+```typescript
+import { useState, useEffect, useCallback } from "react";
+
+interface UseHookNameProps {
+  // Define hook parameters
+}
+
+interface UseHookNameReturn {
+  // Define return values
+}
+
+function useHookName({ param1, param2 }: UseHookNameProps): UseHookNameReturn {
+  // State declarations
+  // Effect hooks
+  // Event handlers
+  // Return values
+
+  return {
+    // Return object
+  };
+}
+
+export default useHookName;
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** prefix hook names with "use"
+✅ **ALWAYS** create proper TypeScript interfaces for props and return values
+✅ **ALWAYS** handle cleanup in useEffect
+✅ **ALWAYS** use useCallback for functions returned from hooks
+✅ **ALWAYS** implement proper error handling
+✅ **ALWAYS** add JSDoc comments for complex hooks
+✅ **ALWAYS** return consistent data structures
+
+### NEVER DO Rules
+
+❌ **NEVER** create hooks without "use" prefix
+❌ **NEVER** forget to handle cleanup in useEffect
+❌ **NEVER** return functions without useCallback
+❌ **NEVER** create hooks that are too complex (split into multiple hooks)
+❌ **NEVER** forget to handle loading and error states
+❌ **NEVER** use any type for hook parameters or return values
+
+### Animation Hooks Pattern
+
+```typescript
+// ✅ CORRECT - Animation hook structure
+const useScrollFadeIn = (
+  direction = "up",
+  duration = 1,
+  delay = 0,
+  infinite = true
+) => {
+  const dom = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(
+    ([entry]: IntersectionObserverEntry[]) => {
+      // Animation logic
+    },
+    [delay, duration]
+  );
+
+  useEffect(() => {
+    let observer: IntersectionObserver;
+    const { current } = dom;
+
+    if (current) {
+      observer = new IntersectionObserver(handleScroll, { threshold: 0.9 });
+      observer.observe(current);
+    }
+
+    return () => observer && observer.disconnect();
+  }, [handleScroll]);
+
+  return {
+    ref: dom,
+    style: {
+      opacity: 0,
+      transform: handleDirection(direction)[0],
+    },
+  };
+};
+```
+
+### Reference Hooks
+
+- Auth hook: [frontend/src/hooks/useAuth.ts](mdc:frontend/src/hooks/useAuth.ts)
+- Animation hook: [frontend/src/hooks/animations/useScrollFadeIn.tsx](mdc:frontend/src/hooks/animations/useScrollFadeIn.tsx)
+
+- Sidebar hook: [frontend/src/hooks/useSidebar.ts](mdc:frontend/src/hooks/useSidebar.ts)

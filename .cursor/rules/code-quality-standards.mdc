@@ -1,0 +1,177 @@
+---
+alwaysApply: true
+---
+
+# Code Quality and Standards Rules
+
+## 🔍 Code Quality Standards
+
+### TypeScript Rules
+
+```typescript
+// ✅ CORRECT - Proper TypeScript usage
+interface UserProps {
+  id: number;
+  name: string;
+  email: string;
+  isActive?: boolean;
+}
+
+function UserProfile({ id, name, email, isActive = false }: UserProps) {
+  // Component logic
+}
+
+// ❌ WRONG - Using any type
+function UserProfile(props: any) {
+  // Component logic
+}
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** use strict TypeScript with proper interfaces
+✅ **ALWAYS** use path aliases (@components, @utils, etc.)
+✅ **ALWAYS** follow ESLint and Prettier configurations
+✅ **ALWAYS** use proper naming conventions
+✅ **ALWAYS** handle all possible states (loading, error, success)
+✅ **ALWAYS** implement proper error boundaries
+✅ **ALWAYS** use React.memo for expensive components
+✅ **ALWAYS** implement proper accessibility features
+
+### NEVER DO Rules
+
+❌ **NEVER** use `any` type - create proper interfaces
+❌ **NEVER** ignore TypeScript errors
+❌ **NEVER** use relative imports when path aliases exist
+❌ **NEVER** forget to handle edge cases
+❌ **NEVER** create components without proper error handling
+❌ **NEVER** use console.log in production code
+❌ **NEVER** forget to add proper JSDoc comments for complex functions
+
+### ESLint Configuration
+
+```json
+{
+  "extends": [
+    "airbnb-base",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "no-alert": "off",
+    "no-await-in-loop": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-unused-vars": "warn",
+    "no-nested-ternary": "off",
+    "import/no-extraneous-dependencies": 0,
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  }
+}
+```
+
+### Prettier Configuration
+
+```json
+{
+  "singleQuote": true,
+  "semi": true,
+  "useTabs": false,
+  "tabWidth": 2,
+  "printWidth": 120,
+  "arrowParens": "always",
+  "trailingComma": "all"
+}
+```
+
+### Import Organization
+
+```typescript
+// ✅ CORRECT - Organized imports
+// 1. React and external libraries
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import styled from "styled-components";
+
+// 2. Internal components and utilities
+import { Button } from "@components/common/button";
+import { useAuth } from "@hooks/useAuth";
+import { formatDate } from "@utils/time";
+
+// 3. Types and constants
+import { UserType } from "@types/UserType";
+import { API_ENDPOINTS } from "@constants/api";
+
+// 4. Styles
+import * as S from "./style/Component.style";
+```
+
+### Error Handling Patterns
+
+```typescript
+// ✅ CORRECT - Proper error handling
+function DataComponent() {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["data"],
+    queryFn: fetchData,
+  });
+
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorMessage error={error} />;
+  if (!data) return <NotFound />;
+
+  return <DataDisplay data={data} />;
+}
+
+// ✅ CORRECT - Error boundary usage
+function App() {
+  return (
+    <ErrorBoundary fallback={<GlobalError />}>
+      <Router>
+        <Routes />
+      </Router>
+    </ErrorBoundary>
+  );
+}
+```
+
+### Performance Optimization
+
+```typescript
+// ✅ CORRECT - React.memo usage
+const ExpensiveComponent = React.memo(({ data }: Props) => {
+  return <div>{/* Expensive rendering logic */}</div>;
+});
+
+// ✅ CORRECT - useMemo for expensive calculations
+function Component({ items }: { items: Item[] }) {
+  const processedItems = useMemo(() => {
+    return items.filter((item) => item.isActive).map(processItem);
+  }, [items]);
+
+  return <ItemList items={processedItems} />;
+}
+
+// ✅ CORRECT - useCallback for event handlers
+function Component({ onItemClick }: { onItemClick: (id: number) => void }) {
+  const handleClick = useCallback(
+    (id: number) => {
+      onItemClick(id);
+    },
+    [onItemClick]
+  );
+
+  return <Button onClick={() => handleClick(1)} />;
+}
+```
+
+### Reference Files
+
+- ESLint config: [frontend/.eslintrc.json](mdc:frontend/.eslintrc.json)
+- Prettier config: [frontend/.prettierrc.json](mdc:frontend/.prettierrc.json)
+- TypeScript config: [frontend/tsconfig.json](mdc:frontend/tsconfig.json)
+- Vite config: [frontend/vite.config.ts](mdc:frontend/vite.config.ts)

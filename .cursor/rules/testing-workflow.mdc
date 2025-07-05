@@ -1,0 +1,127 @@
+---
+description: "Testing and development workflow rules - React Testing Library, component testing, user interaction testing, TDD approach, debugging patterns, test coverage"
+globs:
+alwaysApply: false
+---
+
+# Testing & Development Workflow Rules
+
+## �� Testing Patterns
+
+### Component Testing
+
+```typescript
+// ✅ CORRECT - Component test structure
+import { render, screen, fireEvent } from "@testing-library/react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Component from "./Component";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { retry: false },
+  },
+});
+
+function renderWithProviders(component: React.ReactElement) {
+  return render(
+    <QueryClientProvider client={queryClient}>{component}</QueryClientProvider>
+  );
+}
+
+describe("Component", () => {
+  it("should render correctly", () => {
+    renderWithProviders(<Component />);
+    expect(screen.getByText("Expected Text")).toBeInTheDocument();
+  });
+
+  it("should handle user interactions", () => {
+    renderWithProviders(<Component />);
+    const button = screen.getByRole("button");
+    fireEvent.click(button);
+    expect(screen.getByText("Clicked")).toBeInTheDocument();
+  });
+});
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** write tests for all components
+✅ **ALWAYS** test user interactions and edge cases
+✅ **ALWAYS** use proper testing utilities (React Testing Library)
+✅ **ALWAYS** mock external dependencies
+✅ **ALWAYS** test error states and loading states
+✅ **ALWAYS** maintain good test coverage
+✅ **ALWAYS** use descriptive test names
+
+### NEVER DO Rules
+
+❌ **NEVER** test implementation details
+❌ **NEVER** forget to test error scenarios
+❌ **NEVER** write tests that are too brittle
+❌ **NEVER** forget to clean up after tests
+❌ **NEVER** test multiple things in one test
+❌ **NEVER** forget to test accessibility
+
+### Development Workflow
+
+```bash
+# ✅ CORRECT - Development workflow
+# 1. Create feature branch
+git checkout -b feature/new-component
+
+# 2. Write tests first (TDD)
+npm test -- --watch
+
+# 3. Implement feature
+# Write component code
+
+# 4. Run linting and formatting
+npm run lint
+npm run format
+
+# 5. Run all tests
+npm test
+
+# 6. Build and check for errors
+npm run build
+
+# 7. Commit with proper message
+git commit -m "feat: add new component with tests"
+
+# 8. Push and create PR
+git push origin feature/new-component
+```
+
+### Debugging Patterns
+
+```typescript
+// ✅ CORRECT - Debugging with proper logging
+const DEBUG = process.env.NODE_ENV === "development";
+
+function debugLog(message: string, data?: any) {
+  if (DEBUG) {
+    console.log(`[DEBUG] ${message}`, data);
+  }
+}
+
+function Component() {
+  useEffect(() => {
+    debugLog("Component mounted");
+    return () => debugLog("Component unmounted");
+  }, []);
+
+  const handleClick = () => {
+    debugLog("Button clicked");
+    // Handle click
+  };
+
+  return <button onClick={handleClick}>Click me</button>;
+}
+```
+
+### Reference Files
+
+- Package scripts: [frontend/package.json](mdc:frontend/package.json)
+- ESLint config: [frontend/.eslintrc.json](mdc:frontend/.eslintrc.json)
+
+- Vite config: [frontend/vite.config.ts](mdc:frontend/vite.config.ts)

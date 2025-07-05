@@ -1,0 +1,97 @@
+---
+description: "Media query and responsive development rules - theme.media usage, mobile-first design, DeviceProvider, rem units, touch targets, responsive breakpoints"
+globs:
+alwaysApply: false
+---
+
+# Media Query & Responsive Development Rules
+
+## 📱 Responsive Design Patterns
+
+### Device Provider Pattern
+
+```typescript
+// ✅ CORRECT - Device detection hook
+function DeviceProvider() {
+  const isMobile = useMediaQuery({
+    query: `(max-width:${BREAKPOINT.TABLET - 0.1}px)`,
+  });
+
+  const isTablet = useMediaQuery({
+    query: `(min-width:${BREAKPOINT.TABLET}px) and (max-width:${
+      BREAKPOINT.DESKTOP - 0.1
+    }px)`,
+  });
+
+  const isDesktop = useMediaQuery({
+    query: `(min-width:${BREAKPOINT.DESKTOP}px)`,
+  });
+
+  if (isMobile === true) return "mobile";
+  if (isTablet === true) return "tablet";
+  if (isDesktop === true) return "desktop";
+
+  return "desktop";
+}
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** use theme.media for responsive styling
+✅ **ALWAYS** implement mobile-first design approach
+✅ **ALWAYS** use DeviceProvider for conditional rendering
+✅ **ALWAYS** test on all breakpoints
+✅ **ALWAYS** use rem units for responsive sizing
+✅ **ALWAYS** implement proper touch targets for mobile
+
+### NEVER DO Rules
+
+❌ **NEVER** use hardcoded pixel values for breakpoints
+❌ **NEVER** forget mobile experience
+❌ **NEVER** use fixed widths that break on mobile
+❌ **NEVER** forget to test on different screen sizes
+❌ **NEVER** use px units for responsive elements
+
+### Responsive Component Pattern
+
+```typescript
+// ✅ CORRECT - Responsive component structure
+const ResponsiveComponent = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+
+  ${({ theme }) => theme.media.mobile`
+    flex-direction: column;
+    padding: 1rem;
+  `}
+
+  ${({ theme }) => theme.media.tablet`
+    padding: 1.5rem;
+  `}
+  
+  ${({ theme }) => theme.media.desktop`
+    padding: 2rem;
+  `}
+`;
+
+// ✅ CORRECT - Conditional rendering
+function Component() {
+  const device = DeviceProvider();
+
+  return (
+    <div>
+      {device === "mobile" && <MobileLayout />}
+      {device === "tablet" && <TabletLayout />}
+      {device === "desktop" && <DesktopLayout />}
+    </div>
+  );
+}
+```
+
+### Reference Files
+
+- Device provider: [frontend/src/assets/mediaQuery/DeviceProvider.ts](mdc:frontend/src/assets/mediaQuery/DeviceProvider.ts)
+- Media queries: [frontend/src/styles/media.ts](mdc:frontend/src/styles/media.ts)
+
+- Breakpoints: [frontend/src/constants/breakpoint.ts](mdc:frontend/src/constants/breakpoint.ts)

@@ -1,0 +1,105 @@
+---
+description: "API and data fetching rules - Use TanStack Query, centralized request utility, TypeScript interfaces, error handling, loading states, query keys, staleTime configuration"
+globs:
+alwaysApply: false
+---
+
+# API and Data Fetching Rules
+
+## 🌐 API Architecture
+
+### Request Utility Structure
+
+```typescript
+// ✅ CORRECT - Use utils/request.ts
+import request from "@utils/request";
+
+const response = await request<RequestType, ResponseType, ErrorType>({
+  uri: "/api/endpoint",
+  method: "get",
+  data: requestData,
+});
+```
+
+### Query Organization
+
+```
+query/
+├── get/           # GET requests
+├── post/          # POST requests
+├── patch/         # PATCH requests
+├── delete/        # DELETE requests
+└── index.ts       # Exports
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** use the centralized request utility
+✅ **ALWAYS** create proper TypeScript interfaces for API responses
+✅ **ALWAYS** use TanStack Query for data fetching
+✅ **ALWAYS** handle loading, error, and success states
+✅ **ALWAYS** implement proper error boundaries
+✅ **ALWAYS** use query keys for caching
+✅ **ALWAYS** set appropriate staleTime and cacheTime
+✅ **ALWAYS** use proper HTTP methods (GET, POST, PATCH, DELETE)
+
+### NEVER DO Rules
+
+❌ **NEVER** use fetch or axios directly in components
+❌ **NEVER** forget to handle API errors
+❌ **NEVER** create queries without proper TypeScript types
+❌ **NEVER** use any type for API responses
+❌ **NEVER** forget to invalidate queries after mutations
+❌ **NEVER** make API calls in render functions
+
+### Query Hook Template
+
+```typescript
+// ✅ CORRECT - Query hook structure
+import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "@constants/keys";
+import request from "@utils/request";
+
+interface UserData {
+  id: number;
+  name: string;
+  email: string;
+}
+
+function useGetUser(userId: number) {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER, userId],
+    queryFn: async () => {
+      const response = await request<null, UserData, null>({
+        uri: `/api/users/${userId}`,
+        method: "get",
+      });
+      return response.data;
+    },
+    staleTime: 5 * 60 * 1000, // 5 minutes
+    retry: 1,
+  });
+}
+```
+
+### Error Handling
+
+```typescript
+// ✅ CORRECT - Error handling in components
+function UserProfile({ userId }: { userId: number }) {
+  const { data: user, isLoading, error } = useGetUser(userId);
+
+  if (isLoading) return <Loading />;
+  if (error) return <ErrorMessage error={error} />;
+  if (!user) return <NotFound />;
+
+  return <UserCard user={user} />;
+}
+```
+
+### Reference Files
+
+- Axios configuration: [frontend/src/utils/axios.ts](mdc:frontend/src/utils/axios.ts)
+- Request utility: [frontend/src/utils/request.ts](mdc:frontend/src/utils/request.ts)
+- Query example: [frontend/src/query/get/useGetArticleDetail.ts](mdc:frontend/src/query/get/useGetArticleDetail.ts)
+- Error constants: [frontend/src/constants/error.ts](mdc:frontend/src/constants/error.ts)

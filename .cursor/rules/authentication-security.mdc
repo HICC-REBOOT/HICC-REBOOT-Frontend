@@ -1,0 +1,125 @@
+---
+description: "Authentication and security rules - JWT token management, automatic token refresh, permission validation, secure cookies, HTTPS communication, sensitive data protection"
+globs:
+alwaysApply: false
+---
+
+# Authentication & Security Rules
+
+## 🔐 Security Patterns
+
+### JWT Token Management
+
+```typescript
+// ✅ CORRECT - Token management with axios interceptors
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  withCredentials: true,
+});
+
+// Request interceptor
+axiosInstance.interceptors.request.use(async (config) => {
+  if (!config.headers) {
+    return config;
+  }
+  return config;
+});
+
+// Response interceptor with token refresh
+axiosInstance.interceptors.response.use(
+  (res) => res,
+  async (error) => {
+    const axiosError = getAxiosError(error);
+
+    if (axiosError?.data.code === ERROR_CODE.ACCESS_EXPIRED) {
+      return resetTokenAndReattemptRequest(axiosError);
+    }
+
+    if (axiosError?.data.code === ERROR_CODE.REFRESH_EXPIRED) {
+      removeRefreshAndSignOut();
+      return Promise.reject(axiosError);
+    }
+
+    return Promise.reject(error);
+  }
+);
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** use JWT tokens for authentication
+✅ **ALWAYS** implement automatic token refresh
+✅ **ALWAYS** store sensitive data in httpOnly cookies
+✅ **ALWAYS** validate user permissions on both client and server
+✅ **ALWAYS** implement proper logout functionality
+✅ **ALWAYS** handle authentication errors gracefully
+✅ **ALWAYS** use HTTPS for all API communications
+
+### NEVER DO Rules
+
+❌ **NEVER** store tokens in localStorage
+❌ **NEVER** send sensitive data in URL parameters
+❌ **NEVER** trust client-side validation only
+❌ **NEVER** forget to handle token expiration
+❌ **NEVER** expose sensitive information in error messages
+❌ **NEVER** use weak authentication methods
+
+### Authorization Pattern
+
+```typescript
+// ✅ CORRECT - Authorization utility
+class Authorization {
+  static isMoreThanExecutive(grade: Grade) {
+    return grade === "PRESIDENT" || grade === "EXECUTIVE";
+  }
+
+  static isPresident(grade: Grade) {
+    return grade === "PRESIDENT";
+  }
+}
+
+// ✅ CORRECT - Protected component
+function ProtectedComponent({ requiredRole }: { requiredRole: string }) {
+  const { user, isAdmin, isPresident } = useAuth();
+
+  if (!user) return <LoginRequired />;
+  if (requiredRole === "admin" && !isAdmin) return <AccessDenied />;
+  if (requiredRole === "president" && !isPresident) return <AccessDenied />;
+
+  return <ProtectedContent />;
+}
+```
+
+### Cookie Management
+
+```typescript
+// ✅ CORRECT - Secure cookie management
+export const setCookie = (
+  name: string,
+  value: string,
+  options?: CookieSetOptions
+) => {
+  return cookies.set(name, value, {
+    ...options,
+    secure: true,
+    sameSite: "strict",
+    httpOnly: true,
+  });
+};
+
+export const getCookie = (name: string) => {
+  return cookies.get(name);
+};
+
+export const removeCookie = (name: string) => {
+  return cookies.remove(name);
+};
+```
+
+### Reference Files
+
+- Axios config: [frontend/src/utils/axios.ts](mdc:frontend/src/utils/axios.ts)
+- Authorization: [frontend/src/utils/Authorization.ts](mdc:frontend/src/utils/Authorization.ts)
+- Cookie utils: [frontend/src/utils/cookie.ts](mdc:frontend/src/utils/cookie.ts)
+
+- Auth hook: [frontend/src/hooks/useAuth.ts](mdc:frontend/src/hooks/useAuth.ts)

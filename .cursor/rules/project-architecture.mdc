@@ -1,0 +1,62 @@
+---
+alwaysApply: true
+---
+
+# HICC-REBOOT-Frontend Project Architecture Rules
+
+## 🏗️ Project Structure Overview
+
+This is a **React 18 + TypeScript + Vite** project with **Recoil** for state management and **TanStack Query** for server state.
+
+### Core Architecture Principles
+
+- **Component-First Design**: All UI logic must be in components
+- **Separation of Concerns**: Business logic in hooks, UI in components
+- **Type Safety**: Strict TypeScript with no `any` types
+- **Performance First**: Code splitting, lazy loading, memoization
+
+### Directory Structure
+
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Route-level components
+├── hooks/         # Custom React hooks
+├── query/         # TanStack Query hooks
+├── libs/store/    # Recoil atoms
+├── utils/         # Utility functions
+├── constants/     # App constants
+├── styles/        # Global styles & theme
+└── assets/        # Static assets
+```
+
+### MUST FOLLOW Rules
+
+✅ **ALWAYS** use TypeScript for all new files
+✅ **ALWAYS** create proper interfaces for props and data
+✅ **ALWAYS** use path aliases (@components, @utils, etc.)
+✅ **ALWAYS** follow the existing folder structure
+✅ **ALWAYS** use Recoil for global state, TanStack Query for server state
+
+### NEVER DO Rules
+
+❌ **NEVER** use `any` type - create proper interfaces
+❌ **NEVER** put business logic directly in components
+❌ **NEVER** create files outside the established structure
+❌ **NEVER** use inline styles - use styled-components
+❌ **NEVER** forget to handle loading and error states
+
+### File Naming Conventions
+
+- Components: `PascalCase.tsx` (e.g., `UserProfile.tsx`)
+- Hooks: `camelCase.ts` (e.g., `useUserData.ts`)
+- Utils: `camelCase.ts` (e.g., `formatDate.ts`)
+- Styles: `ComponentName.style.tsx` (e.g., `UserProfile.style.tsx`)
+
+### Key Configuration Files
+
+- Main entry: [frontend/src/index.tsx](mdc:frontend/src/index.tsx)
+- App routing: [frontend/src/App.tsx](mdc:frontend/src/App.tsx)
+- Vite config: [frontend/vite.config.ts](mdc:frontend/vite.config.ts)
+- TypeScript config: [frontend/tsconfig.json](mdc:frontend/tsconfig.json)
+- Package config: [frontend/package.json](mdc:frontend/package.json)
